@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+   <!-- Archivo de aplicacion de contexto para las pruebas unitarias -->
+
+    <!-- IMPORTACION DE OTROS CONTEXTOS DE PRODUCCION -->
+    <import resource="file:web/WEB-INF/config/spring/applicationContext-dao.xml"/>
+    <import resource="file:web/WEB-INF/config/spring/applicationContext-services.xml"/>
+
+    <!-- TAG DE INTEGRACION DE SPRING CON JUNIT -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!-- BEAN PARA LA FABRICA DE SESSION DE HIBERNATE -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="configLocation">
+            <value>file:web/WEB-INF/config/hibernate/hibernate.cfg.xml</value>
+        </property>
+        <property name="configurationClass">
+            <value>org.hibernate.cfg.AnnotationConfiguration</value>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${db.dialect}</prop>
+                <prop key="hibernate.default_schema">${db.default_schema}</prop>
+                <prop key="hibernate.hbm2ddl.auto">false</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.connection.release_mode">after_statement</prop>
+                <prop key="hibernate.transaction.auto_close_session">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- BEAN PARA CARGAR LOS ARCHIVOS DE PROPIEDAD EN CONTEXTO -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:web/WEB-INF/config/hibernate/database_mysql.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- BEAN PARA LA CONFIGURACION DEL DATA SOURCE -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>${db.driverClassName}</value>
+        </property>
+        <property name="url">
+            <value>${db.url}</value>
+        </property>
+        <property name="username">
+            <value>${db.username}</value>
+        </property>
+        <property name="password">
+            <value>${db.password}</value>
+        </property>
+    </bean>
+
+    <!-- BEAN PARA LA CONFIGURACION DE LA PLANTILLA PARA TRABAJAR CON JDBC -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg>
+            <ref bean="dataSource"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- BEAN PARA LA CONFIGURACION DEL TRANSACTION MANAGER -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+        <property name="sessionFactory">
+            <ref local="sessionFactory"/>
+        </property>
+    </bean>
+
+    <!-- BEAN PARA LA IMPLEMENTACION DEL INTERCEPTOR QUE TRABAJARA CON LOG4J -->
+    <bean name="auditoriaInterceptor" class="ve.edu.ucab.ibet.aop.interceptors.AuditoriaInterceptor" />
+
+    <!-- BEAN PARA LA CONFIGURACION DE LOS METODOS QUE SERAN INTERCEPTADOS -->
+    <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+
+        <property name="interceptorNames">
+
+            <value>auditoriaInterceptor</value>
+
+        </property>
+
+        <property name="beanNames">
+
+            <value>*aop</value>
+
+        </property>
+
+    </bean>
+    
+</beans>
