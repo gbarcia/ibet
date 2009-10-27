@@ -2,7 +2,17 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-      <!--<mapping class="com.foo.dominio.Cliente" />
-      <mapping class="com.foo.dominio.Producto" / -->
+      <mapping class="ve.edu.ucab.ibet.dominio.Apuesta"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.ApuestaPK"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.Categoria"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.Evento"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.MedioPago"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.Participante"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.Politica"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.TableroGanancia"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.TableroGananciaPK"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.Users"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.UsuarioMedioPago"/>
+      <mapping class="ve.edu.ucab.ibet.dominio.UsuarioMedioPagoPK"/>
   </session-factory>
 </hibernate-configuration>
