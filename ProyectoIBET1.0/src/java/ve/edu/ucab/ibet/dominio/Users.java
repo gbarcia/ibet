@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -13,16 +8,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author nath
+ * Clase entidad para describir los objetos de dominio de Usuarios
+ * @author Gerardo Barcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "users")
