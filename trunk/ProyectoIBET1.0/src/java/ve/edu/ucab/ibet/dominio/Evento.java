@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -15,16 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author nath
+ * Clase para representar los objetos de dominio Evento
+ * @author Gerardo Barcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "EVENTO")
@@ -183,7 +177,6 @@ public class Evento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Evento)) {
             return false;
         }
