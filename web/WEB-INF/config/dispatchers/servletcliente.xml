@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+  <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+  <property name="validationConfigLocations">
+    <list>
+      <value>WEB-INF/validator-rules.xml</value>
+      <value>WEB-INF/validator.xml</value>
+    </list>
+  </property>
+</bean>
+
+<!--
+<bean id="agregarclienteValidator" class="org.springmodules.validation.commons.ConfigurablePageBeanValidator">
+<property name="formName" value="cliente" />
+<property name="validatorFactory" ref="validatorFactory" />
+</bean> -->
+
+<bean id="beanValidator" class="org.springmodules.validation.commons.DefaultBeanValidator">
+  <property name="validatorFactory" ref="validatorFactory" />
+</bean>
+
+
+<bean name="/agregarcliente.htm"
+    class="com.pd.controllers.forms.ClienteFormController">
+  <property name="formView" value="agregarcliente" />
+  <property name="successView" value="agregarcliente.htm?r=1" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioCliente" ref="servicioCliente"/>
+</bean>
+    
+</beans>

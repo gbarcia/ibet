@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+    <bean id="generarReporteDisco" class="com.pd.generic.util.GenerarReporteDisco">
+    </bean>
+
+    <bean id="ResourceBunldeViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="basename">
+            <value>views</value>
+        </property>
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/*.pdf">controller</prop>
+                <prop key="/*.xls">controller</prop>
+            </props>
+        </property>
+        <property name="order">
+            <value>0</value>
+        </property>
+    </bean>
+    <bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
+
+    <bean id="controller" class="com.pd.controllers.reports.implementaciones.ReporteClienteController">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioCliente" ref="servicioCliente" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="5000000" />
+	<property name="maxInMemorySize" value="5000000" />
+</bean>
+
+
+    <bean id="resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+        <property name="mappings">
+            <props>
+                <prop key="/pruebaReporte.pdf">generarReportePDF</prop>
+                <prop key="/pruebaReporteXLS.xls">generarReporteXLS</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">friendlyError</prop>
+                <prop key="org.apache.jasper.JasperException">Error</prop>
+            </props>
+        </property>
+    </bean>
+
+    
+   <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <bean name="/login.htm" class="com.pd.controllers.LoginController" />
+
+    <bean name="/home.htm" class="com.pd.controllers.HomeController">
+        <property name="servicioMail" ref="mailService"/>
+        <property name="generarReporteDisco" ref="generarReporteDisco"/>
+    </bean>
+    <bean name="/index.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <bean name="/redirect.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <bean name="/admin.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="alwaysUseMessageFormat" value="true" />
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+                <value>errors</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="config/dispatchers/servletcliente.xml"/>
+    
+</beans>
