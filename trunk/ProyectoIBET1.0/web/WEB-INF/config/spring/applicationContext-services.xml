@@ -22,7 +22,14 @@
     <bean name="generarReporteFile" class="ve.edu.ucab.ibet.generic.util.reportes.impl.GenerarReporteFileImpl">
         <property name="helperProperties" ref="helperProperties"/>
     </bean>
-    
+
+    <!-- ******************** GESTION PERFIL DE USUARIOS *************************************-->
+    <!-- BEAN PARA EL SERVICIO DE PERFIL DE USUARIOS-->
+    <bean id="servicioPerfilUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioPerfilUsuarioImpl">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="hp" ref="helperProperties"/>
+    </bean>
+
     <!-- Ejemplo <bean id="servicioCliente" class="com.pd.servicios.implementaciones.ServicioCliente" scope="singleton">
         <property name="genericDao">
             <ref bean="genericDao"/>
