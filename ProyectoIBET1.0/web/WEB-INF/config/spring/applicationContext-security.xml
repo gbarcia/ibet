@@ -63,20 +63,20 @@
         <custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
         <beans:property name="defaultTargetUrl"   value="/home.htm" />
         <beans:property name="authenticationManager" ref="authenticationManager" />
-        <beans:property name="authenticationFailureUrl" value="/login.jsp?authfailed=true" />
+        <beans:property name="authenticationFailureUrl" value="/login.htm?authfailed=true" />
         <beans:property name="allowSessionCreation" value="true" />
         <beans:property name="targetUrlResolver" ref="roleBasedTargetUrlResolver" />
         <beans:property name="exceptionMappings">
             <beans:props>
                 <beans:prop
                     key="org.springframework.security.CredentialsExpiredException">
-                    /login.jsp?newpassword=true
+                    /login.htm?newpassword=true
                 </beans:prop>
                 <beans:prop key="org.springframework.security.LockedException">
-                    /login.jsp?acclocked=true
+                    /login.htm?acclocked=true
                 </beans:prop>
                 <beans:prop key="org.springframework.security.DisabledException">
-                    /login.jsp?accdisabled=true
+                    /login.htm?accdisabled=true
                 </beans:prop>
             </beans:props>
         </beans:property>
@@ -89,7 +89,7 @@
      <!-- BEAN PARA ESPECIFICAR EN QUE ARCHIVO SE CONTRARA EL FORM URL -->
     <beans:bean id="myAuthenticationEntryPoint"
 		class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
-        <beans:property name="loginFormUrl" value="/login.jsp" />
+        <beans:property name="loginFormUrl" value="/login.htm" />
     </beans:bean>
 
     <!-- PUNTOS DE ENTRADA DE AUTENTICACION
@@ -97,7 +97,7 @@
      permiso. Por defecto la pagina del log debe tener de filtros none
     -->
     <http entry-point-ref="myAuthenticationEntryPoint" auto-config="false">
-        <intercept-url pattern="/login.jsp" filters="none" />
+        <intercept-url pattern="/login.htm" filters="none" />
         <intercept-url pattern="/admin.htm" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" access="ROLE_USER" />
         <!--
@@ -107,7 +107,7 @@
                 authentication-failure-url="/login.jsp?authfailed=true" />
         -->
         <logout invalidate-session="true" logout-url="/logout.htm"
-			logout-success-url="/login.jsp?loggedout=true" />
+			logout-success-url="/login.htm?loggedout=true" />
 
         <!--
                 make sure you have

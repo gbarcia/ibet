@@ -51,6 +51,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
 
+    <!-- BEAN PARA RESOLVER FORMULARIOS CON ARCHIVOS -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000" />
+        <property name="maxInMemorySize" value="5000000" />
+    </bean>
+
     <!-- BEAN DE VISTAS PARA LOS REPORTES -->
     <bean id="ResourceBunldeViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
         <property name="basename">
@@ -121,6 +127,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  -->
     
     <bean name="/index.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <!-- -
+ *********************** MAPEO PAGINA LOGIN APLICACION ********************
+ -->
+    <bean name="/login.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
 
 <!-- -
  *********************** IMPORTACIONES DE DISTPATCHERS ********************
