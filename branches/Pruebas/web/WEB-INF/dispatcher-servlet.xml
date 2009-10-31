@@ -24,8 +24,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="/*.pdf">controller</prop>
-                <prop key="/*.xls">controller</prop>
+                <prop key="/prueba*">controller</prop>
             </props>
         </property>
         <property name="order">
@@ -54,8 +53,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
         <property name="mappings">
             <props>
-                <prop key="/pruebaReporte.pdf">generarReportePDF</prop>
-                <prop key="/pruebaReporteXLS.xls">generarReporteXLS</prop>
+                <prop key="/*.pdf">generarReportePDF</prop>
+                <prop key="/*.xls">generarReporteXLS</prop>
             </props>
         </property>
     </bean>
