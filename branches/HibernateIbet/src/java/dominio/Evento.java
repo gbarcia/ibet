@@ -27,45 +27,47 @@ import javax.persistence.TemporalType;
  * @author nath
  */
 @Entity
-@Table(name = "EVENTO")
-@NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"), @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"), @NamedQuery(name = "Evento.findByNombre", query = "SELECT e FROM Evento e WHERE e.nombre = :nombre"), @NamedQuery(name = "Evento.findByFecha", query = "SELECT e FROM Evento e WHERE e.fecha = :fecha"), @NamedQuery(name = "Evento.findByHora", query = "SELECT e FROM Evento e WHERE e.hora = :hora"), @NamedQuery(name = "Evento.findByFechaMaxima", query = "SELECT e FROM Evento e WHERE e.fechaMaxima = :fechaMaxima"), @NamedQuery(name = "Evento.findByHoraMaxima", query = "SELECT e FROM Evento e WHERE e.horaMaxima = :horaMaxima"), @NamedQuery(name = "Evento.findByResultado", query = "SELECT e FROM Evento e WHERE e.resultado = :resultado"), @NamedQuery(name = "Evento.findByEstatus", query = "SELECT e FROM Evento e WHERE e.estatus = :estatus")})
+@Table(name = "EVENTO", catalog = "iBet", schema = "")
+@NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"), @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"), @NamedQuery(name = "Evento.findByNombre", query = "SELECT e FROM Evento e WHERE e.nombre = :nombre"), @NamedQuery(name = "Evento.findByFecha", query = "SELECT e FROM Evento e WHERE e.fecha = :fecha"), @NamedQuery(name = "Evento.findByHora", query = "SELECT e FROM Evento e WHERE e.hora = :hora"), @NamedQuery(name = "Evento.findByFechaMaxima", query = "SELECT e FROM Evento e WHERE e.fechaMaxima = :fechaMaxima"), @NamedQuery(name = "Evento.findByHoraMaxima", query = "SELECT e FROM Evento e WHERE e.horaMaxima = :horaMaxima"), @NamedQuery(name = "Evento.findByResultado", query = "SELECT e FROM Evento e WHERE e.resultado = :resultado"), @NamedQuery(name = "Evento.findByEstatus", query = "SELECT e FROM Evento e WHERE e.estatus = :estatus"), @NamedQuery(name = "Evento.findByImagenEvento", query = "SELECT e FROM Evento e WHERE e.imagenEvento = :imagenEvento")})
 public class Evento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "hora")
+    @Column(name = "hora", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date hora;
     @Basic(optional = false)
-    @Column(name = "fechaMaxima")
+    @Column(name = "fechaMaxima", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaMaxima;
     @Basic(optional = false)
-    @Column(name = "horaMaxima")
+    @Column(name = "horaMaxima", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date horaMaxima;
     @Basic(optional = false)
-    @Column(name = "resultado")
+    @Column(name = "resultado", nullable = false, length = 200)
     private String resultado;
     @Basic(optional = false)
-    @Column(name = "estatus")
+    @Column(name = "estatus", nullable = false)
     private boolean estatus;
-    @JoinColumn(name = "idCategoria", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Categoria idCategoria;
-    @JoinColumn(name = "idPolitica", referencedColumnName = "id")
+    @Column(name = "imagenEvento", length = 200)
+    private String imagenEvento;
+    @JoinColumn(name = "idPolitica", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Politica idPolitica;
+    @JoinColumn(name = "idCategoria", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private Collection<TableroGanancia> tableroGananciaCollection;
 
@@ -151,12 +153,12 @@ public class Evento implements Serializable {
         this.estatus = estatus;
     }
 
-    public Categoria getIdCategoria() {
-        return idCategoria;
+    public String getImagenEvento() {
+        return imagenEvento;
     }
 
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setImagenEvento(String imagenEvento) {
+        this.imagenEvento = imagenEvento;
     }
 
     public Politica getIdPolitica() {
@@ -165,6 +167,14 @@ public class Evento implements Serializable {
 
     public void setIdPolitica(Politica idPolitica) {
         this.idPolitica = idPolitica;
+    }
+
+    public Categoria getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Categoria idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public Collection<TableroGanancia> getTableroGananciaCollection() {

@@ -24,23 +24,25 @@ import javax.persistence.Table;
  * @author nath
  */
 @Entity
-@Table(name = "CATEGORIA")
-@NamedQueries({@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"), @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"), @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"), @NamedQuery(name = "Categoria.findByEmpate", query = "SELECT c FROM Categoria c WHERE c.empate = :empate"), @NamedQuery(name = "Categoria.findByLogicaAutomatica", query = "SELECT c FROM Categoria c WHERE c.logicaAutomatica = :logicaAutomatica")})
+@Table(name = "CATEGORIA", catalog = "iBet", schema = "")
+@NamedQueries({@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"), @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"), @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"), @NamedQuery(name = "Categoria.findByEmpate", query = "SELECT c FROM Categoria c WHERE c.empate = :empate"), @NamedQuery(name = "Categoria.findByLogicaAutomatica", query = "SELECT c FROM Categoria c WHERE c.logicaAutomatica = :logicaAutomatica"), @NamedQuery(name = "Categoria.findByNombreLogica", query = "SELECT c FROM Categoria c WHERE c.nombreLogica = :nombreLogica")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "empate")
+    @Column(name = "empate", nullable = false)
     private boolean empate;
     @Basic(optional = false)
-    @Column(name = "logicaAutomatica")
+    @Column(name = "logicaAutomatica", nullable = false)
     private boolean logicaAutomatica;
+    @Column(name = "nombreLogica", length = 100)
+    private String nombreLogica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
     private Collection<Evento> eventoCollection;
     @OneToMany(mappedBy = "idCategoria")
@@ -93,6 +95,14 @@ public class Categoria implements Serializable {
 
     public void setLogicaAutomatica(boolean logicaAutomatica) {
         this.logicaAutomatica = logicaAutomatica;
+    }
+
+    public String getNombreLogica() {
+        return nombreLogica;
+    }
+
+    public void setNombreLogica(String nombreLogica) {
+        this.nombreLogica = nombreLogica;
     }
 
     public Collection<Evento> getEventoCollection() {
