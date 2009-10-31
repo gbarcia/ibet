@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -7,16 +12,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase para representar los objetos de dominio de medios de pago
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Entity
 @Table(name = "MEDIO_PAGO")
+@NamedQueries({@NamedQuery(name = "MedioPago.findAll", query = "SELECT m FROM MedioPago m")})
 public class MedioPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

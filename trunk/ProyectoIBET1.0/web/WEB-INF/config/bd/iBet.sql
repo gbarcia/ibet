@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 DROP SCHEMA IF EXISTS `iBet` ;
-CREATE SCHEMA IF NOT EXISTS `iBet` DEFAULT CHARACTER SET ucs2 COLLATE ucs2_spanish_ci ;
+CREATE SCHEMA IF NOT EXISTS `iBet` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
 USE `iBet`;
 
 -- -----------------------------------------------------
@@ -17,7 +17,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`users` (
   `apellido` VARCHAR(100) NOT NULL ,
   `fechaNacimiento` DATE NULL ,
   `sexo` VARCHAR(1) NOT NULL ,
-  `correo` VARCHAR(100) NOT NULL ,
+  `correo` VARCHAR(100) UNIQUE NOT NULL ,
   `telefono` VARCHAR(100) NULL ,
   `pais` VARCHAR(100) NULL ,
   `ciudad` VARCHAR(100) NULL ,
@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `iBet`.`MEDIO_PAGO` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`MEDIO_PAGO` (
   `id` INT NOT NULL ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(45) UNIQUE NOT NULL ,
   `activo` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -113,6 +113,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`CATEGORIA` (
   `nombre` VARCHAR(100) NOT NULL ,
   `empate` TINYINT(1) NOT NULL ,
   `logicaAutomatica` TINYINT(1) NOT NULL ,
+  `nombreLogica` VARCHAR(100) NULL DEFAULT NULL ,
   `idCategoria` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_CATEGORIA_CATEGORIA1` (`idCategoria` ASC) ,
@@ -138,6 +139,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`EVENTO` (
   `horaMaxima` TIME NOT NULL ,
   `resultado` VARCHAR(200) NOT NULL ,
   `estatus` TINYINT(1) NOT NULL ,
+  `imagenEvento` VARCHAR(200) NULL DEFAULT NULL ,
   `idCategoria` INT NOT NULL ,
   `idPolitica` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
@@ -163,7 +165,7 @@ DROP TABLE IF EXISTS `iBet`.`PARTICIPANTE` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`PARTICIPANTE` (
   `id` INT NOT NULL ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(45) UNIQUE NOT NULL ,
   `descripcion` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -299,12 +301,12 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (1, 'deporte', 0, 0, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (2, 'futbol', 1, 0, 1);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (3, 'beisbol', 0, 0, 1);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (4, 'espectaculo', 0, 0, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (5, 'oscar', 0, 0, 4);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `idCategoria`) VALUES (6, 'mejor actor', 0, 0, 5);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (1, 'deporte', 0, 0, null, null);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (2, 'futbol', 1, 0,  null, 1);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (3, 'beisbol', 0, 0, null, 1);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (4, 'espectaculo', 0, 0,null, null);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (5, 'oscar', 0, 0, null, 4);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (6, 'mejor actor', 0, 0, null, 5);
 
 COMMIT;
 
@@ -313,9 +315,9 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `idCategoria`, `idPolitica`) VALUES (1, 'barcelona vs real madrid', '2009-11-12', '19:00:00', '2009-11-11', '18:00:00', '', 1, 2, 1);
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `idCategoria`, `idPolitica`) VALUES (2, 'leones vs magallanes', '2009-11-15', '20:00:00', '2009-11-15', '19:00:00', '', 1, 3, 1);
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `idCategoria`, `idPolitica`) VALUES (3, 'nominacion al mejor actor', '2009-11-20', '21:00:00', '2009-11-19', '21:00:00', '', 1, 6, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (1, 'barcelona vs real madrid', '2009-11-12', '19:00:00', '2009-11-11', '18:00:00', '', 1, null, 2, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (2, 'leones vs magallanes', '2009-11-15', '20:00:00', '2009-11-15', '19:00:00', '', 1, null, 3, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (3, 'nominacion al mejor actor', '2009-11-20', '21:00:00', '2009-11-19', '21:00:00', '', 1, null, 6, 1);
 
 COMMIT;
 

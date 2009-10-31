@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -9,16 +14,18 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase entidad para los obejtos de dominio Tablero de Ganancias
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Entity
 @Table(name = "TABLERO_GANANCIA")
+@NamedQueries({@NamedQuery(name = "TableroGanancia.findAll", query = "SELECT t FROM TableroGanancia t")})
 public class TableroGanancia implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

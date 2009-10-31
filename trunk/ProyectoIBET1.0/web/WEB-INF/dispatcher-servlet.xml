@@ -89,38 +89,75 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
 
     <!-- BEAN PARA LOS CONTROLADORES DE LOS REPORTES -->
-    <!--<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="/*.pdf">controller</prop>
-                <prop key="/*.xls">controller</prop>
+                <prop key="/repHistorial*">controllerHistApuestas</prop>
+                <prop key="/repCategorias*">controllerCategoriasGanyPer</prop>
+                <prop key="/repCantidad*">controllerCantidadUsuariosCat</prop>
+                <prop key="/repUsuarios*">controllerUsuariosMayorAciertos</prop>
+                <prop key="/repEventos*">controllerEventosRiesgos</prop>
             </props>
         </property>
         <property name="order">
             <value>0</value>
         </property>
-    </bean> -->
+    </bean>
     
      <!-- CONTROLADORES MAPEADOS EN EL URLMAPPING DE REPORTES
         Se deben indicar controllers para los reportes que tengan resolvers
         donde se indicaran los metodos que soportaran cada reporte
      -->
-     <!-- Ejemplo
-    <bean id="controller" class="com.pd.controllers.reports.implementaciones.ReporteClienteController">
+
+     <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO HISTORIAL APUESTAS -->
+    <bean id="controllerHistApuestas" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteHistorialUsuarioController">
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
-        <property name="servicioCliente" ref="servicioCliente" />
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
     </bean>
 
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR GANANCIAS Y PERDIDAS -->
+    <bean id="controllerCategoriasGanyPer" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasGananPerd">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CANTIDAD USUARIOS POR CATEGORIA -->
+    <bean id="controllerCantidadUsuariosCat" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCantidadUsuariosCat">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO USUARIOS CON MAYOR ACIERTOS -->
+    <bean id="controllerUsuariosMayorAciertos" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteUsuariosMayorAciertos">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+    
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO USUARIOS CON MAYOR ACIERTOS -->
+    <bean id="controllerEventosRiesgos" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteEventosRiesgo">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+
+    <!--BEAN PARA INDICAR EL METODO QUE MANEJARA LA CREACION DEL REPORTE SEGUN EXTENCION -->
     <bean id="resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
         <property name="mappings">
             <props>
-                <prop key="/pruebaReporte.pdf">generarReportePDF</prop>
-                <prop key="/pruebaReporteXLS.xls">generarReporteXLS</prop>
+                <prop key="/*.pdf">generarReportePDF</prop>
+                <prop key="/*.xls">generarReporteXLS</prop>
             </props>
         </property>
-    </bean> -->
+    </bean>
 
 <!-- -
  *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
