@@ -29,7 +29,8 @@ public class ReporteHistorialUsuarioController extends MultiActionController imp
 
     public Map getModel() throws GeneralException {
         //TODO realizar metodo para obtener modelo del reporte
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 
     public List getData() throws GeneralException {
