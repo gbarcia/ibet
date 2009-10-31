@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -9,16 +14,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase para representar los objetos de dominio de Categoria
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Entity
 @Table(name = "CATEGORIA")
+@NamedQueries({@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,6 +41,8 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "logicaAutomatica")
     private boolean logicaAutomatica;
+    @Column(name = "nombreLogica")
+    private String nombreLogica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
     private Collection<Evento> eventoCollection;
     @OneToMany(mappedBy = "idCategoria")
@@ -86,6 +95,14 @@ public class Categoria implements Serializable {
 
     public void setLogicaAutomatica(boolean logicaAutomatica) {
         this.logicaAutomatica = logicaAutomatica;
+    }
+
+    public String getNombreLogica() {
+        return nombreLogica;
+    }
+
+    public void setNombreLogica(String nombreLogica) {
+        this.nombreLogica = nombreLogica;
     }
 
     public Collection<Evento> getEventoCollection() {

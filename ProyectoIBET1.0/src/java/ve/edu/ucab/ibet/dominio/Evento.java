@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -10,18 +15,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Clase para representar los objetos de dominio Evento
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Entity
 @Table(name = "EVENTO")
+@NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")})
 public class Evento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,6 +60,8 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "estatus")
     private boolean estatus;
+    @Column(name = "imagenEvento")
+    private String imagenEvento;
     @JoinColumn(name = "idPolitica", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Politica idPolitica;
@@ -144,6 +153,14 @@ public class Evento implements Serializable {
         this.estatus = estatus;
     }
 
+    public String getImagenEvento() {
+        return imagenEvento;
+    }
+
+    public void setImagenEvento(String imagenEvento) {
+        this.imagenEvento = imagenEvento;
+    }
+
     public Politica getIdPolitica() {
         return idPolitica;
     }
@@ -177,6 +194,7 @@ public class Evento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Evento)) {
             return false;
         }

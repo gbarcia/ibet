@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -6,9 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Clase para representar la clave primaria compuesta de TableroGanancia
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Embeddable
 public class TableroGananciaPK implements Serializable {
@@ -53,6 +57,7 @@ public class TableroGananciaPK implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TableroGananciaPK)) {
             return false;
         }

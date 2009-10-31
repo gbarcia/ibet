@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -7,16 +12,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase entidad para los objetos de dominio politica
- * @author Gerardo Barcia
- * @version 1.0
+ *
+ * @author nath
  */
 @Entity
 @Table(name = "POLITICA")
+@NamedQueries({@NamedQuery(name = "Politica.findAll", query = "SELECT p FROM Politica p")})
 public class Politica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
