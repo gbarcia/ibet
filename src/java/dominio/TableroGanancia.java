@@ -24,7 +24,7 @@ import javax.persistence.Table;
  * @author nath
  */
 @Entity
-@Table(name = "TABLERO_GANANCIA")
+@Table(name = "TABLERO_GANANCIA", catalog = "iBet", schema = "")
 @NamedQueries({@NamedQuery(name = "TableroGanancia.findAll", query = "SELECT t FROM TableroGanancia t"), @NamedQuery(name = "TableroGanancia.findByIdEvento", query = "SELECT t FROM TableroGanancia t WHERE t.tableroGananciaPK.idEvento = :idEvento"), @NamedQuery(name = "TableroGanancia.findByIdParticipante", query = "SELECT t FROM TableroGanancia t WHERE t.tableroGananciaPK.idParticipante = :idParticipante"), @NamedQuery(name = "TableroGanancia.findByGano", query = "SELECT t FROM TableroGanancia t WHERE t.gano = :gano"), @NamedQuery(name = "TableroGanancia.findByEmpato", query = "SELECT t FROM TableroGanancia t WHERE t.empato = :empato"), @NamedQuery(name = "TableroGanancia.findByPropocionGano", query = "SELECT t FROM TableroGanancia t WHERE t.propocionGano = :propocionGano"), @NamedQuery(name = "TableroGanancia.findByProporcionEmpate", query = "SELECT t FROM TableroGanancia t WHERE t.proporcionEmpate = :proporcionEmpate")})
 public class TableroGanancia implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -35,16 +35,16 @@ public class TableroGanancia implements Serializable {
     @Column(name = "empato")
     private Boolean empato;
     @Basic(optional = false)
-    @Column(name = "propocionGano")
+    @Column(name = "propocionGano", nullable = false)
     private double propocionGano;
-    @Column(name = "proporcionEmpate")
+    @Column(name = "proporcionEmpate", precision = 22)
     private Double proporcionEmpate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tableroGanancia")
     private Collection<Apuesta> apuestaCollection;
-    @JoinColumn(name = "idEvento", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "idEvento", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Evento evento;
-    @JoinColumn(name = "idParticipante", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "idParticipante", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Participante participante;
 

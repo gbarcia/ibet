@@ -16,25 +16,26 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author nath
  */
 @Entity
-@Table(name = "MEDIO_PAGO")
+@Table(name = "MEDIO_PAGO", catalog = "iBet", schema = "", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
 @NamedQueries({@NamedQuery(name = "MedioPago.findAll", query = "SELECT m FROM MedioPago m"), @NamedQuery(name = "MedioPago.findById", query = "SELECT m FROM MedioPago m WHERE m.id = :id"), @NamedQuery(name = "MedioPago.findByNombre", query = "SELECT m FROM MedioPago m WHERE m.nombre = :nombre"), @NamedQuery(name = "MedioPago.findByActivo", query = "SELECT m FROM MedioPago m WHERE m.activo = :activo")})
 public class MedioPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "activo")
+    @Column(name = "activo", nullable = false)
     private boolean activo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medioPago")
     private Collection<UsuarioMedioPago> usuarioMedioPagoCollection;

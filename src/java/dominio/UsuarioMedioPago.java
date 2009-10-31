@@ -24,31 +24,31 @@ import javax.persistence.TemporalType;
  * @author nath
  */
 @Entity
-@Table(name = "USUARIO_MEDIO_PAGO")
+@Table(name = "USUARIO_MEDIO_PAGO", catalog = "iBet", schema = "")
 @NamedQueries({@NamedQuery(name = "UsuarioMedioPago.findAll", query = "SELECT u FROM UsuarioMedioPago u"), @NamedQuery(name = "UsuarioMedioPago.findByUsername", query = "SELECT u FROM UsuarioMedioPago u WHERE u.usuarioMedioPagoPK.username = :username"), @NamedQuery(name = "UsuarioMedioPago.findByIdMedioPago", query = "SELECT u FROM UsuarioMedioPago u WHERE u.usuarioMedioPagoPK.idMedioPago = :idMedioPago"), @NamedQuery(name = "UsuarioMedioPago.findByActivo", query = "SELECT u FROM UsuarioMedioPago u WHERE u.activo = :activo"), @NamedQuery(name = "UsuarioMedioPago.findByFechaInicio", query = "SELECT u FROM UsuarioMedioPago u WHERE u.fechaInicio = :fechaInicio"), @NamedQuery(name = "UsuarioMedioPago.findByFechaFin", query = "SELECT u FROM UsuarioMedioPago u WHERE u.fechaFin = :fechaFin"), @NamedQuery(name = "UsuarioMedioPago.findByMontoMaximo", query = "SELECT u FROM UsuarioMedioPago u WHERE u.montoMaximo = :montoMaximo")})
 public class UsuarioMedioPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected UsuarioMedioPagoPK usuarioMedioPagoPK;
     @Basic(optional = false)
-    @Column(name = "activo")
+    @Column(name = "activo", nullable = false)
     private boolean activo;
     @Basic(optional = false)
-    @Column(name = "fechaInicio")
+    @Column(name = "fechaInicio", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Column(name = "fechaFin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @Basic(optional = false)
-    @Column(name = "montoMaximo")
+    @Column(name = "montoMaximo", nullable = false)
     private double montoMaximo;
-    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private MedioPago medioPago;
-    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Users users;
+    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private MedioPago medioPago;
 
     public UsuarioMedioPago() {
     }
@@ -108,20 +108,20 @@ public class UsuarioMedioPago implements Serializable {
         this.montoMaximo = montoMaximo;
     }
 
-    public MedioPago getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(MedioPago medioPago) {
-        this.medioPago = medioPago;
-    }
-
     public Users getUsers() {
         return users;
     }
 
     public void setUsers(Users users) {
         this.users = users;
+    }
+
+    public MedioPago getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(MedioPago medioPago) {
+        this.medioPago = medioPago;
     }
 
     @Override

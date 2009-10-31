@@ -17,14 +17,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ApuestaPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, length = 250)
     private String username;
     @Basic(optional = false)
-    @Column(name = "idMedioPago")
+    @Column(name = "idMedioPago", nullable = false)
     private int idMedioPago;
-
-    public ApuestaPK() {
-    }
 
     public ApuestaPK(String username, int idMedioPago) {
         this.username = username;

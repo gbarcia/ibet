@@ -19,57 +19,58 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author nath
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", catalog = "iBet", schema = "", uniqueConstraints = {@UniqueConstraint(columnNames = {"correo"})})
 @NamedQueries({@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"), @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"), @NamedQuery(name = "Users.findByNombre", query = "SELECT u FROM Users u WHERE u.nombre = :nombre"), @NamedQuery(name = "Users.findByApellido", query = "SELECT u FROM Users u WHERE u.apellido = :apellido"), @NamedQuery(name = "Users.findByFechaNacimiento", query = "SELECT u FROM Users u WHERE u.fechaNacimiento = :fechaNacimiento"), @NamedQuery(name = "Users.findBySexo", query = "SELECT u FROM Users u WHERE u.sexo = :sexo"), @NamedQuery(name = "Users.findByCorreo", query = "SELECT u FROM Users u WHERE u.correo = :correo"), @NamedQuery(name = "Users.findByTelefono", query = "SELECT u FROM Users u WHERE u.telefono = :telefono"), @NamedQuery(name = "Users.findByPais", query = "SELECT u FROM Users u WHERE u.pais = :pais"), @NamedQuery(name = "Users.findByCiudad", query = "SELECT u FROM Users u WHERE u.ciudad = :ciudad"), @NamedQuery(name = "Users.findByCodigoPostal", query = "SELECT u FROM Users u WHERE u.codigoPostal = :codigoPostal"), @NamedQuery(name = "Users.findByEstado", query = "SELECT u FROM Users u WHERE u.estado = :estado"), @NamedQuery(name = "Users.findByCalle", query = "SELECT u FROM Users u WHERE u.calle = :calle"), @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"), @NamedQuery(name = "Users.findByEnabled", query = "SELECT u FROM Users u WHERE u.enabled = :enabled"), @NamedQuery(name = "Users.findByConfirmado", query = "SELECT u FROM Users u WHERE u.confirmado = :confirmado"), @NamedQuery(name = "Users.findByAvatar", query = "SELECT u FROM Users u WHERE u.avatar = :avatar")})
 public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, length = 250)
     private String username;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "apellido")
+    @Column(name = "apellido", nullable = false, length = 100)
     private String apellido;
     @Column(name = "fechaNacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     @Basic(optional = false)
-    @Column(name = "sexo")
+    @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
     @Basic(optional = false)
-    @Column(name = "correo")
+    @Column(name = "correo", nullable = false, length = 100)
     private String correo;
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 100)
     private String telefono;
-    @Column(name = "pais")
+    @Column(name = "pais", length = 100)
     private String pais;
-    @Column(name = "ciudad")
+    @Column(name = "ciudad", length = 100)
     private String ciudad;
     @Column(name = "codigoPostal")
     private Integer codigoPostal;
-    @Column(name = "estado")
+    @Column(name = "estado", length = 100)
     private String estado;
-    @Column(name = "calle")
+    @Column(name = "calle", length = 100)
     private String calle;
     @Basic(optional = false)
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 250)
     private String password;
     @Basic(optional = false)
-    @Column(name = "enabled")
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
     @Basic(optional = false)
-    @Column(name = "confirmado")
+    @Column(name = "confirmado", nullable = false)
     private boolean confirmado;
-    @Column(name = "avatar")
+    @Column(name = "avatar", length = 250)
     private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
     private Collection<UsuarioMedioPago> usuarioMedioPagoCollection;

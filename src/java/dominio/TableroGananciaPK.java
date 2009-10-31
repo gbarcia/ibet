@@ -17,14 +17,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class TableroGananciaPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "idEvento")
+    @Column(name = "idEvento", nullable = false)
     private int idEvento;
     @Basic(optional = false)
-    @Column(name = "idParticipante")
+    @Column(name = "idParticipante", nullable = false)
     private int idParticipante;
-
-    public TableroGananciaPK() {
-    }
 
     public TableroGananciaPK(int idEvento, int idParticipante) {
         this.idEvento = idEvento;
