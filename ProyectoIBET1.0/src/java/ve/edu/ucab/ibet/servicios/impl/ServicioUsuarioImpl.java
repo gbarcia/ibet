@@ -8,6 +8,7 @@ import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.generic.excepciones.bd.ExcepcionBaseDatos;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
@@ -54,34 +55,49 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         datosCorreo.add(user.getNombre() + " " + user.getApellido());
         datosCorreo.add(user.getUsername());
         datosCorreo.add(user.getPassword());
-//        String asunto = helperProp.getString("correos.plantillas.asunto.registro");
-        String cuerpo = "";
-//        cuerpo =  ("<p>" + helperProp.getString("correos.plantillas.cuerpo.encabezado", datosCorreo) + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea1") + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea2") + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea3") + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea4", datosCorreo) + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea5", datosCorreo) + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea6") + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea7") + "</p>");
-//        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea8") + "</p>");
+        String asunto = helperProp.getString("correos.plantillas.asunto.registro");
+        String cuerpo = ("<p>" + helperProp.getString("correos.plantillas.cuerpo.encabezado", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea1") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea2") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea3") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea4", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea5", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea6") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea7") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.plantillas.cuerpo.mensaje.linea8") + "</p>");
 
-        servicioMail.send(user.getCorreo(), "a", "prueba");
+        servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = ExcepcionBaseDatos.class)
+    public boolean existeUsuario(Users u) {
+        boolean resultado = true;
+        Users usuarioEnBd = (Users) genericDao.findByPropertyUnique(Users.class, "username", u.getUsername());
+        if (usuarioEnBd == null) {
+            usuarioEnBd = (Users) genericDao.findByPropertyUnique(Users.class, "correo", u.getCorreo());
+            if (usuarioEnBd == null) {
+                resultado = false;
+            }
+        }
+        return resultado;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public boolean registroNuevoUsuarioM(Users user) throws GeneralException {
         boolean resultado = false;
         try {
-            user.setEnabled(false);
-            user.setConfirmado(false);
-            genericDao.insertar(user);
-            enviarCorreo(user);
-            resultado = true;
+            if (!existeUsuario(user)) {
+                user.setEnabled(false);
+                user.setConfirmado(false);
+                genericDao.insertar(user);
+                enviarCorreo(user);
+                resultado = true;
+            } else {
+                throw new ExcepcionNegocio(helperProp.getString("servicios.serviciousuario.excepciones.bd.insert"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             throw new ExcepcionBaseDatos(e, helperProp.getString("servicios.serviciousuario.excepciones.bd.insert"));
-        }finally{
+        } finally {
             return resultado;
         }
     }

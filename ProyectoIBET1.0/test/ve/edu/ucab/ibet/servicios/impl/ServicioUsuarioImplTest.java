@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.Date;
@@ -20,18 +15,19 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 /**
  * pruebas unitarias para servicio usuario
  * @author Gerardo Barcia
+ * @version 1.0
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"file:web/WEB-INF/config/hibernate/applicationContextTest.xml"})
+@ContextConfiguration(locations = {"file:web/WEB-INF/config/hibernate/applicationContextTest.xml"})
 public class ServicioUsuarioImplTest {
 
     public ServicioUsuarioImplTest() {
     }
     @Autowired
     private IServicioUsuario servicioUsuario;
+
     /**
-     * Test of registroNuevoUsuarioM method, of class ServicioUsuarioImpl.
+     * Prueba Unitaria registro usuario
      */
     @Test
     public void testRegistroNuevoUsuarioM() throws Exception {
@@ -42,7 +38,7 @@ public class ServicioUsuarioImplTest {
         user.setCalle("Av. Avila");
         user.setCiudad("Caracas");
         user.setCodigoPostal(1070);
-        user.setCorreo("trujillo.jonathan@gmail.com");
+        user.setCorreo("gerardobarcia@gmail.com");
         user.setEstado("Miranda");
         user.setFechaNacimiento(new Date());
         user.setNombre("Kate");
@@ -56,7 +52,33 @@ public class ServicioUsuarioImplTest {
         boolean result = servicioUsuario.registroNuevoUsuarioM(user);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
-
+//    Prueba unitaria existe usuario
+    //@Test
+//
+//    public void testExisteUsuarioM() throws Exception {
+//        System.out.println("existeUsuario");
+//        Users user = new Users();
+//        user.setApellido("Castellano");
+//        user.setApuestaCollection(null);
+//        user.setCalle("Av. Avila");
+//        user.setCiudad("Caracas");
+//        user.setCodigoPostal(1070);
+//        user.setCorreo("gerardobarcia@gmail.com");
+//        user.setEstado("Miranda");
+//        user.setFechaNacimiento(new Date());
+//        user.setNombre("Kate");
+//        user.setPais("Venezuela");
+//        Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+//        user.setPassword(md5.encodePassword("1234", null));
+//        user.setSexo("f");
+//        user.setTelefono("2345");
+//        user.setUsername("kate");
+//        boolean expResult = false;
+//        boolean result = servicioUsuario.existeUsuario(user);
+//        assertEquals(expResult, result);
+    // TODO review the generated test code and remove the default call to fail.
+    // fail("The test case is a prototype.");
+//    }
 }
