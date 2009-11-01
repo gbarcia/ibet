@@ -25,7 +25,7 @@
 
     <!-- ******************** REGISTRO USUARIO *************************************-->
     <!-- BEAN PARA EL SERVICIO DE USUARIOS-->
-    <bean id="servicioUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioUsuarioImpl">
+    <bean id="servicioUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioUsuarioImpl" scope="singleton">
         <property name="genericDao" ref="genericDao"/>
         <property name="helperProp" ref="helperProperties"/>
         <property name="servicioMail" ref="mailService"/>
@@ -33,7 +33,7 @@
 
     <!-- ******************** GESTION PERFIL DE USUARIOS *************************************-->
     <!-- BEAN PARA EL SERVICIO DE PERFIL DE USUARIOS-->
-    <bean id="servicioPerfilUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioPerfilUsuarioImpl">
+    <bean id="servicioPerfilUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioPerfilUsuarioImpl" scope="singleton">
         <property name="genericDao" ref="genericDao"/>
         <property name="hp" ref="helperProperties"/>
     </bean>
