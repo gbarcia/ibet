@@ -14,11 +14,11 @@
 		 rightMargin="30"
 		 topMargin="20"
 		 bottomMargin="20"
-		 whenNoDataType="NoDataSection"
+		 whenNoDataType="AllSectionsNoDetail"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false"
 		 whenResourceMissingType="Empty">
-	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
 	<import value="net.sf.jasperreports.engine.*" />
@@ -30,11 +30,15 @@
 			</band>
 		</background>
 		<title>
+			<band height="11"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
 			<band height="50"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="311"
-						y="0"
+						x="306"
+						y="1"
 						width="224"
 						height="49"
 						key="staticText-1"/>
@@ -44,10 +48,17 @@
 					</textElement>
 				<text><![CDATA[República Bolivariana de Venezuela - Caracas        IBET Company RIF J-29565286-0                         Todos los derechos reservados]]></text>
 				</staticText>
-			</band>
-		</title>
-		<pageHeader>
-			<band height="50"  isSplitAllowed="true" >
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="1"
+						width="135"
+						height="47"
+						key="image-1"/>
+					<box></box>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA["/opt/logo_fb.png"]]></imageExpression>
+				</image>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -56,6 +67,19 @@
 		</columnHeader>
 		<detail>
 			<band height="100"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="29"
+						y="32"
+						width="118"
+						height="41"
+						key="staticText-2"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[Static Text]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>
