@@ -5,6 +5,7 @@
 
 package ve.edu.ucab.ibet.controllers.forms;
 
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioPerfilUsuario;
 public class PerfilUsuarioFormController extends SimpleFormController{
 
     private IServicioPerfilUsuario servicioPerfil;
+    private static final String[] SEXO = { "F", "M" };
 
     public PerfilUsuarioFormController() {
         setCommandClass(Users.class);
@@ -34,13 +36,16 @@ public class PerfilUsuarioFormController extends SimpleFormController{
 
     @Override
     protected Map referenceData(HttpServletRequest request) throws Exception {
-        return super.referenceData(request);
+        Map referenceData = new HashMap();
+        referenceData.put("sexor", SEXO);
+        return referenceData;
     }
 
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(true);
         Users user = servicioPerfil.obtenerDatosUsuarioM("maya");
+
         return user;
     }
 
