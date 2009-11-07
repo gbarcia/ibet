@@ -30,8 +30,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
         <property name="validationConfigLocations">
             <list>
-                <value>WEB-INF/validator-rules.xml</value>
-                <value>WEB-INF/validator.xml</value>
+                <value>WEB-INF/validaciones/validator-rules.xml</value>
+                <value>WEB-INF/validaciones/validatorUsuario.xml</value>
+                <value>WEB-INF/validaciones/validatorCategoria.xml</value>
+                <value>WEB-INF/validaciones/validatorEvento.xml</value>
+                <value>WEB-INF/validaciones/validatorApuesta.xml</value>
+                <value>WEB-INF/validaciones/validatorMedioPago.xml</value>
             </list>
         </property>
     </bean>

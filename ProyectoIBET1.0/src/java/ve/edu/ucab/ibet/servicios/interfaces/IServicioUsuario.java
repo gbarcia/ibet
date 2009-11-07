@@ -24,4 +24,8 @@ public interface IServicioUsuario {
      * @return condicion booleana
      */
     public boolean existeUsuario(Users u);
+
+    public Users obtenerDatosUsuarioM(String username) throws GeneralException;
+
+     public void actualizarDatosUsuarioM(Users user) throws GeneralException;
 }

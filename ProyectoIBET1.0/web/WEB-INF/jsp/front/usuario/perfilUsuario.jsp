@@ -3,10 +3,8 @@
     Created on : Oct 29, 2009, 4:35:55 PM
     Author     : maya
 --%>
-<%@include file="/WEB-INF/jsp/include.jsp" %>
+<%@include file="/WEB-INF/jsp/comun/include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -17,7 +15,7 @@
         <h2>
             <spring:message code="perfilUsuario.titulo.form"/>
         </h2>
-        <form:form method="POST" action="perfilUsuario.htm" commandName="perfilUsuario">
+        <form:form method="POST" commandName="perfil">
             <table>
                 <tbody>
                     <tr>
@@ -26,6 +24,7 @@
                         </td>
                         <td>
                             <form:input path="username"/>
+                            <form:errors path="username" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -34,6 +33,7 @@
                         </td>
                         <td>
                             <form:input path="nombre"/>
+                            <form:errors path="nombre" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -42,6 +42,7 @@
                         </td>
                         <td>
                             <form:input path="apellido"/>
+                            <form:errors path="apellido" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -50,6 +51,7 @@
                         </td>
                         <td>
                             <form:input path="fechaNacimiento"/>
+                            <form:errors path="fechaNacimiento" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -66,6 +68,7 @@
                         </td>
                         <td>
                             <form:input path="correo"/>
+                            <form:errors path="correo" /><br/>
                         </td>
                     </tr>
                     <tr>
@@ -122,7 +125,7 @@
                         <td>
                         </td>
                         <td align="right">
-                            <input type="submit" value="Actualizar" name="actualizar" />
+                            <input type="submit"/>
                         </td>
                     </tr>
                 </tbody>
