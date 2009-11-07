@@ -23,7 +23,13 @@
         <property name="helperProperties" ref="helperProperties"/>
     </bean>
 
-    <!-- ******************** SERVICIO USUARIO USUARIO *************************************-->
+    <!-- BEAN PARA EL SERVICIO DE REPORTES -->
+    <bean id="servicioReporte" class="ve.edu.ucab.ibet.servicios.impl.ServicioReportesImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="helperProp" ref="helperProperties"/>
+    </bean>
+
+    <!-- ******************** LOGICA *************************************-->
     <!-- BEAN PARA EL SERVICIO DE USUARIOS-->
     <bean id="servicioUsuario" class="ve.edu.ucab.ibet.servicios.impl.ServicioUsuarioImpl" scope="singleton">
         <property name="genericDao" ref="genericDao"/>
@@ -31,10 +37,28 @@
         <property name="servicioMail" ref="mailService"/>
     </bean>
 
-    <!-- Ejemplo <bean id="servicioCliente" class="com.pd.servicios.implementaciones.ServicioCliente" scope="singleton">
-        <property name="genericDao">
-            <ref bean="genericDao"/>
-        </property>
-    </bean> -->
+    <!-- BEAN PARA EL SERVICIO DE APUESTAS-->
+    <bean id="servicioApuesta" class="ve.edu.ucab.ibet.servicios.impl.ServicioApuestaImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="helperProp" ref="helperProperties"/>
+    </bean>
+
+    <!-- BEAN PARA EL SERVICIO DE CATEGORIAS-->
+    <bean id="servicioCategoria" class="ve.edu.ucab.ibet.servicios.impl.ServicioCategoriaImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="helperProp" ref="helperProperties"/>
+    </bean>
+
+    <!-- BEAN PARA EL SERVICIO DE EVENTOS-->
+    <bean id="servicioEvento" class="ve.edu.ucab.ibet.servicios.impl.ServicioEventoImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="helperProp" ref="helperProperties"/>
+    </bean>
     
+    <!-- BEAN PARA EL SERVICIO MEDIOS DE PAGO-->
+    <bean id="servicioMedioPago" class="ve.edu.ucab.ibet.servicios.impl.ServicioMedioPagoImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+        <property name="helperProp" ref="helperProperties"/>
+    </bean>
+   
 </beans>
