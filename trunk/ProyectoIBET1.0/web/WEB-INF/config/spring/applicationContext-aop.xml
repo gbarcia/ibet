@@ -24,7 +24,7 @@
 
         <property name="beanNames">
 
-            <value>aop*</value>
+            <value>*M</value>
 
         </property>
 

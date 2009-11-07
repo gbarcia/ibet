@@ -23,9 +23,20 @@ public interface IServicioUsuario {
      * @param u objeto usuario a verificar
      * @return condicion booleana
      */
-    public boolean existeUsuario(Users u);
+    public boolean existeUsuarioM(Users u);
 
+    /**
+     * firma para obtener los datos de Un usuario
+     * @param username String del usuario a buscar
+     * @return Objeto Usuario con los datos
+     * @throws GeneralException
+     */
     public Users obtenerDatosUsuarioM(String username) throws GeneralException;
 
-     public void actualizarDatosUsuarioM(Users user) throws GeneralException;
+    /**
+     * Firma para actualizar un usuario
+     * @param user usuario a actualizar
+     * @throws GeneralException
+     */
+    public void actualizarDatosUsuarioM(Users user) throws GeneralException;
 }
