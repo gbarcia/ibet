@@ -81,4 +81,42 @@ public class ServicioUsuarioImplTest {
     // TODO review the generated test code and remove the default call to fail.
     // fail("The test case is a prototype.");
 //    }
+
+    /**
+     * Test of obtenerDatosUsuarioM method, of class ServicioPerfilUsuarioImpl.
+     */
+//    @Test
+    public void testObtenerDatosUsuarioM() throws Exception {
+        System.out.println("obtenerDatosUsuarioM");
+        String username = "maya";
+        Users result = servicioUsuario.obtenerDatosUsuarioM(username);
+        assertNotNull(result);
+        System.out.println(result.getApellido());
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testActualizarDatosUsuarioM() throws Exception {
+        System.out.println("actualizarDatosUsuarioM");
+        Users user = new Users();
+        user.setUsername("maya");
+        user.setNombre("maria");
+        user.setApellido("uribe");
+        user.setPassword("12345");
+        user.setCorreo("mayita.uribe@gmail.com");
+        user.setSexo("f");
+        user.setPais("venezuela");
+        user.setCiudad("caracas");
+        user.setEstado("miranda");
+        user.setCalle("cafetal");
+        user.setConfirmado(true);
+        user.setEnabled(true);
+        user.setCodigoPostal(1010);
+        user.setFechaNacimiento(new Date());
+        user.setTelefono("04169513436");
+        servicioUsuario.actualizarDatosUsuarioM(user);
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
 }

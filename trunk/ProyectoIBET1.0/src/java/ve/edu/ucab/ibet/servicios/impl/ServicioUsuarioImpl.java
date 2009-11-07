@@ -14,7 +14,7 @@ import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
- * Servicio para trabajar con usuarios
+ * Clase que ofrece servicios para el manejo de usuarios
  * @author Gerardo Barcia
  * @version 1.0
  */
@@ -99,6 +99,28 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             throw new ExcepcionBaseDatos(e, helperProp.getString("servicios.serviciousuario.excepciones.bd.insert"));
         } finally {
             return resultado;
+        }
+    }
+
+    public Users obtenerDatosUsuarioM(String username) throws GeneralException {
+        Users user = null;
+        try {
+            user = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ExcepcionBaseDatos(e, helperProp.getString("gpu.error.basededatos.obtenerusuarios"));
+        } finally {
+            return user;
+        }
+
+    }
+
+    public void actualizarDatosUsuarioM(Users user) throws GeneralException {
+        try {
+            genericDao.merge(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ExcepcionBaseDatos(e, helperProp.getString("gpu.error.basededatos.actualizarusuarios"));
         }
     }
 }
