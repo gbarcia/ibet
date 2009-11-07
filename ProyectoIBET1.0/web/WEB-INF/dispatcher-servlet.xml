@@ -167,7 +167,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
  -->
     
-    <bean name="/index.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <bean name="/home.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
     <!-- -
  *********************** MAPEO PAGINA LOGIN APLICACION ********************
  -->
