@@ -69,7 +69,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
-    public boolean existeUsuario(Users u) {
+    public boolean existeUsuarioM(Users u) {
         boolean resultado = true;
         Users usuarioEnBd = (Users) genericDao.findByPropertyUnique(Users.class, "username", u.getUsername());
         if (usuarioEnBd == null) {
@@ -85,7 +85,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     public boolean registroNuevoUsuarioM(Users user) throws GeneralException {
         boolean resultado = false;
         try {
-            if (!existeUsuario(user)) {
+            if (!existeUsuarioM(user)) {
                 user.setEnabled(false);
                 user.setConfirmado(false);
                 genericDao.insertar(user);
