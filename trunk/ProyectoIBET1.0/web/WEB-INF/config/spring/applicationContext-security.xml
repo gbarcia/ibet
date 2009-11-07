@@ -98,6 +98,7 @@
     -->
     <http entry-point-ref="myAuthenticationEntryPoint" auto-config="false">
         <intercept-url pattern="/login.htm" filters="none" />
+        <intercept-url pattern="/home.htm"  filters="none" />
         <intercept-url pattern="/admin.htm" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" access="ROLE_USER" />
         <!--
