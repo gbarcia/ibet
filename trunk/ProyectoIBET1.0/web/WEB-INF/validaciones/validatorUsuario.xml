@@ -6,6 +6,41 @@
      <!-- Archivo para la validacion de los formularios de usuarios -->
 
 <form-validation>
+    
+    <!-- Declaracion de constantes-->
+    <global>
+        <constant>
+            <constant-name>soloLetrasMask</constant-name>
+            <constant-value>^[A-Z]*$</constant-value>
+        </constant>
+    </global>
+    <formset>
+        <!-- Validacion formulario registro Usuarios-->
+        <form name="registroUsuarioTO">
+            <field property="nombreUsuario" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.nombreUsuario"/>
+                <msg name="mask" key="errors.sololetras.nombreUsuario"/>
+                <msg name="minlength" key="errors.length.nombreUsuario" />
+                <msg name="maxlength" key="errors.length.nombreUsuario" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>5</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+        </form>
+    </formset>
    <!-- <formset>
         <form name="clienteForm">
             <field property="rif" depends="required,mask">
