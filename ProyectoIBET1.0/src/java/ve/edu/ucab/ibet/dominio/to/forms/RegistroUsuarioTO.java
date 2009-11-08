@@ -20,7 +20,7 @@ public class RegistroUsuarioTO implements Serializable {
     private String telefono;
     private String pais;
     private String ciudad;
-    private String codigoPostal;
+    private Integer codigoPostal;
     private String estado;
     private String calle;
     private String clave;
@@ -58,11 +58,11 @@ public class RegistroUsuarioTO implements Serializable {
         this.clave = clave;
     }
 
-    public String getCodigoPostal() {
+    public Integer getCodigoPostal() {
         return codigoPostal;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
+    public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 

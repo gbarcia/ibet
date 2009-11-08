@@ -48,9 +48,7 @@ public class ServicioUsuarioImplTest {
         user.setSexo("f");
         user.setTelefono("2345");
         user.setUsername("kate");
-        boolean expResult = true;
-        boolean result = servicioUsuario.registroNuevoUsuarioM(user);
-        assertEquals(expResult, result);
+        servicioUsuario.registroNuevoUsuarioM(user);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
     }
