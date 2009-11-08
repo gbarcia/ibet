@@ -17,16 +17,16 @@
         <h2><spring:message code="registroUsuario.titulo.form"/></h2>
         <form:form commandName="registroUsuario" action="registroUsuario.htm">
             <form:errors path="*"/>
-            <c:if test="${ param.resultado == 'SUCCESS'}">
+            <c:if test="${param.resultado == 'SUCCESS'}">
                 <h2>Formulario Procesado</h2>
             </c:if>
-             <c:if test="${ param.errorNegocio != ''}">
-                 <h2><c:out value="${param.errorNegocio}"/></h2>
+             <c:if test="${!empty param.errorNegocio}">
+                 <spring:message code="${param.errorNegocio}"/>
             </c:if>
             <table border="0" cellpadding="1">
                 <tbody>
                     <tr>
-                        <td><spring:message code="perfilUsuario.forms.username"/></td>
+                        <td><spring:message code="usuario.forms.username"/></td>
                         <td><form:input path="nombreUsuario" /></td>
                         <td><form:errors path="nombreUsuario" /></td>
                     </tr>
