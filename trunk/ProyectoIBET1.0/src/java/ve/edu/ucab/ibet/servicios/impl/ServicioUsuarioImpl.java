@@ -2,12 +2,12 @@ package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
-import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
-import ve.edu.ucab.ibet.generic.excepciones.bd.ExcepcionBaseDatos;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
@@ -69,7 +69,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
-    public boolean existeUsuarioM(Users u) {
+    public boolean existeUsuarioM(Users u) throws DataAccessException {
         boolean resultado = true;
         Users usuarioEnBd = (Users) genericDao.findByPropertyUnique(Users.class, "username", u.getUsername());
         if (usuarioEnBd == null) {
@@ -82,45 +82,46 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public boolean registroNuevoUsuarioM(Users user) throws GeneralException {
-        boolean resultado = false;
-        try {
-            if (!existeUsuarioM(user)) {
-                user.setEnabled(false);
-                user.setConfirmado(false);
-                genericDao.insertar(user);
-                enviarCorreo(user);
-                resultado = true;
-            } else {
-                throw new ExcepcionNegocio(helperProp.getString("servicios.serviciousuario.excepciones.bd.insert"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ExcepcionBaseDatos(e, helperProp.getString("servicios.serviciousuario.excepciones.bd.insert"));
-        } finally {
-            return resultado;
+    public void registroNuevoUsuarioM(Users user) throws DataAccessException {
+        if (!existeUsuarioM(user)) {
+            user.setEnabled(false);
+            user.setConfirmado(false);
+            genericDao.insertar(user);
+            enviarCorreo(user);
+        } else {
+            throw new ExcepcionNegocio(helperProp.getString("ru.error.negocio.usuarioexiste"));
         }
     }
 
-    public Users obtenerDatosUsuarioM(String username) throws GeneralException {
+    public Users obtenerDatosUsuarioM(String username) throws DataAccessException {
         Users user = null;
-        try {
-            user = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ExcepcionBaseDatos(e, helperProp.getString("gpu.error.basededatos.obtenerusuarios"));
-        } finally {
-            return user;
-        }
+        user = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
+        return user;
 
     }
 
-    public void actualizarDatosUsuarioM(Users user) throws GeneralException {
-        try {
-            genericDao.merge(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ExcepcionBaseDatos(e, helperProp.getString("gpu.error.basededatos.actualizarusuarios"));
+    public void actualizarDatosUsuarioM(Users user) throws DataAccessException {
+        genericDao.merge(user);
+    }
+
+    public Users transferObjectToModel(RegistroUsuarioTO to) {
+        Users usuario = null;
+        if (to != null) {
+            usuario = new Users();
+            usuario.setUsername(to.getNombreUsuario());
+            usuario.setPassword(to.getClave());
+            usuario.setNombre(to.getNombre());
+            usuario.setApellido(to.getApellido());
+            usuario.setFechaNacimiento(to.getFechaNacimiento());
+            usuario.setCorreo(to.getCorreo());
+            usuario.setSexo(to.getSexo());
+            usuario.setTelefono(to.getTelefono());
+            usuario.setCalle(to.getCalle());
+            usuario.setCiudad(to.getCiudad());
+            usuario.setCodigoPostal(to.getCodigoPostal());
+            usuario.setEstado(to.getEstado());
+            usuario.setPais(to.getPais());
         }
+        return usuario;
     }
 }

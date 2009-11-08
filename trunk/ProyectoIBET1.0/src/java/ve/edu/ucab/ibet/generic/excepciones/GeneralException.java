@@ -1,11 +1,13 @@
 package ve.edu.ucab.ibet.generic.excepciones;
 
+import org.apache.log4j.spi.ErrorCode;
+
 /**
  * Excepcion general de la aplicacion
  * @author Gerardo Barcia
- * @version 1.0
+ * @version 2.0
  */
-public abstract class GeneralException extends Exception {
+public abstract class GeneralException extends RuntimeException implements ErrorCode {
 
     private String keyError;
     private Exception innerException;

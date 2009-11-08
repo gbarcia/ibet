@@ -16,7 +16,13 @@
     <body>
         <h2><spring:message code="registroUsuario.titulo.form"/></h2>
         <form:form commandName="registroUsuario" action="registroUsuario.htm">
-            <form:errors/>
+            <form:errors path="*"/>
+            <c:if test="${ param.resultado == 'SUCCESS'}">
+                <h2>Formulario Procesado</h2>
+            </c:if>
+             <c:if test="${ param.errorNegocio != ''}">
+                 <h2><c:out value="${param.errorNegocio}"/></h2>
+            </c:if>
             <table border="0" cellpadding="1">
                 <tbody>
                     <tr>
