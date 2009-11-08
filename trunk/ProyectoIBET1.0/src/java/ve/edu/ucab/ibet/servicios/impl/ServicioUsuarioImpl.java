@@ -89,7 +89,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             genericDao.insertar(user);
             enviarCorreo(user);
         } else {
-            throw new ExcepcionNegocio(helperProp.getString("ru.error.negocio.usuarioexiste"));
+            throw new ExcepcionNegocio("errors.repetido.nombreUsuario");
         }
     }
 
