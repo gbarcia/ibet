@@ -1,10 +1,14 @@
 package ve.edu.ucab.ibet.controllers.forms;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -60,6 +64,12 @@ public class RegistroUsuarioFormController extends SimpleFormController {
         } finally {
             return mv;
         }
+    }
+
+    @Override
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
     public IServicioUsuario getServicioUsuario() {

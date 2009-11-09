@@ -23,6 +23,7 @@
              <c:if test="${!empty param.errorNegocio}">
                  <spring:message code="${param.errorNegocio}"/>
             </c:if>
+                <br>
             <table border="0" cellpadding="1">
                 <tbody>
                     <tr>
@@ -31,22 +32,39 @@
                         <td><form:errors path="nombreUsuario" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.nombre"/></td>
+                        <td><form:input path="nombre" /></td>
+                        <td><form:errors path="nombre" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.apellido"/></td>
+                        <td><form:input path="apellido" /></td>
+                        <td><form:errors path="apellido" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.fechaNacimiento"/></td>
+                        <td><form:input path="fechaNacimiento" /></td>
+                        <td><form:errors path="fechaNacimiento" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.sexo"/></td>
+                        <td><form:radiobuttons path="sexo" items="${opcionSexo}" /></td>
+                        <td><form:errors path="sexo" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.correo"/></td>
+                        <td><form:input path="correo" /></td>
+                        <td><form:errors path="correo" /></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><spring:message code="usuario.forms.correo.rep"/></td>
+                        <td><form:input path="repCorreo" /></td>
+                        <td><form:errors path="repCorreo" /></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.codigoPostal"/></td>
+                        <td><form:input path="codigoPostal" /></td>
+                        <td><form:errors path="codigoPostal" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Registrar"/></td>

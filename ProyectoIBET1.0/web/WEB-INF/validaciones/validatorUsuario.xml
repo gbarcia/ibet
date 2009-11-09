@@ -39,6 +39,69 @@
                     <var-value>12</var-value>
                 </var>
             </field>
+            <field property="nombre" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.nombre"/>
+                <msg name="mask" key="errors.sololetras.nombre"/>
+                <msg name="minlength" key="errors.length.nombre" />
+                <msg name="maxlength" key="errors.length.nombre" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>2</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+            </field>
+            <field property="apellido" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.apellido"/>
+                <msg name="mask" key="errors.sololetras.apellido"/>
+                <msg name="minlength" key="errors.length.apellido" />
+                <msg name="maxlength" key="errors.length.apellido" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>2</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+            </field>
+            <field property="sexo" depends="required">
+                <msg name="required" key="errors.required.sexo"/>
+            </field>
+            <field property="correo" depends="required,email">
+                 <msg name="required" key="errors.required.correo"/>
+                 <msg name="email" key="errors.email.correo"/>
+            </field>
+            <field property="repCorreo" depends="required,email,validwhen">
+                 <msg name="required" key="errors.required.correo"/>
+                 <msg name="email" key="errors.email.correo"/>
+                 <msg name="validwhen" key="errors.email.correo.rep"/>
+                 <var>
+                     <var-name>test</var-name>
+                     <var-value>(correo == *this*)</var-value>
+                 </var>
+            </field>
+            <field property="codigoPostal" depends="required">
+                <msg name="required" key="errors.required.codigoPostal"/>
+            </field>
         </form>
     </formset>
    <!-- <formset>
@@ -63,6 +126,6 @@
             <field property="correo" depends="required,email">
                 <arg0 key="forms.cliente.nombre" />
             </field>
-            </form>
-        </formset>
+        </form>
+    </formset>
 </form-validation>
