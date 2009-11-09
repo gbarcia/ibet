@@ -38,6 +38,8 @@ public class Apuesta implements Serializable {
     @Basic(optional = false)
     @Column(name = "monto", nullable = false)
     private double monto;
+    @Column(name = "ganador")
+    private boolean ganador;
     @Column(name = "gano")
     private Boolean gano;
     @Column(name = "empato")
@@ -93,6 +95,14 @@ public class Apuesta implements Serializable {
         this.monto = monto;
     }
 
+    public boolean isGanador() {
+        return ganador;
+    }
+
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
+    }
+    
     public Boolean getGano() {
         return gano;
     }
