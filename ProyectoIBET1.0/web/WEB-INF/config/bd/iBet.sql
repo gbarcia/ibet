@@ -209,6 +209,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`APUESTA` (
   `idMedioPago` INT NOT NULL ,
   `fecha` DATE NOT NULL ,
   `monto` DOUBLE NOT NULL ,
+  `ganador` BOOLEAN NULL ,
   `gano` TINYINT(1) NULL ,
   `empato` TINYINT(1) NULL ,
   `idEvento` INT NOT NULL ,

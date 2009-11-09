@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -28,6 +27,7 @@ import javax.persistence.TemporalType;
 @Table(name = "APUESTA")
 @NamedQueries({@NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a")})
 public class Apuesta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ApuestaPK apuestaPK;
@@ -38,6 +38,8 @@ public class Apuesta implements Serializable {
     @Basic(optional = false)
     @Column(name = "monto")
     private double monto;
+    @Column(name = "ganador")
+    private boolean ganador;
     @Column(name = "gano")
     private Boolean gano;
     @Column(name = "empato")
@@ -91,6 +93,14 @@ public class Apuesta implements Serializable {
 
     public void setMonto(double monto) {
         this.monto = monto;
+    }
+
+    public boolean isGanador() {
+        return ganador;
+    }
+
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
     }
 
     public Boolean getGano() {
@@ -157,5 +167,4 @@ public class Apuesta implements Serializable {
     public String toString() {
         return "ve.edu.ucab.ibet.dominio.Apuesta[apuestaPK=" + apuestaPK + "]";
     }
-
 }
