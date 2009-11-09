@@ -345,8 +345,8 @@ INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, 
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (1, 2, null, null, 2, 1);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (2, 3, null, null, 2.5, null);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (2, 4, null, null, 3, null);
-INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (3, 5, null, null, 2.7, null);
-INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (3, 6, null, null, 4, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (3, 5, false, null, 3.1, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (3, 6, true, null, 3.7, null);
 
 COMMIT;
 
@@ -357,6 +357,6 @@ SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('maya', 1, '2009-11-15', 500, 1, null, 3, 5);
 INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('gerardo', 3, '2009-11-10', 200, 1, null, 1, 1);
-INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('johnny', 2, '2009-11-10', 400, 1, null, 1, 2);
+INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('johnny', 2, '2009-11-10', 400, false, 1, null, 1, 2);
 
 COMMIT;
