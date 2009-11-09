@@ -19,22 +19,22 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Entity
-@Table(name = "POLITICA", catalog = "iBet", schema = "")
+@Table(name = "POLITICA")
 @NamedQueries({@NamedQuery(name = "Politica.findAll", query = "SELECT p FROM Politica p"), @NamedQuery(name = "Politica.findById", query = "SELECT p FROM Politica p WHERE p.id = :id"), @NamedQuery(name = "Politica.findByMontoMaximo", query = "SELECT p FROM Politica p WHERE p.montoMaximo = :montoMaximo"), @NamedQuery(name = "Politica.findByFinalizarAntes", query = "SELECT p FROM Politica p WHERE p.finalizarAntes = :finalizarAntes")})
 public class Politica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "montoMaximo", nullable = false)
+    @Column(name = "montoMaximo")
     private double montoMaximo;
     @Basic(optional = false)
-    @Column(name = "finalizarAntes", nullable = false)
+    @Column(name = "finalizarAntes")
     private boolean finalizarAntes;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPolitica")
     private Collection<Evento> eventoCollection;

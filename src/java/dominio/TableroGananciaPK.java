@@ -12,16 +12,19 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Embeddable
 public class TableroGananciaPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "idEvento", nullable = false)
+    @Column(name = "idEvento")
     private int idEvento;
     @Basic(optional = false)
-    @Column(name = "idParticipante", nullable = false)
+    @Column(name = "idParticipante")
     private int idParticipante;
+
+    public TableroGananciaPK() {
+    }
 
     public TableroGananciaPK(int idEvento, int idParticipante) {
         this.idEvento = idEvento;

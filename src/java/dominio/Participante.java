@@ -16,25 +16,24 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Entity
-@Table(name = "PARTICIPANTE", catalog = "iBet", schema = "", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
+@Table(name = "PARTICIPANTE")
 @NamedQueries({@NamedQuery(name = "Participante.findAll", query = "SELECT p FROM Participante p"), @NamedQuery(name = "Participante.findById", query = "SELECT p FROM Participante p WHERE p.id = :id"), @NamedQuery(name = "Participante.findByNombre", query = "SELECT p FROM Participante p WHERE p.nombre = :nombre"), @NamedQuery(name = "Participante.findByDescripcion", query = "SELECT p FROM Participante p WHERE p.descripcion = :descripcion")})
 public class Participante implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "descripcion", length = 45)
+    @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "participante")
     private Collection<TableroGanancia> tableroGananciaCollection;
