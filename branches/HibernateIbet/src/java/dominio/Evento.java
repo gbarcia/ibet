@@ -24,50 +24,50 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Entity
-@Table(name = "EVENTO", catalog = "iBet", schema = "")
+@Table(name = "EVENTO")
 @NamedQueries({@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"), @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"), @NamedQuery(name = "Evento.findByNombre", query = "SELECT e FROM Evento e WHERE e.nombre = :nombre"), @NamedQuery(name = "Evento.findByFecha", query = "SELECT e FROM Evento e WHERE e.fecha = :fecha"), @NamedQuery(name = "Evento.findByHora", query = "SELECT e FROM Evento e WHERE e.hora = :hora"), @NamedQuery(name = "Evento.findByFechaMaxima", query = "SELECT e FROM Evento e WHERE e.fechaMaxima = :fechaMaxima"), @NamedQuery(name = "Evento.findByHoraMaxima", query = "SELECT e FROM Evento e WHERE e.horaMaxima = :horaMaxima"), @NamedQuery(name = "Evento.findByResultado", query = "SELECT e FROM Evento e WHERE e.resultado = :resultado"), @NamedQuery(name = "Evento.findByEstatus", query = "SELECT e FROM Evento e WHERE e.estatus = :estatus"), @NamedQuery(name = "Evento.findByImagenEvento", query = "SELECT e FROM Evento e WHERE e.imagenEvento = :imagenEvento")})
 public class Evento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "fecha", nullable = false)
+    @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "hora", nullable = false)
+    @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
     @Basic(optional = false)
-    @Column(name = "fechaMaxima", nullable = false)
+    @Column(name = "fechaMaxima")
     @Temporal(TemporalType.DATE)
     private Date fechaMaxima;
     @Basic(optional = false)
-    @Column(name = "horaMaxima", nullable = false)
+    @Column(name = "horaMaxima")
     @Temporal(TemporalType.TIME)
     private Date horaMaxima;
     @Basic(optional = false)
-    @Column(name = "resultado", nullable = false, length = 200)
+    @Column(name = "resultado")
     private String resultado;
     @Basic(optional = false)
-    @Column(name = "estatus", nullable = false)
+    @Column(name = "estatus")
     private boolean estatus;
-    @Column(name = "imagenEvento", length = 200)
+    @Column(name = "imagenEvento")
     private String imagenEvento;
-    @JoinColumn(name = "idPolitica", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private Politica idPolitica;
-    @JoinColumn(name = "idCategoria", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idCategoria", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
+    @JoinColumn(name = "idPolitica", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Politica idPolitica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private Collection<TableroGanancia> tableroGananciaCollection;
 
@@ -161,20 +161,20 @@ public class Evento implements Serializable {
         this.imagenEvento = imagenEvento;
     }
 
-    public Politica getIdPolitica() {
-        return idPolitica;
-    }
-
-    public void setIdPolitica(Politica idPolitica) {
-        this.idPolitica = idPolitica;
-    }
-
     public Categoria getIdCategoria() {
         return idCategoria;
     }
 
     public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public Politica getIdPolitica() {
+        return idPolitica;
+    }
+
+    public void setIdPolitica(Politica idPolitica) {
+        this.idPolitica = idPolitica;
     }
 
     public Collection<TableroGanancia> getTableroGananciaCollection() {

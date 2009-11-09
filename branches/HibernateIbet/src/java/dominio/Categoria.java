@@ -21,27 +21,27 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Entity
-@Table(name = "CATEGORIA", catalog = "iBet", schema = "")
+@Table(name = "CATEGORIA")
 @NamedQueries({@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"), @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"), @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"), @NamedQuery(name = "Categoria.findByEmpate", query = "SELECT c FROM Categoria c WHERE c.empate = :empate"), @NamedQuery(name = "Categoria.findByLogicaAutomatica", query = "SELECT c FROM Categoria c WHERE c.logicaAutomatica = :logicaAutomatica"), @NamedQuery(name = "Categoria.findByNombreLogica", query = "SELECT c FROM Categoria c WHERE c.nombreLogica = :nombreLogica")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "empate", nullable = false)
+    @Column(name = "empate")
     private boolean empate;
     @Basic(optional = false)
-    @Column(name = "logicaAutomatica", nullable = false)
+    @Column(name = "logicaAutomatica")
     private boolean logicaAutomatica;
-    @Column(name = "nombreLogica", length = 100)
+    @Column(name = "nombreLogica")
     private String nombreLogica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
     private Collection<Evento> eventoCollection;

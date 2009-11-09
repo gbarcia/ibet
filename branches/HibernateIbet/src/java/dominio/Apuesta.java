@@ -22,37 +22,37 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author nath
+ * @author maya
  */
 @Entity
-@Table(name = "APUESTA", catalog = "iBet", schema = "")
-@NamedQueries({@NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a"), @NamedQuery(name = "Apuesta.findByUsername", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.username = :username"), @NamedQuery(name = "Apuesta.findByIdMedioPago", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.idMedioPago = :idMedioPago"), @NamedQuery(name = "Apuesta.findByFecha", query = "SELECT a FROM Apuesta a WHERE a.fecha = :fecha"), @NamedQuery(name = "Apuesta.findByMonto", query = "SELECT a FROM Apuesta a WHERE a.monto = :monto"), @NamedQuery(name = "Apuesta.findByGano", query = "SELECT a FROM Apuesta a WHERE a.gano = :gano"), @NamedQuery(name = "Apuesta.findByEmpato", query = "SELECT a FROM Apuesta a WHERE a.empato = :empato")})
+@Table(name = "APUESTA")
+@NamedQueries({@NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a"), @NamedQuery(name = "Apuesta.findByUsername", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.username = :username"), @NamedQuery(name = "Apuesta.findByIdMedioPago", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.idMedioPago = :idMedioPago"), @NamedQuery(name = "Apuesta.findByFecha", query = "SELECT a FROM Apuesta a WHERE a.fecha = :fecha"), @NamedQuery(name = "Apuesta.findByMonto", query = "SELECT a FROM Apuesta a WHERE a.monto = :monto"), @NamedQuery(name = "Apuesta.findByGanador", query = "SELECT a FROM Apuesta a WHERE a.ganador = :ganador"), @NamedQuery(name = "Apuesta.findByGano", query = "SELECT a FROM Apuesta a WHERE a.gano = :gano"), @NamedQuery(name = "Apuesta.findByEmpato", query = "SELECT a FROM Apuesta a WHERE a.empato = :empato")})
 public class Apuesta implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ApuestaPK apuestaPK;
     @Basic(optional = false)
-    @Column(name = "fecha", nullable = false)
+    @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "monto", nullable = false)
+    @Column(name = "monto")
     private double monto;
     @Column(name = "ganador")
-    private boolean ganador;
+    private Boolean ganador;
     @Column(name = "gano")
     private Boolean gano;
     @Column(name = "empato")
     private Boolean empato;
-    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Users users;
-    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private MedioPago medioPago;
-    @JoinColumns({@JoinColumn(name = "idEvento", referencedColumnName = "idEvento", nullable = false), @JoinColumn(name = "idParticipante", referencedColumnName = "idParticipante", nullable = false)})
+    @JoinColumns({@JoinColumn(name = "idEvento", referencedColumnName = "idEvento"), @JoinColumn(name = "idParticipante", referencedColumnName = "idParticipante")})
     @ManyToOne(optional = false)
     private TableroGanancia tableroGanancia;
+    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private MedioPago medioPago;
+    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Users users;
 
     public Apuesta() {
     }
@@ -95,14 +95,14 @@ public class Apuesta implements Serializable {
         this.monto = monto;
     }
 
-    public boolean isGanador() {
+    public Boolean getGanador() {
         return ganador;
     }
 
-    public void setGanador(boolean ganador) {
+    public void setGanador(Boolean ganador) {
         this.ganador = ganador;
     }
-    
+
     public Boolean getGano() {
         return gano;
     }
@@ -119,12 +119,12 @@ public class Apuesta implements Serializable {
         this.empato = empato;
     }
 
-    public Users getUsers() {
-        return users;
+    public TableroGanancia getTableroGanancia() {
+        return tableroGanancia;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setTableroGanancia(TableroGanancia tableroGanancia) {
+        this.tableroGanancia = tableroGanancia;
     }
 
     public MedioPago getMedioPago() {
@@ -135,12 +135,12 @@ public class Apuesta implements Serializable {
         this.medioPago = medioPago;
     }
 
-    public TableroGanancia getTableroGanancia() {
-        return tableroGanancia;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setTableroGanancia(TableroGanancia tableroGanancia) {
-        this.tableroGanancia = tableroGanancia;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     @Override
