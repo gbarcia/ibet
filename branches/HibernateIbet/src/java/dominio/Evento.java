@@ -62,12 +62,12 @@ public class Evento implements Serializable {
     private boolean estatus;
     @Column(name = "imagenEvento")
     private String imagenEvento;
-    @JoinColumn(name = "idCategoria", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Categoria idCategoria;
     @JoinColumn(name = "idPolitica", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Politica idPolitica;
+    @JoinColumn(name = "idCategoria", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private Collection<TableroGanancia> tableroGananciaCollection;
 
@@ -161,20 +161,20 @@ public class Evento implements Serializable {
         this.imagenEvento = imagenEvento;
     }
 
-    public Categoria getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
     public Politica getIdPolitica() {
         return idPolitica;
     }
 
     public void setIdPolitica(Politica idPolitica) {
         this.idPolitica = idPolitica;
+    }
+
+    public Categoria getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Categoria idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public Collection<TableroGanancia> getTableroGananciaCollection() {
