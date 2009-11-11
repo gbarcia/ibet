@@ -43,12 +43,12 @@ public class UsuarioMedioPago implements Serializable {
     @Basic(optional = false)
     @Column(name = "montoMaximo")
     private double montoMaximo;
-    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private MedioPago medioPago;
     @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Users users;
+    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private MedioPago medioPago;
 
     public UsuarioMedioPago() {
     }
@@ -108,20 +108,20 @@ public class UsuarioMedioPago implements Serializable {
         this.montoMaximo = montoMaximo;
     }
 
-    public MedioPago getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(MedioPago medioPago) {
-        this.medioPago = medioPago;
-    }
-
     public Users getUsers() {
         return users;
     }
 
     public void setUsers(Users users) {
         this.users = users;
+    }
+
+    public MedioPago getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(MedioPago medioPago) {
+        this.medioPago = medioPago;
     }
 
     @Override
