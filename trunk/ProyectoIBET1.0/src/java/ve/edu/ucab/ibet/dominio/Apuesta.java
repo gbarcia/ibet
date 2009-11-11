@@ -67,8 +67,8 @@ public class Apuesta implements Serializable {
         this.monto = monto;
     }
 
-    public Apuesta(String username, int idMedioPago) {
-        this.apuestaPK = new ApuestaPK(username, idMedioPago);
+    public Apuesta(int id, String username, int idMedioPago) {
+        this.apuestaPK = new ApuestaPK(id, username, idMedioPago);
     }
 
     public ApuestaPK getApuestaPK() {
