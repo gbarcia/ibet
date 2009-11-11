@@ -17,6 +17,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ApuestaPK implements Serializable {
     @Basic(optional = false)
+    @Column(name = "id")
+    private int id;
+    @Basic(optional = false)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
@@ -26,9 +29,18 @@ public class ApuestaPK implements Serializable {
     public ApuestaPK() {
     }
 
-    public ApuestaPK(String username, int idMedioPago) {
+    public ApuestaPK(int id, String username, int idMedioPago) {
+        this.id = id;
         this.username = username;
         this.idMedioPago = idMedioPago;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

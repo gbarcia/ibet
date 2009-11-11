@@ -205,6 +205,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `iBet`.`APUESTA` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`APUESTA` (
+  `id` INT NOT NULL ,
   `username` VARCHAR(250) NOT NULL ,
   `idMedioPago` INT NOT NULL ,
   `fecha` DATE NOT NULL ,
@@ -214,7 +215,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`APUESTA` (
   `empato` TINYINT(1) NULL ,
   `idEvento` INT NOT NULL ,
   `idParticipante` INT NOT NULL ,
-  PRIMARY KEY (`username`, `idMedioPago`) ,
+  PRIMARY KEY (`id`, `username`, `idMedioPago`) ,
   INDEX `fk_USUARIO_has_MEDIO_PAGO_USUARIO2` (`username` ASC) ,
   INDEX `fk_USUARIO_has_MEDIO_PAGO_MEDIO_PAGO2` (`idMedioPago` ASC) ,
   INDEX `fk_APUESTA_EVENTO_PARTICIPANTE1` (`idEvento` ASC, `idParticipante` ASC) ,
@@ -355,8 +356,10 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('maya', 1, '2009-11-15', 500, false, 1, null, 3, 5);
-INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('gerardo', 3, '2009-11-10', 200, 1, null, 1, 1);
-INSERT INTO `APUESTA` (`username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES ('johnny', 2, '2009-11-10', 400, 1, null, 1, 2);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (1, 'maya', 1, '2009-11-15', 500, false, 1, null, 3, 5);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (2, 'maya', 1, '2009-11-10', 100, false, 1, null, 1, 2);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (3, 'maya', 1, '2009-11-10', 200, true, 1, null, 2, 3);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (4, 'gerardo', 3, '2009-11-10', 200, 1, null, 1, 1);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (5, 'johnny', 2, '2009-11-10', 400, 1, null, 1, 2);
 
 COMMIT;
