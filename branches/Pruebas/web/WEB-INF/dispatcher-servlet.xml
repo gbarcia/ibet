@@ -88,7 +88,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
     <bean name="/index.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
     <bean name="/redirect.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
-    <bean name="/admin.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <bean name="/admin/admin.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="alwaysUseMessageFormat" value="true" />
