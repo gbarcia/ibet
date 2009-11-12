@@ -1,14 +1,15 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
@@ -69,7 +70,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
-    public boolean existeUsuarioM(Users u) throws DataAccessException {
+    public boolean existeUsuarioM(Users u) {
         boolean resultado = true;
         Users usuarioEnBd = (Users) genericDao.findByPropertyUnique(Users.class, "username", u.getUsername());
         if (usuarioEnBd == null) {
@@ -81,26 +82,54 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return resultado;
     }
 
+    private boolean esUsuarioMayorEdad(Users u) {
+        boolean esMayor = false;
+        Integer anioActual = UtilMethods.extraerAnio(new Date());
+        Integer anioUsuario = UtilMethods.extraerAnio(u.getFechaNacimiento());
+        Integer resultado = anioActual - anioUsuario;
+        if (resultado >= 18) {
+            esMayor = true;
+        }
+        return esMayor;
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void registroNuevoUsuarioM(Users user) throws DataAccessException {
+    public void registroNuevoUsuarioM(Users user) {
         if (!existeUsuarioM(user)) {
-            user.setEnabled(false);
-            user.setConfirmado(false);
-            genericDao.insertar(user);
-            enviarCorreo(user);
+            if (esUsuarioMayorEdad(user)) {
+                user.setEnabled(false);
+                user.setConfirmado(false);
+                genericDao.insertar(user);
+                enviarCorreo(user);
+            } else {
+                throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
+            }
         } else {
-            throw new ExcepcionNegocio("errors.repetido.nombreUsuario");
+            throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariorepetido"));
         }
     }
 
-    public Users obtenerDatosUsuarioM(String username) throws DataAccessException {
+    public String obtenerAtributoError(String mensaje) {
+        String resultado = null;
+        if (mensaje.equals(helperProp.getString("error.negocio.usuariomenor"))) {
+            resultado = "fechaNacimiento";
+        } else if (mensaje.equals(helperProp.getString("error.negocio.usuariorepetido"))) {
+            resultado = "nombreUsuario";
+        }
+        return resultado;
+    }
+
+    public Users obtenerDatosUsuarioM(String username) {
         Users user = null;
         user = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
+        if (user == null) {
+            throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuarionoexiste"));
+        }
         return user;
 
     }
 
-    public void actualizarDatosUsuarioM(Users user) throws DataAccessException {
+    public void actualizarDatosUsuarioM(Users user) {
         genericDao.merge(user);
     }
 

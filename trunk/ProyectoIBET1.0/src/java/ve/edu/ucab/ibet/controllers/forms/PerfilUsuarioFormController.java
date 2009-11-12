@@ -40,8 +40,6 @@ public class PerfilUsuarioFormController extends SimpleFormController{
     @Override
     protected ModelAndView onSubmit(Object command, BindException errors) {
         Users u = (Users) command;
-        System.out.println(u.getCalle());
-        System.out.println("aca");
         try {
             servicioPerfil.actualizarDatosUsuarioM(u);
         } catch (GeneralException ex) {
@@ -60,7 +58,7 @@ public class PerfilUsuarioFormController extends SimpleFormController{
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(true);
-        Users user = servicioPerfil.obtenerDatosUsuarioM("maya");
+        Users user = servicioPerfil.obtenerDatosUsuarioM("x");
         return user;
     }
 
