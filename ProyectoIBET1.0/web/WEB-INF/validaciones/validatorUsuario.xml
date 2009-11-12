@@ -87,17 +87,17 @@
                 <msg name="required" key="errors.required.sexo"/>
             </field>
             <field property="correo" depends="required,email">
-                 <msg name="required" key="errors.required.correo"/>
-                 <msg name="email" key="errors.email.correo"/>
+                <msg name="required" key="errors.required.correo"/>
+                <msg name="email" key="errors.email.correo"/>
             </field>
             <field property="repCorreo" depends="required,email,validwhen">
-                 <msg name="required" key="errors.required.correo"/>
-                 <msg name="email" key="errors.email.correo"/>
-                 <msg name="validwhen" key="errors.email.correo.rep"/>
-                 <var>
-                     <var-name>test</var-name>
-                     <var-value>(correo == *this*)</var-value>
-                 </var>
+                <msg name="required" key="errors.required.correo"/>
+                <msg name="email" key="errors.email.correo"/>
+                <msg name="validwhen" key="errors.email.correo.rep"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(correo == *this*)</var-value>
+                </var>
             </field>
             <field property="codigoPostal" depends="required">
                 <msg name="required" key="errors.required.codigoPostal"/>
@@ -110,29 +110,45 @@
                     <var-value>((\(\d{4}\) ?)|(\d{3}-))?\d{3}-\d{4}</var-value>
                 </var>
             </field>
-        </form>
-    </formset>
-   <!-- <formset>
-        <form name="clienteForm">
-            <field property="rif" depends="required,mask">
-                <arg0 key="forms.cliente.rif" />
+            <field property="pais" depends="required">
+                <msg name="required" key="errors.required.pais"/>
+            </field>
+            <field property="estado" depends="required">
+                <msg name="required" key="errors.required.estado"/>
+            </field>
+            <field property="ciudad" depends="required">
+                <msg name="required" key="errors.required.ciudad"/>
+            </field>
+            <field property="calle" depends="required">
+                <msg name="required" key="errors.required.calle"/>
+            </field>
+            <field property="clave" depends="required,mask">
+                <msg name="required" key="errors.required.clave"/>
+                <msg name="mask" key="errors.mask.clave"/>
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^[0-9A-Za-z]{2,6}$</var-value>
+                    <var-value>^.{4,8}$</var-value>
                 </var>
             </field>
-            <field property="nombre" depends="required">
-                <arg0 key="forms.cliente.nombre" />
+            <field property="repClave" depends="required,mask,validwhen">
+                <msg name="required" key="errors.required.claveRep"/>
+                <msg name="mask" key="errors.mask.claveRep"/>
+                <msg name="validwhen" key="errors.mask.claveDistinta"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^.{4,8}$</var-value>
+                </var>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(clave == *this*)</var-value>
+                </var>
             </field>
-            </form>
-        </formset> -->
-    <formset>
-        <form name="users">
-            <field property="nombre" depends="required">
-                <arg0 key="forms.cliente.rif" />
-            </field>
-            <field property="correo" depends="required,email">
-                <arg0 key="forms.cliente.nombre" />
+            <field property="aceptaContrato" depends="validwhen">
+                <msg name="validwhen" key="errors.required.contrato"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(*this* == 'true')</var-value>
+                </var>
             </field>
         </form>
     </formset>

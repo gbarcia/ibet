@@ -28,9 +28,6 @@
             <c:if test="${param.resultado == 'SUCCESS'}">
                 <h2>Formulario Procesado</h2>
             </c:if>
-            <c:if test="${!empty param.errorNegocio}">
-                <spring:message code="${param.errorNegocio}"/>
-            </c:if>
             <br>
             <table border="0" cellpadding="1">
                 <tbody>
@@ -38,6 +35,16 @@
                         <td><spring:message code="usuario.forms.username"/></td>
                         <td><form:input path="nombreUsuario" autocomplete="true"/></td>
                         <td><form:errors path="nombreUsuario" /></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.clave"/></td>
+                        <td><form:password path="clave"/></td>
+                        <td><form:errors path="clave" /></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.claveRep"/></td>
+                        <td><form:password path="repClave"  /></td>
+                        <td><form:errors path="repClave" /></td>
                     </tr>
                     <tr>
                         <td><spring:message code="usuario.forms.nombre"/></td>
@@ -51,7 +58,7 @@
                     </tr>
                     <tr>
                         <td><spring:message code="usuario.forms.fechaNacimiento"/></td>
-                        <td><form:input path="fechaNacimiento" /></td>
+                        <td><form:input path="fechaNacimiento"  /></td>
                         <td><form:errors path="fechaNacimiento" /></td>
                     </tr>
                     <tr>
@@ -71,13 +78,38 @@
                     </tr>
                     <tr>
                         <td><spring:message code="usuario.forms.telefono"/></td>
-                        <td><input id="telefono" name="telefono" type="text" class="TCMask[(####) ###-####,(____) ___-_____]" value="" /></td>
+                        <td><form:input path="telefono" cssClass="TCMask[(####) ###-####,(____) ___-_____]"/></td>
                         <td><form:errors path="telefono"/></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.pais"/></td>
+                        <td><form:select path="pais" items="${opcionPais}"/></td>
+                        <td><form:errors path="pais"/></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.estado"/></td>
+                        <td><form:select path="estado" items="${opcionEstado}"/></td>
+                        <td><form:errors path="estado"/></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.ciudad"/></td>
+                        <td><form:input path="ciudad"  /></td>
+                        <td><form:errors path="ciudad" /></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.calle"/></td>
+                        <td><form:textarea path="calle" /></td>
+                        <td><form:errors path="calle" /></td>
                     </tr>
                     <tr>
                         <td><spring:message code="usuario.forms.codigoPostal"/></td>
                         <td><form:input path="codigoPostal" /></td>
                         <td><form:errors path="codigoPostal" /></td>
+                    </tr>
+                    <tr>
+                        <td><spring:message code="usuario.forms.politica"/></td>
+                        <td><form:checkbox path="aceptaContrato" value="1"/></td>
+                        <td><form:errors path="aceptaContrato" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Registrar"/></td>

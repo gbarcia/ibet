@@ -25,6 +25,7 @@ public class RegistroUsuarioTO implements Serializable {
     private String calle;
     private String clave;
     private String repClave;
+    private boolean aceptaContrato;
 
     public String getApellido() {
         return apellido;
@@ -144,5 +145,13 @@ public class RegistroUsuarioTO implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public boolean isAceptaContrato() {
+        return aceptaContrato;
+    }
+
+    public void setAceptaContrato(boolean aceptaContrato) {
+        this.aceptaContrato = aceptaContrato;
     }
 }

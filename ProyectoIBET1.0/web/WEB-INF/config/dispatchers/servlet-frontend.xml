@@ -28,7 +28,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     class="ve.edu.ucab.ibet.controllers.forms.PerfilUsuarioFormController">
   <property name="formView" value="front/usuario/perfilUsuario" />
   <property name="successView" value="front/usuario/perfilUsuario.htm" />
-  <property name="validator" ref="beanValidator"/>
+  <!-- <property name="validator" ref="beanValidator"/> -->
   <property name="servicioPerfil" ref="servicioUsuario"/>
 </bean>
 
