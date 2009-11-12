@@ -1,0 +1,35 @@
+/* 
+    Document   : messages
+    Created on : Oct 27, 2009, 12:31:01 AM
+    Author     : jonathan
+    Description:
+        Estilos de Mensajes.*/
+
+.information,.succes,.error,.warning {
+	background-color: #202020;
+	border-style: dotted;
+	border-width: 1px;
+	color: #fff;
+	padding: 5px
+}
+
+.information ul,.succes ul,.error ul,.warning ul {
+	list-style-position: inside;
+	list-style-type: circle;
+}
+
+.information {
+	border-color: #429CFF
+}
+
+.succes {
+	border-color: #0f0
+}
+
+.error {
+	border-color: red
+}
+
+.warning {
+	border-color: #faff00
+}

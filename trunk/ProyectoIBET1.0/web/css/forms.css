@@ -1,0 +1,81 @@
+/* 
+    Document   : forms
+    Created on : Oct 27, 2009, 12:31:01 AM
+    Author     : jonathan
+    Description:
+        Estilos de formularios.*/
+
+/* @group Fieldset */
+
+form fieldset {
+	border: #000 solid 1px;
+	padding: 10px
+}
+
+form fieldset legend {
+	background-color: #202020;
+	border: #000 solid 1px;
+	font-size: 12px;
+	letter-spacing: 2px;
+	padding: 5px 20px
+}
+
+/* @end */
+
+/* @group Tabla */
+
+form fieldset table th {
+	color: #fff;
+	font-size: 13px;
+	font-weight: 400;
+	padding: 5px 5px 20px;
+	text-align: right;
+	vertical-align: top
+}
+
+form fieldset table td {
+	color: #fff;
+	font-size: 13px;
+	padding: 5px 5px 20px;
+	vertical-align: top
+}
+
+/* @end */
+
+/* @group Input */
+
+form input[type=text],fieldset textarea,fieldset select {
+	background-color: #202020;
+	border: 1px solid #fff;
+	color: #fff;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	width: 250px;
+}
+
+form input[type=text]:focus,fieldset textarea:focus,fieldset select:focus {
+	background-color: #101010;
+	border: 1px solid #429CFF
+}
+
+/* @group Boton */
+
+form input[type="submit"] {
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	background: #00AAE2 url(../images/form/buttonBg.png);
+	border: 1px solid #fff;
+	color: #fff;
+	cursor: pointer;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	padding: 3px 10px
+}
+
+form input[type="submit"]:hover {
+	background: #0089B4 url(../images/form/buttonHoverBg.png);
+}
+
+/* @end */
+
+/* @end */
