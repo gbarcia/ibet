@@ -3,13 +3,15 @@ package ve.edu.ucab.ibet.aop.interceptors;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.log4j.Logger;
+import org.springframework.aop.ThrowsAdvice;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 
 /**
  * Interceptor para la auditoria de los metodos con log4j
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class AuditoriaInterceptor implements MethodInterceptor {
+public class AuditoriaInterceptor implements MethodInterceptor, ThrowsAdvice {
 
     private Logger log = Logger.getLogger(getClass());
 
@@ -35,5 +37,18 @@ public class AuditoriaInterceptor implements MethodInterceptor {
                     metodo.getMethod().getName() + "(" +
                     arguments + ")");
         }
+    }
+
+    public void afterThrowing(RuntimeException runtimeException) {
+        ExcepcionNegocio exNegocio = null;
+        String mensaje = runtimeException.getClass().toString() + " ==> ";
+        if (runtimeException instanceof ExcepcionNegocio) {
+            exNegocio = (ExcepcionNegocio) runtimeException;
+            mensaje += exNegocio.getKeyError();
+        } else {
+            mensaje += runtimeException.getMessage();
+            runtimeException.printStackTrace();
+        }
+        log.error(mensaje);
     }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.validation.BindException;
@@ -48,7 +49,8 @@ public class RegistroUsuarioFormController extends SimpleFormController {
     }
 
     @Override
-    protected ModelAndView onSubmit(Object command, BindException errors) throws Exception {
+    protected ModelAndView onSubmit(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) throws Exception {
+        String atributoError = null;
         RegistroUsuarioTO registro = (RegistroUsuarioTO) command;
         Users usuario = servicioUsuario.transferObjectToModel(registro);
         ModelAndView mv = new ModelAndView(new RedirectView(getSuccessView()));
@@ -60,7 +62,9 @@ public class RegistroUsuarioFormController extends SimpleFormController {
             e.printStackTrace();
         } catch (GeneralException e) {
             e.printStackTrace();
-            mv.addObject("errorNegocio", e.getKeyError());
+            atributoError = servicioUsuario.obtenerAtributoError(e.getKeyError());
+            errors.rejectValue(atributoError, e.getKeyError());
+            mv = showForm(req, resp, errors);
         } finally {
             return mv;
         }

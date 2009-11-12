@@ -1,6 +1,5 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
-import org.springframework.dao.DataAccessException;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 
@@ -17,7 +16,7 @@ public interface IServicioUsuario {
      * @return booleano con la condicion
      * @throws DataAccessException
      */
-    public void registroNuevoUsuarioM(Users user) throws DataAccessException;
+    public void registroNuevoUsuarioM(Users user);
 
     /**
      * firma para verificar si existe un usuario
@@ -25,7 +24,7 @@ public interface IServicioUsuario {
      * @return condicion booleana
      * @throws DataAccessException
      */
-    public boolean existeUsuarioM(Users u) throws DataAccessException;
+    public boolean existeUsuarioM(Users u);
 
     /**
      * firma para obtener los datos de Un usuario
@@ -33,14 +32,21 @@ public interface IServicioUsuario {
      * @return Objeto Usuario con los datos
      * @throws DataAccessException
      */
-    public Users obtenerDatosUsuarioM(String username) throws DataAccessException;
+    public Users obtenerDatosUsuarioM(String username);
 
     /**
      * Firma para actualizar un usuario
      * @param user usuario a actualizar
      * @throws DataAccessException
      */
-    public void actualizarDatosUsuarioM(Users user) throws DataAccessException;
+    public void actualizarDatosUsuarioM(Users user);
+
+    /**
+     * firma para obtener cual campo ha causado el error de negocio
+     * @param mensaje mensaje de la excepcion de negocio
+     * @return el nombre del field que causo el error
+     */
+    public String obtenerAtributoError(String mensaje);
 
     /**
      * Firma para convertir el objeto de transferencia del formulario

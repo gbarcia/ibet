@@ -6,7 +6,8 @@
         /WEB-INF/config/spring/applicationContext-hibernate.xml,
         /WEB-INF/config/spring/applicationContext-dao.xml,
         /WEB-INF/config/spring/applicationContext-services.xml,
-        /WEB-INF/config/spring/applicationContext-mail.xml
+        /WEB-INF/config/spring/applicationContext-mail.xml,
+        /WEB-INF/config/spring/applicationContext-aop.xml
         </param-value>
     </context-param>
     <context-param>
