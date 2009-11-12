@@ -1,0 +1,56 @@
+/* 
+    Document   : slip
+    Created on : Oct 22, 2009, 4:14:25 PM
+    Author     : jonathan
+    Description:
+        Estilos de Slip.*/
+
+/* @group Slip */
+
+#slip {
+	background-color: #429CFF;
+	border: #fff solid 1px;
+	width: 200px
+}
+
+.slipContent {
+	color: #fff;
+	padding: 5px;
+	font: .75em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	text-align: justify;
+}
+
+.slipTitle {
+	background-color: #171717;
+	border-bottom: #fff solid 1px;
+	color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	font-size: 15px;
+	letter-spacing: 2px;
+	padding: 5px 10px
+}
+
+#slipBottom {
+	background-color: #171717;
+	border-top: #fff solid 1px;
+}
+
+/* @end */
+
+/* @group Links */
+
+.slipContent a {
+	color: #141414;
+	font-weight: 700;
+	text-decoration: none
+}
+
+.slipContent a:hover,.slipContent a:active {
+	text-decoration: underline
+}
+
+.slipContent a:visited {
+	color: #424242;
+}
+
+/* @end */
