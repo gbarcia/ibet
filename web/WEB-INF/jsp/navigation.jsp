@@ -5,7 +5,7 @@
     <li class="home"><a href="home.htm">Home</a></li>
     </security:authorize>
     <security:authorize ifAllGranted="ROLE_ADMIN">
-    <li><a href="admin.htm">Admin</a></li>
+    <li><a href="admin/admin.htm">Admin</a></li>
     <li><a href="agregarcliente.htm">Agregar Cliente</a></li>
     <li><a href="pruebaReporte.pdf">Ver Reporte Clientes (pdf)</a></li>
     <li><a href="pruebaReporteXLS.xls">Ver Reporte Clientes (EXCEL)</a></li>
