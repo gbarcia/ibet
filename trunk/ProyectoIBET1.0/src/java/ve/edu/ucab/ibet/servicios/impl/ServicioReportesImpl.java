@@ -12,7 +12,7 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class ServicioReportes implements IServicioReportes {
+public class ServicioReportesImpl implements IServicioReportes {
 
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
