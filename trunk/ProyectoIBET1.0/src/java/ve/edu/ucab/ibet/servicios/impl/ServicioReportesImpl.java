@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
@@ -17,7 +18,7 @@ public class ServicioReportesImpl implements IServicioReportes {
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
 
-    public List<HistorialApuestasTO> reporteHistorialApuestas(String username) throws Exception {
+    public List<HistorialApuestasTO> reporteHistorialApuestas(String username) throws ExcepcionNegocio {
         List<HistorialApuestasTO> historial = new ArrayList<HistorialApuestasTO>();
 
         Object[] o = new Object[1];
