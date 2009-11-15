@@ -4,7 +4,7 @@
     Created on : 22/10/2009, 11:47:48 PM
     Author     : Gerardo Barcia
 --%>
-<%@include file="comun/include.jsp" %>
+<%@include file="include/include.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -78,14 +78,13 @@
                     </div>
                 </div>
                 <div id="leftColumn">
-
+                    &nbsp;
                 </div>
                 <div id="rightColumn">
-
+                    &nbsp;
                 </div>
             </div>
             <jsp:include page="include/footer.html"></jsp:include>
-            !!<security:authentication property="principal.username"/>!!
         </div>
     </body>
 </html>
