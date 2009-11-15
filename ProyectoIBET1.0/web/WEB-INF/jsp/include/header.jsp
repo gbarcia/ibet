@@ -1,10 +1,16 @@
+<%--
+    Document   : header
+    Created on : Nov 15, 2009, 2:24:49 PM
+    Author     : jonathan
+--%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div id="header">
     <div id="headerTop">
         <div id="logo">
             <a href="home.htm">
-                <img src="images/logo/logoShadow.png" width="164" height="50" alt="logoShadow"/>
+                <img src="<%= request.getContextPath()+ "/images/logo/logoShadow.png"%>" width="164" height="50" alt="logoShadow"/>
             </a>
         </div>
         <security:authorize ifAllGranted="ROLE_GUEST">

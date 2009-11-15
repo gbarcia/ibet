@@ -78,7 +78,7 @@ form input[type="submit"]:hover {
 
 /* @end */
 
-#loginForm input[type=text],form input[type=password] {
+#loginForm input[type=text],#loginForm input[type=password] {
         font-size:20px;
         padding:3px 5px;
         width: 250px;
