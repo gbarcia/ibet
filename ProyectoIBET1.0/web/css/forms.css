@@ -44,7 +44,7 @@ form fieldset table td {
 
 /* @group Input */
 
-form input[type=text],fieldset textarea,fieldset select {
+form input[type=text],form input[type=password],fieldset textarea,fieldset select {
 	background-color: #202020;
 	border: 1px solid #fff;
 	color: #fff;
@@ -52,7 +52,7 @@ form input[type=text],fieldset textarea,fieldset select {
 	width: 250px;
 }
 
-form input[type=text]:focus,fieldset textarea:focus,fieldset select:focus {
+form input[type=text]:focus,form input[type=password]:focus,fieldset textarea:focus,fieldset select:focus {
 	background-color: #101010;
 	border: 1px solid #429CFF
 }
@@ -77,5 +77,16 @@ form input[type="submit"]:hover {
 }
 
 /* @end */
+
+#loginForm input[type=text],form input[type=password] {
+        font-size:20px;
+        padding:3px 5px;
+        width: 250px;
+}
+
+#loginForm th {
+        font-size:20px;
+        padding-top: 10px
+}
 
 /* @end */
