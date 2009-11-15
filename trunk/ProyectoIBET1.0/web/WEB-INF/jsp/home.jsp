@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>IBET</title>
+        <title>iBet</title>
         <jsp:include page="include/head.html"></jsp:include>
     </head>
     <body>
