@@ -11,7 +11,7 @@
 <html>
     <head>
         <title>iBet | <spring:message code="login.titulo"/></title>
-        <jsp:include page="include/head.html"></jsp:include>
+        <jsp:include page="include/head.jsp"></jsp:include>
     </head>
     <body onload='document.loginForm.j_username.focus();'>
         <div class="pageWrap">

@@ -11,107 +11,153 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><spring:message code="registroUsuario.titulo.form"/></title>
+        <title>iBet | <spring:message code="registroUsuario.titulo.form"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
     </head>
     <body>
-        <h2><spring:message code="registroUsuario.titulo.form"/></h2>
-        <form:form commandName="registroUsuario" action="registroUsuario.htm">
-            <fieldset>
-                <legend>Introduce tu Datos</legend>
-                <form:errors path="*"/>
-                <c:if test="${param.resultado == 'SUCCESS'}">
-                    <h2>Formulario Procesado</h2>
-                </c:if>
-                <br>
-                <table border="0" cellpadding="1">
-                    <tbody>
-                        <tr>
-                            <th><label for="nombreUsuario"><spring:message code="usuario.forms.username"/></label></th>
-                            <td><form:input id="nombreUsuario" path="nombreUsuario" autocomplete="true"/></td>
-                            <td><form:errors path="nombreUsuario" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.clave"/></td>
-                            <td><form:password path="clave"/></td>
-                            <td><form:errors path="clave" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.claveRep"/></td>
-                            <td><form:password path="repClave"  /></td>
-                            <td><form:errors path="repClave" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.nombre"/></td>
-                            <td><form:input path="nombre" /></td>
-                            <td><form:errors path="nombre" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.apellido"/></td>
-                            <td><form:input path="apellido" /></td>
-                            <td><form:errors path="apellido" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.fechaNacimiento"/></td>
-                            <td><form:input path="fechaNacimiento"  /></td>
-                            <td><form:errors path="fechaNacimiento" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.sexo"/></td>
-                            <td><form:radiobuttons path="sexo" items="${opcionSexo}" /></td>
-                            <td><form:errors path="sexo" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.correo"/></td>
-                            <td><form:input path="correo" /></td>
-                            <td><form:errors path="correo" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.correo.rep"/></td>
-                            <td><form:input path="repCorreo" /></td>
-                            <td><form:errors path="repCorreo" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.telefono"/></td>
-                            <td><form:input path="telefono"/></td>
-                            <td><form:errors path="telefono"/></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.pais"/></td>
-                            <td><form:select path="pais" items="${opcionPais}"/></td>
-                            <td><form:errors path="pais"/></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.estado"/></td>
-                            <td><form:select path="estado" items="${opcionEstado}"/></td>
-                            <td><form:errors path="estado"/></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.ciudad"/></td>
-                            <td><form:input path="ciudad"  /></td>
-                            <td><form:errors path="ciudad" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.calle"/></td>
-                            <td><form:textarea path="calle" /></td>
-                            <td><form:errors path="calle" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.codigoPostal"/></td>
-                            <td><form:input path="codigoPostal" /></td>
-                            <td><form:errors path="codigoPostal" /></td>
-                        </tr>
-                        <tr>
-                            <td><spring:message code="usuario.forms.politica"/></td>
-                            <td><form:checkbox path="aceptaContrato" value="1"/></td>
-                            <td><form:errors path="aceptaContrato" /></td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Registrar"/></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-        </form:form>
+        <div id="pageWrap">
+            <jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
+            <div id="content">
+                <div id="contentWrapper">
+                    <div id="contentColumn">
+                        <div id="centerPane">
+                            <div class="paneTitle">
+                                <spring:message code="registroUsuario.titulo.form"/>
+                            </div>
+                            <div class="pane">
+                                <form:form commandName="registroUsuario" action="registroUsuario.htm">
+                                    <fieldset>
+                                        <legend>Introduce tu Datos</legend>
+                                        <form:errors path="*"/>
+                                        <c:if test="${param.resultado == 'SUCCESS'}">
+                                            <h2>Formulario Procesado</h2>
+                                        </c:if>
+                                        <br>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th><label for="nombreUsuario"><spring:message code="usuario.forms.username"/></label></th>
+                                                    <td><form:input id="nombreUsuario" path="nombreUsuario" autocomplete="true"/></td>
+                                                    <td><form:errors path="nombreUsuario" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="clave"><spring:message code="usuario.forms.clave"/></label></th>
+                                                    <td><form:password id="clave" path="clave"/></td>
+                                                    <td><form:errors path="clave" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="repClave"><spring:message code="usuario.forms.claveRep"/></label></th>
+                                                    <td><form:password id="repClave" path="repClave"  /></td>
+                                                    <td><form:errors path="repClave" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="nombre"><spring:message code="usuario.forms.nombre"/></label></th>
+                                                    <td><form:input id="nombre" path="nombre" /></td>
+                                                    <td><form:errors path="nombre" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="apellido"><spring:message code="usuario.forms.apellido"/></label></th>
+                                                    <td><form:input id="apellido" path="apellido" /></td>
+                                                    <td><form:errors path="apellido" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="fechaNacimiento"><spring:message code="usuario.forms.fechaNacimiento"/></label></th>
+                                                    <td><form:input id="fechaNacimiento" path="fechaNacimiento"  /></td>
+                                                    <td><form:errors path="fechaNacimiento" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="sexo"><spring:message code="usuario.forms.sexo"/></label></th>
+                                                    <td><form:radiobuttons id="sexo" path="sexo" items="${opcionSexo}" /></td>
+                                                    <td><form:errors path="sexo" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="correo"><spring:message code="usuario.forms.correo"/></label></th>
+                                                    <td><form:input id="correo" path="correo" /></td>
+                                                    <td><form:errors path="correo" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="repCorreo"><spring:message code="usuario.forms.correo.rep"/></label></th>
+                                                    <td><form:input id="repCorreo" path="repCorreo" /></td>
+                                                    <td><form:errors path="repCorreo" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="telefono"><spring:message code="usuario.forms.telefono"/></label></th>
+                                                    <td><form:input id="telefono" path="telefono"/></td>
+                                                    <td><form:errors path="telefono"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="pais"><spring:message code="usuario.forms.pais"/></label></th>
+                                                    <td><form:select id="pais" path="pais" items="${opcionPais}"/></td>
+                                                    <td><form:errors path="pais"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="estado"><spring:message code="usuario.forms.estado"/></label></th>
+                                                    <td><form:select id="estado" path="estado" items="${opcionEstado}"/></td>
+                                                    <td><form:errors path="estado"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="ciudad"><spring:message code="usuario.forms.ciudad"/></label></th>
+                                                    <td><form:input id="ciudad" path="ciudad"  /></td>
+                                                    <td><form:errors path="ciudad" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="calle"><spring:message code="usuario.forms.calle"/></label></th>
+                                                    <td><form:textarea id="calle" path="calle" rows="4" /></td>
+                                                    <td><form:errors path="calle" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="codigoPostal"><spring:message code="usuario.forms.codigoPostal"/></label></th>
+                                                    <td><form:input id="codigoPostal" path="codigoPostal" /></td>
+                                                    <td><form:errors path="codigoPostal" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <td>
+                                                        <form:checkbox id="aceptarContrato" path="aceptaContrato" value="1"/>
+                                                        <label for="aceptarContrato"><spring:message code="usuario.forms.politica"/></label>
+                                                    </td>
+                                                    <td><form:errors path="aceptaContrato" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <td><input type="submit" value="Registrar"/></td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </fieldset>
+                                </form:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="leftColumn"></div>
+                <div id="rightColumn"></div>
+            </div>
+            <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2></h2>
+
     </body>
 </html>
