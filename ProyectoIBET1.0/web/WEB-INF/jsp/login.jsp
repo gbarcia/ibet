@@ -4,13 +4,13 @@
     Created on : 22/10/2009, 11:47:48 PM
     Author     : Gerardo Barcia
 --%>
+<%@include file="comun/include.jsp" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ page session="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <head>
-        <title>Login: Spring Security Web Application</title>
+        <title>iBet | <spring:message code="login.titulo"/></title>
         <jsp:include page="include/head.html"></jsp:include>
     </head>
     <body onload='document.loginForm.j_username.focus();'>
@@ -21,56 +21,58 @@
                     <div id="contentColumn">
                         <div id="centerPane">
                             <div class="paneTitle">
-                                Inicio de Sesion
+                                <spring:message code="login.titulo"/>
                             </div>
                             <div class="pane">
                                 <form id="loginForm" name="loginForm" action="j_spring_security_check" method="post">
                                     <fieldset>
-                                        <legend></legend>
-                                    <c:if test="${not empty param.authfailed}">
-                                        <div class="error">
-                                            Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${not empty param.newpassword}">
-                                        <div class="error">
-                                            Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${not empty param.acclocked}">
-                                        <div class="error">
-                                            Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${not empty param.accdisabled}">
-                                        <div class="error">
-                                            Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${not empty param.loggedout}">
-                                        <div class="error">
-                                            You have been successfully logged out.
-                                        </div>
-                                    </c:if>
+                                        <legend><spring:message code="login.form.titulo"/></legend>
+                                        <c:if test="${not empty param.authfailed}">
+                                            <div class="error">
+                                                Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${not empty param.newpassword}">
+                                            <div class="error">
+                                                Login failed due to: new password <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${not empty param.acclocked}">
+                                            <div class="error">
+                                                Login failed due to: acclocked <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${not empty param.accdisabled}">
+                                            <div class="error">
+                                                <spring:message code="login.error.disabled"/>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${not empty param.loggedout}">
+                                            <div class="error">
+                                                You have been successfully logged out.
+                                            </div>
+                                        </c:if>
                                         <table align="center">
                                             <tr>
-                                                <th><label for="usernameField">Username</label></th>
+                                                <th><label for="usernameField"><spring:message code="login.form.username"/></label></th>
                                                 <td>
                                                     <input id="usernameField" type="text" name="j_username" value="<c:out value="${SPRING_SECURITY_LAST_USERNAME}"/>"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th><label for="passwordField">Password</label></th>
+                                                <th><label for="passwordField"><spring:message code="login.form.password"/></label></th>
                                                 <td>
                                                     <input id="passwordField" type="password" name="j_password" />
+                                                    <spring:message code="login.form.forgot"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     &nbsp;
                                                 </th>
-                                                <td>
-                                                    <input type="submit" value="Login" />
+                                                <td colspan="2">
+                                                    <input type="submit" value="<spring:message code="login.form.button"/>" />
+                                                    <spring:message code="login.form.newaccount"/>
                                                 </td>
                                             </tr>
                                         </table>
@@ -89,13 +91,5 @@
             </div>
             <jsp:include page="include/footer.html"></jsp:include>
         </div>
-
-
-
-
-
-
-
     </body>
-
 </html>
