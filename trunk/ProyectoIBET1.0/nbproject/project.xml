@@ -59,8 +59,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
-                    <file>${file.reference.commons-codec-1.4.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
+                    <file>${file.reference.commons-codec-1.4.jar-1}</file>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>

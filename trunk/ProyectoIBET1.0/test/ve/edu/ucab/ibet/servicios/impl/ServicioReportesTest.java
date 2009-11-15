@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -40,8 +41,7 @@ public class ServicioReportesTest {
         for (HistorialApuestasTO r : result) {
             System.out.println(r.getUsername() +"\n ");
         }
-//        assertNotNull(result);
-
+        assertNotNull(result);
     }
 
 }
