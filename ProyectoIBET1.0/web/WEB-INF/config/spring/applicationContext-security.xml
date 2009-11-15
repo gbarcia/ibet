@@ -100,6 +100,11 @@
         <intercept-url pattern="/login.htm" filters="none" />
         <intercept-url pattern="/home.htm"  filters="none" />
         <intercept-url pattern="/admin.htm" access="ROLE_ADMIN" />
+        <intercept-url pattern="/redirect.jsp" filters="none" />
+        <intercept-url pattern="/css/**" filters="none" />
+        <intercept-url pattern="/images/**" filters="none" />
+        <intercept-url pattern="/flash/**" filters="none" />
+        <intercept-url pattern="/js/**" filters="none" />
         <intercept-url pattern="/**" access="ROLE_USER" />
         <!--
                 no longer needed as using custom authtication approach <form-login
