@@ -25,42 +25,56 @@
                             </div>
                             <div class="pane">
                                 <form id="loginForm" name="loginForm" action="j_spring_security_check" method="post">
+                                    <fieldset>
+                                        <legend></legend>
                                     <c:if test="${not empty param.authfailed}">
-                                        <span id="infomessage" class="errormessage" >
+                                        <div class="error">
                                             Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </span>
-                                    </c:if>
-                                    <c:if test="${not empty param.authfailed}">
-                                        <span id="infomessage" class="errormessage" >
-                                            Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </span>
+                                        </div>
                                     </c:if>
                                     <c:if test="${not empty param.newpassword}">
-                                        <span id="infomessage" class="errormessage" >
+                                        <div class="error">
                                             Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </span>
+                                        </div>
                                     </c:if>
                                     <c:if test="${not empty param.acclocked}">
-                                        <span id="infomessage" class="errormessage" >
+                                        <div class="error">
                                             Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </span>
+                                        </div>
                                     </c:if>
                                     <c:if test="${not empty param.accdisabled}">
-                                        <span id="infomessage" class="errormessage" >
+                                        <div class="error">
                                             Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-                                        </span>
+                                        </div>
                                     </c:if>
                                     <c:if test="${not empty param.loggedout}">
-                                        <span id="infomessage" class="successmessage">
+                                        <div class="error">
                                             You have been successfully logged out.
-                                        </span>
+                                        </div>
                                     </c:if>
-                                    <table>
-                                        <tr><td>Username</td><td><input id="usernameField" type="text" name="j_username" value="<c:out value="${SPRING_SECURITY_LAST_USERNAME}"/>"/></td></tr>
-                                        <tr><td>Password</td><td><input id="passwordField" type="password" name="j_password" /></td></tr>
-
-                                        <tr><td colspan="2" align="right"><input type="submit" value="Login" /></td></tr>
-                                    </table>
+                                        <table align="center">
+                                            <tr>
+                                                <th><label for="usernameField">Username</label></th>
+                                                <td>
+                                                    <input id="usernameField" type="text" name="j_username" value="<c:out value="${SPRING_SECURITY_LAST_USERNAME}"/>"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><label for="passwordField">Password</label></th>
+                                                <td>
+                                                    <input id="passwordField" type="password" name="j_password" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    &nbsp;
+                                                </th>
+                                                <td>
+                                                    <input type="submit" value="Login" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
                                 </form>
                             </div>
                         </div>
