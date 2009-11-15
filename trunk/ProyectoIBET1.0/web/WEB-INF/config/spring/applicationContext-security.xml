@@ -97,16 +97,18 @@
      permiso. Por defecto la pagina del log debe tener de filtros none
     -->
     <http entry-point-ref="myAuthenticationEntryPoint" auto-config="false">
-        <intercept-url pattern="/login.htm" filters="none" />
-        <intercept-url pattern="/home.htm"  filters="none" />
         <intercept-url pattern="/redirect.jsp" filters="none" />
-        <intercept-url pattern="/admin.htm" access="ROLE_ADMIN" />
-        <intercept-url pattern="/redirect.jsp" filters="none" />
+        <intercept-url pattern="/publico/**" filters="none" />
         <intercept-url pattern="/css/**" filters="none" />
         <intercept-url pattern="/images/**" filters="none" />
         <intercept-url pattern="/flash/**" filters="none" />
         <intercept-url pattern="/js/**" filters="none" />
+        <intercept-url pattern="/login.htm" filters="none" />
+        <intercept-url pattern="/home.htm" access="ROLE_USER,ROLE_GUEST" />
+        <intercept-url pattern="/include/header.jsp" access="ROLE_USER,ROLE_GUEST" />
+        <intercept-url pattern="/admin.htm" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" access="ROLE_USER" />
+        <anonymous username="guest" granted-authority="ROLE_GUEST" />
         <!--
                 no longer needed as using custom authtication approach <form-login
                 login-page="/login.jsp" default-target-url="/home.htm"

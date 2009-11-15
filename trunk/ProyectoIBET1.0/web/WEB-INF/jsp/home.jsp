@@ -3,7 +3,7 @@
     Created on : 24/10/2009, 08:55:39 PM
     Author     : Gerardo Barcia
 --%>
-<%@include file="comun/include.jsp" %>
+<%@include file="include/include.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet</title>
-        <jsp:include page="include/head.html"></jsp:include>
+        <jsp:include page="include/head.jsp"></jsp:include>
     </head>
     <body>
         <div id="pageWrap">
@@ -37,10 +37,6 @@
                 </div>
             </div>
             <jsp:include page="include/footer.html"></jsp:include>
-            !!<security:authentication property="principal.username"/>!!
-            !!<security:authentication property="principal.id"/>!!
-            !!<security:authentication property="principal.userName"/>!!
-
-        </div>
+            </div>
     </body>
 </html>
