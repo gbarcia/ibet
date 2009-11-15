@@ -529,9 +529,10 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.mail.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.mail.jar" todir="${dist.ear.dir}"/>
         <copyfiles files="${libs.jasper.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.jasper.classpath" todir="${dist.ear.dir}"/>
         <copyfiles files="${file.reference.poi-3.0-rc4-20070503.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.poi-3.0-rc4-20070503.jar" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-codec-1.4.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-codec-1.4.jar" todir="${dist.ear.dir}"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.file.reference.mysql-connector-java-5.1.6-bin.jar} ${manifest.libs.Log4j.classpath} ${manifest.libs.hibernate-support.classpath} ${manifest.libs.spring-framework.classpath} ${manifest.libs.jstl11.classpath} ${manifest.file.reference.jta.jar} ${manifest.libs.hibernate-persistence.classpath} ${manifest.libs.SpringSecurity.classpath} ${manifest.file.reference.aspectjrt.jar} ${manifest.libs.struts.classpath} ${manifest.file.reference.mail.jar} ${manifest.libs.jasper.classpath} ${manifest.file.reference.poi-3.0-rc4-20070503.jar} "/>
+            <attribute name="Class-Path" value="${manifest.file.reference.mysql-connector-java-5.1.6-bin.jar} ${manifest.libs.Log4j.classpath} ${manifest.libs.hibernate-support.classpath} ${manifest.libs.spring-framework.classpath} ${manifest.libs.jstl11.classpath} ${manifest.file.reference.jta.jar} ${manifest.libs.hibernate-persistence.classpath} ${manifest.libs.SpringSecurity.classpath} ${manifest.file.reference.aspectjrt.jar} ${manifest.libs.struts.classpath} ${manifest.file.reference.mail.jar} ${manifest.libs.jasper.classpath} ${manifest.file.reference.poi-3.0-rc4-20070503.jar} ${manifest.file.reference.commons-codec-1.4.jar} "/>
         </manifest>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
@@ -548,6 +549,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.mail.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.jasper.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.poi-3.0-rc4-20070503.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-codec-1.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" if="do.tmp.war.package" name="do-ear-dist">
         <dirname file="${dist.ear.war}" property="dist.jar.dir"/>
