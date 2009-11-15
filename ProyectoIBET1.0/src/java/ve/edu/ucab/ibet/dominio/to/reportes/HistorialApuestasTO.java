@@ -14,30 +14,14 @@ import java.util.Date;
 public class HistorialApuestasTO {
 
     private String username;
-    private Date apuestaFecha;
-    private double apuestaMonto;
+    private Date fecha;
+    private double monto;
     private String eventoNombre;
     private Date eventoFecha;
     private String eventoResultado;
     private String participanteNombre;
     
     public HistorialApuestasTO() {
-    }
-
-    public Date getApuestaFecha() {
-        return apuestaFecha;
-    }
-
-    public void setApuestaFecha(Date apuestaFecha) {
-        this.apuestaFecha = apuestaFecha;
-    }
-
-    public double getApuestaMonto() {
-        return apuestaMonto;
-    }
-
-    public void setApuestaMonto(double apuestaMonto) {
-        this.apuestaMonto = apuestaMonto;
     }
 
     public Date getEventoFecha() {
@@ -64,6 +48,22 @@ public class HistorialApuestasTO {
         this.eventoResultado = eventoResultado;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
     public String getParticipanteNombre() {
         return participanteNombre;
     }
@@ -79,6 +79,5 @@ public class HistorialApuestasTO {
     public void setUsername(String username) {
         this.username = username;
     }
-
     
 }
