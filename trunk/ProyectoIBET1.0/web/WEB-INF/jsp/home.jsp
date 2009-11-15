@@ -3,8 +3,7 @@
     Created on : 24/10/2009, 08:55:39 PM
     Author     : Gerardo Barcia
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="comun/include.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -16,7 +15,7 @@
     </head>
     <body>
         <div id="pageWrap">
-            <jsp:include page="include/header.html"></jsp:include>
+            <jsp:include page="include/header.jsp"></jsp:include>
             <div id="content">
                 <div id="contentWrapper">
                     <div id="contentColumn">
@@ -38,6 +37,10 @@
                 </div>
             </div>
             <jsp:include page="include/footer.html"></jsp:include>
+            !!<security:authentication property="principal.username"/>!!
+            !!<security:authentication property="principal.id"/>!!
+            !!<security:authentication property="principal.userName"/>!!
+
         </div>
     </body>
 </html>
