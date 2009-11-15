@@ -15,7 +15,7 @@
     </head>
     <body onload='document.loginForm.j_username.focus();'>
         <div class="pageWrap">
-            <jsp:include page="include/header.html"></jsp:include>
+            <jsp:include page="include/header.jsp"></jsp:include>
             <div id="content">
                 <div id="contentWrapper">
                     <div id="contentColumn">
@@ -29,27 +29,22 @@
                                         <legend><spring:message code="login.form.titulo"/></legend>
                                         <c:if test="${not empty param.authfailed}">
                                             <div class="error">
-                                                Login failed due to: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                                <spring:message code="login.error.badcredentials"/>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty param.newpassword}">
                                             <div class="error">
-                                                Login failed due to: new password <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty param.acclocked}">
                                             <div class="error">
-                                                Login failed due to: acclocked <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                                                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty param.accdisabled}">
                                             <div class="error">
                                                 <spring:message code="login.error.disabled"/>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${not empty param.loggedout}">
-                                            <div class="error">
-                                                You have been successfully logged out.
                                             </div>
                                         </c:if>
                                         <table align="center">
@@ -90,6 +85,7 @@
                 </div>
             </div>
             <jsp:include page="include/footer.html"></jsp:include>
+            !!<security:authentication property="principal.username"/>!!
         </div>
     </body>
 </html>
