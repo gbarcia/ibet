@@ -164,6 +164,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         </property>
     </bean>
 
+    <!--BEAN PARA INDICAR EL USO DE INTERNACIONALIZACION I18N -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+
 <!-- -
  *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
  -->
