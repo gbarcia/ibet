@@ -125,6 +125,8 @@
             <field property="clave" depends="required,mask">
                 <msg name="required" key="errors.required.clave"/>
                 <msg name="mask" key="errors.mask.clave"/>
+                <arg name="mask" key="4" position="0" resource="false"/>
+                <arg name="mask" key="8" position="1" resource="false"/>
                 <var>
                     <var-name>mask</var-name>
                     <var-value>^.{4,8}$</var-value>
@@ -134,6 +136,8 @@
                 <msg name="required" key="errors.required.claveRep"/>
                 <msg name="mask" key="errors.mask.claveRep"/>
                 <msg name="validwhen" key="errors.mask.claveDistinta"/>
+                <arg name="mask" key="4" position="0" resource="false"/>
+                <arg name="mask" key="8" position="1" resource="false"/>
                 <var>
                     <var-name>mask</var-name>
                     <var-value>^.{4,8}$</var-value>
