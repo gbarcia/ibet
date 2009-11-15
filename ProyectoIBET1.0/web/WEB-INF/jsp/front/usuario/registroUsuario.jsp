@@ -10,14 +10,6 @@
 
 <html>
     <head>
-        <%@include file="/WEB-INF/jsp/comun/includeJSvalidateForm.jsp" %>
-        <script type="text/javascript">
-            window.onload = go;
-            function go(){
-                Typecast.Init();
-            }
-        </script>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><spring:message code="registroUsuario.titulo.form"/></title>
     </head>
@@ -78,7 +70,7 @@
                     </tr>
                     <tr>
                         <td><spring:message code="usuario.forms.telefono"/></td>
-                        <td><form:input path="telefono" cssClass="TCMask[(####) ###-####,(____) ___-_____]"/></td>
+                        <td><form:input path="telefono"/></td>
                         <td><form:errors path="telefono"/></td>
                     </tr>
                     <tr>
