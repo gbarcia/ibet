@@ -29,7 +29,12 @@
                                         <legend><spring:message code="login.form.titulo"/></legend>
                                         <c:if test="${not empty param.authfailed}">
                                             <div class="error">
-                                                <spring:message code="login.error.badcredentials"/>
+                                                <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+                                                 <spring:message code="login.error.badcredentials"/>
+                                                </c:if>
+                                                <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message != 'Bad credentials'}">
+                                                 <spring:message code="login.error.maximum"/>
+                                                </c:if>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty param.newpassword}">
