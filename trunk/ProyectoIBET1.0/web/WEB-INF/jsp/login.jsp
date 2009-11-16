@@ -15,7 +15,7 @@
     </head>
     <body onload='document.loginForm.j_username.focus();'>
         <div class="pageWrap">
-            <jsp:include page="include/header.jsp"></jsp:include>
+            <jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
             <div id="content">
                 <div id="contentWrapper">
                     <div id="contentColumn">
@@ -67,7 +67,7 @@
                                                 </th>
                                                 <td colspan="2">
                                                     <input type="submit" value="<spring:message code="login.form.button"/>" />
-                                                    <spring:message code="login.form.newaccount"/>
+                                                    <a href="publico/front/usuario/registroUsuario.htm"><spring:message code="login.form.newaccount"/></a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -77,14 +77,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="leftColumn">
-                    &nbsp;
-                </div>
-                <div id="rightColumn">
-                    &nbsp;
-                </div>
+                <div id="leftColumn"></div>
+                <div id="rightColumn"></div>
             </div>
-            <jsp:include page="include/footer.html"></jsp:include>
+            <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
         </div>
     </body>
 </html>

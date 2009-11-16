@@ -15,7 +15,7 @@
     </head>
     <body>
         <div id="pageWrap">
-            <jsp:include page="include/header.jsp"></jsp:include>
+            <jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
             <div id="content">
                 <div id="contentWrapper">
                     <div id="contentColumn">
@@ -36,7 +36,7 @@
 
                 </div>
             </div>
-            <jsp:include page="include/footer.html"></jsp:include>
+            <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
             </div>
     </body>
 </html>

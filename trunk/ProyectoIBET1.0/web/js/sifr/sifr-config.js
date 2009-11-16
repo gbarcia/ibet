@@ -56,7 +56,7 @@ the copyright statement in `sifr.js` is kept intact.
 //});
 
 var sifrMenu = {
-    src: 'flash/sifr/helveticaNeue.swf'
+    src: '/ProyectoIBET/flash/sifr/helveticaNeue.swf'
 };
 
 sIFR.activate(sifrMenu);
