@@ -36,6 +36,7 @@ public class RegistroUsuarioFormController extends SimpleFormController {
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         RegistroUsuarioTO registro = new RegistroUsuarioTO();
+        registro.setTelefono("(0000) 000-0000");
         return registro;
     }
 
