@@ -29,7 +29,7 @@ public class ServicioUsuarioImplTest {
     /**
      * Prueba Unitaria registro usuario
      */
-    @Test
+   // @Test
     public void testRegistroNuevoUsuarioM() throws Exception {
         System.out.println("registroNuevoUsuarioM");
         Users user = new Users();

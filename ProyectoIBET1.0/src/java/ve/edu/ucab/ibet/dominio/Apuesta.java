@@ -37,9 +37,9 @@ public class Apuesta implements Serializable {
     private Date fecha;
     @Basic(optional = false)
     @Column(name = "monto")
-    private double monto;
+    private Double monto;
     @Column(name = "ganador")
-    private boolean ganador;
+    private Boolean ganador;
     @Column(name = "gano")
     private Boolean gano;
     @Column(name = "empato")
@@ -87,11 +87,11 @@ public class Apuesta implements Serializable {
         this.fecha = fecha;
     }
 
-    public double getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 
