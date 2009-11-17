@@ -41,7 +41,7 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private Date fechaEvento;
     @Basic(optional = false)
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
@@ -78,10 +78,10 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento(Integer id, String nombre, Date fecha, Date hora, Date fechaMaxima, Date horaMaxima, String resultado, boolean estatus) {
+    public Evento(Integer id, String nombre, Date fechaEvento, Date hora, Date fechaMaxima, Date horaMaxima, String resultado, boolean estatus) {
         this.id = id;
         this.nombre = nombre;
-        this.fecha = fecha;
+        this.fechaEvento = fechaEvento;
         this.hora = hora;
         this.fechaMaxima = fechaMaxima;
         this.horaMaxima = horaMaxima;
@@ -106,11 +106,11 @@ public class Evento implements Serializable {
     }
 
     public Date getFecha() {
-        return fecha;
+        return fechaEvento;
     }
 
     public void setFecha(Date fecha) {
-        this.fecha = fecha;
+        this.fechaEvento = fechaEvento;
     }
 
     public Date getHora() {

@@ -27,7 +27,7 @@ public class ServicioReportesImpl implements IServicioReportes {
         o[0] = username;
 
         try {
-            query = "select u.username, a.fecha, a.monto, e.nombre, e.fecha, e.resultado, p.nombre " +
+            query = "select New ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO (u.username, a.fecha, a.monto, e.nombre, e.fechaEvento, e.resultado, p.nombre) " +
                     "from Users u, Apuesta a, Categoria c, Evento e, Participante p, TableroGanancia tg " +
                     "where u.username = a.apuestaPK.username " +
                     "and c.id = e.idCategoria " +
