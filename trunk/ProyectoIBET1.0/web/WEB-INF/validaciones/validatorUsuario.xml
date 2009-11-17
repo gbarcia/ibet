@@ -90,8 +90,7 @@
                 <msg name="required" key="errors.required.correo"/>
                 <msg name="email" key="errors.email.correo"/>
             </field>
-            <field property="repCorreo" depends="required,email,validwhen">
-                <msg name="required" key="errors.required.correo"/>
+            <field property="repCorreo" depends="email,validwhen">
                 <msg name="email" key="errors.email.correo"/>
                 <msg name="validwhen" key="errors.email.correo.rep"/>
                 <var>
@@ -116,8 +115,13 @@
             <field property="estado" depends="required">
                 <msg name="required" key="errors.required.estado"/>
             </field>
-            <field property="ciudad" depends="required">
+            <field property="ciudad" depends="required,mask">
                 <msg name="required" key="errors.required.ciudad"/>
+                <msg name="mask" key="errors.mask.ciudad"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
             </field>
             <field property="calle" depends="required">
                 <msg name="required" key="errors.required.calle"/>
@@ -132,16 +136,9 @@
                     <var-value>^.{4,8}$</var-value>
                 </var>
             </field>
-            <field property="repClave" depends="required,mask,validwhen">
+            <field property="repClave" depends="required,validwhen">
                 <msg name="required" key="errors.required.claveRep"/>
-                <msg name="mask" key="errors.mask.claveRep"/>
                 <msg name="validwhen" key="errors.mask.claveDistinta"/>
-                <arg name="mask" key="4" position="0" resource="false"/>
-                <arg name="mask" key="8" position="1" resource="false"/>
-                <var>
-                    <var-name>mask</var-name>
-                    <var-value>^.{4,8}$</var-value>
-                </var>
                 <var>
                     <var-name>test</var-name>
                     <var-value>(clave == *this*)</var-value>
