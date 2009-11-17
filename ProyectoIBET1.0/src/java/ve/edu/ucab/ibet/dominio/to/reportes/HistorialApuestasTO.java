@@ -24,6 +24,17 @@ public class HistorialApuestasTO {
     public HistorialApuestasTO() {
     }
 
+    public HistorialApuestasTO(String username, Date fecha, double monto, String eventoNombre, Date eventoFecha, String eventoResultado, String participanteNombre) {
+        this.username = username;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.eventoNombre = eventoNombre;
+        this.eventoFecha = eventoFecha;
+        this.eventoResultado = eventoResultado;
+        this.participanteNombre = participanteNombre;
+    }
+    
+
     public Date getEventoFecha() {
         return eventoFecha;
     }
