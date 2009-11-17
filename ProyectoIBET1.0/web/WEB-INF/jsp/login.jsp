@@ -29,12 +29,21 @@
                                         <legend><spring:message code="login.form.titulo"/></legend>
                                         <c:if test="${not empty param.authfailed}">
                                             <div class="error">
-                                                <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
-                                                 <spring:message code="login.error.badcredentials"/>
-                                                </c:if>
-                                                <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message != 'Bad credentials'}">
-                                                 <spring:message code="login.error.maximum"/>
-                                                </c:if>
+                                                <c:choose>
+                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+                                                        <spring:message code="login.error.badcredentials"/>
+                                                    </c:when>
+                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'User not found'}">
+                                                        <spring:message code="login.error.notfound"/>
+                                                    </c:when>
+                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Maximum sessions of 1 for this principal exceeded'}">
+                                                        <spring:message code="login.error.maximum"/>
+                                                    </c:when>
+                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message != 'Bad credentials' && SPRING_SECURITY_LAST_EXCEPTION.message != 'User not found'
+                                                                    && SPRING_SECURITY_LAST_EXCEPTION.message != 'Maximum sessions of 1 for this principal exceeded' }">
+                                                        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
+                                                    </c:when>
+                                                </c:choose>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty param.newpassword}">
