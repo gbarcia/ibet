@@ -18,6 +18,7 @@ public class ServicioReportesImpl implements IServicioReportes {
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
 
+    @SuppressWarnings("unchecked")
     public List<HistorialApuestasTO> reporteHistorialApuestas(String username) throws ExcepcionNegocio {
         List<HistorialApuestasTO> historial = new ArrayList<HistorialApuestasTO>();
 

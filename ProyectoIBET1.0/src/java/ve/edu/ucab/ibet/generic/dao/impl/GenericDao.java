@@ -436,7 +436,7 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
     public void persistir(Object obj) {
         getHibernateTemplate().persist(obj);
     }
-
+    @SuppressWarnings("unchecked")
     public Integer getNextId(Object obj) {
         List<Object> listaObjetos = new ArrayList<Object>();
         Integer returnValue = 0;

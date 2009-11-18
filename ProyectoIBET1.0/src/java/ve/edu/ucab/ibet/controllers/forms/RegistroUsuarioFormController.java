@@ -41,6 +41,7 @@ public class RegistroUsuarioFormController extends SimpleFormController {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map referenceData = new HashMap();
         referenceData.put("opcionSexo", DatosUtil.SEXO);

@@ -49,6 +49,7 @@ public class PerfilUsuarioFormController extends SimpleFormController{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected Map referenceData(HttpServletRequest request)  {
         Map referenceData = new HashMap();
         referenceData.put("sexor", DatosUtil.SEXO);
