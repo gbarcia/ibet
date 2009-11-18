@@ -68,7 +68,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
                 "." + direccionIp[1] +
                 "." + direccionIp[2] +
                 "." + direccionIp[3] +
-                ":8084/ProyectoIBET/confirmarRegistro.htm?user=" + user.getUsername();
+                ":8084/ProyectoIBET/confirmarRegistro.htm?user=" + UtilMethods.encrypt(user.getUsername());
         datosCorreo.add(titulo);
         datosCorreo.add(user.getNombre() + " " + user.getApellido());
         datosCorreo.add(user.getUsername());

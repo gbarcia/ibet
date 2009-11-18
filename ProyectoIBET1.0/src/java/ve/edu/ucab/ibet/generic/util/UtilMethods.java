@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.generic.util;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -14,6 +16,11 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NullCipher;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Clase que reunte metodos utilitarios a usar en el proyecto
@@ -618,5 +625,48 @@ public abstract class UtilMethods {
             }
         }// End del While, no hay mas tokens
         return iniciales;
+    }
+
+    @SuppressWarnings("unsafe")
+    public static String encrypt(String str) {
+        Cipher ecipher = new NullCipher();
+        try {
+            // Encode the string into bytes using utf-8
+            byte[] utf8 = str.getBytes("UTF8");
+
+            // Encrypt
+            byte[] enc = ecipher.doFinal(utf8);
+
+            // Encode bytes to base64 to get a string
+            return  Base64.encodeBase64String(enc);
+
+        } catch (BadPaddingException e) {
+        } catch (IllegalBlockSizeException e) {
+        } catch (UnsupportedEncodingException e) {
+        } catch (IOException e) {
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unsafe")
+    public static String decrypt(String str) {
+        Cipher dcipher = new NullCipher();
+        try {
+
+            // Decode base64 to get bytes
+            byte[] dec = Base64.decodeBase64(str);
+
+            // Decrypt
+            byte[] utf8 = dcipher.doFinal(dec);
+
+            // Decode using utf-8
+            return new String(utf8, "UTF8");
+
+        } catch (BadPaddingException e) {
+        } catch (IllegalBlockSizeException e) {
+        } catch (UnsupportedEncodingException e) {
+        } catch (IOException e) {
+        }
+        return null;
     }
 }

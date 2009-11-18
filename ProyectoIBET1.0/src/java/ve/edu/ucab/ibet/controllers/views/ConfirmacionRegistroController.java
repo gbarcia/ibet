@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
@@ -26,7 +27,9 @@ public class ConfirmacionRegistroController implements Controller {
     }
 
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        String username = req.getParameter("user");
+        String decodeUserName = req.getParameter("user");
+        String username = UtilMethods.decrypt(decodeUserName);
+        System.out.println(username);
         String mensaje = "";
         Boolean resultado = Boolean.FALSE;
         ModelAndView mv = new ModelAndView("publico/registroConfirmado");
