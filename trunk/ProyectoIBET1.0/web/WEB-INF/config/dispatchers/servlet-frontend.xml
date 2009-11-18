@@ -45,5 +45,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  <!--
  *********************** PAGINAS ********************
  -->
+
+ <bean name="/publico/confirmarRegistro.htm"
+ class="ve.edu.ucab.ibet.controllers.views.ConfirmacionRegistroController" >
+     <property name="servicioUsuario" ref="servicioUsuario" />
+ </bean>
     
 </beans>

@@ -55,4 +55,22 @@ public interface IServicioUsuario {
      * @return objeto Users o null si to es nulo
      */
     public Users transferObjectToModel(RegistroUsuarioTO to);
+
+    /**
+     * Firma para confirmar el registro de un usuario
+     * @param username el nombre nick-name del usuario a confirmar
+     */
+    public void confirmarRegistroUsuario (String username);
+
+    /**
+     * Firma para habilitar un usuario
+     * @param username el nick-name del usuario a habilitar
+     */
+    public void habilitarUsuario (String username);
+
+    /**
+     * firma para deshabilitar un usuario registrado
+     * @param username el nick-name del usuario a desabilitar
+     */
+    public void deshabilitarUsuario (String username);
 }
