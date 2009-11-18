@@ -60,17 +60,37 @@ public interface IServicioUsuario {
      * Firma para confirmar el registro de un usuario
      * @param username el nombre nick-name del usuario a confirmar
      */
-    public void confirmarRegistroUsuario (String username);
+    public void confirmarRegistroUsuario(String username);
 
     /**
      * Firma para habilitar un usuario
      * @param username el nick-name del usuario a habilitar
      */
-    public void habilitarUsuario (String username);
+    public void habilitarUsuario(String username);
 
     /**
      * firma para deshabilitar un usuario registrado
      * @param username el nick-name del usuario a desabilitar
      */
-    public void deshabilitarUsuario (String username);
+    public void deshabilitarUsuario(String username);
+
+    /**
+     * firma para recuperacion de clave de un usuario
+     * @param correo correo electronico del usuario afectado
+     */
+    public void recuperarClave(String correo);
+
+    /**
+     * firma para enviar la confirmacion via mail de la recuperacion de calve
+     * @param correo correo del usuario afectado
+     * @param username nombre de usuario afectado
+     */
+    public void enviarConfirmacionRecupClave(String correo, String username);
+
+    /**
+     * Firma para buscar un usuario por correo
+     * @param correo correo del usuario a buscar
+     * @return Users objeto usuario encontrado con la condicion
+     */
+    public Users obtenerUsuarioPorCorreo(String correo);
 }

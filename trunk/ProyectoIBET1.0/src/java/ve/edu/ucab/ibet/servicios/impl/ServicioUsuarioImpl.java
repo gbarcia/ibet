@@ -189,4 +189,27 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         Users usuario = this.obtenerDatosUsuarioM(username);
         usuario.setEnabled(Boolean.FALSE);
     }
+
+    public void recuperarClave(String correo) {
+        
+    }
+
+    public void enviarConfirmacionRecupClave(String correo, String username) {
+        Users usuario = obtenerUsuarioPorCorreo(correo);
+        if (usuario.getUsername().equals(username)) {
+
+        }
+        else {
+            throw new ExcepcionNegocio("error.usuario.invalido");
+        }
+    }
+
+    public Users obtenerUsuarioPorCorreo(String correo) {
+        Users user = null;
+        user = (Users) genericDao.findByPropertyUnique(Users.class, "correo", correo);
+        if (user == null) {
+            throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuarionoexiste"));
+        }
+        return user;
+    }
 }

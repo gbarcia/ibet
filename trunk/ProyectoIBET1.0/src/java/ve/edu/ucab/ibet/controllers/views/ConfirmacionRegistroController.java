@@ -26,7 +26,7 @@ public class ConfirmacionRegistroController implements Controller {
         this.servicioUsuario = servicioUsuario;
     }
 
-    public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) {
         String decodeUserName = req.getParameter("user");
         String username = UtilMethods.decrypt(decodeUserName);
         System.out.println(username);
