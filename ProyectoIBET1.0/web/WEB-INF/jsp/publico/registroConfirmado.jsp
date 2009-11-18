@@ -17,6 +17,5 @@
         <c:if test="${resultado == true}">
         <h1><spring:message code="${mensaje}" /> </h1>
         </c:if>
-        <c:out value="${resultado}" />
     </body>
 </html>
