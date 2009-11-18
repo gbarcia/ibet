@@ -29,7 +29,7 @@ public class ServicioUsuarioImplTest {
     /**
      * Prueba Unitaria registro usuario
      */
-   // @Test
+    @Test
     public void testRegistroNuevoUsuarioM() throws Exception {
         System.out.println("registroNuevoUsuarioM");
         Users user = new Users();
@@ -38,7 +38,7 @@ public class ServicioUsuarioImplTest {
         user.setCalle("Av. Avila");
         user.setCiudad("Caracas");
         user.setCodigoPostal(1070);
-        user.setCorreo("gerardobarcia@gmail.com");
+        user.setCorreo("gerardobarciap@gmail.com");
         user.setEstado("Miranda");
         user.setFechaNacimiento(new Date());
         user.setNombre("Kate");
@@ -94,7 +94,7 @@ public class ServicioUsuarioImplTest {
 //        fail("The test case is a prototype.");
     }
 
-    @Test
+    //@Test
     public void testActualizarDatosUsuarioM() throws Exception {
         System.out.println("actualizarDatosUsuarioM");
         Users user = new Users();
