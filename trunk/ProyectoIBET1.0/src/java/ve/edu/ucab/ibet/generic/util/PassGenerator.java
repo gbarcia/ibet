@@ -6,7 +6,7 @@ package ve.edu.ucab.ibet.generic.util;
  * @version 1.0
  */
 public class PassGenerator {
-	public static final int MIN_LENGTH = 10;
+	public static final int MIN_LENGTH = 8;
 
 	/** The random number generator. */
 	protected static java.util.Random r = new java.util.Random();
@@ -22,7 +22,7 @@ public class PassGenerator {
 		'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
 		'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K',
 		'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-		'2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '@', };
+		'2', '3', '4', '5', '6', '7', '8', '9',};
 
 	/* Generate a Password object with a random password. */
 	public static String getNext() {

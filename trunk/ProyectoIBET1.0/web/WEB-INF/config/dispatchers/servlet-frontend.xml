@@ -42,6 +42,16 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioUsuario" ref="servicioUsuario"/>
 </bean>
 
+<!-- Bean para trabajar con el formulario de recuperacion de clave
+-->
+ <bean name="/publico/front/usuario/recuperarClave.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.RecuperarClaveFormController">
+  <property name="formView" value="publico/front/usuario/recuperarClave" />
+  <property name="successView" value="recuperarClave.htm" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->

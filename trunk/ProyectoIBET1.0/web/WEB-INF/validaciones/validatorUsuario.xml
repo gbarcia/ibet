@@ -152,5 +152,14 @@
                 </var>
             </field>
         </form>
+        <form name="recuperarClaveTO">
+            <field property="username" depends="required">
+                <msg name="required" key="errors.required.nombreUsuario"/>
+            </field>
+            <field property="correo" depends="required,email">
+                <msg name="required" key="errors.required.correo"/>
+                <msg name="email" key="errors.email.correo"/>
+            </field>
+        </form>
     </formset>
 </form-validation>
