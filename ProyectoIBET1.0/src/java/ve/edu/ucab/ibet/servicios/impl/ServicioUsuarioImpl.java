@@ -5,14 +5,14 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.springframework.security.providers.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.generic.util.PassGenerator;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
@@ -28,6 +28,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     private IMailService servicioMail;
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
+    private Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 
     public IHelperProperties getHelperProp() {
         return helperProp;
@@ -116,10 +117,11 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     public void registroNuevoUsuarioM(Users user) {
         if (!existeUsuarioM(user)) {
             // if (esUsuarioMayorEdad(user)) {
+            enviarCorreo(user);
+            user.setPassword(md5.encodePassword(user.getPassword(), null));
             user.setEnabled(false);
             user.setConfirmado(false);
             genericDao.insertar(user);
-            enviarCorreo(user);
             //} else {
             // throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
             //  }
@@ -134,6 +136,9 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             resultado = "fechaNacimiento";
         } else if (mensaje.equals(helperProp.getString("error.negocio.usuariorepetido"))) {
             resultado = "nombreUsuario";
+        }
+        else if (mensaje.equals("error.usuario.invalido.dif")){
+            resultado = "username";
         }
         return resultado;
     }
@@ -191,16 +196,34 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     }
 
     public void recuperarClave(String correo) {
-        
+        String nuevaClave = PassGenerator.getNext();
+        Users user = obtenerUsuarioPorCorreo(correo);
+        user.setPassword(md5.encodePassword(nuevaClave, null));
+        actualizarDatosUsuarioM(user);
+        enviarCorreoRecuperacionClave(user, nuevaClave);
     }
 
     public void enviarConfirmacionRecupClave(String correo, String username) {
         Users usuario = obtenerUsuarioPorCorreo(correo);
         if (usuario.getUsername().equals(username)) {
+            List<String> datosCorreo = new ArrayList<String>();
+            String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+            String url = "http://localhost" +
+                    ":8084/ProyectoIBET/publico/confirmarCambioClave.htm?user=" + UtilMethods.encrypt(usuario.getUsername());
+            datosCorreo.add(titulo);
+            datosCorreo.add(usuario.getNombre() + " " + usuario.getApellido());
+            datosCorreo.add(url);
+            String asunto = helperProp.getString("correos.recuperacion.clave.plantillas.asunto");
+            String cuerpo = ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea1", datosCorreo) + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea2") + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea3") + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea4", datosCorreo) + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea5") + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.plantillas.mensaje.linea6") + "</p>");
 
-        }
-        else {
-            throw new ExcepcionNegocio("error.usuario.invalido");
+            servicioMail.send(usuario.getCorreo(), asunto, cuerpo);
+        } else {
+            throw new ExcepcionNegocio("error.usuario.invalido.dif");
         }
     }
 
@@ -208,8 +231,26 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         Users user = null;
         user = (Users) genericDao.findByPropertyUnique(Users.class, "correo", correo);
         if (user == null) {
-            throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuarionoexiste"));
+            throw new ExcepcionNegocio("error.usuario.invalido.dif");
         }
         return user;
+    }
+
+    private void enviarCorreoRecuperacionClave(Users usuario, String nuevaClave) {
+        List<String> datosCorreo = new ArrayList<String>();
+            String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+            datosCorreo.add(titulo);
+            datosCorreo.add(usuario.getNombre() + " " + usuario.getApellido());
+            datosCorreo.add(usuario.getUsername());
+            datosCorreo.add(nuevaClave);
+            String asunto = helperProp.getString("correos.recuperacion.clave.exito.plantillas.asunto");
+            String cuerpo = ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea1", datosCorreo) + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea2") + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea3", datosCorreo) + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea4", datosCorreo) + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea5") + "</p>");
+            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea6") + "</p>");
+
+            servicioMail.send(usuario.getCorreo(), asunto, cuerpo);
     }
 }
