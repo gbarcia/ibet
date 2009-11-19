@@ -27,6 +27,12 @@
                                 <form id="loginForm" name="loginForm" action="j_spring_security_check" method="post">
                                     <fieldset>
                                         <legend><spring:message code="login.form.titulo"/></legend>
+                                        <c:if test="${not empty param.savepass}">
+                                            <spring:message code="login.cambioclave.exito"/>
+                                        </c:if>
+                                        <c:if test="${not empty param.resultado}">
+                                            <spring:message code="${param.mensaje}" />
+                                        </c:if>
                                         <c:if test="${not empty param.authfailed}">
                                             <div class="error">
                                                 <c:choose>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
@@ -32,7 +33,7 @@ public class ConfirmacionRecuperacionClaveController implements Controller {
         String username= UtilMethods.decrypt(decode);
         String mensaje = "";
         Boolean resultado = Boolean.FALSE;
-        ModelAndView mv = new ModelAndView("publico/recuperacionClave");
+        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() + "/login.htm"));
         try {
             servicioUsuario.recuperarClave(username);
             mensaje = "exito.nuevaclave.confirmado";

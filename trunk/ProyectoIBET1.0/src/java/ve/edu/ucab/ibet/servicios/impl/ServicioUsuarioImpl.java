@@ -116,15 +116,15 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registroNuevoUsuarioM(Users user) {
         if (!existeUsuarioM(user)) {
-            // if (esUsuarioMayorEdad(user)) {
+             if (esUsuarioMayorEdad(user)) {
             enviarCorreo(user);
             user.setPassword(md5.encodePassword(user.getPassword(), null));
             user.setEnabled(false);
             user.setConfirmado(false);
             genericDao.insertar(user);
-            //} else {
-            // throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
-            //  }
+            } else {
+             throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
+              }
         } else {
             throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariorepetido"));
         }
@@ -136,8 +136,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             resultado = "fechaNacimiento";
         } else if (mensaje.equals(helperProp.getString("error.negocio.usuariorepetido"))) {
             resultado = "nombreUsuario";
-        }
-        else if (mensaje.equals("error.usuario.invalido.dif")){
+        } else if (mensaje.equals("error.usuario.invalido.dif")) {
             resultado = "username";
         }
         return resultado;
@@ -238,19 +237,19 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
     private void enviarCorreoRecuperacionClave(Users usuario, String nuevaClave) {
         List<String> datosCorreo = new ArrayList<String>();
-            String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
-            datosCorreo.add(titulo);
-            datosCorreo.add(usuario.getNombre() + " " + usuario.getApellido());
-            datosCorreo.add(usuario.getUsername());
-            datosCorreo.add(nuevaClave);
-            String asunto = helperProp.getString("correos.recuperacion.clave.exito.plantillas.asunto");
-            String cuerpo = ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea1", datosCorreo) + "</p>");
-            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea2") + "</p>");
-            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea3", datosCorreo) + "</p>");
-            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea4", datosCorreo) + "</p>");
-            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea5") + "</p>");
-            cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea6") + "</p>");
+        String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        datosCorreo.add(titulo);
+        datosCorreo.add(usuario.getNombre() + " " + usuario.getApellido());
+        datosCorreo.add(usuario.getUsername());
+        datosCorreo.add(nuevaClave);
+        String asunto = helperProp.getString("correos.recuperacion.clave.exito.plantillas.asunto");
+        String cuerpo = ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea1", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea2") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea3", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea4", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea5") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.recuperacion.clave.exito.plantillas.mensaje.linea6") + "</p>");
 
-            servicioMail.send(usuario.getCorreo(), asunto, cuerpo);
+        servicioMail.send(usuario.getCorreo(), asunto, cuerpo);
     }
 }
