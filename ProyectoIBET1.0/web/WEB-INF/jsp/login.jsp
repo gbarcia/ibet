@@ -72,7 +72,7 @@
                                                 <th><label for="passwordField"><spring:message code="login.form.password"/></label></th>
                                                 <td>
                                                     <input id="passwordField" type="password" name="j_password" />
-                                                    <spring:message code="login.form.forgot"/>
+                                                    <a href="publico/front/usuario/recuperarClave.htm"><spring:message code="login.form.forgot"/></a>
                                                 </td>
                                             </tr>
                                             <tr>

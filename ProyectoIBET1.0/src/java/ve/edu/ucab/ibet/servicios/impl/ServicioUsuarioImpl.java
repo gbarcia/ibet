@@ -195,9 +195,9 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         usuario.setEnabled(Boolean.FALSE);
     }
 
-    public void recuperarClave(String correo) {
+    public void recuperarClave(String username) {
         String nuevaClave = PassGenerator.getNext();
-        Users user = obtenerUsuarioPorCorreo(correo);
+        Users user = obtenerDatosUsuarioM(username);
         user.setPassword(md5.encodePassword(nuevaClave, null));
         actualizarDatosUsuarioM(user);
         enviarCorreoRecuperacionClave(user, nuevaClave);
@@ -209,7 +209,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             List<String> datosCorreo = new ArrayList<String>();
             String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
             String url = "http://localhost" +
-                    ":8084/ProyectoIBET/publico/confirmarCambioClave.htm?user=" + UtilMethods.encrypt(usuario.getUsername());
+                    ":8084/ProyectoIBET/publico/recuperacionClave.htm?user=" + UtilMethods.encrypt(usuario.getUsername());
             datosCorreo.add(titulo);
             datosCorreo.add(usuario.getNombre() + " " + usuario.getApellido());
             datosCorreo.add(url);
