@@ -76,9 +76,9 @@ public interface IServicioUsuario {
 
     /**
      * firma para recuperacion de clave de un usuario
-     * @param correo correo electronico del usuario afectado
+     * @param username username del usuario afectado
      */
-    public void recuperarClave(String correo);
+    public void recuperarClave(String username);
 
     /**
      * firma para enviar la confirmacion via mail de la recuperacion de calve

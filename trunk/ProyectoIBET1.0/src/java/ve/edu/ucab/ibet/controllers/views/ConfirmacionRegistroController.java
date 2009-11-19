@@ -29,7 +29,6 @@ public class ConfirmacionRegistroController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) {
         String decodeUserName = req.getParameter("user");
         String username = UtilMethods.decrypt(decodeUserName);
-        System.out.println(username);
         String mensaje = "";
         Boolean resultado = Boolean.FALSE;
         ModelAndView mv = new ModelAndView("publico/registroConfirmado");
