@@ -40,7 +40,6 @@ public class RecuperarClaveFormController extends SimpleFormController {
         ModelAndView mv = new ModelAndView(new RedirectView(getSuccessView()));
         try {
             servicioUsuario.enviarConfirmacionRecupClave(registro.getCorreo(), registro.getUsername());
-            mv.addObject("resultado", "SUCCESS");
         } catch (DataAccessException e) {
             mv = new ModelAndView("errorDA");
             e.printStackTrace();
