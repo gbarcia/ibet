@@ -252,4 +252,21 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
         servicioMail.send(usuario.getCorreo(), asunto, cuerpo);
     }
+
+    public RegistroUsuarioTO modelToTransferObject(Users u) {
+        RegistroUsuarioTO registroUsuario = new RegistroUsuarioTO();
+        registroUsuario.setApellido(u.getApellido());
+        registroUsuario.setCalle(u.getCalle());
+        registroUsuario.setCiudad(u.getCiudad());
+        registroUsuario.setCodigoPostal(u.getCodigoPostal());
+        registroUsuario.setCorreo(u.getCorreo());
+        registroUsuario.setEstado(u.getEstado());
+        registroUsuario.setFechaNacimiento(u.getFechaNacimiento());
+        registroUsuario.setNombre(u.getNombre());
+        registroUsuario.setNombreUsuario(u.getUsername());
+        registroUsuario.setPais(u.getPais());
+        registroUsuario.setSexo(u.getSexo());
+        registroUsuario.setTelefono(u.getTelefono());
+        return registroUsuario;
+    }
 }

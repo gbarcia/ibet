@@ -26,10 +26,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 -->
  <bean name="/privado/front/usuario/perfilUsuario.htm"
     class="ve.edu.ucab.ibet.controllers.forms.PerfilUsuarioFormController">
-  <property name="formView" value="front/usuario/perfilUsuario" />
-  <property name="successView" value="front/usuario/perfilUsuario.htm" />
-  <!-- <property name="validator" ref="beanValidator"/> -->
-  <property name="servicioPerfil" ref="servicioUsuario"/>
+  <property name="formView" value="privado/front/usuario/perfilUsuario" />
+  <property name="successView" value="privado/front/usuario/perfilUsuario.htm" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioUsuario" ref="servicioUsuario"/>
 </bean>
 
 <!-- Bean para trabajar con el formulario de registro de Usuario
