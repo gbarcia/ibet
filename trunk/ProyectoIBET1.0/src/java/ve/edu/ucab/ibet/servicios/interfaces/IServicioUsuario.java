@@ -57,6 +57,13 @@ public interface IServicioUsuario {
     public Users transferObjectToModel(RegistroUsuarioTO to);
 
     /**
+     * Firma para convertir un objeto usuario en un transferobject para el form
+     * @param u objeto usuario a convertir
+     * @return Objeto RegistroUsuarioTO
+     */
+    public RegistroUsuarioTO modelToTransferObject(Users u);
+
+    /**
      * Firma para confirmar el registro de un usuario
      * @param username el nombre nick-name del usuario a confirmar
      */
