@@ -33,6 +33,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         this.helperProp = helperProp;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Categoria> obtenerCategorias() {
         List<Categoria> todasLasCategorias = new ArrayList<Categoria>();
         todasLasCategorias.addAll(genericDao.listar(Categoria.class));
@@ -45,7 +46,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         }
         return categoriasPadre;
     }
-
+    @SuppressWarnings("unchecked")
     public List<Categoria> obtenerSubcategoriasDeUnaCategoria(Categoria categoriaPadre) {
         List<Categoria> subcategorias = new ArrayList<Categoria>();
         String query = "select c.categoriaCollection from Categoria c where c.id = ?";

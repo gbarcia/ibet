@@ -249,9 +249,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('admin', 'raul', 'barcia', '1990-01-16', 'M', 'raulbarciap@gmail.com', null, null, null, null, null, null, '21232f297a57a5a743894a0e4a801fc3 ', 1, 1, null);
-INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('maya', 'maria', 'uribe', '1987-01-01', 'F', 'mayita.uribe@gmail.com', '04129513436', 'VENEZUELA', 'caracas', 1010, 'MIRANDA', 'cafetal', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
-INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('johnny', 'jonathan', 'trujillo', '1987-08-26', 'M', 'trujillo.jonathan@gmail.com', '04127374205', 'VENEZUELA', 'caracas', 1080, 'MIRANDA', 'el placer', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
-INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('gerardo', 'gerardo', 'barcia', '1986-01-09', 'F', 'gerardobarciap@gmail.com', '04127049825', 'VENEZUELA', 'caracas', 1070, 'MIRANDA', 'la urbina', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
+INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('maya', 'maria', 'uribe', '1987-01-01', 'F', 'mayita.uribe@gmail.com', '0412 951-3436', 'VENEZUELA', 'caracas', 1010, 'MIRANDA', 'cafetal', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
+INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('johnny', 'jonathan', 'trujillo', '1987-08-26', 'M', 'trujillo.jonathan@gmail.com', '0412 737-4205', 'VENEZUELA', 'caracas', 1080, 'MIRANDA', 'el placer', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
+INSERT INTO `users` (`username`, `nombre`, `apellido`, `fechaNacimiento`, `sexo`, `correo`, `telefono`, `pais`, `ciudad`, `codigoPostal`, `estado`, `calle`, `password`, `enabled`, `confirmado`, `avatar`) VALUES ('gerardo', 'gerardo', 'barcia', '1986-01-09', 'F', 'gerardobarciap@gmail.com', '0412 704-9825', 'VENEZUELA', 'caracas', 1070, 'MIRANDA', 'la urbina', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, null);
 
 COMMIT;
 
@@ -309,7 +309,7 @@ INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLo
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (3, 'beisbol', 0, 0, null, 1);
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (4, 'espectaculo', 0, 0,null, null);
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (5, 'oscar', 0, 0, null, 4);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (6, 'mejor actor', 0, 0, null, 5);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`, `nombreLogica`, `idCategoria`) VALUES (6, 'mejor actor', 0, 0, null, 4);
 
 COMMIT;
 
