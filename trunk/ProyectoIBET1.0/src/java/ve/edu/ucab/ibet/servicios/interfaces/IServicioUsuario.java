@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 
 /**
@@ -62,6 +63,21 @@ public interface IServicioUsuario {
      * @return Objeto RegistroUsuarioTO
      */
     public RegistroUsuarioTO modelToTransferObject(Users u);
+
+    /**
+     * Firma para convertir un objeto usuario en un transferobject para trabajar
+     * con el perfil
+     * @param u objeto usuario a convertir
+     * @return Objeto PerfilUsuarioTO
+     */
+    public PerfilUsuarioTO modelToTransferObjectPerfil(Users u);
+
+    /**
+     * Firma para convertir un transfer object de perfil en usuario
+     * @param to objeto to de perfil a convertir
+     * @return Objeto Users del modelo de dominio
+     */
+    public Users transferObjectToModelPerfil(PerfilUsuarioTO to);
 
     /**
      * Firma para confirmar el registro de un usuario

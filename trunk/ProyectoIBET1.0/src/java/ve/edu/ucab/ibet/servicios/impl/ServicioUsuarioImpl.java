@@ -5,10 +5,12 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.security.annotation.Secured;
 import org.springframework.security.providers.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
@@ -116,15 +118,15 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registroNuevoUsuarioM(Users user) {
         if (!existeUsuarioM(user)) {
-             if (esUsuarioMayorEdad(user)) {
-            enviarCorreo(user);
-            user.setPassword(md5.encodePassword(user.getPassword(), null));
-            user.setEnabled(false);
-            user.setConfirmado(false);
-            genericDao.insertar(user);
+            if (esUsuarioMayorEdad(user)) {
+                enviarCorreo(user);
+                user.setPassword(md5.encodePassword(user.getPassword(), null));
+                user.setEnabled(false);
+                user.setConfirmado(false);
+                genericDao.insertar(user);
             } else {
-             throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
-              }
+                throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
+            }
         } else {
             throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariorepetido"));
         }
@@ -152,8 +154,37 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
     }
 
+    @Secured({"ROLE_USER"})
     public void actualizarDatosUsuarioM(Users user) {
-        genericDao.merge(user);
+        if (!user.getPassword().isEmpty()) {
+            enviarCorreoCambioClave(user);
+            user.setPassword(md5.encodePassword(user.getPassword(),null));
+        }
+        else {
+            Users usuarioactual = obtenerDatosUsuarioM(user.getUsername());
+            user.setPassword(usuarioactual.getPassword());
+        }
+        user.setEnabled(Boolean.TRUE);
+        user.setConfirmado(Boolean.TRUE);
+        genericDao.limpiar();
+        genericDao.modificar(user);
+    }
+
+    private void enviarCorreoCambioClave(Users user) {
+        List<String> datosCorreo = new ArrayList<String>();
+        String titulo = (user.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        datosCorreo.add(titulo);
+        datosCorreo.add(user.getNombre() + " " + user.getApellido());
+        datosCorreo.add(user.getUsername());
+        datosCorreo.add(user.getPassword());
+        String asunto = helperProp.getString("correos.cambioclave.plantillas.asunto");
+        String cuerpo = ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea1", datosCorreo) + "<p>");
+        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea2") + "<p>");
+        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea3", datosCorreo) + "<p>");
+        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea4", datosCorreo) + "<p>");
+        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea5") + "<p>");
+        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea6") + "<p>");
+        servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
     public Users transferObjectToModel(RegistroUsuarioTO to) {
@@ -268,5 +299,43 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         registroUsuario.setSexo(u.getSexo());
         registroUsuario.setTelefono(u.getTelefono());
         return registroUsuario;
+    }
+
+    public PerfilUsuarioTO modelToTransferObjectPerfil(Users u) {
+        PerfilUsuarioTO perfilUsuario = new PerfilUsuarioTO();
+        perfilUsuario.setApellido(u.getApellido());
+        perfilUsuario.setCalle(u.getCalle());
+        perfilUsuario.setCiudad(u.getCiudad());
+        perfilUsuario.setCodigoPostal(u.getCodigoPostal());
+        perfilUsuario.setCorreo(u.getCorreo());
+        perfilUsuario.setEstado(u.getEstado());
+        perfilUsuario.setFechaNacimiento(u.getFechaNacimiento());
+        perfilUsuario.setNombre(u.getNombre());
+        perfilUsuario.setNombreUsuario(u.getUsername());
+        perfilUsuario.setPais(u.getPais());
+        perfilUsuario.setSexo(u.getSexo());
+        perfilUsuario.setTelefono(u.getTelefono());
+        return perfilUsuario;
+    }
+
+    public Users transferObjectToModelPerfil(PerfilUsuarioTO to) {
+        Users usuario = null;
+        if (to != null) {
+            usuario = new Users();
+            usuario.setUsername(to.getNombreUsuario());
+            usuario.setPassword(to.getClave());
+            usuario.setNombre(to.getNombre());
+            usuario.setApellido(to.getApellido());
+            usuario.setFechaNacimiento(to.getFechaNacimiento());
+            usuario.setCorreo(to.getCorreo());
+            usuario.setSexo(to.getSexo());
+            usuario.setTelefono(to.getTelefono());
+            usuario.setCalle(to.getCalle());
+            usuario.setCiudad(to.getCiudad());
+            usuario.setCodigoPostal(to.getCodigoPostal());
+            usuario.setEstado(to.getEstado());
+            usuario.setPais(to.getPais());
+        }
+        return usuario;
     }
 }

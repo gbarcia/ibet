@@ -161,5 +161,54 @@
                 <msg name="email" key="errors.email.correo"/>
             </field>
         </form>
+        <form name="perfilUsuarioTO">
+            <field property="sexo" depends="required">
+                <msg name="required" key="errors.required.sexo"/>
+            </field>
+            <field property="codigoPostal" depends="required">
+                <msg name="required" key="errors.required.codigoPostal"/>
+            </field>
+            <field property="telefono" depends="required,mask">
+                <msg name="required" key="errors.required.telefono"/>
+                <msg name="mask" key="errors.mask.telefono"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>((\(\d{4}\) ?)|(\d{3}-))?\d{3}-\d{4}</var-value>
+                </var>
+            </field>
+            <field property="pais" depends="required">
+                <msg name="required" key="errors.required.pais"/>
+            </field>
+            <field property="estado" depends="required">
+                <msg name="required" key="errors.required.estado"/>
+            </field>
+            <field property="ciudad" depends="required,mask">
+                <msg name="required" key="errors.required.ciudad"/>
+                <msg name="mask" key="errors.mask.ciudad"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+            </field>
+            <field property="calle" depends="required">
+                <msg name="required" key="errors.required.calle"/>
+            </field>
+            <field property="clave" depends="mask">
+                <msg name="mask" key="errors.mask.clave"/>
+                <arg name="mask" key="4" position="0" resource="false"/>
+                <arg name="mask" key="8" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^.{4,8}$</var-value>
+                </var>
+            </field>
+            <field property="repClave" depends="validwhen">
+                <msg name="validwhen" key="errors.mask.claveDistinta"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(clave == *this*)</var-value>
+                </var>
+            </field>
+        </form>
     </formset>
 </form-validation>
