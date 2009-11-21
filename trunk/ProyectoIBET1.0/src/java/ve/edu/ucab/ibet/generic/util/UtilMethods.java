@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -41,6 +42,16 @@ public abstract class UtilMethods {
         Calendar cFecha = Calendar.getInstance();
         cFecha.setTimeInMillis(fecha.getTime());
         return cFecha.get(Calendar.YEAR);
+    }
+
+    public static Date stringToFecha(String fecha){
+        try {
+            java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = formatoFecha.parse(fecha);
+            return date;
+        } catch (ParseException ex) {
+            return null;
+        }
     }
 
     /**

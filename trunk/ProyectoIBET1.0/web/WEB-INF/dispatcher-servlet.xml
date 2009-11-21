@@ -119,6 +119,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
         <!--<property name="servicioCliente" ref="servicioCliente" /> -->
     </bean>
 
@@ -127,6 +128,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
         <!--<property name="servicioCliente" ref="servicioCliente" /> -->
     </bean>
 

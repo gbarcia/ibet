@@ -139,6 +139,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`EVENTO` (
   `horaMaxima` TIME NOT NULL ,
   `resultado` VARCHAR(200) NOT NULL ,
   `estatus` TINYINT(1) NOT NULL ,
+  `finalizado` TINYINT(1) NOT NULL ,
   `imagenEvento` VARCHAR(200) NULL DEFAULT NULL ,
   `idCategoria` INT NOT NULL ,
   `idPolitica` INT NOT NULL ,
@@ -317,9 +318,9 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (1, 'barcelona vs real madrid', '2009-11-12', '19:00:00', '2009-11-11', '18:00:00', '', 1, null, 2, 1);
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (2, 'leones vs magallanes', '2009-11-15', '20:00:00', '2009-11-15', '19:00:00', '', 1, null, 3, 1);
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (3, 'nominacion al mejor actor', '2009-11-20', '21:00:00', '2009-11-19', '21:00:00', '', 1, null, 6, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (1, 'barcelona vs real madrid', '2009-11-12', '19:00:00', '2009-11-11', '18:00:00', '', 1, 1, null, 2, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (2, 'leones vs magallanes', '2009-11-23', '20:00:00', '2009-11-22', '19:00:00', '', 1, 0, null, 3, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (3, 'nominacion al mejor actor', '2009-11-20', '21:00:00', '2009-11-19', '21:00:00', '', 1, 1, null, 6, 1);
 
 COMMIT;
 
@@ -342,8 +343,8 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (1, 1, null, null, 3.5, 1);
-INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (1, 2, null, null, 2, 1);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (1, 1, null, true, 3.5, 1);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (1, 2, null, true, 2, 1);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (2, 3, null, null, 2.5, null);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (2, 4, null, null, 3, null);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (3, 5, false, null, 3.1, null);
@@ -358,8 +359,9 @@ SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (1, 'maya', 1, '2009-11-15', 500, false, 1, null, 3, 5);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (2, 'maya', 1, '2009-11-10', 100, false, 1, null, 1, 2);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (3, 'maya', 1, '2009-11-10', 200, true, 1, null, 2, 3);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (4, 'gerardo', 3, '2009-11-10', 200, 1, null, 1, 1);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (5, 'johnny', 2, '2009-11-10', 400, 1, null, 1, 2);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (3, 'maya', 1, '2009-11-12', 200, null, 1, null, 2, 3);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (4, 'gerardo', 3, '2009-11-09', 200, null, 1, null, 1, 1);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (5, 'johnny', 2, '2009-11-11', 400, null, 1, null, 1, 2);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (6, 'johnny', 2, '2009-11-13', 50, true, 1, null, 3, 6);
 
 COMMIT;

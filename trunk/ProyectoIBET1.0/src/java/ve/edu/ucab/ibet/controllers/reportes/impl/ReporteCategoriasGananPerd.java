@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.controllers.reportes.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import ve.edu.ucab.ibet.controllers.reportes.interfaces.IReporteGenerator;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
 /**
  * Clase controladora para generar los reportes de tipo Categorias ordenadas
@@ -19,6 +22,7 @@ public class ReporteCategoriasGananPerd extends MultiActionController implements
 
     private final String NOMBRE_REP_PDF = "repCategoriasGanyPerPDF";
     private final String NOMBRE_REP_XLS = "repCategoriasGanyPerXLS";
+    private IServicioReportes servicioReportes;
 
     public ModelAndView generarReportePDF(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
         return new ModelAndView(NOMBRE_REP_PDF, getModel());
@@ -29,10 +33,22 @@ public class ReporteCategoriasGananPerd extends MultiActionController implements
     }
 
     public Map getModel() throws GeneralException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Map model = new HashMap();
+        model.put("dataSource", getData());
+        return model;
     }
 
     public List getData() throws GeneralException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List lista = new ArrayList();
+        lista.addAll(servicioReportes.reporteCategoriasGanancias());
+        return lista;
+    }
+
+    public IServicioReportes getServicioReportes() {
+        return servicioReportes;
+    }
+
+    public void setServicioReportes(IServicioReportes servicioReportes) {
+        this.servicioReportes = servicioReportes;
     }
 }

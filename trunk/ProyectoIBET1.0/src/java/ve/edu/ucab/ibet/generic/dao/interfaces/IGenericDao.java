@@ -76,6 +76,8 @@ public interface IGenericDao {
      * Metodos con QueryString
      */
 
+    public List ejecutarQueryList(String queryString);
+
     public List ejecutarQueryList(String queryString, Object[] values);
 
     public List ejecutarQueryList(String queryString, Object[] values, int start, int offset);
