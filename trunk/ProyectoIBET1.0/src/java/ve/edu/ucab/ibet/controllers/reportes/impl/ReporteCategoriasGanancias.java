@@ -18,10 +18,10 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class ReporteCategoriasGananPerd extends MultiActionController implements IReporteGenerator {
+public class ReporteCategoriasGanancias extends MultiActionController implements IReporteGenerator {
 
-    private final String NOMBRE_REP_PDF = "repCategoriasGanyPerPDF";
-    private final String NOMBRE_REP_XLS = "repCategoriasGanyPerXLS";
+    private final String NOMBRE_REP_PDF = "repCategoriasGananciasPDF";
+    private final String NOMBRE_REP_XLS = "repCategoriasGananciasXLS";
     private IServicioReportes servicioReportes;
 
     public ModelAndView generarReportePDF(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
