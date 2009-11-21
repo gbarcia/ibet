@@ -98,7 +98,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="mappings">
             <props>
                 <prop key="/repHistorial*">controllerHistApuestas</prop>
-                <prop key="/repCategorias*">controllerCategoriasGanyPer</prop>
+                <prop key="/repCategoriasGanancias*">controllerCategoriasGanancias</prop>
+                <prop key="/repCategoriasPerdidas*">controllerCategoriasPerdidas</prop>
                 <prop key="/repCantidad*">controllerCantidadUsuariosCat</prop>
                 <prop key="/repUsuarios*">controllerUsuariosMayorAciertos</prop>
                 <prop key="/repEventos*">controllerEventosRiesgos</prop>
@@ -123,13 +124,20 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <!--<property name="servicioCliente" ref="servicioCliente" /> -->
     </bean>
 
-    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR GANANCIAS Y PERDIDAS -->
-    <bean id="controllerCategoriasGanyPer" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasGananPerd">
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR GANANCIAS -->
+    <bean id="controllerCategoriasGanancias" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasGanancias">
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
         <property name="servicioReportes" ref="servicioReporte"/>
-        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR PERDIDAS -->
+    <bean id="controllerCategoriasPerdidas" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasPerdidas">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
     </bean>
 
     <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CANTIDAD USUARIOS POR CATEGORIA -->

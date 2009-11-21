@@ -35,7 +35,7 @@ public class ServicioReportesTest {
     /**
      * Test of reporteHistorialApuestas method, of class ServicioReporteHistorialApuestas.
      */
-    @Test
+//    @Test
     public void testReporteHistorialApuestas() throws Exception {
         System.out.println("reporteHistorialApuestas");
         String username = "maya";
@@ -51,7 +51,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-//    @Test
+    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
 
