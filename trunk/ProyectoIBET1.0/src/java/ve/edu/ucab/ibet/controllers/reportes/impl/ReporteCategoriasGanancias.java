@@ -32,12 +32,14 @@ public class ReporteCategoriasGanancias extends MultiActionController implements
         return new ModelAndView(NOMBRE_REP_XLS, getModel());
     }
 
+    @SuppressWarnings("unchecked")
     public Map getModel() throws GeneralException {
         Map model = new HashMap();
         model.put("dataSource", getData());
         return model;
     }
-
+    
+    @SuppressWarnings("unchecked")
     public List getData() throws GeneralException {
         List lista = new ArrayList();
         lista.addAll(servicioReportes.reporteCategoriasGanancias());

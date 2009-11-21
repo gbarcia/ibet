@@ -38,6 +38,7 @@ public class ReporteHistorialUsuarioController extends MultiActionController imp
         return new ModelAndView(NOMBRE_REP_XLS, getModel(request.getParameter("username"), fechaInicio, fechaFin));
     }
 
+    @SuppressWarnings("unchecked")
     public Map getModel(String username, Date fechaInicio, Date fechaFin) throws GeneralException {
         Map model = new HashMap();
         model.put("username", username);
@@ -47,6 +48,7 @@ public class ReporteHistorialUsuarioController extends MultiActionController imp
         return model;
     }
 
+    @SuppressWarnings("unchecked")
     public List getData(String username, Date fechaInicio, Date fechaFin) throws GeneralException {
         List lista = new ArrayList();
         lista.addAll(servicioReportes.reporteHistorialApuestas(username, fechaInicio, fechaFin));
