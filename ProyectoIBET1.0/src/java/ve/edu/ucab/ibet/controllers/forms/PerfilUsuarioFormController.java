@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.Users;
-import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
+import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.generic.util.DatosUtil;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
@@ -34,15 +34,15 @@ public class PerfilUsuarioFormController extends SimpleFormController {
     private IServicioUsuario servicioUsuario;
 
     public PerfilUsuarioFormController() {
-        setCommandClass(RegistroUsuarioTO.class);
+        setCommandClass(PerfilUsuarioTO.class);
         setCommandName("perfil");
     }
 
     @Override
     protected ModelAndView onSubmit(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) {
         String atributoError = null;
-        RegistroUsuarioTO registro = (RegistroUsuarioTO) command;
-        Users usuario = servicioUsuario.transferObjectToModel(registro);
+        PerfilUsuarioTO registro = (PerfilUsuarioTO) command;
+        Users usuario = servicioUsuario.transferObjectToModelPerfil(registro);
         ModelAndView mv = new ModelAndView(new RedirectView(getSuccessView()));
         try {
             servicioUsuario.actualizarDatosUsuarioM(usuario);
@@ -75,7 +75,7 @@ public class PerfilUsuarioFormController extends SimpleFormController {
         HttpSession session = request.getSession(true);
         Principal security = request.getUserPrincipal();
         Users user = servicioUsuario.obtenerDatosUsuarioM(security.getName());
-        return servicioUsuario.modelToTransferObject(user);
+        return servicioUsuario.modelToTransferObjectPerfil(user);
     }
 
     @Override
