@@ -1,7 +1,5 @@
 package ve.edu.ucab.ibet.controllers.reportes.interfaces;
 
-import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,8 +17,4 @@ public interface IReporteGenerator {
 
     public ModelAndView generarReporteXLS(HttpServletRequest request,
             HttpServletResponse response) throws GeneralException;
-
-    public Map getModel() throws GeneralException;
-
-    public List getData() throws GeneralException;
 }

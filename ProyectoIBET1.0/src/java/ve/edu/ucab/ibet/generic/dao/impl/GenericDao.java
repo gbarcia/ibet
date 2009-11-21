@@ -404,6 +404,11 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
         return new Integer(query.uniqueResult().toString());
     }
 
+    public List ejecutarQueryList(String queryString) {
+        Query query = getSession().createQuery(queryString);
+        return query.list();
+    }
+
     public List ejecutarQueryList(String queryString, Object[] values) {
         return ejecutarQueryList(queryString, values, -1, -1);
     }
@@ -440,14 +445,6 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
     public Integer getNextId(Object obj) {
         List<Object> listaObjetos = new ArrayList<Object>();
         Integer returnValue = 0;
-        /*Criteria crit = getSession().createCriteria(obj.getClass());
-        listaObjetos = crit.list();
-        if (listaObjetos != null && listaObjetos.size() > 0) {
-        crit.setProjection(Projections.max("id"));
-        returnValue = new Integer(crit.uniqueResult().toString()) + 1;
-        } else {
-        returnValue = 1;
-        }*/
         String queryId = "select max(x.id) from " + obj.getClass().getSimpleName() + " x";
         listaObjetos.addAll(this.ejecutarQueryList(queryId, new Object[0]));
         if (listaObjetos.size() > 0) {
@@ -474,4 +471,5 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
         SQLQuery sql = getSession().createSQLQuery(query);
         return sql.list();
     }
+
 }

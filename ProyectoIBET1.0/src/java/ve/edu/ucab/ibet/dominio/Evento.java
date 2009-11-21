@@ -60,6 +60,8 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "estatus")
     private boolean estatus;
+    @Column(name = "finalizado")
+    private boolean finalizado;
     @Column(name = "imagenEvento")
     private String imagenEvento;
     @JoinColumn(name = "idPolitica", referencedColumnName = "id")
@@ -109,7 +111,7 @@ public class Evento implements Serializable {
         return fechaEvento;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Date fechaEvento) {
         this.fechaEvento = fechaEvento;
     }
 
@@ -153,6 +155,22 @@ public class Evento implements Serializable {
         this.estatus = estatus;
     }
 
+    public Date getFechaEvento() {
+        return fechaEvento;
+    }
+
+    public void setFechaEvento(Date fechaEvento) {
+        this.fechaEvento = fechaEvento;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+    
     public String getImagenEvento() {
         return imagenEvento;
     }

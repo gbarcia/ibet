@@ -1,8 +1,9 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
+import java.util.Date;
 import java.util.List;
+import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
-import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 
 /**
  * Servicio para gestion de reportes
@@ -11,6 +12,8 @@ import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
  */
 public interface IServicioReportes {
 
-    public List<HistorialApuestasTO> reporteHistorialApuestas(String username) throws ExcepcionNegocio;
+    public List<HistorialApuestasTO> reporteHistorialApuestas(String username, Date fechaInicio, Date fechaFin);
+    
+    public List<CategoriasGananciasTO> reporteCategoriasGanancias();
 
 }

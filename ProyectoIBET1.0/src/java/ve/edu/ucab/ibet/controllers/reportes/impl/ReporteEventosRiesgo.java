@@ -27,11 +27,11 @@ public class ReporteEventosRiesgo extends MultiActionController implements IRepo
         return new ModelAndView(NOMBRE_REP_XLS, getModel());
     }
 
-    public Map getModel() throws GeneralException {
+    public Map getModel(Object... parametro) throws GeneralException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List getData() throws GeneralException {
+    public List getData(Object... parametro) throws GeneralException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
