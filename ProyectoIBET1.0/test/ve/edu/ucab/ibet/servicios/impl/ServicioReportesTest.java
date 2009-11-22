@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
@@ -64,7 +65,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testReporteCategoriasPerdidas() throws Exception {
         System.out.println("reporteCategoriasPerdidas");
 
@@ -82,6 +83,19 @@ public class ServicioReportesTest {
         List<Categoria> result = servicioReporte.listarCategorias();
         for (Categoria r : result) {
             System.out.println(r.getId() + ", " + r.getNombre());
+        }
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testCantidadUsuariosCategoria() throws Exception {
+        System.out.println("cantidadUsuariosCategoria");
+
+        List<CantidadUsuariosCategoriaTO> result = servicioReporte.reporteCantidadUsuariosCategoria();
+        Long cantidad;
+        for (CantidadUsuariosCategoriaTO r : result) {
+            cantidad = r.getCantidadUsuarios();
+            System.out.println(r.getNombreCategoria() + ", " + cantidad);
         }
         assertNotNull(result);
     }

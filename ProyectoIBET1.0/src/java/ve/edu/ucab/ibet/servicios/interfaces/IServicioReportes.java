@@ -3,6 +3,7 @@ package ve.edu.ucab.ibet.servicios.interfaces;
 import java.util.Date;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
@@ -23,5 +24,7 @@ public interface IServicioReportes {
     public List<CategoriasGananciaPerdidaTO> listarPerdidasCategorias(List<CategoriasPerdidasTO> perdidas);
 
     public List<Categoria> listarCategorias();
+
+    public List<CantidadUsuariosCategoriaTO> reporteCantidadUsuariosCategoria();
 
 }

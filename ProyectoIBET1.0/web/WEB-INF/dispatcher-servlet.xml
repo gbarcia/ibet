@@ -145,7 +145,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
-        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+        <property name="servicioReportes" ref="servicioReporte"/>
     </bean>
 
     <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO USUARIOS CON MAYOR ACIERTOS -->
