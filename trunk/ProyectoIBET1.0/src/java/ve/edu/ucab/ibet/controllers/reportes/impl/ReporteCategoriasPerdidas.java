@@ -40,7 +40,7 @@ public class ReporteCategoriasPerdidas extends MultiActionController implements 
     @SuppressWarnings("unchecked")
     public List getData() throws GeneralException {
         List lista = new ArrayList();
-        lista.addAll(servicioReportes.reporteCategoriasGanancias());
+        lista.addAll(servicioReportes.reporteCategoriasPerdidas());
         return lista;
     }
 
