@@ -34,7 +34,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Categoria> obtenerCategorias() {
+    public List<Categoria> obtenerCategoriasPadres() {
         List<Categoria> todasLasCategorias = new ArrayList<Categoria>();
         todasLasCategorias.addAll(genericDao.listar(Categoria.class));
 

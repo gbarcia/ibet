@@ -181,7 +181,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
  -->
     
-    <bean name="/home.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    <bean name="/home.htm" class="ve.edu.ucab.ibet.controllers.views.HomeController">
+        <property name="servicioEvento" ref="servicioEvento" />
+    </bean>
     <!-- -
  *********************** MAPEO PAGINA LOGIN APLICACION ********************
  -->
