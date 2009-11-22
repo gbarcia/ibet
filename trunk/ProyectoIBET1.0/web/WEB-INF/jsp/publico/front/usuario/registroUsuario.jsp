@@ -38,9 +38,7 @@
                                 <form:form commandName="registroUsuario" action="registroUsuario.htm">
                                     <fieldset>
                                         <legend><spring:message code="usuario.encabezado.datos"/></legend>
-                                         <div class="error">
-                                        <form:errors path="*" />
-                                         </div>
+                                        <form:errors path="*" cssStyle="messages" />
                                         <br>
                                         <table>
                                             <tbody>
