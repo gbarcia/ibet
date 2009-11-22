@@ -9,24 +9,24 @@ package ve.edu.ucab.ibet.dominio.to.reportes;
  *
  * @author maya
  */
-public class CategoriasGananciasTO {
+public class CategoriasGananciaPerdidaTO {
 
-    private double montoTotal;
+    private Double montoTotal;
     private String nombreCategoria;
 
-    public CategoriasGananciasTO() {
+    public CategoriasGananciaPerdidaTO() {
     }
     
-    public CategoriasGananciasTO(double montoTotal, String nombreCategoria) {
+    public CategoriasGananciaPerdidaTO(Double montoTotal, String nombreCategoria) {
         this.montoTotal = montoTotal;
         this.nombreCategoria = nombreCategoria;
     }
 
-    public double getMontoTotal() {
+    public Double getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(double montoTotal) {
+    public void setMontoTotal(Double montoTotal) {
         this.montoTotal = montoTotal;
     }
 

@@ -36,7 +36,7 @@ public class TableroGanancia implements Serializable {
     private Boolean empato;
     @Basic(optional = false)
     @Column(name = "propocionGano")
-    private double propocionGano;
+    private double proporcionGano;
     @Column(name = "proporcionEmpate")
     private Double proporcionEmpate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tableroGanancia")
@@ -55,9 +55,9 @@ public class TableroGanancia implements Serializable {
         this.tableroGananciaPK = tableroGananciaPK;
     }
 
-    public TableroGanancia(TableroGananciaPK tableroGananciaPK, double propocionGano) {
+    public TableroGanancia(TableroGananciaPK tableroGananciaPK, double proporcionGano) {
         this.tableroGananciaPK = tableroGananciaPK;
-        this.propocionGano = propocionGano;
+        this.proporcionGano = proporcionGano;
     }
 
     public TableroGanancia(int idEvento, int idParticipante) {
@@ -89,11 +89,11 @@ public class TableroGanancia implements Serializable {
     }
 
     public double getPropocionGano() {
-        return propocionGano;
+        return proporcionGano;
     }
 
-    public void setPropocionGano(double propocionGano) {
-        this.propocionGano = propocionGano;
+    public void setPropocionGano(double proporcionGano) {
+        this.proporcionGano = proporcionGano;
     }
 
     public Double getProporcionEmpate() {

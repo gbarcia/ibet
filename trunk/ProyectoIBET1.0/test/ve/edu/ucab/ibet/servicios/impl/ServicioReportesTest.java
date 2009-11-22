@@ -12,7 +12,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO;
+import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
@@ -51,13 +53,35 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
 
-        List<CategoriasGananciasTO> result = servicioReporte.reporteCategoriasGanancias();
-        for (CategoriasGananciasTO r : result) {
+        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasGanancias();
+        for (CategoriasGananciaPerdidaTO r : result) {
             System.out.println(r.getNombreCategoria() + ", " + r.getMontoTotal() + "\n ");
+        }
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testReporteCategoriasPerdidas() throws Exception {
+        System.out.println("reporteCategoriasPerdidas");
+
+        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasPerdidas();
+        for (CategoriasGananciaPerdidaTO r : result) {
+            System.out.println(r.getMontoTotal() + ", " + r.getNombreCategoria());
+        }
+        assertNotNull(result);
+    }
+
+//    @Test
+    public void testListarCategorias() throws Exception {
+        System.out.println("listarCategorias");
+
+        List<Categoria> result = servicioReporte.listarCategorias();
+        for (Categoria r : result) {
+            System.out.println(r.getId() + ", " + r.getNombre());
         }
         assertNotNull(result);
     }
