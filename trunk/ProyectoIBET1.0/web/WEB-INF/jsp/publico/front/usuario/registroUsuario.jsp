@@ -13,6 +13,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="registroUsuario.titulo.form"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
+        <script type="text/javascript">
+            $(function() {
+                $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+                $("#datepicker").datepicker();
+            });
+        </script>
     </head>
     <body>
         <div id="pageWrap">
@@ -61,8 +67,8 @@
                                                     <td><form:errors path="apellido" /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th><label for="fechaNacimiento"><spring:message code="usuario.forms.fechaNacimiento"/></label></th>
-                                                    <td><form:input id="fechaNacimiento" path="fechaNacimiento"  /></td>
+                                                    <th><label for="datepicker"><spring:message code="usuario.forms.fechaNacimiento"/></label></th>
+                                                    <td><form:input id="datepicker" path="fechaNacimiento"  /></td>
                                                     <td><form:errors path="fechaNacimiento" /></td>
                                                 </tr>
                                                 <tr>
