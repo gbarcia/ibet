@@ -1,3 +1,9 @@
+<%--
+    Document   : head
+    Created on : Nov 15, 2009, 2:24:49 PM
+    Author     : jonathan
+--%>
+
 <link rel="stylesheet" href="<%= request.getContextPath()+ "/css/index.css"%>" type="text/css" />
 <script src="<%= request.getContextPath()+ "/js/sifr/sifr.js"%>" type="text/javascript"></script>
 <script src="<%= request.getContextPath()+ "/js/sifr/sifr-config.js"%>" type="text/javascript"></script>

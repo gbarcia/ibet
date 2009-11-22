@@ -68,5 +68,11 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  class="ve.edu.ucab.ibet.controllers.views.ConfirmacionRecuperacionClaveController" >
      <property name="servicioUsuario" ref="servicioUsuario" />
  </bean>
-    
+
+<!-- Bean para generar el menu de categorias -->
+<bean name="/include/sideMenu.htm"
+class="ve.edu.ucab.ibet.controllers.views.MenuCategoriasController">
+    <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
+
 </beans>

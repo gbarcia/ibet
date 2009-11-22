@@ -1,5 +1,9 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -28,5 +32,13 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     public void setHelperProp(IHelperProperties helperProp) {
         this.helperProp = helperProp;
+    }
+
+    public List<Evento> obtenerEventosDeUnaCategoria(Integer idSubcategoria) {
+        List<Evento> eventos = new ArrayList<Evento>();
+        String query = "select c.eventoCollection from Categoria c where c.id = ?";
+        Object[] parametros = { idSubcategoria };
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros));
+        return eventos;
     }
 }
