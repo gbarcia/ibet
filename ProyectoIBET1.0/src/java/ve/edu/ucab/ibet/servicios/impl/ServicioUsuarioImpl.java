@@ -10,6 +10,7 @@ import org.springframework.security.providers.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.enums.Role;
 import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
@@ -115,6 +116,16 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return esMayor;
     }
 
+    private void asignarRolUsuario (Role rol, Users usuario) {
+        String username = usuario.getUsername();
+        String rolUsuario = rol.roleName();
+        StringBuffer query = new StringBuffer("");
+        query.append("INSERT INTO authorities VALUES (");
+        query.append("'" + rolUsuario + "'" + ",");
+        query.append("'" + username + "'" + ")");
+        genericDao.ejecturarSQLQueryManipulacion(query.toString());
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registroNuevoUsuarioM(Users user) {
         if (!existeUsuarioM(user)) {
@@ -124,6 +135,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
                 user.setEnabled(false);
                 user.setConfirmado(false);
                 genericDao.insertar(user);
+                asignarRolUsuario(Role.USER_ROLE, user);
             } else {
                 throw new ExcepcionNegocio(helperProp.getString("error.negocio.usuariomenor"));
             }

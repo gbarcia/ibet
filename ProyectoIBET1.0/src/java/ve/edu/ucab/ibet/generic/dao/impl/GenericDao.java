@@ -472,4 +472,9 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
         return sql.list();
     }
 
+    public void ejecturarSQLQueryManipulacion(String query) {
+        SQLQuery sql = getSession().createSQLQuery(query);
+        sql.executeUpdate();
+    }
+
 }

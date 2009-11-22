@@ -15,8 +15,12 @@
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript">
             $(function() {
-                $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
-                $("#datepicker").datepicker();
+                $('#datepicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                    yearRange: '1950:2010'
+                });
             });
         </script>
     </head>
@@ -33,88 +37,87 @@
                             <div class="pane">
                                 <form:form commandName="registroUsuario" action="registroUsuario.htm">
                                     <fieldset>
-                                        <legend>Introduce tu Datos</legend>
-                                        <form:errors path="*"/>
-                                        <c:if test="${param.resultado == 'SUCCESS'}">
-                                            <h2>Formulario Procesado</h2>
-                                        </c:if>
+                                        <legend><spring:message code="usuario.encabezado.datos"/></legend>
+                                         <div class="error">
+                                        <form:errors path="*" />
+                                         </div>
                                         <br>
                                         <table>
                                             <tbody>
                                                 <tr>
                                                     <th><label for="nombreUsuario"><spring:message code="usuario.forms.username"/></label></th>
                                                     <td><form:input id="nombreUsuario" path="nombreUsuario" autocomplete="true"/></td>
-                                                    <td><form:errors path="nombreUsuario" /></td>
+                                                    <td><form:errors path="nombreUsuario" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="clave"><spring:message code="usuario.forms.clave"/></label></th>
                                                     <td><form:password id="clave" path="clave"/></td>
-                                                    <td><form:errors path="clave" /></td>
+                                                    <td><form:errors path="clave" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="repClave"><spring:message code="usuario.forms.claveRep"/></label></th>
                                                     <td><form:password id="repClave" path="repClave"  /></td>
-                                                    <td><form:errors path="repClave" /></td>
+                                                    <td><form:errors path="repClave" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="nombre"><spring:message code="usuario.forms.nombre"/></label></th>
                                                     <td><form:input id="nombre" path="nombre" /></td>
-                                                    <td><form:errors path="nombre" /></td>
+                                                    <td><form:errors path="nombre" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="apellido"><spring:message code="usuario.forms.apellido"/></label></th>
                                                     <td><form:input id="apellido" path="apellido" /></td>
-                                                    <td><form:errors path="apellido" /></td>
+                                                    <td><form:errors path="apellido" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="datepicker"><spring:message code="usuario.forms.fechaNacimiento"/></label></th>
                                                     <td><form:input id="datepicker" path="fechaNacimiento"  /></td>
-                                                    <td><form:errors path="fechaNacimiento" /></td>
+                                                    <td><form:errors path="fechaNacimiento" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="sexo"><spring:message code="usuario.forms.sexo"/></label></th>
                                                     <td><form:radiobuttons id="sexo" path="sexo" items="${opcionSexo}" /></td>
-                                                    <td><form:errors path="sexo" /></td>
+                                                    <td><form:errors path="sexo" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="correo"><spring:message code="usuario.forms.correo"/></label></th>
                                                     <td><form:input id="correo" path="correo" /></td>
-                                                    <td><form:errors path="correo" /></td>
+                                                    <td><form:errors path="correo" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="repCorreo"><spring:message code="usuario.forms.correo.rep"/></label></th>
                                                     <td><form:input id="repCorreo" path="repCorreo" /></td>
-                                                    <td><form:errors path="repCorreo" /></td>
+                                                    <td><form:errors path="repCorreo" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="telefono"><spring:message code="usuario.forms.telefono"/></label></th>
                                                     <td><form:input id="telefono" path="telefono"/></td>
-                                                    <td><form:errors path="telefono"/></td>
+                                                    <td><form:errors path="telefono" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="pais"><spring:message code="usuario.forms.pais"/></label></th>
                                                     <td><form:select id="pais" path="pais" items="${opcionPais}"/></td>
-                                                    <td><form:errors path="pais"/></td>
+                                                    <td><form:errors path="pais" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="estado"><spring:message code="usuario.forms.estado"/></label></th>
                                                     <td><form:select id="estado" path="estado" items="${opcionEstado}"/></td>
-                                                    <td><form:errors path="estado"/></td>
+                                                    <td><form:errors path="estado" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="ciudad"><spring:message code="usuario.forms.ciudad"/></label></th>
                                                     <td><form:input id="ciudad" path="ciudad"  /></td>
-                                                    <td><form:errors path="ciudad" /></td>
+                                                    <td><form:errors path="ciudad" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="calle"><spring:message code="usuario.forms.calle"/></label></th>
                                                     <td><form:textarea id="calle" path="calle" rows="4" /></td>
-                                                    <td><form:errors path="calle" /></td>
+                                                    <td><form:errors path="calle" cssClass="error"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="codigoPostal"><spring:message code="usuario.forms.codigoPostal"/></label></th>
                                                     <td><form:input id="codigoPostal" path="codigoPostal" /></td>
-                                                    <td><form:errors path="codigoPostal" /></td>
+                                                    <td><form:errors path="codigoPostal" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th>&nbsp;</th>
@@ -122,7 +125,7 @@
                                                         <form:checkbox id="aceptarContrato" path="aceptaContrato" value="1"/>
                                                         <label for="aceptarContrato"><spring:message code="usuario.forms.politica"/></label>
                                                     </td>
-                                                    <td><form:errors path="aceptaContrato" /></td>
+                                                    <td><form:errors path="aceptaContrato" cssClass="error" /></td>
                                                 </tr>
                                                 <tr>
                                                     <th>&nbsp;</th>

@@ -53,14 +53,17 @@ public class RegistroUsuarioFormController extends SimpleFormController {
     @Override
     protected ModelAndView onSubmit(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) throws Exception {
         String atributoError = null;
+        Boolean resultado = Boolean.FALSE;
+        String mensaje = "";
         RegistroUsuarioTO registro = (RegistroUsuarioTO) command;
         Users usuario = servicioUsuario.transferObjectToModel(registro);
-        ModelAndView mv = new ModelAndView(new RedirectView(getSuccessView()));
+        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() + "/login.htm"));
         try {
             servicioUsuario.registroNuevoUsuarioM(usuario);
-            mv.addObject("resultado", "SUCCESS");
+            resultado = Boolean.TRUE;
+            mensaje = "exito.registro.usuario";
         } catch (DataAccessException e) {
-            mv = new ModelAndView("errorDA");
+            mensaje = "error.database.notfound";
             e.printStackTrace();
         } catch (GeneralException e) {
             e.printStackTrace();
@@ -68,6 +71,10 @@ public class RegistroUsuarioFormController extends SimpleFormController {
             errors.rejectValue(atributoError, e.getKeyError());
             mv = showForm(req, resp, errors);
         } finally {
+            if (!mensaje.equals("")) {
+                mv.addObject("resultado", resultado);
+                mv.addObject("mensaje", mensaje);
+            }
             return mv;
         }
     }
