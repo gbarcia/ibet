@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.security.annotation.Secured;
-import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO;
+import org.springmodules.validation.util.condition.common.IsNullCondition;
+import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
@@ -51,9 +54,10 @@ public class ServicioReportesImpl implements IServicioReportes {
         return historial;
     }
 
+    @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<CategoriasGananciasTO> reporteCategoriasGanancias() {
-        List<CategoriasGananciasTO> ganancias = new ArrayList<CategoriasGananciasTO>();
+    public List<CategoriasGananciaPerdidaTO> reporteCategoriasGanancias() {
+        List<CategoriasGananciaPerdidaTO> ganancias = new ArrayList<CategoriasGananciaPerdidaTO>();
 
         String query = new String();
 
@@ -71,6 +75,92 @@ public class ServicioReportesImpl implements IServicioReportes {
         ganancias.addAll(genericDao.ejecutarQueryList(query));
 
         return ganancias;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<CategoriasGananciaPerdidaTO> reporteCategoriasPerdidas() {
+        List<CategoriasPerdidasTO> perdidas = new ArrayList<CategoriasPerdidasTO>();
+        List<CategoriasGananciaPerdidaTO> listaPerdidas = new ArrayList<CategoriasGananciaPerdidaTO>();
+
+        String query = new String();
+
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO (c.id, a.monto, " +
+                "c.nombre, a.gano, a.empato, tg.gano, tg.empato, tg.proporcionGano, tg.proporcionEmpate) " +
+                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where c.id = e.idCategoria " +
+                "and e.id = tg.tableroGananciaPK.idEvento " +
+                "and p.id = tg.tableroGananciaPK.idParticipante " +
+                "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                "and u.username = a.users.username " +
+                "and a.ganador = true ";
+
+        perdidas.addAll(genericDao.ejecutarQueryList(query));
+        listaPerdidas = this.listarPerdidasCategorias(perdidas);
+
+        return listaPerdidas;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<Categoria> listarCategorias() {
+        List<Categoria> categorias = new ArrayList<Categoria>();
+
+        String query = new String();
+
+        query = "select New ve.edu.ucab.ibet.dominio.Categoria (c.id, c.nombre, c.empate, c.logicaAutomatica) " +
+                "from Categoria c ";
+
+        categorias.addAll(genericDao.ejecutarQueryList(query));
+
+        return categorias;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<CategoriasGananciaPerdidaTO> listarPerdidasCategorias(List<CategoriasPerdidasTO> perdidas) {
+        List<CategoriasGananciaPerdidaTO> listaPerdidas = new ArrayList<CategoriasGananciaPerdidaTO>();
+        List<Categoria> categorias = new ArrayList<Categoria>();
+        
+        categorias.addAll(this.listarCategorias());
+
+        Double montoTotal = 0.0;
+        Double nuevoMonto = 0.0;
+
+        for (Categoria categoria : categorias) {
+
+            CategoriasGananciaPerdidaTO cat = new CategoriasGananciaPerdidaTO();
+
+            for (CategoriasPerdidasTO c : perdidas) {
+
+                if (categoria.getId().equals(c.getId())) {
+
+                    cat.setNombreCategoria(c.getNombreCategoria());
+
+                    if (c.getGanoApuesta() && c.getGanoTableroGananacia()) {
+
+                        nuevoMonto = c.getProporcionGano() * c.getMonto();
+                        montoTotal = montoTotal + nuevoMonto;
+                        cat.setMontoTotal(montoTotal);
+
+                    } else if (c.getEmpatoApuesta() && c.getEmpatoTableroGanancia()) {
+
+                        nuevoMonto = c.getProporcionEmpato() * c.getMonto();
+                        montoTotal = montoTotal + nuevoMonto;
+                        cat.setMontoTotal(montoTotal);
+
+                    }
+                }
+            }
+
+            if (cat.getMontoTotal() != null) {
+                listaPerdidas.add(cat);
+            }
+
+        }
+
+        return listaPerdidas;
     }
 
     public IGenericDao getGenericDao() {
