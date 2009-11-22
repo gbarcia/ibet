@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.security.annotation.Secured;
-import org.springmodules.validation.util.condition.common.IsNullCondition;
 import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
@@ -161,6 +161,28 @@ public class ServicioReportesImpl implements IServicioReportes {
         }
 
         return listaPerdidas;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<CantidadUsuariosCategoriaTO> reporteCantidadUsuariosCategoria() {
+        List<CantidadUsuariosCategoriaTO> cantidadUsuarios = new ArrayList<CantidadUsuariosCategoriaTO>();
+
+        String query = new String();
+
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO (count(e.idCategoria.id), c.nombre) " +
+                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where c.id = e.idCategoria " +
+                "and e.id = tg.tableroGananciaPK.idEvento " +
+                "and p.id = tg.tableroGananciaPK.idParticipante " +
+                "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                "and u.username = a.users.username " +
+                "group by c.nombre ";
+
+        cantidadUsuarios.addAll(genericDao.ejecutarQueryList(query));
+
+        return cantidadUsuarios;
     }
 
     public IGenericDao getGenericDao() {
