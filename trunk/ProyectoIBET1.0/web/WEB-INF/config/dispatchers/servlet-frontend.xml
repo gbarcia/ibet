@@ -37,7 +37,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  <bean name="/publico/front/usuario/registroUsuario.htm"
     class="ve.edu.ucab.ibet.controllers.forms.RegistroUsuarioFormController">
   <property name="formView" value="publico/front/usuario/registroUsuario" />
-  <property name="successView" value="registroUsuario.htm" />
   <property name="validator" ref="beanValidator"/>
   <property name="servicioUsuario" ref="servicioUsuario"/>
 </bean>

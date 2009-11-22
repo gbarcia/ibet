@@ -100,4 +100,6 @@ public interface IGenericDao {
     public void refrescar(Object obj);
 
     public List ejecutarSQLQuery(String query);
+
+    public void ejecturarSQLQueryManipulacion (String query);
 }
