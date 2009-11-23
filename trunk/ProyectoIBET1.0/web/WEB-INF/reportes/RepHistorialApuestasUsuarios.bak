@@ -86,8 +86,8 @@
 				</image>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Opaque"
-						x="586"
+						mode="Transparent"
+						x="657"
 						y="1"
 						width="106"
 						height="18"
@@ -102,8 +102,8 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Opaque"
-						x="586"
+						mode="Transparent"
+						x="657"
 						y="19"
 						width="106"
 						height="18"
@@ -118,8 +118,8 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Opaque"
-						x="586"
+						mode="Transparent"
+						x="657"
 						y="37"
 						width="106"
 						height="18"
@@ -132,6 +132,60 @@
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[$P{fechaFin}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="565"
+						y="1"
+						width="92"
+						height="18"
+						forecolor="#217133"
+						backcolor="#97DBA8"
+						key="staticText-10"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Username:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="565"
+						y="19"
+						width="92"
+						height="18"
+						forecolor="#217133"
+						backcolor="#97DBA8"
+						key="staticText-11"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha de Inicio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="565"
+						y="37"
+						width="92"
+						height="18"
+						forecolor="#217133"
+						backcolor="#97DBA8"
+						key="staticText-12"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha de Fin:]]></text>
+				</staticText>
 			</band>
 		</pageHeader>
 		<columnHeader>

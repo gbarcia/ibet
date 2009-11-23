@@ -16,7 +16,9 @@ import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.EventosAltoRiesgoTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 import static org.junit.Assert.*;
@@ -54,7 +56,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
 
@@ -99,5 +101,31 @@ public class ServicioReportesTest {
         }
         assertNotNull(result);
     }
+
+//    @Test
+    public void testEventosAltoRiesgo() throws Exception {
+        System.out.println("eventosAltoRiesgo");
+
+        Double monto = 600.0;
+        List<EventosAltoRiesgoTO> result = servicioReporte.reporteEventosAltoRiesgo(monto);
+
+        for (EventosAltoRiesgoTO r : result) {
+            System.out.println(r.getEvento() + ", " + r.getMonto());
+        }
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testUsuariosMayorAciertos() throws Exception {
+        System.out.println("usuariosMayorAciertos");
+
+        List<UsuariosMayorAciertosTO> result = servicioReporte.reporteUsuariosMayorAciertos();
+
+        for (UsuariosMayorAciertosTO r : result) {
+            System.out.println(r.getUsername() + ", " + r.getCantidadAciertos());
+        }
+        assertNotNull(result);
+    }
+
 
 }
