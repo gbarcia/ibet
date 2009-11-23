@@ -352,6 +352,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return usuario;
     }
 
+    @SuppressWarnings("unchecked")
     public List<UsuarioMedioPago> obtenerMediosPagoVigenteUsuario(Users usuario) {
         String query = "select c from Users u inner join u.usuarioMedioPagoCollection " +
                 " as c where u.username = ? and c.fechaFin = null " +

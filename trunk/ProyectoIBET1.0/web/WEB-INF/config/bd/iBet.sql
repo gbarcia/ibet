@@ -68,13 +68,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `iBet`.`USUARIO_MEDIO_PAGO` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`USUARIO_MEDIO_PAGO` (
+  `id` INT NOT NULL ,
   `username` VARCHAR(250) NOT NULL ,
   `idMedioPago` INT NOT NULL ,
   `activo` TINYINT(1) NOT NULL ,
   `fechaInicio` DATE NOT NULL ,
   `fechaFin` DATE NULL ,
   `montoMaximo` DOUBLE NOT NULL ,
-  PRIMARY KEY (`username`, `idMedioPago`) ,
+  PRIMARY KEY (`id`, `username`, `idMedioPago`) ,
   INDEX `fk_USUARIO_has_MEDIO_PAGO_USUARIO1` (`username` ASC) ,
   INDEX `fk_USUARIO_has_MEDIO_PAGO_MEDIO_PAGO1` (`idMedioPago` ASC) ,
   CONSTRAINT `fk_USUARIO_has_MEDIO_PAGO_USUARIO1`
@@ -283,9 +284,9 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `USUARIO_MEDIO_PAGO` (`username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES ('maya', 1, 1, '2009-02-01', null, 1000);
-INSERT INTO `USUARIO_MEDIO_PAGO` (`username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES ('johnny', 2, 1, '2009-06-20', null, 500);
-INSERT INTO `USUARIO_MEDIO_PAGO` (`username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES ('gerardo', 3, 1, '2009-10-18', null, 300);
+INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (1, 'maya', 1, 1, '2009-02-01', null, 1000);
+INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (2, 'johnny', 2, 1, '2009-06-20', null, 500);
+INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (3, 'gerardo', 3, 1, '2009-10-18', null, 300);
 
 COMMIT;
 

@@ -64,8 +64,8 @@ public class UsuarioMedioPago implements Serializable {
         this.montoMaximo = montoMaximo;
     }
 
-    public UsuarioMedioPago(String username, int idMedioPago) {
-        this.usuarioMedioPagoPK = new UsuarioMedioPagoPK(username, idMedioPago);
+    public UsuarioMedioPago(int id, String username, int idMedioPago) {
+        this.usuarioMedioPagoPK = new UsuarioMedioPagoPK(id, username, idMedioPago);
     }
 
     public UsuarioMedioPagoPK getUsuarioMedioPagoPK() {

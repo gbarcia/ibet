@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.Date;
@@ -33,7 +32,6 @@ public class ServicioReportesTest {
 
     public ServicioReportesTest() {
     }
-
     @Autowired
     private IServicioReportes servicioReporte;
 
@@ -48,10 +46,10 @@ public class ServicioReportesTest {
         Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
 
         System.out.println("fecha inicio: " + fechaInicio);
-       
+
         List<HistorialApuestasTO> result = servicioReporte.reporteHistorialApuestas(username, fechaInicio, fechaFin);
         for (HistorialApuestasTO r : result) {
-            System.out.println(r.getUsername() + ", " + r.getEventoFecha() + ", " + r.getFecha() +"\n ");
+            System.out.println(r.getUsername() + ", " + r.getEventoFecha() + ", " + r.getFecha() + "\n ");
         }
         assertNotNull(result);
     }
@@ -59,8 +57,9 @@ public class ServicioReportesTest {
 //    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
-
-        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasGanancias();
+        Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
+        Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasGanancias(fechaInicio, fechaFin);
         for (CategoriasGananciaPerdidaTO r : result) {
             System.out.println(r.getNombreCategoria() + ", " + r.getMontoTotal() + "\n ");
         }
@@ -70,8 +69,9 @@ public class ServicioReportesTest {
 //    @Test
     public void testReporteCategoriasPerdidas() throws Exception {
         System.out.println("reporteCategoriasPerdidas");
-
-        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasPerdidas();
+        Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
+        Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+        List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasPerdidas(fechaInicio, fechaFin);
         for (CategoriasGananciaPerdidaTO r : result) {
             System.out.println(r.getMontoTotal() + ", " + r.getNombreCategoria());
         }
@@ -126,6 +126,4 @@ public class ServicioReportesTest {
         }
         assertNotNull(result);
     }
-
-
 }
