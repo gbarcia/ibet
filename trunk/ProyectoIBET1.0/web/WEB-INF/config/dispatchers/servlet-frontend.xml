@@ -32,6 +32,16 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioUsuario" ref="servicioUsuario"/>
 </bean>
 
+<!-- Bean para trabajar con el formulario de historial de apuestas de usuario
+-->
+ <bean name="/privado/front/usuario/historialApuestas.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.HistorialApuestasFormController">
+  <property name="formView" value="privado/front/usuario/historialApuestas" />
+  <property name="successView" value="historialApuestas.htm" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioReporte" ref="servicioReporte"/>
+</bean>
+
 <!-- Bean para trabajar con el formulario de registro de Usuario
 -->
  <bean name="/publico/front/usuario/registroUsuario.htm"
