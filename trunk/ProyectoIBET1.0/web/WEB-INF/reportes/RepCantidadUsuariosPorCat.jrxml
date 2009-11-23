@@ -72,29 +72,32 @@
 			<band height="30"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="5"
 						y="11"
 						width="119"
 						height="18"
+						forecolor="#040202"
+						backcolor="#909090"
 						key="staticText-3"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid"/>
-</box>
-					<textElement>
-						<font/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Categoria]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="124"
 						y="11"
-						width="100"
+						width="109"
 						height="18"
+						backcolor="#909090"
 						key="staticText-4"/>
 					<box></box>
-					<textElement>
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Cantidad Usuarios]]></text>
 				</staticText>
@@ -104,13 +107,14 @@
 			<band height="100"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
+						mode="Opaque"
 						x="5"
 						y="16"
 						width="119"
 						height="18"
 						key="textField"/>
 					<box></box>
-					<textElement>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
@@ -119,11 +123,11 @@
 					<reportElement
 						x="124"
 						y="16"
-						width="100"
+						width="109"
 						height="18"
 						key="textField"/>
 					<box></box>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{cantidadUsuarios}]]></textFieldExpression>

@@ -61,7 +61,7 @@ public class ServicioReportesImpl implements IServicioReportes {
 
         String query = new String();
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO (sum(a.monto), c.nombre) " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO (sum(a.monto), c.nombre) " +
                 "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
                 "where c.id = e.idCategoria " +
                 "and e.id = tg.tableroGananciaPK.idEvento " +
@@ -70,7 +70,7 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
                 "and a.ganador = false " +
-                "group by c.nombre";
+                "group by c.nombre ";
 
         ganancias.addAll(genericDao.ejecutarQueryList(query));
 
@@ -183,6 +183,29 @@ public class ServicioReportesImpl implements IServicioReportes {
         cantidadUsuarios.addAll(genericDao.ejecutarQueryList(query));
 
         return cantidadUsuarios;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<CategoriasGananciaPerdidaTO> reporteEventosAltoRiesgo() {
+        List<CategoriasGananciaPerdidaTO> ganancias = new ArrayList<CategoriasGananciaPerdidaTO>();
+
+        String query = new String();
+
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO (sum(a.monto), c.nombre) " +
+                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where c.id = e.idCategoria " +
+                "and e.id = tg.tableroGananciaPK.idEvento " +
+                "and p.id = tg.tableroGananciaPK.idParticipante " +
+                "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                "and u.username = a.users.username " +
+                "and a.ganador = false " +
+                "group by c.nombre";
+
+        ganancias.addAll(genericDao.ejecutarQueryList(query));
+
+        return ganancias;
     }
 
     public IGenericDao getGenericDao() {
