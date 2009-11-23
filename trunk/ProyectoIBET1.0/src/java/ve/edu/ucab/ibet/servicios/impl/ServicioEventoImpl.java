@@ -34,6 +34,7 @@ public class ServicioEventoImpl implements IServicioEvento {
         this.helperProp = helperProp;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Evento> obtenerEventosDeUnaCategoria(Integer idSubcategoria) {
         List<Evento> eventos = new ArrayList<Evento>();
         String query = "select c.eventoCollection from Categoria c where c.id = ?";
