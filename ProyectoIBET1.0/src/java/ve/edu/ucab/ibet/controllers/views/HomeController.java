@@ -28,8 +28,7 @@ public class HomeController implements Controller {
 
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         ModelAndView mv = new ModelAndView("home");
-        List<Integer> carritoApuestas = new ArrayList<Integer>();
-
+        
         List<Evento> eventos = new ArrayList<Evento>();
         String idCategoria = req.getParameter("idCategoria");
         if (UtilMethods.esNumerico(idCategoria)) {
