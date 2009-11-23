@@ -13,14 +13,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!--
  *********************** FORMULARIOS ********************
  -->
- <!-- Ejemplo formulario
- <bean name="/agregarcliente.htm"
-    class="com.pd.controllers.forms.ClienteFormController">
-  <property name="formView" value="agregarcliente" />
-  <property name="successView" value="agregarcliente.htm?r=1" />
-  <property name="validator" ref="beanValidator"/>
-  <property name="servicioCliente" ref="servicioCliente"/>
-</bean> -->
 
 <!-- Bean para trabajar con el formulario de perfil de usuario
 -->
