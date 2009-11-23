@@ -51,3 +51,12 @@
 }
 
 /* @end */
+
+.itemTablero{
+    float:left;
+    width:25%;
+    border:#000 solid 1px;
+    background-color:#202020;
+    margin:5px;
+    padding:5px;
+}
