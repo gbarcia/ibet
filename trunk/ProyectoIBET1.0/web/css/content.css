@@ -56,20 +56,41 @@
     width:100%;
 }
 
-.itemTablero{
-    width:25%;
-    border:#000 solid 1px;
-    background-color:#202020;
+.tablero .itemTableroFecha{
+    background-color:#429CFF;
+    font-weight:700;
+    padding:1px 4px;
+    vertical-align:top;
 }
 
-.itemTableroX{
+.tablero .itemTableroHora{
+    color:#429CFF;
+    font-weight:700;
+    padding:1px 4px;
+    vertical-align:top;
+}
+
+.tablero .itemTablero{
+    width:40%;
+    border:#000 solid 1px;
+    background-color:#202020;
+    padding:1px 4px;
+    vertical-align:top;
+}
+
+.tablero .itemTableroX{
     width:10%;
     border:#000 solid 1px;
     background-color:#202020;
+    padding:1px 4px;
+    vertical-align:top;
 }
 
-.itemTableroX{
-    width:10%;
-    border:#000 solid 1px;
-    background-color:#202020;
+.tablero .itemTableroParticipante{
+    float:left;
+    max-width:80%
+}
+
+.tablero .itemTableroProporcion{
+    float:right;
 }

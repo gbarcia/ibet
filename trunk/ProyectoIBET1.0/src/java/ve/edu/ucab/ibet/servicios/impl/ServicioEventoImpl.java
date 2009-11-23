@@ -2,7 +2,6 @@ package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
