@@ -8,7 +8,9 @@ import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.EventosAltoRiesgoTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
@@ -56,10 +58,14 @@ public class ServicioReportesImpl implements IServicioReportes {
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<CategoriasGananciaPerdidaTO> reporteCategoriasGanancias() {
+    public List<CategoriasGananciaPerdidaTO> reporteCategoriasGanancias(Date fechaInicio, Date fechaFin) {
         List<CategoriasGananciaPerdidaTO> ganancias = new ArrayList<CategoriasGananciaPerdidaTO>();
 
         String query = new String();
+        Object[] o = new Object[2];
+
+        o[0] = fechaInicio;
+        o[1] = fechaFin;
 
         query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO (sum(a.monto), c.nombre) " +
                 "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
@@ -70,20 +76,25 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
                 "and a.ganador = false " +
+                "and e.fechaEvento between ? and ? " +
                 "group by c.nombre ";
 
-        ganancias.addAll(genericDao.ejecutarQueryList(query));
+        ganancias.addAll(genericDao.ejecutarQueryList(query, o));
 
         return ganancias;
     }
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<CategoriasGananciaPerdidaTO> reporteCategoriasPerdidas() {
+    public List<CategoriasGananciaPerdidaTO> reporteCategoriasPerdidas(Date fechaInicio, Date fechaFin) {
         List<CategoriasPerdidasTO> perdidas = new ArrayList<CategoriasPerdidasTO>();
         List<CategoriasGananciaPerdidaTO> listaPerdidas = new ArrayList<CategoriasGananciaPerdidaTO>();
 
         String query = new String();
+        Object[] o = new Object[2];
+
+        o[0] = fechaInicio;
+        o[1] = fechaFin;
 
         query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO (c.id, a.monto, " +
                 "c.nombre, a.gano, a.empato, tg.gano, tg.empato, tg.proporcionGano, tg.proporcionEmpate) " +
@@ -94,9 +105,10 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
+                "and e.fechaEvento between ? and ? " +
                 "and a.ganador = true ";
 
-        perdidas.addAll(genericDao.ejecutarQueryList(query));
+        perdidas.addAll(genericDao.ejecutarQueryList(query, o));
         listaPerdidas = this.listarPerdidasCategorias(perdidas);
 
         return listaPerdidas;
@@ -109,7 +121,8 @@ public class ServicioReportesImpl implements IServicioReportes {
 
         String query = new String();
 
-        query = "select New ve.edu.ucab.ibet.dominio.Categoria (c.id, c.nombre, c.empate, c.logicaAutomatica) " +
+        query = "select New ve.edu.ucab.ibet.dominio.Categoria (c.id, c.nombre, " +
+                "c.empate, c.logicaAutomatica) " +
                 "from Categoria c ";
 
         categorias.addAll(genericDao.ejecutarQueryList(query));
@@ -187,12 +200,13 @@ public class ServicioReportesImpl implements IServicioReportes {
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<CategoriasGananciaPerdidaTO> reporteEventosAltoRiesgo() {
-        List<CategoriasGananciaPerdidaTO> ganancias = new ArrayList<CategoriasGananciaPerdidaTO>();
+    public List<EventosAltoRiesgoTO> reporteEventosAltoRiesgo(Double monto) {
+        List<EventosAltoRiesgoTO> eventos = new ArrayList<EventosAltoRiesgoTO>();
+        List<EventosAltoRiesgoTO> nuevaLista = new ArrayList<EventosAltoRiesgoTO>();
 
         String query = new String();
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciasTO (sum(a.monto), c.nombre) " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.EventosAltoRiesgoTO (sum(a.monto), c.nombre) " +
                 "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
                 "where c.id = e.idCategoria " +
                 "and e.id = tg.tableroGananciaPK.idEvento " +
@@ -200,12 +214,51 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
-                "and a.ganador = false " +
-                "group by c.nombre";
+                "group by c.nombre ";
 
-        ganancias.addAll(genericDao.ejecutarQueryList(query));
+        eventos.addAll(genericDao.ejecutarQueryList(query));
+        nuevaLista.addAll(this.listarEventosAltoRiesgo(eventos, monto));
+        return nuevaLista;
+    }
 
-        return ganancias;
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<EventosAltoRiesgoTO> listarEventosAltoRiesgo(List<EventosAltoRiesgoTO> eventos, Double monto){
+        List<EventosAltoRiesgoTO> nuevaLista = new ArrayList<EventosAltoRiesgoTO>();
+
+        for (EventosAltoRiesgoTO e : eventos) {
+            if (e.getMonto() > monto){
+                EventosAltoRiesgoTO evento = new EventosAltoRiesgoTO();
+                evento.setMonto(e.getMonto());
+                evento.setEvento(e.getEvento());
+                nuevaLista.add(evento);
+            }
+        }
+        return nuevaLista;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN"})
+    public List<UsuariosMayorAciertosTO> reporteUsuariosMayorAciertos() {
+        List<UsuariosMayorAciertosTO> usuarios = new ArrayList<UsuariosMayorAciertosTO>();
+
+        String query = new String();
+
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO (count(a.users.username), u.username) " +
+                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where c.id = e.idCategoria " +
+                "and e.id = tg.tableroGananciaPK.idEvento " +
+                "and p.id = tg.tableroGananciaPK.idParticipante " +
+                "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                "and u.username = a.users.username " +
+                "and a.ganador = true " +
+                "group by u.username " +
+                "order by count(a.users.username) desc " ;
+
+        usuarios.addAll(genericDao.ejecutarQueryList(query));
+
+        return usuarios;
     }
 
     public IGenericDao getGenericDao() {

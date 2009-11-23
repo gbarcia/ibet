@@ -153,15 +153,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
-        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+        <property name="servicioReportes" ref="servicioReporte"/>
     </bean>
     
-    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO USUARIOS CON MAYOR ACIERTOS -->
+    <!--BEAN PARA MANEJAR LOS REPORTES DE ALTO RIESGO -->
     <bean id="controllerEventosRiesgos" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteEventosRiesgo">
         <property name="methodNameResolver">
             <ref local="resolver"/>
         </property>
-        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+        <property name="servicioReportes" ref="servicioReporte"/>
     </bean>
 
     <!--BEAN PARA INDICAR EL METODO QUE MANEJARA LA CREACION DEL REPORTE SEGUN EXTENCION -->

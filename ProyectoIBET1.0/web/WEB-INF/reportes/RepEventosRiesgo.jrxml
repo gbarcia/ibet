@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="RepCategoriasGanancias"
+		 name="RepEventosRiesgo"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Landscape"
@@ -24,14 +24,13 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="fechaInicio" isForPrompting="false" class="java.util.Date"/>
-	<parameter name="fechaFin" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="monto" isForPrompting="false" class="java.lang.Double"/>
 
-	<field name="montoTotal" class="java.lang.Double">
-		<fieldDescription><![CDATA[montoTotal]]></fieldDescription>
+	<field name="evento" class="java.lang.String">
+		<fieldDescription><![CDATA[evento]]></fieldDescription>
 	</field>
-	<field name="nombreCategoria" class="java.lang.String">
-		<fieldDescription><![CDATA[nombreCategoria]]></fieldDescription>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[monto]]></fieldDescription>
 	</field>
 
 		<background>
@@ -43,7 +42,7 @@
 			</band>
 		</title>
 		<pageHeader>
-			<band height="50"  isSplitAllowed="true" >
+			<band height="61"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="306"
@@ -68,71 +67,42 @@
 					<graphicElement stretchType="NoStretch"/>
 					<imageExpression class="java.lang.String"><![CDATA["/opt/logo_fb.png"]]></imageExpression>
 				</image>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						mode="Transparent"
-						x="664"
+						x="634"
 						y="1"
 						width="100"
 						height="18"
 						forecolor="#217133"
+						backcolor="#97DBA8"
 						key="textField"/>
-					<box></box>
+					<box>					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$P{fechaInicio}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$P{monto}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="572"
+						x="544"
 						y="1"
-						width="92"
+						width="90"
 						height="18"
-						forecolor="#217133"
 						backcolor="#97DBA8"
 						key="staticText-5"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid"/>
-</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Fecha de Inicio:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Opaque"
-						x="572"
-						y="19"
-						width="92"
-						height="18"
-						forecolor="#217133"
-						backcolor="#97DBA8"
-						key="staticText-6"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid"/>
-</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Fecha de Fin:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="664"
-						y="19"
-						width="100"
-						height="18"
-						forecolor="#217133"
-						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$P{fechaFin}]]></textFieldExpression>
-				</textField>
+				<text><![CDATA[Monto:]]></text>
+				</staticText>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -140,9 +110,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="5"
+						x="3"
 						y="11"
-						width="119"
+						width="118"
 						height="18"
 						backcolor="#909090"
 						key="staticText-3"/>
@@ -152,14 +122,14 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Categoria]]></text>
+				<text><![CDATA[Evento]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="124"
+						x="121"
 						y="11"
-						width="96"
+						width="90"
 						height="18"
 						backcolor="#909090"
 						key="staticText-4"/>
@@ -175,29 +145,29 @@
 			<band height="100"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="5"
-						y="6"
-						width="119"
+						x="3"
+						y="15"
+						width="118"
 						height="18"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{evento}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="124"
-						y="6"
-						width="96"
+						x="121"
+						y="15"
+						width="90"
 						height="18"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{montoTotal}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{monto}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

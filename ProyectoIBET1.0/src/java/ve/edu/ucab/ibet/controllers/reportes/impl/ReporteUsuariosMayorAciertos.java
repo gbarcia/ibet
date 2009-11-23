@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.controllers.reportes.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import ve.edu.ucab.ibet.controllers.reportes.interfaces.IReporteGenerator;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
 /**
  * Clase controladora para generar los reportes de tipo Usuarios Mayor Aciertos
@@ -18,6 +21,7 @@ public class ReporteUsuariosMayorAciertos extends MultiActionController implemen
 
     private final String NOMBRE_REP_PDF = "repUsuariosMayorAciertosPDF";
     private final String NOMBRE_REP_XLS = "repUsuariosMayorAciertosXLS";
+    private IServicioReportes servicioReportes;
 
     public ModelAndView generarReportePDF(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
         return new ModelAndView(NOMBRE_REP_PDF, getModel());
@@ -27,11 +31,25 @@ public class ReporteUsuariosMayorAciertos extends MultiActionController implemen
         return new ModelAndView(NOMBRE_REP_XLS, getModel());
     }
 
-    public Map getModel(Object... parametro) throws GeneralException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @SuppressWarnings("unchecked")
+    public Map getModel() throws GeneralException {
+        Map model = new HashMap();
+        model.put("dataSource", getData());
+        return model;
     }
 
-    public List getData(Object... parametro) throws GeneralException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @SuppressWarnings("unchecked")
+    public List getData() throws GeneralException {
+        List lista = new ArrayList();
+        lista.addAll(servicioReportes.reporteUsuariosMayorAciertos());
+        return lista;
+    }
+
+    public IServicioReportes getServicioReportes() {
+        return servicioReportes;
+    }
+
+    public void setServicioReportes(IServicioReportes servicioReportes) {
+        this.servicioReportes = servicioReportes;
     }
 }
