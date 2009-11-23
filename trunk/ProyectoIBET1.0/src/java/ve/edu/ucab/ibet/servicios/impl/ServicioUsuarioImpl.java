@@ -241,7 +241,8 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         String nuevaClave = PassGenerator.getNext();
         Users user = obtenerDatosUsuarioM(username);
         user.setPassword(md5.encodePassword(nuevaClave, null));
-        actualizarDatosUsuarioM(user);
+        genericDao.limpiar();
+        genericDao.merge(user);
         enviarCorreoRecuperacionClave(user, nuevaClave);
     }
 
