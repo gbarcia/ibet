@@ -52,11 +52,24 @@
 
 /* @end */
 
+.tablero{
+    width:100%;
+}
+
 .itemTablero{
-    float:left;
     width:25%;
     border:#000 solid 1px;
     background-color:#202020;
-    margin:5px;
-    padding:5px;
+}
+
+.itemTableroX{
+    width:10%;
+    border:#000 solid 1px;
+    background-color:#202020;
+}
+
+.itemTableroX{
+    width:10%;
+    border:#000 solid 1px;
+    background-color:#202020;
 }
