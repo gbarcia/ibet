@@ -1,6 +1,8 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
+import java.util.List;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 
@@ -116,4 +118,11 @@ public interface IServicioUsuario {
      * @return Users objeto usuario encontrado con la condicion
      */
     public Users obtenerUsuarioPorCorreo(String correo);
+
+    /**
+     * Firma para buscar todos los metodos vigentes de un usuario
+     * @param usuario objeto usuario a buscar sus metodos de pago
+     * @return Lista de UsuarioMediosPago vigentes
+     */
+    public List<UsuarioMedioPago> obtenerMediosPagoVigenteUsuario(Users usuario);
 }

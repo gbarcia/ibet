@@ -2,6 +2,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.Date;
 
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
@@ -29,7 +31,7 @@ public class ServicioUsuarioImplTest {
     /**
      * Prueba Unitaria registro usuario
      */
-    @Test
+    //@Test
     public void testRegistroNuevoUsuarioM() throws Exception {
         System.out.println("registroNuevoUsuarioM");
         Users user = new Users();
@@ -116,5 +118,16 @@ public class ServicioUsuarioImplTest {
         servicioUsuario.actualizarDatosUsuarioM(user);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testObtenerMediosPagoVigenteUsuario() throws Exception {
+            System.out.println("obtenerMediosPagoUsuario");
+            Users u = new Users("gerardo");
+            List<UsuarioMedioPago> resultado = servicioUsuario.obtenerMediosPagoVigenteUsuario(u);
+            assertNotNull(resultado);
+            for (UsuarioMedioPago usuarioMedioPago : resultado) {
+                System.out.println(usuarioMedioPago.getMontoMaximo());
+        }
     }
 }
