@@ -28,7 +28,7 @@
                             <div class="pane">
                                 <form:form action="recuperarClave.htm" commandName="confirmacionClave">
                                     <fieldset>
-                                        <legend>Introduce tu Datos</legend>
+                                        <legend><spring:message code="usuario.encabezado.datos"/></legend>
                                         <form:errors path="*"/>
                                         <br>
                                         <table>
