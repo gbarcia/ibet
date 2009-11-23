@@ -1,5 +1,6 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,6 @@ public class ServicioReportesImpl implements IServicioReportes {
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_USER"})
     public List<HistorialApuestasTO> reporteHistorialApuestas(String username, Date fechaInicio, Date fechaFin) {
-
 
         List<HistorialApuestasTO> historial = new ArrayList<HistorialApuestasTO>();
 
@@ -135,7 +135,7 @@ public class ServicioReportesImpl implements IServicioReportes {
     public List<CategoriasGananciaPerdidaTO> listarPerdidasCategorias(List<CategoriasPerdidasTO> perdidas) {
         List<CategoriasGananciaPerdidaTO> listaPerdidas = new ArrayList<CategoriasGananciaPerdidaTO>();
         List<Categoria> categorias = new ArrayList<Categoria>();
-        
+
         categorias.addAll(this.listarCategorias());
 
         Double montoTotal = 0.0;
@@ -223,11 +223,11 @@ public class ServicioReportesImpl implements IServicioReportes {
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<EventosAltoRiesgoTO> listarEventosAltoRiesgo(List<EventosAltoRiesgoTO> eventos, Double monto){
+    public List<EventosAltoRiesgoTO> listarEventosAltoRiesgo(List<EventosAltoRiesgoTO> eventos, Double monto) {
         List<EventosAltoRiesgoTO> nuevaLista = new ArrayList<EventosAltoRiesgoTO>();
 
         for (EventosAltoRiesgoTO e : eventos) {
-            if (e.getMonto() > monto){
+            if (e.getMonto() > monto) {
                 EventosAltoRiesgoTO evento = new EventosAltoRiesgoTO();
                 evento.setMonto(e.getMonto());
                 evento.setEvento(e.getEvento());
@@ -254,7 +254,7 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and u.username = a.users.username " +
                 "and a.ganador = true " +
                 "group by u.username " +
-                "order by count(a.users.username) desc " ;
+                "order by count(a.users.username) desc ";
 
         usuarios.addAll(genericDao.ejecutarQueryList(query));
 
