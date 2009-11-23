@@ -10,6 +10,7 @@ import org.springframework.security.providers.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Users;
+import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.enums.Role;
 import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
@@ -116,7 +117,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return esMayor;
     }
 
-    private void asignarRolUsuario (Role rol, Users usuario) {
+    private void asignarRolUsuario(Role rol, Users usuario) {
         String username = usuario.getUsername();
         String rolUsuario = rol.roleName();
         StringBuffer query = new StringBuffer("");
@@ -170,9 +171,8 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     public void actualizarDatosUsuarioM(Users user) {
         if (!user.getPassword().isEmpty()) {
             enviarCorreoCambioClave(user);
-            user.setPassword(md5.encodePassword(user.getPassword(),null));
-        }
-        else {
+            user.setPassword(md5.encodePassword(user.getPassword(), null));
+        } else {
             Users usuarioactual = obtenerDatosUsuarioM(user.getUsername());
             user.setPassword(usuarioactual.getPassword());
         }
@@ -190,12 +190,12 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         datosCorreo.add(user.getUsername());
         datosCorreo.add(user.getPassword());
         String asunto = helperProp.getString("correos.cambioclave.plantillas.asunto");
-        String cuerpo = ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea1", datosCorreo) + "<p>");
-        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea2") + "<p>");
-        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea3", datosCorreo) + "<p>");
-        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea4", datosCorreo) + "<p>");
-        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea5") + "<p>");
-        cuerpo += ("<p>" +helperProp.getString("correos.cambioclave.plantillas.mensaje.linea6") + "<p>");
+        String cuerpo = ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea1", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea2") + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea3", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea4", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea5") + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.cambioclave.plantillas.mensaje.linea6") + "<p>");
         servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
@@ -350,5 +350,14 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
             usuario.setPais(to.getPais());
         }
         return usuario;
+    }
+
+    public List<UsuarioMedioPago> obtenerMediosPagoVigenteUsuario(Users usuario) {
+        String query = "select c from Users u inner join u.usuarioMedioPagoCollection " +
+                " as c where u.username = ? and c.fechaFin = null " +
+                "and c.activo = true";
+        Object[] parametros = {usuario.getUsername()};
+        List<UsuarioMedioPago> listaMediosPago = genericDao.ejecutarQueryList(query, parametros);
+        return listaMediosPago;
     }
 }
