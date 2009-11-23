@@ -72,29 +72,33 @@
 			<band height="30"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="5"
 						y="11"
 						width="119"
 						height="18"
+						backcolor="#909090"
 						key="staticText-3"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid"/>
 </box>
-					<textElement>
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Categoria]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="124"
 						y="11"
 						width="96"
 						height="18"
+						backcolor="#909090"
 						key="staticText-4"/>
 					<box></box>
-					<textElement>
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Monto Total]]></text>
 				</staticText>
@@ -110,7 +114,7 @@
 						height="18"
 						key="textField"/>
 					<box></box>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
@@ -123,7 +127,7 @@
 						height="18"
 						key="textField"/>
 					<box></box>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{montoTotal}]]></textFieldExpression>

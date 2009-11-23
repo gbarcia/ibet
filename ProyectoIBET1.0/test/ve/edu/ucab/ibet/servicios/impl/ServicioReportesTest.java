@@ -54,7 +54,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-//    @Test
+    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
 
@@ -87,7 +87,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testCantidadUsuariosCategoria() throws Exception {
         System.out.println("cantidadUsuariosCategoria");
 
