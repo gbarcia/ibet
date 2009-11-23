@@ -24,19 +24,28 @@
                                 iBet
                             </div>
                             <div class="pane">
-                                <c:forEach items="${eventos}" var="evento">
-                                    <%--<div class="itemTablero"><c:out value="${evento.nombre}"/></div>--%>
-                                    <div class="itemTablero"><c:out value="${evento.fecha}"/>
-                                    <c:out value="${evento.hora}"/></div>
-                                    <c:forEach var="tablero" items="${evento.tableroGananciaCollection}">
-                                        <div class="itemTablero"><c:out value="${tablero.participante.nombre}"/>
-                                        <c:out value="${tablero.propocionGano}"/></div>
-                                        <c:set var="proporcionEmpate" value="${tablero.proporcionEmpate}"/>
+                                <table class="tablero">
+                                    <c:forEach items="${eventos}" var="evento">
+                                        <tr>
+                                            <td class="itemTablero">
+                                                <c:out value="${evento.fecha}"/>
+                                                <c:out value="${evento.hora}"/>
+                                            </td>
+                                            <c:forEach var="tablero" items="${evento.tableroGananciaCollection}">
+                                                <td class="itemTablero">
+                                                    <c:out value="${tablero.participante.nombre}"/>
+                                                    <c:out value="${tablero.propocionGano}"/>
+                                                </td>
+                                                <c:set var="proporcionEmpate" value="${tablero.proporcionEmpate}"/>
+                                            </c:forEach>
+                                            <c:if test="${evento.idCategoria.empate == true}">
+                                                <td class="itemTableroX">
+                                                    X: <c:out value="${proporcionEmpate}"/>
+                                                </td>
+                                            </c:if>
+                                        </tr>
                                     </c:forEach>
-                                    <c:if test="${evento.idCategoria.empate == true}">
-                                        <div class="itemTablero">Empate: <c:out value="${proporcionEmpate}"/></div>
-                                    </c:if>
-                                </c:forEach>
+                                </table>
                             </div>
                         </div>
                     </div>
