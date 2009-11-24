@@ -28,6 +28,30 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="formView" value="privado/back/reportes/reporteGanancias" />
 </bean>
 
+<!-- Bean para mostrar el reporte de perdidas por categoria -->
+<bean name="/privado/back/reportes/reportePerdidas.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CategoriasPerdidasFormController">
+  <property name="formView" value="privado/back/reportes/reportePerdidas" />
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de usuarios por categoria -->
+<bean name="/privado/back/reportes/reporteCantidadUsuariosPorCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CantidadUsuariosPorCategoriaFormController">
+  <property name="formView" value="privado/back/reportes/reporteCantidadUsuariosPorCategoria" />
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de usuarios con mayor aciertos -->
+<bean name="/privado/back/reportes/reporteUsuariosMayorAciertos.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.UsuariosMayorAciertosFormController">
+  <property name="formView" value="privado/back/reportes/reporteUsuariosMayorAciertos" />
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de eventos de alto riesgo -->
+<bean name="/privado/back/reportes/reporteEventosAltoRiesgo.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.EventosAltoRiesgoFormController">
+  <property name="formView" value="privado/back/reportes/reporteEventosAltoRiesgo" />
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->

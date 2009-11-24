@@ -25,7 +25,7 @@ import javax.crypto.NullCipher;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * Clase que reunte metodos utilitarios a usar en el proyecto
+ * Clase que reune metodos utilitarios a usar en el proyecto
  * @author Gerardo Barcia
  * @version 1.0
  */
