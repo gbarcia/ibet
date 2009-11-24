@@ -10,6 +10,7 @@
 #slip {
 	background-color: #429CFF;
 	border: #fff solid 1px;
+        position:fixed;
 	width: 200px
 }
 

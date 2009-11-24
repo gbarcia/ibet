@@ -36,8 +36,10 @@ public class ServicioEventoImpl implements IServicioEvento {
     @SuppressWarnings("unchecked")
     public List<Evento> obtenerEventosDeUnaCategoria(Integer idSubcategoria) {
         List<Evento> eventos = new ArrayList<Evento>();
-        String query = "select c.eventoCollection from Categoria c where c.id = ?";
-        Object[] parametros = { idSubcategoria };
+        String query = "select a from Categoria c inner join c.eventoCollection as a " +
+                "where c.id=? " +
+                "order by a.fechaEvento, a.hora";
+        Object[] parametros = {idSubcategoria};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros));
         return eventos;
     }
