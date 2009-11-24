@@ -23,6 +23,10 @@ public class FechasTO implements Serializable{
         this.tipoReporte = tipoReporte;
     }
 
+    public FechasTO(TipoDocumentoReporte tipoReporte) {
+        this.tipoReporte = tipoReporte;
+    }
+    
     public Date getFechaFin() {
         return fechaFin;
     }
