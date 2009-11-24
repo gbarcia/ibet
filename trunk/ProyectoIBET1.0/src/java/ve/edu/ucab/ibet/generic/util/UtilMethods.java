@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -44,7 +45,7 @@ public abstract class UtilMethods {
         return cFecha.get(Calendar.YEAR);
     }
 
-    public static Date stringToFecha(String fecha){
+    public static Date stringToFecha(String fecha) {
         try {
             java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = formatoFecha.parse(fecha);
@@ -52,6 +53,14 @@ public abstract class UtilMethods {
         } catch (ParseException ex) {
             return null;
         }
+    }
+
+    public static String fechaToString(Date fecha) {
+
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = simpleFormat.format(fecha);
+        return date;
+
     }
 
     /**
@@ -649,7 +658,7 @@ public abstract class UtilMethods {
             byte[] enc = ecipher.doFinal(utf8);
 
             // Encode bytes to base64 to get a string
-            return  Base64.encodeBase64String(enc);
+            return Base64.encodeBase64String(enc);
 
         } catch (BadPaddingException e) {
         } catch (IllegalBlockSizeException e) {
