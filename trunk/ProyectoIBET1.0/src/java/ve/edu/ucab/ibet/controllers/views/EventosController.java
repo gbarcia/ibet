@@ -1,16 +1,20 @@
 package ve.edu.ucab.ibet.controllers.views;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 
 /**
- * Controlador de modelo y vista para el home
+ * Controlador para mostrar los eventos de una categoria
  * @author jonathan
  */
-public class HomeController implements Controller {
+public class EventosController implements Controller {
 
     private IServicioEvento servicioEvento;
 
@@ -23,7 +27,15 @@ public class HomeController implements Controller {
     }
 
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("publico/front/eventos/eventos");
+
+        List<Evento> eventos = new ArrayList<Evento>();
+        String idCategoria = req.getParameter("idCategoria");
+        if (UtilMethods.esNumerico(idCategoria)) {
+            Integer categoria = Integer.parseInt(idCategoria);
+            eventos = servicioEvento.obtenerEventosDeUnaCategoria(categoria);
+        }
+        mv.addObject("eventos", eventos);
         return mv;
     }
 }

@@ -44,7 +44,8 @@
 
 .tablero .itemClick{
     background-color:orange;
-    border:#000 solid 1px;
+    border:1px solid #000;
+    color:#000;
     cursor:pointer;
     padding:1px 4px;
     vertical-align:top;
