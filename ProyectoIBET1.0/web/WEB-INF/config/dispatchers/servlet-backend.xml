@@ -22,6 +22,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioCliente" ref="servicioCliente"/>
 </bean> -->
 
+<!-- Bean para mostrar el reporte de ganancias por categoria -->
+<bean name="/privado/back/reportes/reporteGanancias.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CategoriasGananciasFormController">
+  <property name="formView" value="privado/back/reportes/reporteGanancias" />
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->

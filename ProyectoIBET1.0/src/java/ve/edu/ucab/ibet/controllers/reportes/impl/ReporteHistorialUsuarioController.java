@@ -1,5 +1,6 @@
 package ve.edu.ucab.ibet.controllers.reportes.impl;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,16 +27,18 @@ public class ReporteHistorialUsuarioController extends MultiActionController imp
     private IServicioReportes servicioReportes;
 
     public ModelAndView generarReportePDF(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
+        Principal security = request.getUserPrincipal();
         Date fechaInicio = UtilMethods.stringToFecha(request.getParameter("fechaInicio"));
         Date fechaFin = UtilMethods.stringToFecha(request.getParameter("fechaFin"));
-        return new ModelAndView(NOMBRE_REP_PDF, getModel(request.getParameter("username"), fechaInicio, fechaFin));
+        return new ModelAndView(NOMBRE_REP_PDF, getModel(security.getName(), fechaInicio, fechaFin));
     }
 
 
     public ModelAndView generarReporteXLS(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
+        Principal security = request.getUserPrincipal();
         Date fechaInicio = UtilMethods.stringToFecha(request.getParameter("fechaInicio"));
         Date fechaFin = UtilMethods.stringToFecha(request.getParameter("fechaFin"));
-        return new ModelAndView(NOMBRE_REP_XLS, getModel(request.getParameter("username"), fechaInicio, fechaFin));
+        return new ModelAndView(NOMBRE_REP_XLS, getModel(security.getName(), fechaInicio, fechaFin));
     }
 
     @SuppressWarnings("unchecked")
