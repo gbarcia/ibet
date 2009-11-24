@@ -11,7 +11,7 @@
             <li><h1><c:out value="${categoria.categoriaPadre.nombre}" /></h1></li>
             <c:forEach items="${categoria.listaSubcategorias}" var="subcategoria">
                 <li>
-                    <a href="?idCategoria=<c:out value="${subcategoria.id}" />">
+                    <a href="/ProyectoIBET/publico/front/eventos/eventos.htm?idCategoria=<c:out value="${subcategoria.id}" />">
                         <c:out value="${subcategoria.nombre}" />
                     </a>
                 </li>
