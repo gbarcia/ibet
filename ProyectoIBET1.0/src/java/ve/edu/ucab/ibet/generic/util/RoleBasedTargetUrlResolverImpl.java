@@ -16,7 +16,7 @@ import ve.edu.ucab.ibet.dominio.enums.Role;
  */
 public class RoleBasedTargetUrlResolverImpl implements TargetUrlResolver {
 
-    private static final String ADMIN_ROLE_TARGET_URL = "/admin.htm";
+    private static final String ADMIN_ROLE_TARGET_URL = "/privado/back/admin.htm";
     private final TargetUrlResolver defaultSpringSecurityUrlResolver;
 
     public RoleBasedTargetUrlResolverImpl(
