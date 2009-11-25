@@ -477,4 +477,12 @@ public class GenericDao extends HibernateDaoSupport implements IGenericDao {
         sql.executeUpdate();
     }
 
+    public Object ejecutarQueryUnique(String queryString, Object[] values) {
+        Query query = getSession().createQuery(queryString);
+        for (int i = 0; i < values.length; i++) {
+            query.setParameter(i, values[i]);
+        }
+        return query.uniqueResult();
+    }
+
 }

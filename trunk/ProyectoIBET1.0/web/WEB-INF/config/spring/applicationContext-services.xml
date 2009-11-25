@@ -40,6 +40,7 @@
     <!-- BEAN PARA EL SERVICIO DE APUESTAS-->
     <bean id="servicioApuesta" class="ve.edu.ucab.ibet.servicios.impl.ServicioApuestaImpl" scope="singleton">
         <property name="genericDao" ref="genericDao"/>
+        <property name="servicioUsuario" ref="servicioUsuario"/>
         <property name="helperProp" ref="helperProperties"/>
     </bean>
 
