@@ -110,6 +110,16 @@
         <intercept-url pattern="/privado/back/reportes/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCategoriasGananciasPDF.pdf" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCategoriasGananciasXLS.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repCategoriasPerdidasPDF.pdf" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repCategoriasPerdidasXLS.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repCantidadUsuariosPorCatPDF.pdf" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repCantidadUsuariosPorCatPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repEventosRiesgoPDF.pdf" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repEventosRiesgoPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repUsuariosMayorAciertosPDF.pdf" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repUsuariosMayorAciertosPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repHistorialApuestasPDF.pdf" access="ROLE_USER" />
+        <intercept-url pattern="/repHistorialApuestasPDF.xls" access="ROLE_USER" />
         <intercept-url pattern="/**" access="ROLE_USER" />
         <anonymous username="guest" granted-authority="ROLE_GUEST" />
         <!--

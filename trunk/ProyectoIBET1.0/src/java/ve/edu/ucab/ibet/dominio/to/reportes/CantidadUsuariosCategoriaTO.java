@@ -1,7 +1,7 @@
 package ve.edu.ucab.ibet.dominio.to.reportes;
 
 /**
- *
+ * Transfer object para manejar la cantidad de usuarios por categoria 
  * @author maya
  */
 public class CantidadUsuariosCategoriaTO {

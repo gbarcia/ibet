@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.dominio.to.forms;
 
 import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 
 /**
- *
+ * Transfer object para manejar los eventos de alto riesgo, el monto y tipo de documento de los reportes 
  * @author maya
  */
 public class AltoRiesgoTO {
