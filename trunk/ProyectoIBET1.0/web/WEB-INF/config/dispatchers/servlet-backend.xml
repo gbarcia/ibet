@@ -55,5 +55,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  <!--
  *********************** PAGINAS ********************
  -->
+
+ <!-- Bean para mostrar la pagina de inicio del administrador -->
+<bean name="/privado/back/admin.htm"
+    class="ve.edu.ucab.ibet.controllers.views.IndexAdminController">
+</bean>
     
 </beans>
