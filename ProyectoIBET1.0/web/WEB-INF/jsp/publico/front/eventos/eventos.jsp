@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iBet</title>
+        <title>iBet | <c:out value="${eventos[0].idCategoria.nombre}"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -26,6 +26,8 @@
                     var arregloIds = active.split('-');
                     $("#idEvento").val(arregloIds[0]);
                     $("#idParticipante").val(arregloIds[1]);
+                    $("#nombreParticipante").text($(this).find(".participante").text());
+                    $("#proporcion").text($(this).find(".proporcion").text());
                     $(this).removeClass().addClass("itemClick");
                 });
 
@@ -43,7 +45,6 @@
 
             });
         </script>
-
     </head>
     <body>
         <div id="pageWrap">
@@ -53,7 +54,7 @@
                     <div id="contentColumn">
                         <div id="centerPane">
                             <div class="paneTitle">
-                                iBet
+                                iBet: <c:out value="${eventos[0].idCategoria.nombre}"/>
                             </div>
                             <div class="pane">
                                 <table class="tablero" cellspacing="5">
@@ -96,14 +97,29 @@
                 <div id="rightColumn">
                     <div class="demo">
                         <div id="slip">
-                            <div class="slipTitle">Asd</div>
+                            <form>
+                            <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
                             <div class="slipContent">
-                                <input id="idEvento" type="text" name="" value="" />
-                                <input id="idParticipante" type="text" name="" value="" />
+                                <input id="idEvento" type="hidden" name="" value="" />
+                                <input id="idParticipante" type="hidden" name="" value="" />
+                                <spring:message code="eventos.pick"/>:<div id="nombreParticipante"></div>
+                                <div id="proporcion"></div>
+                                <hr>
+                                <table width="100%" cellspacing="5">
+                                    <tr>
+                                        <td><spring:message code="eventos.stake"/></td>
+                                        <td><input type="text" name="" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:message code="eventos.winnings"/></td>
+                                        <td><input type="text" name="" value=""/></td>
+                                    </tr>
+                                </table>
                             </div>
                             <div id="slipBottom">
                                 asd
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
