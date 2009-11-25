@@ -5,7 +5,7 @@ import java.util.Date;
 import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 
 /**
- *
+ * Transfer object para manejar las fechas y tipo de documento de los reportes 
  * @author maya
  */
 public class FechasTO implements Serializable{

@@ -1,7 +1,7 @@
 package ve.edu.ucab.ibet.dominio.to.reportes;
 
 /**
- *
+ * Transfer Object para manejar los Usuarios con mayor aciertos
  * @author maya
  */
 public class UsuariosMayorAciertosTO {

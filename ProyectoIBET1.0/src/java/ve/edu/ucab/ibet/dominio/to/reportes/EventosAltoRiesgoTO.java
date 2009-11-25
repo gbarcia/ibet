@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.dominio.to.reportes;
 
 /**
- *
+ * Transfer object para manejar los eventos de alto riesgo
  * @author maya
  */
 public class EventosAltoRiesgoTO {

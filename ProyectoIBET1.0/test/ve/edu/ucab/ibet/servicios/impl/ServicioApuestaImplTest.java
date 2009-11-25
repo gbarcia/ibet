@@ -57,33 +57,33 @@ public class ServicioApuestaImplTest {
      * Test of esValidaApuestaUsuario method, of class ServicioApuestaImpl.
      */
     //@Test
-    public void testEsValidaApuestaUsuario() {
-        System.out.println("esValidaApuestaUsuario");
-        Users usuario = new Users("gerardo");
-        TableroGanancia tablero= new TableroGanancia(1, 2);
-        tablero.setEvento(new Evento(2));
-        try {
-        servicioApuesta.esValidaApuestaUsuario(usuario, tablero);
-        }catch (GeneralException e) {
-            System.out.println("des:" + e.getKeyError());
-        }
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+//    public void testEsValidaApuestaUsuario() {
+//        System.out.println("esValidaApuestaUsuario");
+//        Users usuario = new Users("gerardo");
+//        TableroGanancia tablero= new TableroGanancia(1, 2);
+//        tablero.setEvento(new Evento(2));
+//        try {
+//        servicioApuesta.esValidaApuestaUsuario(usuario, tablero);
+//        }catch (GeneralException e) {
+//            System.out.println("des:" + e.getKeyError());
+//        }
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of realizarApuesta method, of class ServicioApuestaImpl.
      */
     //@Test
-    public void testRealizarApuesta() {
-        System.out.println("realizarApuesta");
-        Users usuario = null;
-        TableroGanancia tablero = null;
-        ServicioApuestaImpl instance = new ServicioApuestaImpl();
-        instance.realizarApuesta(usuario, tablero);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    public void testRealizarApuesta() {
+//        System.out.println("realizarApuesta");
+//        Users usuario = null;
+//        TableroGanancia tablero = null;
+//        ServicioApuestaImpl instance = new ServicioApuestaImpl();
+//        instance.realizarApuesta(usuario, tablero);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      *Verifica si un usuario ya ha apostado en un determinado evento
@@ -113,17 +113,17 @@ public class ServicioApuestaImplTest {
 //        //fail("The test case is a prototype.");
 //    }
 
-      @Test
-    public void testComprobarMontoMaximo() {
-        System.out.println("Comprobar monto maximo");
-        Users usuario = new Users("gerardo");
-        Boolean expResult = false;
-        MedioPago medio = new MedioPago(3);
-        Double montoApostado = new Double(400);
-        Boolean result = servicioApuesta.montoMaximoPagoUsuarioAprobado(usuario, medio,montoApostado);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+//      @Test
+//    public void testComprobarMontoMaximo() {
+//        System.out.println("Comprobar monto maximo");
+//        Users usuario = new Users("gerardo");
+//        Boolean expResult = false;
+//        MedioPago medio = new MedioPago(3);
+//        Double montoApostado = new Double(400);
+//        Boolean result = servicioApuesta.montoMaximoPagoUsuarioAprobado(usuario, medio,montoApostado);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
 
 }

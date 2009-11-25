@@ -1,7 +1,7 @@
 package ve.edu.ucab.ibet.dominio.to.reportes;
 
 /**
- *
+ * Transfer object para manejar las perdidas por categorias 
  * @author maya
  */
 public class CategoriasPerdidasTO {
