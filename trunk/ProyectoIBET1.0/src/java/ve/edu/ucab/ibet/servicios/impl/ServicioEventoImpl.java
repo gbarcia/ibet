@@ -3,7 +3,9 @@ package ve.edu.ucab.ibet.servicios.impl;
 import java.util.ArrayList;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 
@@ -42,5 +44,13 @@ public class ServicioEventoImpl implements IServicioEvento {
         Object[] parametros = {idSubcategoria};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros));
         return eventos;
+    }
+
+    public Evento obtenerEventoporTableroGanancia (TableroGanancia tablero) {
+        Evento resultado = (Evento) genericDao.findByPropertyUnique(Evento.class, "id", tablero.getTableroGananciaPK().getIdEvento());
+        if (resultado == null) {
+            throw new ExcepcionNegocio("errors.evento.noexiste");
+        }
+        return resultado;
     }
 }

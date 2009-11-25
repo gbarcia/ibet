@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Evento;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Categoria;
+import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -110,7 +111,7 @@ public class ServicioEventoImplTest {
     /**
      * Test of obtenerEventosDeUnaCategoria method, of class ServicioEventoImpl.
      */
-    @Test
+    //@Test
     public void testObtenerEventosDeUnaCategoria() {
         System.out.println("obtenerEventosDeUnaCategoria");
         Integer categoria = 2;
@@ -121,6 +122,16 @@ public class ServicioEventoImplTest {
         assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testObtenerEventoporTableroGananciaTest() {
+        System.out.println("Obtener Evento Tablero Ganancia");
+        TableroGanancia tablero = new TableroGanancia(1,1);
+        Evento evento = null;
+        evento = servicioEvento.obtenerEventoporTableroGanancia(tablero);
+        assertNotNull(evento);
+        System.out.println(evento.getHoraMaxima());
     }
 
 }

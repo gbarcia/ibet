@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
@@ -8,8 +10,10 @@ import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
@@ -21,6 +25,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
 
     private IGenericDao genericDao;
     private IServicioUsuario servicioUsuario;
+    private IServicioEvento servicioEvento;
     private IHelperProperties helperProp;
 
     public IGenericDao getGenericDao() {
@@ -45,6 +50,14 @@ public class ServicioApuestaImpl implements IServicioApuesta {
 
     public void setServicioUsuario(IServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
+    }
+
+    public IServicioEvento getServicioEvento() {
+        return servicioEvento;
+    }
+
+    public void setServicioEvento(IServicioEvento servicioEvento) {
+        this.servicioEvento = servicioEvento;
     }
 
     public void esValidaApuestaUsuario(Users usuario, TableroGanancia tablero) {
@@ -99,6 +112,22 @@ public class ServicioApuestaImpl implements IServicioApuesta {
                 "where ump.usuarioMedioPagoPK.username=? and ump.medioPago.id = ?";
         UsuarioMedioPago userMedioPago = (UsuarioMedioPago) genericDao.ejecutarQueryUnique(query, o);
         resultado = (montoApostado <= userMedioPago.getMontoMaximo()) ? Boolean.TRUE : Boolean.FALSE;
+        return resultado;
+    }
+
+    private Boolean esPeriodoDeApuestaVigente (TableroGanancia tablero) {
+        Boolean resultado = Boolean.FALSE;
+        Evento eventoAconsultar = servicioEvento.obtenerEventoporTableroGanancia(tablero);
+        Date fechaMaxEvento = UtilMethods.convertirFechaFormato(eventoAconsultar.getFechaMaxima());
+        Date fechaActual = UtilMethods.convertirFechaFormato(new Date());
+        Date horaMaxEvento = eventoAconsultar.getHoraMaxima();
+        Calendar horaMaxApuesta = Calendar.getInstance();
+        horaMaxApuesta.setTime(horaMaxEvento);
+        Calendar horaActual = Calendar.getInstance();
+        Integer horaActualNumber = horaActual.get(Calendar.HOUR_OF_DAY);
+        Integer horaMaxEventoNumber = horaMaxApuesta.get(Calendar.HOUR_OF_DAY);
+        if (fechaActual.after(fechaMaxEvento)) return Boolean.FALSE;
+        if (horaActualNumber < horaMaxEventoNumber ) resultado = Boolean.TRUE;
         return resultado;
     }
 }
