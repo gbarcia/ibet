@@ -54,4 +54,10 @@
 	color: #424242;
 }
 
+.slipContent hr{
+    border:0;
+    color:#fff;
+    height:1px
+}
+
 /* @end */
