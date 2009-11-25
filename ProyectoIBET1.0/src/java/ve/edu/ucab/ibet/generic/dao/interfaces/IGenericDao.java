@@ -82,6 +82,8 @@ public interface IGenericDao {
 
     public List ejecutarQueryList(String queryString, Object[] values, int start, int offset);
 
+    public Object ejecutarQueryUnique (String queryString, Object[] values);
+
     /*
      * Metodos Especiales
      */
