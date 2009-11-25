@@ -14,6 +14,7 @@
         <title>Modulo de administracion - Ibet</title>
     </head>
     <body>
-        <h1>Reportes</h1>
+        <h2>Reportes</h2>
+        <h1><a href="reportes/reporteGanancias.htm">Reporte de Ganancias</a></h1>
     </body>
 </html>
