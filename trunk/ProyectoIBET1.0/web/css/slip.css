@@ -16,8 +16,8 @@
 
 .slipContent {
 	color: #fff;
-	padding: 5px;
-	font: .75em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	padding: 10px;
+	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
 	text-align: justify;
 }
 
@@ -34,6 +34,20 @@
 #slipBottom {
 	background-color: #171717;
 	border-top: #fff solid 1px;
+}
+
+#pick{
+    position:relative
+}
+
+#proporcion{
+    position:absolute;
+    right:0;
+    bottom:0
+}
+
+#nombreParticipante{
+    font-size:1.5em;
 }
 
 /* @end */
@@ -53,11 +67,38 @@
 .slipContent a:visited {
 	color: #424242;
 }
+/* @end */
 
-.slipContent hr{
-    border:0;
-    color:#fff;
-    height:1px
+/* @group SlipInput */
+
+#slip form input[type=text] {
+	background-color: #202020;
+	border: 1px solid #fff;
+	color: #fff;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	width: 50px;
 }
 
-/* @end */
+#slip form input[type=text]:focus {
+	background-color: #101010;
+	border: 1px solid #429CFF
+}
+
+/* @group SlipBoton */
+
+form input[type="submit"] {
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	background: #00AAE2 url(../images/form/buttonBg.png);
+	border: 1px solid #fff;
+	color: #fff;
+	cursor: pointer;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	padding: 2px 8px
+}
+
+form input[type="submit"]:hover {
+	background: #0089B4 url(../images/form/buttonHoverBg.png);
+}
