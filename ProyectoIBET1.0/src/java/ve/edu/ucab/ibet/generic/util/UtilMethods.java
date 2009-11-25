@@ -44,7 +44,12 @@ public abstract class UtilMethods {
         cFecha.setTimeInMillis(fecha.getTime());
         return cFecha.get(Calendar.YEAR);
     }
-
+    /**
+     * Metodo que convierte una fecha de cadena en un objeto Date
+     * en el formato yyyy-MM-dd
+     * @param fecha el objeto String de la fecha a convertir
+     * @return Objeto tipo Date en formatio yyyy-MM-dd
+     */
     public static Date stringToFecha(String fecha) {
         try {
             java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -54,13 +59,28 @@ public abstract class UtilMethods {
             return null;
         }
     }
-
+    /**
+     * Metodo que convierte un string en un objeto tipo Date en formato
+     * yyyy-MMM-dd
+     * @param fecha objeto Date a convertir en cadena
+     * @return cadena de String en formato yyyy-MM-dd
+     */
     public static String fechaToString(Date fecha) {
 
         SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = simpleFormat.format(fecha);
         return date;
+    }
 
+    /**
+     * Meotodo para convertir una fecha en el formato yyyy-MM-dd
+     * @param fecha Fecha a dar formato
+     * @return Date en formato yyyy-MM-dd
+     */
+    public static Date convertirFechaFormato (Date fecha) {
+        String fechaCadena = fechaToString(fecha);
+        Date fechaDate = stringToFecha(fechaCadena);
+        return fechaDate;
     }
 
     /**

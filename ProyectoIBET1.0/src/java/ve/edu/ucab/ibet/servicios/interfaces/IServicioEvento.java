@@ -2,6 +2,7 @@ package ve.edu.ucab.ibet.servicios.interfaces;
 
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.TableroGanancia;
 
 /**
  * Servicio para la gestion de eventos
@@ -16,5 +17,12 @@ public interface IServicioEvento {
      * @return lista de eventos de la categoria indicada
      */
     public List<Evento> obtenerEventosDeUnaCategoria(Integer idSubcategoria);
+
+    /**
+     * firma para obtener un evento a partir de un tablero ganancia
+     * @param tablero el objeto tablero de ganancia
+     * @return Objeto evento asociado al tablero ganancia
+     */
+    public Evento obtenerEventoporTableroGanancia (TableroGanancia tablero);
 
 }
