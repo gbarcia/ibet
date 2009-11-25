@@ -65,7 +65,7 @@
                                                     <td class="fecha" colspan="4"><c:out value="${evento.fecha}"/></td>
                                                 </tr>
                                             </c:if>
-                                            <tr>
+                                            <tr id="${evento.nombre}">
                                                 <td class="hora" width="10%">
                                                     <c:out value="${evento.hora}"/>
                                                 </td>
@@ -98,27 +98,27 @@
                     <div class="demo">
                         <div id="slip">
                             <form>
-                            <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
-                            <div class="slipContent">
-                                <input id="idEvento" type="hidden" name="" value="" />
-                                <input id="idParticipante" type="hidden" name="" value="" />
-                                <spring:message code="eventos.pick"/>:<div id="nombreParticipante"></div>
-                                <div id="proporcion"></div>
-                                <hr>
-                                <table width="100%" cellspacing="5">
-                                    <tr>
-                                        <td><spring:message code="eventos.stake"/></td>
-                                        <td><input type="text" name="" value=""/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><spring:message code="eventos.winnings"/></td>
-                                        <td><input type="text" name="" value=""/></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="slipBottom">
-                                asd
-                            </div>
+                                <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
+                                <div class="slipContent">
+                                    <input id="idEvento" type="hidden" name="" value="" />
+                                    <input id="idParticipante" type="hidden" name="" value="" />
+                                    <spring:message code="eventos.pick"/>:
+                                    <div id="pick">
+                                        <div id="nombreParticipante"></div>
+                                        <div id="proporcion"></div>
+                                    </div>
+                                    <hr>
+                                    <table width="100%" cellspacing="5">
+                                        <tr>
+                                            <td><spring:message code="eventos.stake"/></td>
+                                            <td><input type="text" name="" value=""/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><spring:message code="eventos.winnings"/></td>
+                                            <td><input type="text" name="" value=""/></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -90,7 +90,3 @@ form input[type="submit"]:hover {
 }
 
 /* @end */
-
-#slip input[type=text],#slip input[type=password] {
-        width: 50px;
-}
