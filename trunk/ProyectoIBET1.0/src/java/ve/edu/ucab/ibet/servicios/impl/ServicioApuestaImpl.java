@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
+import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.generic.util.reportes.interfaces.IGenerarReporteFile;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -35,48 +38,9 @@ public class ServicioApuestaImpl implements IServicioApuesta {
     private IServicioUsuario servicioUsuario;
     private IServicioEvento servicioEvento;
     private IGenerarReporteFile generarReporte;
+    private IMailService servicioMail;
     private IHelperProperties helperProp;
     private String nombreFactura;
-
-    public IGenericDao getGenericDao() {
-        return genericDao;
-    }
-
-    public void setGenericDao(IGenericDao genericDao) {
-        this.genericDao = genericDao;
-    }
-
-    public IHelperProperties getHelperProp() {
-        return helperProp;
-    }
-
-    public void setHelperProp(IHelperProperties helperProp) {
-        this.helperProp = helperProp;
-    }
-
-    public IServicioUsuario getServicioUsuario() {
-        return servicioUsuario;
-    }
-
-    public void setServicioUsuario(IServicioUsuario servicioUsuario) {
-        this.servicioUsuario = servicioUsuario;
-    }
-
-    public IServicioEvento getServicioEvento() {
-        return servicioEvento;
-    }
-
-    public void setServicioEvento(IServicioEvento servicioEvento) {
-        this.servicioEvento = servicioEvento;
-    }
-
-    public IGenerarReporteFile getGenerarReporte() {
-        return generarReporte;
-    }
-
-    public void setGenerarReporte(IGenerarReporteFile generarReporte) {
-        this.generarReporte = generarReporte;
-    }
 
     public void esValidaApuestaUsuario(Users usuario, TableroGanancia tablero) {
         if (usuarioHaApostadoEvento(usuario, tablero.getEvento())) {
@@ -195,13 +159,15 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         Double monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
         return monto;
     }
-
+    @SuppressWarnings("unchecked")
     private void generarFactura (Users usuario, Apuesta apuesta) {
         Map<String, Object> parameters = new HashMap();
-        nombreFactura = usuario.getUsername();
         String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
         String nombreCompleto = usuario.getNombre() + " " +  usuario.getApellido();
         Evento evento = servicioEvento.obtenerEventoporTableroGanancia(apuesta.getTableroGanancia());
+        Random random = new Random();
+        nombreFactura = usuario.getUsername() + "factura_evento" + evento.getId().toString() ;
+        Integer numeroFactura= java.lang.Math.abs(random.nextInt());
         parameters.put("fecha", UtilMethods.convertirFechaFormato(new java.util.Date()).toString());
         parameters.put("titulo", titulo);
         parameters.put("nombreCompleto", nombreCompleto);
@@ -211,7 +177,70 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         parameters.put("fechaEvento", UtilMethods.convertirFechaFormato(evento.getFecha()).toString());
         parameters.put("horaEvento", evento.getHora().toString());
         parameters.put("total", apuesta.getMonto().toString());
-        parameters.put("numeroFactura", new Random(12213).toString());
+        parameters.put("numeroFactura", numeroFactura.toString());
         generarReporte.generarReporte(parameters, TipoDocumentoReporte.PDF, nombreFactura);
+        enviarCorreoFactura(usuario);
+    }
+
+    private void enviarCorreoFactura (Users user) {
+        List<String> datosCorreo = new ArrayList<String>();
+        String titulo = (user.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+
+        datosCorreo.add(titulo);
+        datosCorreo.add(user.getNombre() + " " + user.getApellido());
+        String asunto = helperProp.getString("correos.factura.plantillas.asunto");
+        String cuerpo = ("<p>" + helperProp.getString("correos.factura.plantillas.mensaje.linea1", datosCorreo) + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.factura.plantillas.mensaje.linea2") + "</p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.factura.plantillas.mensaje.linea3") + "</p>");
+        File archivo = new File(helperProp.getString("reportes.directorio.correo") + nombreFactura + ".pdf");
+        servicioMail.send(user.getCorreo(), asunto, cuerpo,archivo);
+    }
+
+    public IGenericDao getGenericDao() {
+        return genericDao;
+    }
+
+    public void setGenericDao(IGenericDao genericDao) {
+        this.genericDao = genericDao;
+    }
+
+    public IHelperProperties getHelperProp() {
+        return helperProp;
+    }
+
+    public void setHelperProp(IHelperProperties helperProp) {
+        this.helperProp = helperProp;
+    }
+
+    public IServicioUsuario getServicioUsuario() {
+        return servicioUsuario;
+    }
+
+    public void setServicioUsuario(IServicioUsuario servicioUsuario) {
+        this.servicioUsuario = servicioUsuario;
+    }
+
+    public IServicioEvento getServicioEvento() {
+        return servicioEvento;
+    }
+
+    public void setServicioEvento(IServicioEvento servicioEvento) {
+        this.servicioEvento = servicioEvento;
+    }
+
+    public IGenerarReporteFile getGenerarReporte() {
+        return generarReporte;
+    }
+
+    public void setGenerarReporte(IGenerarReporteFile generarReporte) {
+        this.generarReporte = generarReporte;
+    }
+
+    public IMailService getServicioMail() {
+        return servicioMail;
+    }
+
+    public void setServicioMail(IMailService servicioMail) {
+        this.servicioMail = servicioMail;
     }
 }

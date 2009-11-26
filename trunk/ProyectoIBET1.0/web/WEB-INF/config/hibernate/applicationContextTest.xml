@@ -105,7 +105,7 @@
 
     <!--Configuración del servicio de Spring: MailSernder -->
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-       <property name="host" value="mail.cantv.net"/>
+       <property name="host" value="mailbox.ucab.edu.ve"/>
        <property name="port" value="25"/>
        <property name="defaultEncoding" value="UTF-8"/>
      </bean>
