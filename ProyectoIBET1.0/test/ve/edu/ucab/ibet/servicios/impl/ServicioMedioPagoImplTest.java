@@ -52,7 +52,7 @@ public class ServicioMedioPagoImplTest {
     }
 
    
-    @Test
+//    @Test
     public void testObtenerMediosPagoVigentes() {
         System.out.println("obtenerMediosPagoVigentes");
         List<MedioPago> result = servicioMedioPago.obtenerMediosPagoVigentes();
@@ -63,5 +63,14 @@ public class ServicioMedioPagoImplTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
+    @Test
+    public void testObtenerMedioPago() {
+        System.out.println("obtenerMedioPago");
+        MedioPago result = servicioMedioPago.obtenerMedioPago("paypal");
+        assertNotNull(result);
+        System.out.println("Medio pago: " + result.getId() + ", " + result.getNombre() + ", " + result.getActivo());
+    }
+
 
 }
