@@ -53,6 +53,18 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioUsuario" ref="servicioUsuario"/>
 </bean>
 
+<!-- Bean para trabajar con el formulario de confirmacion de apuesta
+-->
+ <bean name="/privado/front/apuesta/tableroApuesta.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.TableroApuestaFormController">
+  <property name="formView" value="privado/front/apuesta/tableroApuesta" />
+  <property name="successView" value="privado/front/apuesta/tableroApuesta" />
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+  <property name="servicioApuesta" ref="servicioApuesta"/>
+  <property name="servicioMedioPago" ref="servicioMedioPago"/>
+  <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->
