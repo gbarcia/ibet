@@ -2,6 +2,7 @@ package ve.edu.ucab.ibet.servicios.interfaces;
 
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 
@@ -38,5 +39,26 @@ public interface IServicioEvento {
      * @return lista de eventos
      */
     public List<Evento> obtenerProximosEventos();
+
+    /**
+     * firma para obtener los proximos eventos en ocurrir que tienen una imagen
+     * @return lista de eventos
+     */
+    public List<Evento> obtenerProximosEventosConImagen();
+
+    /**
+     * firma para buscar un evento por su id
+     * @param idEvento el id del evento
+     * @return el evento
+     */
+    public Evento obtenerEvento(Integer idEvento);
+
+    /**
+     * firma para busca un participante por su id
+     * @param idParticipante el id del participante
+     * @return el participante
+     */
+    public Participante obtenerParticipante(Integer idParticipante);
+
 
 }
