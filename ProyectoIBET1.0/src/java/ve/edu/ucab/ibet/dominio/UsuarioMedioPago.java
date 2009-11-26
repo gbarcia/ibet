@@ -32,7 +32,7 @@ public class UsuarioMedioPago implements Serializable {
     protected UsuarioMedioPagoPK usuarioMedioPagoPK;
     @Basic(optional = false)
     @Column(name = "activo")
-    private boolean activo;
+    private Boolean activo;
     @Basic(optional = false)
     @Column(name = "fechaInicio")
     @Temporal(TemporalType.DATE)
@@ -57,7 +57,7 @@ public class UsuarioMedioPago implements Serializable {
         this.usuarioMedioPagoPK = usuarioMedioPagoPK;
     }
 
-    public UsuarioMedioPago(UsuarioMedioPagoPK usuarioMedioPagoPK, boolean activo, Date fechaInicio, double montoMaximo) {
+    public UsuarioMedioPago(UsuarioMedioPagoPK usuarioMedioPagoPK, Boolean activo, Date fechaInicio, double montoMaximo) {
         this.usuarioMedioPagoPK = usuarioMedioPagoPK;
         this.activo = activo;
         this.fechaInicio = fechaInicio;
@@ -76,11 +76,11 @@ public class UsuarioMedioPago implements Serializable {
         this.usuarioMedioPagoPK = usuarioMedioPagoPK;
     }
 
-    public boolean getActivo() {
+    public Boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(boolean activo) {
+    public void setActivo(Boolean activo) {
         this.activo = activo;
     }
 
