@@ -42,6 +42,7 @@
         <property name="genericDao" ref="genericDao"/>
         <property name="servicioUsuario" ref="servicioUsuario"/>
         <property name="servicioEvento" ref="servicioEvento"/>
+        <property name="generarReporte" ref="generarReporteFile"/>
         <property name="helperProp" ref="helperProperties"/>
     </bean>
 
