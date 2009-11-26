@@ -48,6 +48,13 @@
 
 #nombreParticipante{
     font-size:1.5em;
+    font-weight:700
+}
+
+#ganancias{
+    font-weight:700;
+    width:68px;
+    overflow:hidden
 }
 
 /* @end */
@@ -72,33 +79,43 @@
 /* @group SlipInput */
 
 #slip form input[type=text] {
-	background-color: #202020;
+	background-color: #000;
 	border: 1px solid #fff;
 	color: #fff;
 	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	width: 50px;
+	width: 65px;
 }
 
 #slip form input[type=text]:focus {
-	background-color: #101010;
-	border: 1px solid #429CFF
+	border: 1px solid orange
 }
 
 /* @group SlipBoton */
 
-form input[type="submit"] {
+#slip form input[type="submit"] {
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-topright: 4px;
-	background: #00AAE2 url(../images/form/buttonBg.png);
+	background: #00AAE2 url(../images/form/buttonBgSlip.png);
 	border: 1px solid #fff;
 	color: #fff;
 	cursor: pointer;
 	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	padding: 2px 8px
+        width:65px
 }
 
-form input[type="submit"]:hover {
-	background: #0089B4 url(../images/form/buttonHoverBg.png);
+#slip form input[type="submit"]:hover {
+	background: #0089B4 url(../images/form/buttonBgSlipHover.png);
+}
+
+#slip hr{
+    border:none;
+    border-top:1px dashed #000;
+    border-color:#fff;
+    width:100%
+}
+
+#slip td{
+    vertical-align:middle;
 }

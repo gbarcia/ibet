@@ -15,19 +15,28 @@
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript">
             $(document).ready(function() {
+
+                $("#slipForm").hide();
+
                 var active = null;
+                var init = false;
 
                 $(".tablero .item").click(function() {
+                    if (!init){
+                        $("#slipNoBet").hide();
+                        $("#slipForm").fadeIn(1000);
+                        init = true;
+                    }
                     if (active != null){
                         $('#'.concat(active)).removeClass().addClass("item");
                     }
-
                     active = $(this).attr("id");
                     var arregloIds = active.split('-');
                     $("#idEvento").val(arregloIds[0]);
                     $("#idParticipante").val(arregloIds[1]);
                     $("#nombreParticipante").text($(this).find(".participante").text());
                     $("#proporcion").text($(this).find(".proporcion").text());
+                    $("#nombreEvento").text($(this).parent("tr").attr("id"));
                     $(this).removeClass().addClass("itemClick");
                 });
 
@@ -40,6 +49,15 @@
                 function() {
                     if ($(this).attr("id") != active){
                         $(this).removeClass().addClass("item");
+                    }
+                })
+
+                $("#importe").keyup(function(){
+                    if ($(this).val() != ""){
+                        var ganancias = parseFloat($(this).val()) * $("#proporcion").text();
+                        $("#ganancias").text("$"+ganancias.toString());
+                    } else {
+                        $("#ganancias").text("");
                     }
                 })
 
@@ -95,11 +113,12 @@
                     <c:import url="/include/sideMenu.htm" />
                 </div>
                 <div id="rightColumn">
-                    <div class="demo">
-                        <div id="slip">
-                            <form>
-                                <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
-                                <div class="slipContent">
+                    <div id="slip">
+                        <form>
+                            <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
+                            <div id="slipContent" class="slipContent">
+                                <div id="slipNoBet"><spring:message code="eventos.nobet"/></div>
+                                <div id="slipForm">
                                     <input id="idEvento" type="hidden" name="" value="" />
                                     <input id="idParticipante" type="hidden" name="" value="" />
                                     <spring:message code="eventos.pick"/>:
@@ -107,20 +126,25 @@
                                         <div id="nombreParticipante"></div>
                                         <div id="proporcion"></div>
                                     </div>
+                                    <div id="nombreEvento"></div>
                                     <hr>
                                     <table width="100%" cellspacing="5">
                                         <tr>
                                             <td><spring:message code="eventos.stake"/></td>
-                                            <td><input type="text" name="" value=""/></td>
+                                            <td><input id="importe" type="text" name="" value=""/></td>
                                         </tr>
                                         <tr>
                                             <td><spring:message code="eventos.winnings"/></td>
-                                            <td><input type="text" name="" value=""/></td>
+                                            <td><div id="ganancias"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td><input type="submit" value="<spring:message code="eventos.button"/>" /></td>
                                         </tr>
                                     </table>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
