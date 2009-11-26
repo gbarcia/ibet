@@ -3,6 +3,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 import java.util.ArrayList;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
@@ -75,5 +76,36 @@ public class ServicioEventoImpl implements IServicioEvento {
         Object[] parametros = {};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros, 0, 25));
         return eventos;
+    }
+
+    public List<Evento> obtenerProximosEventosConImagen() {
+        List<Evento> eventos = new ArrayList<Evento>();
+        String query = "select a from Categoria c inner join c.eventoCollection as a " +
+                "where a.fechaEvento >= current_date " +
+                "and a.estatus = 1 " +
+                "and a.finalizado = 0 " +
+                "and a.imagenEvento is not null " +
+                "order by a.fechaEvento, a.hora";
+        Object[] parametros = {};
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, 0, 25));
+        return eventos;
+    }
+
+    public Evento obtenerEvento(Integer idEvento) {
+        Evento evento = null;
+        evento = (Evento)genericDao.findByPropertyUnique(Evento.class, "id", idEvento);
+        if (evento == null){
+            throw new ExcepcionNegocio("errors.evento.noExiste");
+        }
+        return evento;
+    }
+
+    public Participante obtenerParticipante(Integer idParticipante) {
+        Participante participante = null;
+        participante = (Participante)genericDao.findByPropertyUnique(Participante.class, "id", idParticipante);
+        if (participante == null){
+            throw new ExcepcionNegocio("errors.evento.noExiste");
+        }
+        return participante;
     }
 }
