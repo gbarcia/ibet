@@ -3,6 +3,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.annotation.Secured;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.MedioPago;
@@ -134,12 +135,13 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public List<UsuarioMedioPago> mostrarHistorialMedioPago() {
         List<UsuarioMedioPago> historial = new ArrayList<UsuarioMedioPago>();
 
         Object[] o = new Object[1];
-//        o[0] = security.getName();
-        o[0] = "maya";
+        o[0] = security.getName();
 
         String query = new String();
         query = "select ump " +
@@ -147,7 +149,7 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
                 "where ump.users.username = ? ";
 
         historial.addAll(genericDao.ejecutarQueryList(query, o));
-        
+
         return historial;
     }
 
