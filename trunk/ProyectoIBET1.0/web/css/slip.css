@@ -57,6 +57,10 @@
     overflow:hidden
 }
 
+#nombreEvento{
+    text-align:center
+}
+
 /* @end */
 
 /* @group Links */
@@ -97,16 +101,17 @@
 	-moz-border-radius-bottomright: 4px;
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-topright: 4px;
-	background: #00AAE2 url(../images/form/buttonBgSlip.png);
+	background: #00AAE2 url(../images/form/buttonSlipBg.png);
 	border: 1px solid #fff;
 	color: #fff;
 	cursor: pointer;
 	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+        padding:2px 8px;
         width:65px
 }
 
 #slip form input[type="submit"]:hover {
-	background: #0089B4 url(../images/form/buttonBgSlipHover.png);
+	background: #0089B4 url(../images/form/buttonSlipHoverBg.png);
 }
 
 #slip hr{
