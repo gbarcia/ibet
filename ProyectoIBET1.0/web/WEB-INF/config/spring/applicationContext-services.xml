@@ -44,6 +44,7 @@
         <property name="servicioEvento" ref="servicioEvento"/>
         <property name="generarReporte" ref="generarReporteFile"/>
         <property name="helperProp" ref="helperProperties"/>
+        <property name="servicioMail" ref="mailService"/>
     </bean>
 
     <!-- BEAN PARA EL SERVICIO DE CATEGORIAS-->

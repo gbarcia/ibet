@@ -156,6 +156,7 @@ public class ServicioApuestaImplTest {
         Users usuarioApuesta = new Users("gerardo");
         usuarioApuesta.setNombre("Gerardo");
         usuarioApuesta.setApellido("Barcia");
+        usuarioApuesta.setCorreo("mayita.uribe@gmail.com");
         usuarioApuesta.setSexo("M");
         MedioPago medioPagoApuesta = new MedioPago(3);
         TableroGanancia tablero = new TableroGanancia(2, 3);
