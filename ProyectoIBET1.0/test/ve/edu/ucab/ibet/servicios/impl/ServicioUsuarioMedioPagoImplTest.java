@@ -13,7 +13,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
+import ve.edu.ucab.ibet.dominio.UsuarioMedioPagoPK;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuarioMedioPago;
 
@@ -37,11 +40,12 @@ public class ServicioUsuarioMedioPagoImplTest {
 //    @Test
     public void testActualizarMontoMaximo() {
         System.out.println("ActualizarMontoMaximo");
+        Users user = new Users("maya");
         Double nuevoMonto = 1500.00;
         MedioPago medioPago = new MedioPago(2, "mastercard", Boolean.TRUE);
         Boolean expResult = true;
         Boolean result = true;
-        servicioUsuarioMedioPago.ActualizarMontoMaximo(nuevoMonto, medioPago);
+        servicioUsuarioMedioPago.ActualizarMontoMaximo(nuevoMonto, medioPago, user);
         assertEquals(expResult, result);
     }
 
@@ -51,11 +55,12 @@ public class ServicioUsuarioMedioPagoImplTest {
 //    @Test
     public void testActivarMedioPago() {
         System.out.println("ActivarMedioPago");
-        MedioPago medioPago = new MedioPago(1, "paypal", Boolean.TRUE);
+        Users user = new Users("maya");
+        MedioPago medioPago = new MedioPago(2, "mastercard", Boolean.TRUE);
         Double montoMaximo = 1000.0;
         Boolean expResult = true;
         Boolean result = true;
-        servicioUsuarioMedioPago.ActivarMedioPago(medioPago, montoMaximo);
+        servicioUsuarioMedioPago.ActivarMedioPago(medioPago, montoMaximo, user);
         assertEquals(expResult, result);
     }
 
@@ -65,10 +70,11 @@ public class ServicioUsuarioMedioPagoImplTest {
 //    @Test
     public void testDesactivarMedioPago() {
         System.out.println("DesactivarMedioPago");
+        Users user = new Users("maya");
         MedioPago medioPago = new MedioPago(1, "paypal", Boolean.TRUE);
         Boolean expResult = true;
         Boolean result = true;
-        servicioUsuarioMedioPago.DesactivarMedioPago(medioPago);
+        servicioUsuarioMedioPago.DesactivarMedioPago(medioPago, user);
         assertEquals(expResult, result);
     }
 
@@ -78,7 +84,8 @@ public class ServicioUsuarioMedioPagoImplTest {
     @Test
     public void testMostrarHistorialMedioPago() {
         System.out.println("mostrarHistorialMedioPago");
-        List<UsuarioMedioPago> result = servicioUsuarioMedioPago.mostrarHistorialMedioPago();
+        Users user = new Users("maya");
+        List<UsuarioMedioPago> result = servicioUsuarioMedioPago.mostrarHistorialMedioPago(user);
         for (UsuarioMedioPago u : result) {
             System.out.println(u.getFechaInicio() + ", " + u.getUsers().getUsername());
         }
@@ -91,37 +98,21 @@ public class ServicioUsuarioMedioPagoImplTest {
 //    @Test
     public void testEnviarCorreoNotificacion() {
         System.out.println("enviarCorreoNotificacion");
-        ServicioUsuarioMedioPagoImpl instance = new ServicioUsuarioMedioPagoImpl();
-        instance.enviarCorreoNotificacion();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        Users user = new Users("maya");
+        MedioPago medioPago = new MedioPago(1, "paypal", Boolean.TRUE);
+        UsuarioMedioPago usuarioMedioPago = new UsuarioMedioPago();
+        UsuarioMedioPagoPK pk = new UsuarioMedioPagoPK(7, "maya", medioPago.getId());
+        usuarioMedioPago.setMedioPago(medioPago);
+        usuarioMedioPago.setUsuarioMedioPagoPK(pk);
+        usuarioMedioPago.setActivo(Boolean.TRUE);
+        usuarioMedioPago.setFechaInicio(UtilMethods.stringToFecha("2009-11-25"));
+        usuarioMedioPago.setFechaFin(null);
+        usuarioMedioPago.setMontoMaximo(new Double(1000));
+        usuarioMedioPago.setUsers(user);
+        servicioUsuarioMedioPago.enviarCorreoNotificacion(usuarioMedioPago, user);
     }
 
-    /**
-     * Test of getServicioMail method, of class ServicioUsuarioMedioPagoImpl.
-     */
-//    @Test
-    public void testGetServicioMail() {
-        System.out.println("getServicioMail");
-        ServicioUsuarioMedioPagoImpl instance = new ServicioUsuarioMedioPagoImpl();
-        IMailService expResult = null;
-        IMailService result = instance.getServicioMail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of setServicioMail method, of class ServicioUsuarioMedioPagoImpl.
-     */
-//    @Test
-    public void testSetServicioMail() {
-        System.out.println("setServicioMail");
-        IMailService servicioMail = null;
-        ServicioUsuarioMedioPagoImpl instance = new ServicioUsuarioMedioPagoImpl();
-        instance.setServicioMail(servicioMail);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
 }

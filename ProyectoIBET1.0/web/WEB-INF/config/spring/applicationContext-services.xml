@@ -70,6 +70,7 @@
         <property name="genericDao" ref="genericDao"/>
         <property name="helperProperties" ref="helperProperties"/>
         <property name="servicioMail" ref="mailService"/>
+        <property name="servicioUsuario" ref="servicioUsuario"/>
     </bean>
    
 </beans>
