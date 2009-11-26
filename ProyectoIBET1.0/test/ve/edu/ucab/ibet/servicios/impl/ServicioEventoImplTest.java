@@ -17,7 +17,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Evento;
 import static org.junit.Assert.*;
-import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
@@ -111,7 +110,7 @@ public class ServicioEventoImplTest {
     /**
      * Test of obtenerEventosDeUnaCategoria method, of class ServicioEventoImpl.
      */
-    //@Test
+//    @Test
     public void testObtenerEventosDeUnaCategoria() {
         System.out.println("obtenerEventosDeUnaCategoria");
         Integer categoria = 2;
@@ -124,7 +123,7 @@ public class ServicioEventoImplTest {
 //        fail("The test case is a prototype.");
     }
 
-    @Test
+//    @Test
     public void testObtenerEventoporTableroGananciaTest() {
         System.out.println("Obtener Evento Tablero Ganancia");
         TableroGanancia tablero = new TableroGanancia(1,1);
@@ -134,4 +133,16 @@ public class ServicioEventoImplTest {
         System.out.println(evento.getHoraMaxima());
     }
 
+    @Test
+    public void testObtenerProximosEventos(){
+        System.out.println("Proximos eventos");
+        List<Evento> proximosEventos = null;
+        proximosEventos = servicioEvento.obtenerProximosEventos();
+        assertNotNull(proximosEventos);
+        for (Evento evento : proximosEventos) {
+            System.out.println(evento.getNombre() + ":" +
+                               evento.getFechaEvento() + ":" +
+                               evento.getHora());
+        }
+    }
 }

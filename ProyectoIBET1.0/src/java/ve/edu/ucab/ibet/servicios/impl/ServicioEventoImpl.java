@@ -64,4 +64,16 @@ public class ServicioEventoImpl implements IServicioEvento {
         if (politica == null) throw new ExcepcionNegocio("errors.evento.politica.noexiste");
         return politica;
     }
+
+    public List<Evento> obtenerProximosEventos() {
+        List<Evento> eventos = new ArrayList<Evento>();
+        String query = "select a from Categoria c inner join c.eventoCollection as a " +
+                "where a.fechaEvento >= current_date " +
+                "and a.estatus = 1 " +
+                "and a.finalizado = 0 " +
+                "order by a.fechaEvento, a.hora";
+        Object[] parametros = {};
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, 0, 25));
+        return eventos;
+    }
 }
