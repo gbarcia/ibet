@@ -68,7 +68,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `iBet`.`USUARIO_MEDIO_PAGO` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`USUARIO_MEDIO_PAGO` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(250) NOT NULL ,
   `idMedioPago` INT NOT NULL ,
   `activo` TINYINT(1) NOT NULL ,
@@ -207,7 +207,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `iBet`.`APUESTA` ;
 
 CREATE  TABLE IF NOT EXISTS `iBet`.`APUESTA` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(250) NOT NULL ,
   `idMedioPago` INT NOT NULL ,
   `fecha` DATE NOT NULL ,
@@ -273,9 +273,9 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (1, 'paypal', 0);
-INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (2, 'mastercard', 0);
-INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (3, 'visa', 0);
+INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (1, 'paypal', 1);
+INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (2, 'mastercard', 1);
+INSERT INTO `MEDIO_PAGO` (`id`, `nombre`, `activo`) VALUES (3, 'visa', 1);
 
 COMMIT;
 

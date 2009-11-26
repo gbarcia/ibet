@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
 import org.springframework.security.annotation.Secured;
+import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
 
@@ -26,12 +27,11 @@ public interface IServicioApuesta {
 
     /**
      * Firma para procesar la transaccion de la apuesta
-     * @param usuario el usuario que va a realizar la apuesta
-     * @param tablero el tablero por el cual aposto el usuario
+     * @param apuesta apuesta a realizar
      * @exception ExcepcionNegocio se dispara cuando no se cumplen las condiciones
      * @exception DataAccesException se dispara cuando hay problemas con el servicio
      * de base de datos
      */
     @Secured({"ROLE_USER"})
-    public void realizarApuesta (Users usuario, TableroGanancia tablero);
+    public void realizarApuesta (Apuesta apuesta);
 }

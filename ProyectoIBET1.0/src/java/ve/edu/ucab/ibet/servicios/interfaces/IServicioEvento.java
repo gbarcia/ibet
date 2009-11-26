@@ -2,6 +2,7 @@ package ve.edu.ucab.ibet.servicios.interfaces;
 
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 
 /**
@@ -24,5 +25,12 @@ public interface IServicioEvento {
      * @return Objeto evento asociado al tablero ganancia
      */
     public Evento obtenerEventoporTableroGanancia (TableroGanancia tablero);
+
+    /**
+     * firma para obtener la politica de un evento
+     * @param evento objeto evento a obtener su politica
+     * @return objeto con la Politica del evento
+     */
+    public Politica obtenerPoliticaParaEvento(Evento evento);
 
 }

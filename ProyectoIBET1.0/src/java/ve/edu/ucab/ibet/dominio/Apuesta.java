@@ -61,7 +61,7 @@ public class Apuesta implements Serializable {
         this.apuestaPK = apuestaPK;
     }
 
-    public Apuesta(ApuestaPK apuestaPK, Date fecha, double monto) {
+    public Apuesta(ApuestaPK apuestaPK, Date fecha, Double monto) {
         this.apuestaPK = apuestaPK;
         this.fecha = fecha;
         this.monto = monto;
@@ -99,7 +99,7 @@ public class Apuesta implements Serializable {
         return ganador;
     }
 
-    public void setGanador(boolean ganador) {
+    public void setGanador(Boolean ganador) {
         this.ganador = ganador;
     }
 

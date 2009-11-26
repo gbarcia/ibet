@@ -3,6 +3,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 import java.util.ArrayList;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
@@ -46,11 +47,21 @@ public class ServicioEventoImpl implements IServicioEvento {
         return eventos;
     }
 
-    public Evento obtenerEventoporTableroGanancia (TableroGanancia tablero) {
+    public Evento obtenerEventoporTableroGanancia(TableroGanancia tablero) {
         Evento resultado = (Evento) genericDao.findByPropertyUnique(Evento.class, "id", tablero.getTableroGananciaPK().getIdEvento());
         if (resultado == null) {
             throw new ExcepcionNegocio("errors.evento.noexiste");
         }
         return resultado;
+    }
+
+    public Politica obtenerPoliticaParaEvento(Evento evento) {
+        Politica politica = null;
+        String query = new String();
+        Object[] parametros = {evento.getId()};
+        query = "Select e.idPolitica from Evento e where e.id = ?";
+        politica = (Politica) genericDao.ejecutarQueryUnique(query, parametros);
+        if (politica == null) throw new ExcepcionNegocio("errors.evento.politica.noexiste");
+        return politica;
     }
 }

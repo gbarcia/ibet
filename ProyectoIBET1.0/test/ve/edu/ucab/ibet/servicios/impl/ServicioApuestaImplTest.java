@@ -9,15 +9,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ve.edu.ucab.ibet.dominio.Apuesta;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
 
@@ -136,5 +139,43 @@ public class ServicioApuestaImplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        //fail("The test case is a prototype.");
 //    }
+
+//              @Test
+//    public void testMontoActualApuesta() {
+//        System.out.println("Monto actual apuesta");
+//        TableroGanancia tablero = new TableroGanancia(1, 1);
+//        Double resultado = servicioApuesta.obtenerCantidadApostadaParaEvento(tablero);
+//        System.out.println(resultado);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+
+   @Test
+    public void testHacerApuesta() {
+        System.out.println("realizar Apuesta");
+        Users usuarioApuesta = new Users("gerardo");
+        MedioPago medioPagoApuesta = new MedioPago(3);
+        TableroGanancia tablero = new TableroGanancia(2, 3);
+        Participante p = new Participante(3,"Real Madrid");
+        tablero.setPropocionGano(12);
+        tablero.setParticipante(p);
+        Evento evento = new Evento(2);
+        tablero.setEvento(evento);
+        Apuesta apuesta = new Apuesta();
+        apuesta.setEmpato(Boolean.TRUE);
+        apuesta.setFecha(UtilMethods.convertirFechaFormato(new java.util.Date()));
+        apuesta.setGano(Boolean.FALSE);
+        apuesta.setMedioPago(medioPagoApuesta);
+        apuesta.setMonto(new Double(10));
+        apuesta.setTableroGanancia(tablero);
+        apuesta.setUsers(usuarioApuesta);
+        try {
+        servicioApuesta.realizarApuesta(apuesta);
+        }catch (GeneralException e) {
+            System.out.println(e.getKeyError());
+        }
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
 
 }
