@@ -13,56 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <c:out value="${eventos[0].idCategoria.nombre}"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-        <script type="text/javascript">
-            $(document).ready(function() {
-
-                $("#slipForm").hide();
-
-                var active = null;
-                var init = false;
-
-                $(".tablero .item").click(function() {
-                    if (!init){
-                        $("#slipNoBet").hide();
-                        $("#slipForm").fadeIn(1000);
-                        init = true;
-                    }
-                    if (active != null){
-                        $('#'.concat(active)).removeClass().addClass("item");
-                    }
-                    active = $(this).attr("id");
-                    var arregloIds = active.split('-');
-                    $("#idEvento").val(arregloIds[0]);
-                    $("#idParticipante").val(arregloIds[1]);
-                    $("#nombreParticipante").text($(this).find(".participante").text());
-                    $("#proporcion").text($(this).find(".proporcion").text());
-                    $("#nombreEvento").text($(this).parent("tr").attr("id"));
-                    $(this).removeClass().addClass("itemClick");
-                });
-
-                $(".tablero .item").hover(
-                function() {
-                    if ($(this).attr("id") != active){
-                        $(this).removeClass().addClass("itemHover");
-                    }
-                },
-                function() {
-                    if ($(this).attr("id") != active){
-                        $(this).removeClass().addClass("item");
-                    }
-                })
-
-                $("#importe").keyup(function(){
-                    if ($(this).val() != ""){
-                        var ganancias = parseFloat($(this).val()) * $("#proporcion").text();
-                        $("#ganancias").text("$"+ganancias.toString());
-                    } else {
-                        $("#ganancias").text("");
-                    }
-                })
-
-            });
-        </script>
+        <script type="text/javascript" src="<%= request.getContextPath()+ "/js/jquery/jquery.tablero.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">

@@ -3,7 +3,7 @@
     Created on : 24/10/2009, 08:55:39 PM
     Author     : Gerardo Barcia
 --%>
-<%@include file="include/include.jsp" %>
+<%@include file="/WEB-INF/jsp/include/include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,8 +11,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iBet</title>
-        <jsp:include page="include/head.jsp"></jsp:include>
+        <title>iBet | </title>
+        <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
+        <script type="text/javascript" src="<%= request.getContextPath()+ "/js/jquery/jquery.tablero.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">
@@ -25,6 +26,7 @@
                                 iBet
                             </div>
                             <div class="pane">
+
                             </div>
                         </div>
                     </div>
@@ -33,18 +35,7 @@
                     <c:import url="/include/sideMenu.htm" />
                 </div>
                 <div id="rightColumn">
-                    <div class="demo">
-                        <div id="slip">
-                            <div class="slipTitle">Asd</div>
-                            <div class="slipContent">
-                                <input id="idEvento" type="text" name="" value="" />
-                                <input id="idParticipante" type="text" name="" value="" />
-                            </div>
-                            <div id="slipBottom">
-                                asd
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
