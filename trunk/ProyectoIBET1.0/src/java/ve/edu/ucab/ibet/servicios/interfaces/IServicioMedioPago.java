@@ -24,4 +24,11 @@ public interface IServicioMedioPago {
      */
     public List<String> obtenerNombresMediosPagoVigentes(List<UsuarioMedioPago> lista);
 
+    /**
+     * firma para obtener un medio pago 
+     * @param nombre Nombre del medio pago a buscar
+     * @return El medio pago obtenido en la consulta 
+     */
+    public MedioPago obtenerMedioPago(String nombre);
+
 }

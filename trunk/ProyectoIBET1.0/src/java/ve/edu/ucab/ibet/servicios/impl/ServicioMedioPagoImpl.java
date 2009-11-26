@@ -53,4 +53,18 @@ public class ServicioMedioPagoImpl implements IServicioMedioPago {
         }
         return listarResultado;
     }
+
+    public MedioPago obtenerMedioPago(String nombre) {
+        MedioPago medioPago = new MedioPago();
+        String query = new String();
+        
+        Object[] o = new Object[1];
+        o[0] = nombre;
+
+        query = "select mp from MedioPago mp where mp.nombre = ?";
+
+        medioPago = (MedioPago) genericDao.ejecutarQueryUnique(query, o);
+
+        return medioPago;
+    }
 }
