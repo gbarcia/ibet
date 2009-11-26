@@ -7,6 +7,7 @@ import org.springframework.security.annotation.Secured;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPagoPK;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
@@ -14,6 +15,7 @@ import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuarioMedioPago;
 
 /**
@@ -26,14 +28,15 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
     private IHelperProperties helperProperties;
     private IMailService servicioMail;
     private Principal security;
+    private IServicioUsuario servicioUsuario;
 
-    public UsuarioMedioPago obtenerUsuarioMedioPago(MedioPago medioPago) {
+    private UsuarioMedioPago obtenerUsuarioMedioPago(MedioPago medioPago, Users user) {
         UsuarioMedioPago userMedioPago = new UsuarioMedioPago();
 
         String query = new String();
         Object[] o = new Object[2];
 
-        o[0] = security.getName();
+        o[0] = user.getUsername();
         o[1] = medioPago.getId();
 
         query = "select ump " +
@@ -47,14 +50,13 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         return userMedioPago;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void insertarUsuarioMedioPago(MedioPago medioPago, Double montoMaximo) {
+    private void insertarUsuarioMedioPago(MedioPago medioPago, Double montoMaximo, Users user) {
 
         UsuarioMedioPago usuarioMedioPago = new UsuarioMedioPago();
 
         UsuarioMedioPagoPK pk = new UsuarioMedioPagoPK();
         pk.setIdMedioPago(medioPago.getId());
-        pk.setUsername(security.getName());
+        pk.setUsername(user.getUsername());
 
         usuarioMedioPago.setUsuarioMedioPagoPK(pk);
         usuarioMedioPago.setActivo(Boolean.TRUE);
@@ -66,7 +68,7 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         genericDao.insertar(usuarioMedioPago);
     }
 
-    public void mergeUsuarioMedioPago(UsuarioMedioPago userMedioPago) {
+    private void mergeUsuarioMedioPago(UsuarioMedioPago userMedioPago) {
         UsuarioMedioPago usuarioMedioPago = new UsuarioMedioPago();
 
         usuarioMedioPago.setUsuarioMedioPagoPK(userMedioPago.getUsuarioMedioPagoPK());
@@ -79,7 +81,7 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         genericDao.merge(usuarioMedioPago);
     }
 
-    public Boolean esNulo(UsuarioMedioPago userMedioPago) {
+    private Boolean esNulo(UsuarioMedioPago userMedioPago) {
         Boolean flag = Boolean.TRUE;
 
         if (userMedioPago == null) {
@@ -97,20 +99,20 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void ActualizarMontoMaximo(Double nuevoMonto, MedioPago medioPago) {
-        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago);
+    public void ActualizarMontoMaximo(Double nuevoMonto, MedioPago medioPago, Users user) {
+        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago, user);
 
         this.mergeUsuarioMedioPago(userMedioPago);
 
-        this.insertarUsuarioMedioPago(medioPago, nuevoMonto);
+        this.insertarUsuarioMedioPago(medioPago, nuevoMonto, user);
     }
 
-    public void ActivarMedioPago(MedioPago medioPago, Double montoMaximo) {
-        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago);
+    public void ActivarMedioPago(MedioPago medioPago, Double montoMaximo, Users user) {
+        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago, user);
 
         if (this.esNulo(userMedioPago)) {
 
-            this.insertarUsuarioMedioPago(medioPago, montoMaximo);
+            this.insertarUsuarioMedioPago(medioPago, montoMaximo, user);
 
         } else if (!this.esNulo(userMedioPago)) {
             if (userMedioPago.getActivo()) {
@@ -121,8 +123,8 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         }
     }
 
-    public void DesactivarMedioPago(MedioPago medioPago) {
-        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago);
+    public void DesactivarMedioPago(MedioPago medioPago, Users user) {
+        UsuarioMedioPago userMedioPago = this.obtenerUsuarioMedioPago(medioPago, user);
 
         if (!this.esNulo(userMedioPago)) {
 
@@ -137,11 +139,11 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    public List<UsuarioMedioPago> mostrarHistorialMedioPago() {
+    public List<UsuarioMedioPago> mostrarHistorialMedioPago(Users user) {
         List<UsuarioMedioPago> historial = new ArrayList<UsuarioMedioPago>();
 
         Object[] o = new Object[1];
-        o[0] = security.getName();
+        o[0] = user.getUsername();
 
         String query = new String();
         query = "select ump " +
@@ -153,8 +155,27 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         return historial;
     }
 
-    public void enviarCorreoNotificacion() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void enviarCorreoNotificacion(UsuarioMedioPago usuarioMedioPago, Users user) {
+        user = servicioUsuario.obtenerDatosUsuarioM(user.getUsername());
+
+        String estado = (usuarioMedioPago.getActivo()) ? "Activado":"Desactivado";
+
+        List<String> datosCorreo = new ArrayList<String>();
+        String titulo = (user.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        datosCorreo.add(titulo);
+        datosCorreo.add(user.getNombre() + " " + user.getApellido());
+        datosCorreo.add(usuarioMedioPago.getMedioPago().getNombre());
+        datosCorreo.add(estado);
+        datosCorreo.add(String.valueOf(usuarioMedioPago.getMontoMaximo()));
+        String asunto = helperProperties.getString("correos.notificacion.mediopago.asunto");
+        String cuerpo = ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea1", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea2", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea3", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea4", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea5") + "<p>");
+        cuerpo += ("<p>" + helperProperties.getString("correos.notificacion.mediopago.mensaje.linea6") + "<p>");
+        
+        servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
     public IGenericDao getGenericDao() {
@@ -188,4 +209,14 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
     public void setSecurity(Principal security) {
         this.security = security;
     }
+
+    public IServicioUsuario getServicioUsuario() {
+        return servicioUsuario;
+    }
+
+    public void setServicioUsuario(IServicioUsuario servicioUsuario) {
+        this.servicioUsuario = servicioUsuario;
+    }
+
+    
 }
