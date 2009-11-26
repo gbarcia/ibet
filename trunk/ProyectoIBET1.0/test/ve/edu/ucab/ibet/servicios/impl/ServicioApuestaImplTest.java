@@ -154,6 +154,9 @@ public class ServicioApuestaImplTest {
     public void testHacerApuesta() {
         System.out.println("realizar Apuesta");
         Users usuarioApuesta = new Users("gerardo");
+        usuarioApuesta.setNombre("Gerardo");
+        usuarioApuesta.setApellido("Barcia");
+        usuarioApuesta.setSexo("M");
         MedioPago medioPagoApuesta = new MedioPago(3);
         TableroGanancia tablero = new TableroGanancia(2, 3);
         Participante p = new Participante(3,"Real Madrid");

@@ -2,7 +2,10 @@ package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.ApuestaPK;
 import ve.edu.ucab.ibet.dominio.Evento;
@@ -11,10 +14,12 @@ import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
+import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
+import ve.edu.ucab.ibet.generic.util.reportes.interfaces.IGenerarReporteFile;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
@@ -29,7 +34,9 @@ public class ServicioApuestaImpl implements IServicioApuesta {
     private IGenericDao genericDao;
     private IServicioUsuario servicioUsuario;
     private IServicioEvento servicioEvento;
+    private IGenerarReporteFile generarReporte;
     private IHelperProperties helperProp;
+    private String nombreFactura;
 
     public IGenericDao getGenericDao() {
         return genericDao;
@@ -63,6 +70,14 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         this.servicioEvento = servicioEvento;
     }
 
+    public IGenerarReporteFile getGenerarReporte() {
+        return generarReporte;
+    }
+
+    public void setGenerarReporte(IGenerarReporteFile generarReporte) {
+        this.generarReporte = generarReporte;
+    }
+
     public void esValidaApuestaUsuario(Users usuario, TableroGanancia tablero) {
         if (usuarioHaApostadoEvento(usuario, tablero.getEvento())) {
             throw new ExcepcionNegocio("errors.apuesta.usuario.apuestadublicada");
@@ -80,6 +95,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         apuestaPK.setUsername(apuesta.getUsers().getUsername());
         apuesta.setApuestaPK(apuestaPK);
         genericDao.insertar(apuesta);
+        generarFactura(apuesta.getUsers(), apuesta);
         }
         else {
             throw new ExcepcionNegocio("errors.apuesta.invalida");
@@ -178,5 +194,24 @@ public class ServicioApuestaImpl implements IServicioApuesta {
                 "group by a.tableroGanancia.evento.nombre";
         Double monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
         return monto;
+    }
+
+    private void generarFactura (Users usuario, Apuesta apuesta) {
+        Map<String, Object> parameters = new HashMap();
+        nombreFactura = usuario.getUsername();
+        String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        String nombreCompleto = usuario.getNombre() + " " +  usuario.getApellido();
+        Evento evento = servicioEvento.obtenerEventoporTableroGanancia(apuesta.getTableroGanancia());
+        parameters.put("fecha", UtilMethods.convertirFechaFormato(new java.util.Date()).toString());
+        parameters.put("titulo", titulo);
+        parameters.put("nombreCompleto", nombreCompleto);
+        parameters.put("evento", evento.getNombre());
+        parameters.put("apostePor", apuesta.getTableroGanancia().getParticipante().getNombre());
+        parameters.put("monto", apuesta.getMonto().toString());
+        parameters.put("fechaEvento", UtilMethods.convertirFechaFormato(evento.getFecha()).toString());
+        parameters.put("horaEvento", evento.getHora().toString());
+        parameters.put("total", apuesta.getMonto().toString());
+        parameters.put("numeroFactura", new Random(12213).toString());
+        generarReporte.generarReporte(parameters, TipoDocumentoReporte.PDF, nombreFactura);
     }
 }

@@ -19,6 +19,7 @@ public class GenerarReporteFileImpl implements IGenerarReporteFile {
 
     private JasperPrint jasperPrint;
     private IHelperProperties helperProperties;
+    private static String NOMBRE_JASPER = "tarifa";
 
     public IHelperProperties getHelperProperties() {
         return helperProperties;
@@ -34,26 +35,30 @@ public class GenerarReporteFileImpl implements IGenerarReporteFile {
             case PDF:
                 try {
                     String urlJasper = helperProperties.getString("reportes.directorio.jasper") +
-                            nombreReporte + helperProperties.getString("reportes.extencion.jasper");
+                            NOMBRE_JASPER + helperProperties.getString("reportes.extencion.jasper");
 
                     String urlDestino = helperProperties.getString("reportes.directorio.correo") +
                             nombreReporte + helperProperties.getString("reportes.extencion.pdf");
 
                     jasperPrint = JasperFillManager.fillReport(urlJasper, parameters);
                     JasperExportManager.exportReportToPdfFile(jasperPrint, urlDestino);
+                    break;
                 } catch (JRException ex) {
+                    ex.printStackTrace();
                 }
 
             case EXCEL:
                 String urlJasper = helperProperties.getString("reportes.directorio.jasper") +
-                        nombreReporte + helperProperties.getString("reportes.extencion.jasper");
+                        NOMBRE_JASPER + helperProperties.getString("reportes.extencion.jasper");
 
                 String urlDestino = helperProperties.getString("reportes.directorio.correo") +
                         nombreReporte + helperProperties.getString("reportes.extencion.xls");
                 try {
                     jasperPrint = JasperFillManager.fillReport(urlJasper, parameters);
                     JasperExportManager.exportReportToPdfFile(jasperPrint, urlDestino);
+                    break;
                 } catch (JRException ex) {
+                    ex.printStackTrace();
                 }
         }
     }
