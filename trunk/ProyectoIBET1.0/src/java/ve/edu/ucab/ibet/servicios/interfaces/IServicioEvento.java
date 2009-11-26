@@ -33,4 +33,10 @@ public interface IServicioEvento {
      */
     public Politica obtenerPoliticaParaEvento(Evento evento);
 
+    /**
+     * firma para obtener los proximos eventos en ocurrir
+     * @return lista de eventos
+     */
+    public List<Evento> obtenerProximosEventos();
+
 }
