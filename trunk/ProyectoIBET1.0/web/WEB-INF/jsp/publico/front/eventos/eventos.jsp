@@ -65,7 +65,7 @@
                 </div>
                 <div id="rightColumn">
                     <div id="slip">
-                        <form>
+                        <form action="">
                             <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
                             <div id="slipContent" class="slipContent">
                                 <div id="slipNoBet"><spring:message code="eventos.nobet"/></div>
@@ -90,7 +90,7 @@
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
-                                            <td><input type="submit" value="<spring:message code="eventos.button"/>" /></td>
+                                            <td><input id="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
                                         </tr>
                                     </table>
                                 </div>

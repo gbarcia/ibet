@@ -111,7 +111,7 @@
         width:65px
 }
 
-#slip input[type="submit"]:hover {
+#slip input[type="button"]:hover {
 	background: #0089B4 url(../images/form/buttonSlipHoverBg.png);
 }
 

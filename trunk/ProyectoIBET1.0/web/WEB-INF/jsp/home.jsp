@@ -78,7 +78,7 @@
                 </div>
                 <div id="rightColumn">
                     <div id="slip">
-                        <form>
+                        <form action="">
                             <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
                             <div id="slipContent" class="slipContent">
                                 <div id="slipNoBet"><spring:message code="eventos.nobet"/></div>
