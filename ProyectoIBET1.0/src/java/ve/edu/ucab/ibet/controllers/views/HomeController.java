@@ -27,7 +27,9 @@ public class HomeController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         ModelAndView mv = new ModelAndView("home");
         List<Evento> eventos = servicioEvento.obtenerProximosEventos();
+        List<Evento> eventosImagenes = servicioEvento.obtenerProximosEventosConImagen();
         mv.addObject("eventos", eventos);
+        mv.addObject("eventosImagenes", eventosImagenes);
         return mv;
     }
 }

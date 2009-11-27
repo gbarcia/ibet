@@ -12,8 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="home.titulo"/></title>
+        <script type="text/javascript">var _siteRoot='/home.htm',_root='/home.htm';</script>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.tablero.js"%>"></script>
+        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.slider.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">
@@ -22,6 +24,14 @@
                 <div id="contentWrapper">
                     <div id="contentColumn">
                         <div id="centerPane">
+                            <div class="paneTitle">
+                                <spring:message code="home.destacado"/>
+                            </div>
+                            <div class="pane">
+                                <div class="galeria">
+                                    Galeria
+                                </div>
+                            </div>
                             <div class="paneTitle">
                                 <spring:message code="home.proximas"/>
                             </div>
@@ -93,7 +103,7 @@
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
-                                            <td><input type="submit" value="<spring:message code="eventos.button"/>" /></td>
+                                            <td><input id="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
                                         </tr>
                                     </table>
                                 </div>

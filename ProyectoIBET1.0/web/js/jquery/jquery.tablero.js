@@ -60,4 +60,13 @@ $(document).ready(function() {
         $("#ganancias").text(ganancias);
     })
 
+    $("#botonApostar").click(function(){
+        window.location = "tableroApuesta.htm?ide=" + $("#idEvento").val() +
+            "&idp=" + $("#idParticipante").val() +
+            "&m=" + $("#importe").val();
+    }
+)
+
+
+
 });
