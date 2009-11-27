@@ -283,8 +283,8 @@ COMMIT;
 SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (1, 'maya', 1, 1, '2009-02-01', null, 2000);
-INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (2, 'johnny', 2, 1, '2009-06-20', null, 1500);
-INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (3, 'gerardo', 3, 1, '2009-10-18', null, 1200);
+INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (2, 'johnny', 2, 1, '2009-06-20', null, 2500);
+INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (3, 'gerardo', 3, 1, '2009-10-18', null, 2200);
 INSERT INTO `USUARIO_MEDIO_PAGO` (`id`, `username`, `idMedioPago`, `activo`, `fechaInicio`, `fechaFin`, `montoMaximo`) VALUES (4, 'maya', 2, 1, '2009-10-26', null, 500);
 
 COMMIT;
@@ -330,12 +330,22 @@ INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxim
 
 INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (7, 'Aguilas del Zulia - Tiburones de La Guaira', '2009-11-28', '00:00:00', '2009-11-28', '18:00:00', '', 1, 0, null, 5, 1);
 INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (8, 'Bravos de Margarita - Caribes de Anzoategui', '2009-11-28', '00:00:00', '2009-11-28', '18:00:00', '', 1, 0, null, 5, 1);
-INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (9, 'Leones de Caracas - Navegantes de Magallanes', '2009-11-28', '00:00:00', '2009-11-28', '18:00:00', '', 1, 0, null, 5, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (9, 'Leones del Caracas - Navegantes del Magallanes', '2009-11-28', '00:00:00', '2009-11-28', '18:00:00', '', 1, 0, null, 5, 1);
 
 INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (10, 'Rafael Nadal - Novak Djokovic', '2009-11-27', '15:15:00', '2009-11-27', '13:15:00', '', 1, 0, null, 7, 1);
 
 INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (11, 'Lleyton Hewitt - Victor Hanescu', '2010-01-01', '23:00:00', '2010-01-01', '21:00:00', '', 1, 0, null, 8, 1);
 INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (12, 'Samantha Stosur - Sorana Cirstea', '2010-01-01', '23:00:00', '2010-01-01', '21:00:00', '', 1, 0, null, 8, 1);
+
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (13, 'Navegantes del Magallanes - Bravos de Margarita', '2009-11-25', '20:00:00', '2009-11-25', '18:00:00', '', 1, 0, null, 3, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (14, 'Leones del Caracas - Caribes de Anzoategui', '2009-11-25', '20:00:00', '2009-11-25', '18:00:00', '', 1, 0, null, 3, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (15, 'Tiburones de La Guaira - Cardenales de Lara', '2009-11-25', '20:00:00', '2009-11-25', '18:00:00', '', 1, 0, null, 3, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (16, 'Tigres de Aragua - Aguilas del Zulia', '2009-11-25', '20:00:00', '2009-11-25', '18:00:00', '', 1, 0, null, 3, 1);
+
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (17, 'Athletic Club - FC Barcelona', '2009-11-21', '15:00:00', '2009-11-21', '13:00:00', '', 1, 0, null, 2, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (18, 'RC Deportivo - At. de Madrid', '2009-11-21', '17:00:00', '2009-11-21', '15:00:00', '', 1, 0, null, 2, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (19, 'Real Madrid CF - Real Racing Club', '2009-11-21', '20:00:00', '2009-11-21', '18:00:00', '', 1, 0, null, 2, 1);
+INSERT INTO `EVENTO` (`id`, `nombre`, `fecha`, `hora`, `fechaMaxima`, `horaMaxima`, `resultado`, `estatus`, `finalizado`, `imagenEvento`, `idCategoria`, `idPolitica`) VALUES (20, 'RCD Mallorca - UD Almeria', '2009-11-22', '17:00:00', '2009-11-22', '19:00:00', '', 1, 0, null, 2, 1);
 
 COMMIT;
 
@@ -360,14 +370,23 @@ INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (13, 'Aguilas 
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (14, 'Tiburones de La Guaira', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (15, 'Bravos de Margarita', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (16, 'Caribes de Anzoategui', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (17, 'Leones de Caracas', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (18, 'Navegantes de Magallanes', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (17, 'Leones del Caracas', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (18, 'Navegantes del Magallanes', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (19, 'Rafael Nadal', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (20, 'Novak Djokovic', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (21, 'Lleyton Hewitt', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (22, 'Victor Hanescu', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (23, 'Samantha Stosur', '');
 INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (24, 'Sorana Cirstea', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (25, 'Cardenales de Lara', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (26, 'Tigres de Aragua', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (27, 'Athletic Club', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (28, 'FC Barcelona', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (29, 'RC Deportivo', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (30, 'At. de Madrid', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (31, 'Real Madrid CF', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (32, 'Real Racing Club', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (33, 'UD Almeria', '');
 
 COMMIT;
 
@@ -405,6 +424,24 @@ INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, 
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (12, 23, null, null, 1.15, null);
 INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (12, 24, null, null, 4.73, null);
 
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (13, 18, 1, 0, 6.70, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (13, 15, 0, 0, 3.30, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (14, 17, 1, 0, 7.50, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (14, 16, 0, 0, 2.50, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (15, 14, 1, 0, 3.50, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (15, 25, 0, 0, 2.50, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (16, 26, 1, 0, 2.00, null);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (16, 13, 0, 0, 1.30, null);
+
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (17, 27, 0, 1, 3.70, 7.10);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (17, 28, 0, 1, 2.40, 7.10);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (18, 29, 1, 0, 6.30, 1.00);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (18, 30, 0, 0, 2.00, 1.00);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (19, 31, 1, 0, 3.50, 3.35);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (19, 32, 0, 0, 1.25, 3.35);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (20, 4, 1, 0, 3.00, 2.25);
+INSERT INTO `TABLERO_GANANCIA` (`idEvento`, `idParticipante`, `gano`, `empato`, `propocionGano`, `proporcionEmpate`) VALUES (20, 33, 0, 0, 2.30, 2.25);
+
 COMMIT;
 
 -- -----------------------------------------------------
@@ -414,17 +451,34 @@ SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (1, 'maya', 1, '2009-11-10', 500, null, 1, 0, 1, 1);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (2, 'maya', 1, '2009-11-11', 100, null, 1, 0, 4, 7);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (3, 'maya', 2, '2009-11-12', 200, null, 1, 0, 9, 17);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (4, 'maya', 2, '2009-11-20', 300, null, 1, 0, 10, 20);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (3, 'maya', 1, '2009-11-12', 150, null, 1, 0, 9, 17);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (4, 'maya', 2, '2009-11-20', 50, null, 1, 0, 10, 20);
 
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (5, 'gerardo', 3, '2009-11-10', 200, null, 1, 0, 1, 2);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (6, 'gerardo', 3, '2009-11-11', 150, null, 0, 1, 2, null);
-INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (7, 'gerardo', 3, '2009-11-20', 300, null, 1, 0, 9, 17);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (6, 'gerardo', 3, '2009-11-11', 100, null, 0, 1, 2, null);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (7, 'gerardo', 3, '2009-11-20', 100, null, 1, 0, 9, 17);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (8, 'gerardo', 3, '2009-11-20', 250, null, 1, 0, 11, 22);
 
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (9, 'johnny', 2, '2009-11-10', 400, null, 0, 1, 1, null);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (10, 'johnny', 2, '2009-11-11', 100, null, 1, 0, 2, 3);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (11, 'johnny', 2, '2009-11-20', 250, null, 1, 0, 10, 19);
 INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (12, 'johnny', 2, '2009-11-26', 150, null, 1, 0, 12, 23);
+
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (13, 'maya', 1, '2009-10-18', 100, 1, 1, 0, 14, 17);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (14, 'maya', 1, '2009-10-19', 50, 0, 1, 0, 15, 25);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (15, 'maya', 1, '2009-10-20', 150, 1, 1, 0, 16, 26);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (16, 'maya', 2, '2009-11-01', 50, 1, 0, 1, 17, null);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (17, 'maya', 2, '2009-11-01', 150, 0, 1, 0, 18, 30);
+
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (18, 'gerardo', 3, '2009-10-29', 50, 1, 1, 0, 14, 17);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (19, 'gerardo', 3, '2009-11-20', 150, 1, 1, 0, 15, 14);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (20, 'gerardo', 3, '2009-11-23', 100, 1, 0, 1, 17, null);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (21, 'gerardo', 3, '2009-11-20', 200, 0, 1, 0, 20, 33);
+
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (22, 'johnny', 2, '2009-10-18', 100, 1, 1, 0, 13, 18);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (23, 'johnny', 2, '2009-10-29', 50, 0, 1, 0, 15, 25);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (24, 'johnny', 2, '2009-11-24', 50, 1, 1, 0, 19, 31);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (25, 'johnny', 2, '2009-11-15', 150, 1, 0, 1, 17, null);
+INSERT INTO `APUESTA` (`id`, `username`, `idMedioPago`, `fecha`, `monto`, `ganador`, `gano`, `empato`, `idEvento`, `idParticipante`) VALUES (26, 'johnny', 2, '2009-11-16', 100, 0, 0, 1, 20, null);
 
 COMMIT;
