@@ -1,6 +1,5 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
-import org.springframework.security.annotation.Secured;
 import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
@@ -11,6 +10,7 @@ import ve.edu.ucab.ibet.dominio.Users;
  * @version 1.0
  */
 public interface IServicioApuesta {
+
     /**
      * Firma para verificar que el usuario pueda apostar en ese evento
      * Las condiciones son:
@@ -22,8 +22,7 @@ public interface IServicioApuesta {
      * @exception DataAccesException se dispara cuando hay problemas con el servicio
      * de base de datos
      */
-    @Secured({"ROLE_USER"})
-    public void esValidaApuestaUsuario (Users usuario, TableroGanancia tablero);
+    public void esValidaApuestaUsuario(Users usuario, TableroGanancia tablero);
 
     /**
      * Firma para procesar la transaccion de la apuesta
@@ -32,6 +31,16 @@ public interface IServicioApuesta {
      * @exception DataAccesException se dispara cuando hay problemas con el servicio
      * de base de datos
      */
-    @Secured({"ROLE_USER"})
-    public void realizarApuesta (Apuesta apuesta);
+    public void realizarApuesta(Apuesta apuesta);
+
+    /**
+     * Firma para armar el objeto apuesta para registrar desde el controller
+     * @param idEvento id de el evento al que se deseea apostar
+     * @param idParticipante el id del participante seleccionado
+     * @param monto el monto que se desea apostar
+     * @param usuario el usuario que realizara la apuesta
+     * @return Objeto Apuesta con los datos completos para apostar
+     */
+    public Apuesta armarApuestaParaRealizar(String idEvento, String idParticipante,
+            String monto, Users usuario);
 }

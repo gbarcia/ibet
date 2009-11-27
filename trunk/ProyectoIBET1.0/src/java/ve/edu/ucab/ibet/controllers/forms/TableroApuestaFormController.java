@@ -17,17 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.Apuesta;
-import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
-import ve.edu.ucab.ibet.dominio.Participante;
-import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroApuestaTO;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
-import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
-import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioMedioPago;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
@@ -42,7 +37,6 @@ public class TableroApuestaFormController extends SimpleFormController {
     private IServicioApuesta servicioApuesta;
     private IServicioUsuario servicioUsuario;
     private IServicioMedioPago servicioMedioPago;
-    private IServicioEvento servicioEvento;
     private Apuesta apuesta;
     private Principal security;
     private Users usuario;
@@ -71,15 +65,6 @@ public class TableroApuestaFormController extends SimpleFormController {
     public void setServicioUsuario(IServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
-
-    public IServicioEvento getServicioEvento() {
-        return servicioEvento;
-    }
-
-    public void setServicioEvento(IServicioEvento servicioEvento) {
-        this.servicioEvento = servicioEvento;
-    }
-
     public TableroApuestaFormController() {
         setCommandClass(RegistroApuestaTO.class);
         setCommandName("apuesta");
@@ -87,37 +72,18 @@ public class TableroApuestaFormController extends SimpleFormController {
 
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
-        Integer eventoId = null,participanteId = null,monto = 0;
         String idEvento = request.getParameter("ide");
         String idParticipante = request.getParameter("idp");
         String montoApuesta = request.getParameter("m");
-        if (UtilMethods.esNumerico(idEvento)) eventoId = Integer.parseInt(idEvento);
-        if (UtilMethods.esNumerico(idParticipante)) participanteId = Integer.parseInt(idParticipante);
-        if (UtilMethods.esNumerico(montoApuesta)) monto = Integer.parseInt(montoApuesta);
         security = request.getUserPrincipal();
         String nombreUsuario = security.getName();
         usuario = servicioUsuario.obtenerDatosUsuarioM(nombreUsuario);
-        TableroGanancia tablero = new TableroGanancia(eventoId, participanteId);
-        Evento eventoApuesta = servicioEvento.obtenerEvento(eventoId);
-        Participante participante = servicioEvento.obtenerParticipante(participanteId);
-        tablero.setParticipante(participante);
-        tablero.setEvento(eventoApuesta);
-        apuesta = new Apuesta();
-        apuesta.setUsers(usuario);
-        apuesta.setTableroGanancia(tablero);
-        apuesta.setFecha(UtilMethods.convertirFechaFormato(new java.util.Date()));
-        if (participanteId == 0) {
-            apuesta.setEmpato(Boolean.TRUE);
-            apuesta.setGano(Boolean.FALSE);
-        }
-        else {
-            apuesta.setGano(Boolean.TRUE);
-            apuesta.setEmpato(Boolean.FALSE);
-        }
+        apuesta = servicioApuesta.armarApuestaParaRealizar(idEvento, idParticipante, montoApuesta, usuario);
         RegistroApuestaTO comando = new RegistroApuestaTO();
-        comando.setFechaEvento(eventoApuesta.getFecha());
-        comando.setMontoApuesta(new Double(monto));
-        comando.setNombreEvento(eventoApuesta.getNombre());
+        comando.setFechaEvento(apuesta.getTableroGanancia().getEvento().getFecha());
+        comando.setMontoApuesta(new Double(apuesta.getMonto()));
+        comando.setNombreEvento(apuesta.getTableroGanancia().getEvento().getNombre());
+        comando.setApostePor(apuesta.getTableroGanancia().getParticipante().getNombre());
         return comando;
     }
 

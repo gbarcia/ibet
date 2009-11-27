@@ -18,6 +18,8 @@ public class RegistroApuestaTO implements Serializable {
 
     private String nombreMetodoPago;
 
+    private String apostePor;
+
     public Date getFechaEvento() {
         return fechaEvento;
     }
@@ -48,5 +50,13 @@ public class RegistroApuestaTO implements Serializable {
 
     public void setNombreMetodoPago(String nombreMetodoPago) {
         this.nombreMetodoPago = nombreMetodoPago;
+    }
+
+    public String getApostePor() {
+        return apostePor;
+    }
+
+    public void setApostePor(String apostePor) {
+        this.apostePor = apostePor;
     }
 }

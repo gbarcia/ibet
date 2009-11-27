@@ -61,7 +61,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioUsuario" ref="servicioUsuario"/>
   <property name="servicioApuesta" ref="servicioApuesta"/>
   <property name="servicioMedioPago" ref="servicioMedioPago"/>
-  <property name="servicioEvento" ref="servicioEvento"/>
 </bean>
 
  <!--
