@@ -123,28 +123,5 @@
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <h2></h2>
-
     </body>
 </html>

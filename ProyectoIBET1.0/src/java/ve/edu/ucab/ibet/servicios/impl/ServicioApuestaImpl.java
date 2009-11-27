@@ -8,10 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.springframework.security.annotation.Secured;
 import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.ApuestaPK;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
@@ -49,19 +51,19 @@ public class ServicioApuestaImpl implements IServicioApuesta {
             throw new ExcepcionNegocio("errors.apuesta.usuario.nometodospago");
         }
     }
-
+    
+    @Secured({"ROLE_USER"})
     public void realizarApuesta(Apuesta apuesta) {
         if (apuesta != null) {
-        esValidaApuestaUsuario(apuesta.getUsers(), apuesta.getTableroGanancia());
-        esvalidaApuestaCasa(apuesta.getTableroGanancia(), apuesta.getMonto(), apuesta.getMedioPago(),apuesta.getUsers());
-        ApuestaPK apuestaPK = new ApuestaPK();
-        apuestaPK.setIdMedioPago(apuesta.getMedioPago().getId());
-        apuestaPK.setUsername(apuesta.getUsers().getUsername());
-        apuesta.setApuestaPK(apuestaPK);
-        genericDao.insertar(apuesta);
-        generarFactura(apuesta.getUsers(), apuesta);
-        }
-        else {
+            esValidaApuestaUsuario(apuesta.getUsers(), apuesta.getTableroGanancia());
+            esvalidaApuestaCasa(apuesta.getTableroGanancia(), apuesta.getMonto(), apuesta.getMedioPago(), apuesta.getUsers());
+            ApuestaPK apuestaPK = new ApuestaPK();
+            apuestaPK.setIdMedioPago(apuesta.getMedioPago().getId());
+            apuestaPK.setUsername(apuesta.getUsers().getUsername());
+            apuesta.setApuestaPK(apuestaPK);
+            genericDao.insertar(apuesta);
+            generarFactura(apuesta.getUsers(), apuesta);
+        } else {
             throw new ExcepcionNegocio("errors.apuesta.invalida");
         }
     }
@@ -141,10 +143,12 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         Calendar horaActual = Calendar.getInstance();
         Integer horaActualNumber = horaActual.get(Calendar.HOUR_OF_DAY);
         Integer horaMaxEventoNumber = horaMaxApuesta.get(Calendar.HOUR_OF_DAY);
-        if (fechaActual.after(fechaMaxEvento)) {
-            return Boolean.FALSE;
+        if (fechaActual.equals(fechaMaxEvento)) {
+            if (horaActualNumber < horaMaxEventoNumber) {
+                resultado = Boolean.TRUE;
+            }
         }
-        if (horaActualNumber < horaMaxEventoNumber) {
+        if (fechaActual.before(fechaMaxEvento)) {
             resultado = Boolean.TRUE;
         }
         return resultado;
@@ -159,15 +163,16 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         Double monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
         return monto;
     }
+
     @SuppressWarnings("unchecked")
-    private void generarFactura (Users usuario, Apuesta apuesta) {
+    private void generarFactura(Users usuario, Apuesta apuesta) {
         Map<String, Object> parameters = new HashMap();
         String titulo = (usuario.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
-        String nombreCompleto = usuario.getNombre() + " " +  usuario.getApellido();
+        String nombreCompleto = usuario.getNombre() + " " + usuario.getApellido();
         Evento evento = servicioEvento.obtenerEventoporTableroGanancia(apuesta.getTableroGanancia());
         Random random = new Random();
-        nombreFactura = usuario.getUsername() + "factura_evento" + evento.getId().toString() ;
-        Integer numeroFactura= java.lang.Math.abs(random.nextInt());
+        nombreFactura = usuario.getUsername() + "factura_evento" + evento.getId().toString();
+        Integer numeroFactura = java.lang.Math.abs(random.nextInt());
         parameters.put("fecha", UtilMethods.convertirFechaFormato(new java.util.Date()).toString());
         parameters.put("titulo", titulo);
         parameters.put("nombreCompleto", nombreCompleto);
@@ -182,7 +187,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         enviarCorreoFactura(usuario);
     }
 
-    private void enviarCorreoFactura (Users user) {
+    private void enviarCorreoFactura(Users user) {
         List<String> datosCorreo = new ArrayList<String>();
         String titulo = (user.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
 
@@ -193,7 +198,39 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         cuerpo += ("<p>" + helperProp.getString("correos.factura.plantillas.mensaje.linea2") + "</p>");
         cuerpo += ("<p>" + helperProp.getString("correos.factura.plantillas.mensaje.linea3") + "</p>");
         File archivo = new File(helperProp.getString("reportes.directorio.correo") + nombreFactura + ".pdf");
-        servicioMail.send(user.getCorreo(), asunto, cuerpo,archivo);
+        servicioMail.send(user.getCorreo(), asunto, cuerpo, archivo);
+    }
+
+    public Apuesta armarApuestaParaRealizar(String idEvento, String idParticipante, String monto, Users usuario) {
+        Integer eventoId = null, participanteId = null, montoApuesta = 0;
+        Apuesta apuesta = new Apuesta();
+        if (UtilMethods.esNumerico(idEvento)) {
+            eventoId = Integer.parseInt(idEvento);
+        }
+        if (UtilMethods.esNumerico(idParticipante)) {
+            participanteId = Integer.parseInt(idParticipante);
+        }
+        if (UtilMethods.esNumerico(monto)) {
+            montoApuesta = Integer.parseInt(monto);
+        }
+        TableroGanancia tablero = new TableroGanancia(eventoId, participanteId);
+        Evento eventoApuesta = servicioEvento.obtenerEvento(eventoId);
+        Participante participante = servicioEvento.obtenerParticipante(participanteId);
+        tablero.setParticipante(participante);
+        tablero.setEvento(eventoApuesta);
+        apuesta = new Apuesta();
+        apuesta.setUsers(usuario);
+        apuesta.setTableroGanancia(tablero);
+        apuesta.setMonto(new Double(montoApuesta));
+        apuesta.setFecha(UtilMethods.convertirFechaFormato(new java.util.Date()));
+        if (participanteId == 0) {
+            apuesta.setEmpato(Boolean.TRUE);
+            apuesta.setGano(Boolean.FALSE);
+        } else {
+            apuesta.setGano(Boolean.TRUE);
+            apuesta.setEmpato(Boolean.FALSE);
+        }
+        return apuesta;
     }
 
     public IGenericDao getGenericDao() {
