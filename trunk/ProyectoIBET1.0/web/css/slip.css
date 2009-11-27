@@ -82,7 +82,7 @@
 
 /* @group SlipInput */
 
-#slip form input[type=text] {
+#slip input[type=text] {
 	background-color: #000;
 	border: 1px solid #fff;
 	color: #fff;
@@ -90,13 +90,13 @@
 	width: 65px;
 }
 
-#slip form input[type=text]:focus {
+#slip input[type=text]:focus {
 	border: 1px solid orange
 }
 
 /* @group SlipBoton */
 
-#slip form input[type="submit"] {
+#slip input[type="button"] {
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-moz-border-radius-topleft: 4px;
@@ -110,7 +110,7 @@
         width:65px
 }
 
-#slip form input[type="submit"]:hover {
+#slip input[type="submit"]:hover {
 	background: #0089B4 url(../images/form/buttonSlipHoverBg.png);
 }
 
