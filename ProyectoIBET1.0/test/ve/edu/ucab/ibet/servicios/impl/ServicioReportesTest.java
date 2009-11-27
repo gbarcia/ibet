@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO;
-import ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.EventosAltoRiesgoTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO;
@@ -38,18 +37,24 @@ public class ServicioReportesTest {
     /**
      * Test of reporteHistorialApuestas method, of class ServicioReporteHistorialApuestas.
      */
-//    @Test
+    @Test
     public void testReporteHistorialApuestas() throws Exception {
         System.out.println("reporteHistorialApuestas");
         String username = "maya";
         Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
-        Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+        Date fechaFin = UtilMethods.stringToFecha("2009-11-28");
 
         System.out.println("fecha inicio: " + fechaInicio);
 
         List<HistorialApuestasTO> result = servicioReporte.reporteHistorialApuestas(username, fechaInicio, fechaFin);
+        String fecha;
         for (HistorialApuestasTO r : result) {
-            System.out.println(r.getUsername() + ", " + r.getEventoFecha() + ", " + r.getFecha() + "\n ");
+            if(r.getFecha() == null){
+                fecha = "null";
+            } else {
+                fecha = UtilMethods.fechaToString(r.getFecha());
+            }
+            System.out.println(r.getUsername() + ", " + r.getEventoFecha() + ", " + fecha + "\n ");
         }
         assertNotNull(result);
     }
@@ -115,7 +120,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testUsuariosMayorAciertos() throws Exception {
         System.out.println("usuariosMayorAciertos");
 
