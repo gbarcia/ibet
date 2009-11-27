@@ -12,6 +12,7 @@ import ve.edu.ucab.ibet.dominio.to.reportes.EventosAltoRiesgoTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
@@ -34,6 +35,14 @@ public class ServicioReportesImpl implements IServicioReportes {
         Object[] o = new Object[3];
         String query = new String();
 
+        if (fechaInicio == null) {
+            fechaInicio = UtilMethods.stringToFecha("2008-01-01");
+        }
+
+        if (fechaFin == null) {
+            fechaFin = UtilMethods.convertirFechaFormato(new java.util.Date());
+        }
+
         o[0] = username;
         o[1] = fechaInicio;
         o[2] = fechaFin;
@@ -47,8 +56,7 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = ? " +
-                "and a.fecha between ? and ? " +
-                "and e.finalizado = true ";
+                "and a.fecha between ? and ? ";
 
         historial.addAll(genericDao.ejecutarQueryList(query, o));
 
@@ -182,7 +190,7 @@ public class ServicioReportesImpl implements IServicioReportes {
 
         String query = new String();
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO (count(e.idCategoria.id), c.nombre) " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CantidadUsuariosCategoriaTO (count(distinct a.users.username), c.nombre) " +
                 "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
                 "where c.id = e.idCategoria " +
                 "and e.id = tg.tableroGananciaPK.idEvento " +

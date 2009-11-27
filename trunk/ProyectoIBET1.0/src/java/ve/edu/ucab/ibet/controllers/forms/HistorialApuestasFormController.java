@@ -34,8 +34,8 @@ public class HistorialApuestasFormController extends SimpleFormController {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
        Principal security = request.getUserPrincipal();
        String username = security.getName();
-       Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
-       Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+       Date fechaInicio = null;
+       Date fechaFin = null;
        List<HistorialApuestasTO> listadoApuestas = servicioReporte.reporteHistorialApuestas(username, fechaInicio, fechaFin);
        ModelAndView mv = new ModelAndView("/privado/front/usuario/historialApuestas");
        mv.addObject("listaHistorial", listadoApuestas);
