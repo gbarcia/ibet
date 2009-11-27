@@ -61,7 +61,7 @@ $(document).ready(function() {
     })
 
     $("#botonApostar").click(function(){
-        window.location = "tableroApuesta.htm?ide=" + $("#idEvento").val() +
+        window.location = "/ProyectoIBET/privado/front/apuesta/tableroApuesta.htm?ide=" + $("#idEvento").val() +
             "&idp=" + $("#idParticipante").val() +
             "&m=" + $("#importe").val();
     }
