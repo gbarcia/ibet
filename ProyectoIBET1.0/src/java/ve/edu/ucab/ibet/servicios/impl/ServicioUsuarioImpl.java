@@ -354,8 +354,8 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
     @SuppressWarnings("unchecked")
     public List<UsuarioMedioPago> obtenerMediosPagoVigenteUsuario(Users usuario) {
-        String query = "select c from MedioPago m, Users u inner join u.usuarioMedioPagoCollection " +
-                " as c where u.username = ? and c.fechaFin = null " +
+        String query = "select distinct c from MedioPago m, Users u inner join u.usuarioMedioPagoCollection " +
+                " as c where u.username = ? and c.fechaFin is null " +
                 "and c.activo = true and m.activo=true";
         Object[] parametros = {usuario.getUsername()};
         List<UsuarioMedioPago> listaMediosPago = genericDao.ejecutarQueryList(query, parametros);
