@@ -83,7 +83,8 @@ public class TableroApuestaFormController extends SimpleFormController {
         comando.setFechaEvento(apuesta.getTableroGanancia().getEvento().getFecha());
         comando.setMontoApuesta(new Double(apuesta.getMonto()));
         comando.setNombreEvento(apuesta.getTableroGanancia().getEvento().getNombre());
-        comando.setApostePor(apuesta.getTableroGanancia().getParticipante().getNombre());
+        String nombreApostePor = (idParticipante.equals("0")) ? "Empate" : apuesta.getTableroGanancia().getParticipante().getNombre();
+        comando.setApostePor(nombreApostePor);
         return comando;
     }
 
@@ -109,9 +110,7 @@ public class TableroApuestaFormController extends SimpleFormController {
         MedioPago medioPago = servicioMedioPago.obtenerMedioPago(registro.getNombreMetodoPago());
         apuesta.setMedioPago(medioPago);
         String monto = apuesta.getMonto().toString();
-        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() +
-                "/privado/front/apuesta/tableroApuesta.htm?" + "ide=" + idEvento +
-                "&idp=" + idParticipante + "&m=" + monto));
+        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() + "/home.htm"));
         try {
             servicioApuesta.realizarApuesta(apuesta);
             resultado = Boolean.TRUE;
