@@ -15,11 +15,13 @@
         <title>TableroApuesta</title>
     </head>
     <body>
-        <form:form commandName="apuesta" action="tableroApuesta.htm">
+        <form:form commandName="apuesta">
+            <form:errors path="*"/>
             <form:input path="nombreEvento" />
             <form:input path="montoApuesta" />
             <form:input path="fechaEvento" />
             <form:select path="nombreMetodoPago" items="${opcionMetodosPago}" />
+            <input type="submit" value="Apostar">
         </form:form>
     </body>
 </html>

@@ -58,7 +58,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  <bean name="/privado/front/apuesta/tableroApuesta.htm"
     class="ve.edu.ucab.ibet.controllers.forms.TableroApuestaFormController">
   <property name="formView" value="privado/front/apuesta/tableroApuesta" />
-  <property name="successView" value="privado/front/apuesta/tableroApuesta" />
   <property name="servicioUsuario" ref="servicioUsuario"/>
   <property name="servicioApuesta" ref="servicioApuesta"/>
   <property name="servicioMedioPago" ref="servicioMedioPago"/>

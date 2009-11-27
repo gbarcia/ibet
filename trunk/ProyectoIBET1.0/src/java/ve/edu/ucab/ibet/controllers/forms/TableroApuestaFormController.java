@@ -10,10 +10,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
+import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
@@ -22,6 +24,7 @@ import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroApuestaTO;
+import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -130,7 +133,38 @@ public class TableroApuestaFormController extends SimpleFormController {
 
      @Override
     protected ModelAndView onSubmit(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) throws Exception {
-         return null;       
+        String atributoError = null;
+        Boolean resultado = Boolean.FALSE;
+        String mensaje = "";
+        String idEvento = apuesta.getTableroGanancia().getEvento().getId().toString();
+        String idParticipante = apuesta.getTableroGanancia().getParticipante().getId().toString();
+        RegistroApuestaTO registro = (RegistroApuestaTO) command;
+        apuesta.setMonto(registro.getMontoApuesta());
+        MedioPago medioPago = servicioMedioPago.obtenerMedioPago(registro.getNombreMetodoPago());
+        apuesta.setMedioPago(medioPago);
+        String monto = apuesta.getMonto().toString();
+        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() +
+                "/privado/front/apuesta/tableroApuesta.htm?" + "ide=" + idEvento +
+                "&idp=" + idParticipante + "&m=" + monto));
+        try {
+            servicioApuesta.realizarApuesta(apuesta);
+            resultado = Boolean.TRUE;
+            mensaje = "exito.registro.usuario";
+        } catch (DataAccessException e) {
+            mensaje = "error.database.notfound";
+            e.printStackTrace();
+        } catch (GeneralException e) {
+            e.printStackTrace();
+            atributoError = servicioUsuario.obtenerAtributoError(e.getKeyError());
+            errors.rejectValue(atributoError, e.getKeyError());
+            mv = showForm(req, resp, errors);
+        } finally {
+            if (!mensaje.equals("")) {
+                mv.addObject("resultado", resultado);
+                mv.addObject("mensaje", mensaje);
+            }
+            return mv;
+        }
     }
 
     @Override
