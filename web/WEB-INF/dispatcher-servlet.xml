@@ -85,7 +85,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean name="/home.htm" class="com.pd.controllers.HomeController">
         <property name="servicioMail" ref="mailService"/>
         <property name="generarReporteDisco" ref="generarReporteDisco"/>
-    </bean>
+        <property name="servicioCliente" ref="servicioCliente" />
+        </bean>
     <bean name="/index.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
     <bean name="/redirect.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
     <bean name="/admin/admin.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />

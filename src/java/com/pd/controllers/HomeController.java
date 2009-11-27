@@ -5,12 +5,16 @@
 
 package com.pd.controllers;
 
+import com.pd.dominio.Cliente;
 import com.pd.dominio.enums.TipoDocumentoReporte;
+import com.pd.generic.excepciones.GeneralException;
 import com.pd.generic.util.GenerarReporteDisco;
 import com.pd.generic.util.HelperProperties.HelperProperties;
 import com.pd.generic.util.mail.interfaces.IMailService;
+import com.pd.servicios.interfaces.IServicioCliente;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +35,16 @@ import org.springframework.web.servlet.mvc.Controller;
 public class HomeController implements Controller {
 
     private GenerarReporteDisco generarReporteDisco;
+
+    private IServicioCliente servicioCliente;
+
+    public IServicioCliente getServicioCliente() {
+        return servicioCliente;
+    }
+
+    public void setServicioCliente(IServicioCliente servicioCliente) {
+        this.servicioCliente = servicioCliente;
+    }
 
     public GenerarReporteDisco getGenerarReporteDisco() {
         return generarReporteDisco;
@@ -53,7 +67,10 @@ public class HomeController implements Controller {
     }
 
     public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1)
-            throws ServletException,IOException {
+            throws ServletException,IOException, GeneralException {
+
+        Principal p = arg0.getUserPrincipal();
+        System.out.println(p.getName());
 
         List<String> lista = new ArrayList<String>();
        File archivo = new File("/home/nath/NetBeansProjects/EnvioMail/web/WEB-INF/web.xml");
@@ -82,6 +99,7 @@ public class HomeController implements Controller {
             session = arg0.getSession(true);
             session.setAttribute("nombre", "El nombre");
            String now = (new Date().toString());
+           List<Cliente> listaClientes = servicioCliente.listarClientes();
 
            // Reportes internos
 
@@ -90,7 +108,7 @@ public class HomeController implements Controller {
 //           parameters.put("nombre", "Gerardo");
 //
 //           generarReporteDisco.generarReporte(parameters, TipoDocumentoReporte.PDF, "tarifa");
-           return new ModelAndView("home","now",now);
+           return new ModelAndView("home","listaClientes",listaClientes);
     }
 
 }

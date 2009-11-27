@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pd.generic.dao.implementaciones;
 
 import com.pd.generic.dao.interfaces.IGenericDao;
@@ -20,8 +16,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- *
- * @author nath
+ * Clase de implementacion del DAO generico
+ * @author Gerardo Barcia
+ * @version 1.0
  */
 public class GenericDao extends HibernateDaoSupport implements IGenericDao {
 
