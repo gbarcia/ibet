@@ -105,6 +105,7 @@
         <intercept-url pattern="/js/**" filters="none" />
         <intercept-url pattern="/login.htm" filters="none" />
         <intercept-url pattern="/home.htm" access="ROLE_USER,ROLE_GUEST" />
+        <intercept-url pattern="/public/front/eventos/eventos.htm" access="ROLE_USER,ROLE_GUEST" />
         <intercept-url pattern="/include/header.jsp" access="ROLE_USER,ROLE_GUEST" />
         <intercept-url pattern="/privado/back/admin.htm" access="ROLE_ADMIN" />
         <intercept-url pattern="/privado/back/reportes/**" access="ROLE_ADMIN" />
