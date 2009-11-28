@@ -130,7 +130,7 @@
                 authentication-failure-url="/login.jsp?authfailed=true" />
         -->
         <logout invalidate-session="true" logout-url="/logout.htm"
-			logout-success-url="/login.htm?loggedout=true" />
+			logout-success-url="/home.htm" />
 
         <!--
                 make sure you have
