@@ -110,18 +110,18 @@ public class ServicioEventoImplTest {
     /**
      * Test of obtenerEventosDeUnaCategoria method, of class ServicioEventoImpl.
      */
-    @Test
-    public void testObtenerEventosDeUnaCategoria() {
-        System.out.println("obtenerEventosDeUnaCategoria");
-        Integer categoria = 2;
-        List<Evento> result = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
-        for (Evento evento : result) {
-            System.out.println(evento.getNombre());
-        }
-        assertNotNull(result);
+//    @Test
+//    public void testObtenerEventosDeUnaCategoria() {
+//        System.out.println("obtenerEventosDeUnaCategoria");
+//        Integer categoria = 2;
+//        List<Evento> result = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
+//        for (Evento evento : result) {
+//            System.out.println(evento.getNombre());
+//        }
+//        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
-    }
+//    }
 
 //    @Test
     public void testObtenerEventoporTableroGananciaTest() {
