@@ -2,7 +2,7 @@
     width:100%;
 }
 
-.dataTable thead{
+.dataTable thead th{
     background-color:#171717;
     border:#000 solid 1px;
     color:orange;
@@ -13,54 +13,17 @@
 }
 
 .dataTable  td {
-    background-color:#202020;
     border:#000 solid 1px;
-    cursor:pointer;
     padding:1px 4px;
     vertical-align:top;
 }
 
-.dataTable tr.total td.customer {
-    visibility: hidden;
-}
-
-.dataTable td.hidden {
-    display: none;
-}
-
-.dataTable th.hidden {
-    display: none;
-}
-
-.dataTable th.r {
-    text-align: right;
-    padding-right: 10px;
-}
-
-.dataTable th.c {
-    text-align: center;
-}
-
-.dataTable td.r {
-    text-align: right;
-    padding-right: 10px;
-}
-
-.dataTable td.c {
-    text-align: center;
-}
-
 .dataTable  tr.odd {
-    background-color: whitesmoke;
+    background-color: #404040;
 }
 
 .dataTable tr.even {
-    background-color: #d6cfe6;
-}
-
-.dataTable th a   ,.dataTable th a:visited {
-    text-align: left;
-    color: white;
+    background-color: #202020;
 }
 
 .dataTable th a:hover {
@@ -118,39 +81,4 @@ span.rtf {
     background-image: url(../images/displayTag/ico_file_rtf.png);
     background-repeat: no-repeat;
     width: 16px;
-}
-
-.dataTable tr.rowMouseOver {
-    background-image: url(../images/displayTag/selected.gif);
-    background-repeat: repeat-x;
-    background-color: #ffff99;
-}
-
-.pageHeader {
-    height: 60px;
-    background-image: url(../images/displayTag/header.gif);
-    background-repeat: repeat-x;
-}
-
-.pageHeaderText {
-    font-size: 30px;
-    margin-left: 5px;
-    color: #fff;
-    font-family: "century gothic", verdana, arial, helvetica, sans-serif;
-    font-weight: bold;
-    text-align: left;
-    display:inline;
-    white-space: nowrap;
-}
-
-.leftMenu {
-    white-space: nowrap;
-    height: 100%;
-    background-color: #d6cfe6;
-    font-family: verdana, arial, helvetica, sans-serif;
-}
-
-.borderedInline {
-    display: inline;
-    border: 1px solid black;
 }

@@ -41,6 +41,12 @@ public interface IServicioEvento {
     public List<Evento> obtenerProximosEventos();
 
     /**
+     * firma para obtener los proximos eventos en ocurrir para una categoria
+     * @return lista de eventos
+     */
+    public List<Evento> obtenerProximosEventosDeUnaCategoria(Integer idSubcategoria);
+
+    /**
      * firma para obtener los proximos eventos en ocurrir que tienen una imagen
      * @return lista de eventos
      */

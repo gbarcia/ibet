@@ -33,7 +33,7 @@ public class EventosController implements Controller {
         String idCategoria = req.getParameter("idCategoria");
         if (UtilMethods.esNumerico(idCategoria)) {
             Integer categoria = Integer.parseInt(idCategoria);
-            eventos = servicioEvento.obtenerEventosDeUnaCategoria(categoria);
+            eventos = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
         }
         mv.addObject("eventos", eventos);
         return mv;

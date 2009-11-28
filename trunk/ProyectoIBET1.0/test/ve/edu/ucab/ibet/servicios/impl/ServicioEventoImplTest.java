@@ -110,11 +110,11 @@ public class ServicioEventoImplTest {
     /**
      * Test of obtenerEventosDeUnaCategoria method, of class ServicioEventoImpl.
      */
-//    @Test
+    @Test
     public void testObtenerEventosDeUnaCategoria() {
         System.out.println("obtenerEventosDeUnaCategoria");
         Integer categoria = 2;
-        List<Evento> result = servicioEvento.obtenerEventosDeUnaCategoria(categoria);
+        List<Evento> result = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
         for (Evento evento : result) {
             System.out.println(evento.getNombre());
         }
@@ -133,7 +133,7 @@ public class ServicioEventoImplTest {
         System.out.println(evento.getHoraMaxima());
     }
 
-    @Test
+//    @Test
     public void testObtenerProximosEventos(){
         System.out.println("Proximos eventos");
         List<Evento> proximosEventos = null;

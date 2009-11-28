@@ -82,6 +82,20 @@ public class ServicioEventoImpl implements IServicioEvento {
         return eventos;
     }
 
+    public List<Evento> obtenerProximosEventosDeUnaCategoria(Integer idSubcategoria) {
+        List<Evento> eventos = new ArrayList<Evento>();
+        String query = "select a from Categoria c inner join c.eventoCollection as a " +
+                "where c.id=? " +
+                "and a.fechaEvento >= current_date " +
+                "and a.estatus = 1 " +
+                "and a.finalizado = 0 " +
+                "order by a.fechaEvento, a.hora";
+        Object[] parametros = {idSubcategoria};
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros));
+        return eventos;
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventosConImagen() {
         List<Evento> eventos = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
@@ -113,4 +127,5 @@ public class ServicioEventoImpl implements IServicioEvento {
         }
         return participante;
     }
+
 }
