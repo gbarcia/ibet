@@ -158,11 +158,13 @@ public class ServicioApuestaImpl implements IServicioApuesta {
 
     private Double obtenerCantidadApostadaParaEvento(TableroGanancia tablero) {
         String query = new String();
+        Double monto = new Double(0.0);
         Evento evento = servicioEvento.obtenerEventoporTableroGanancia(tablero);
         Object[] parametros = {evento.getId()};
         query = "Select New java.lang.Double (Sum(a.monto)) from Apuesta a where a.tableroGanancia.evento.id =? " +
                 "group by a.tableroGanancia.evento.nombre";
-        Double monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
+        monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
+        if (monto == null) monto = 0.0;
         return monto;
     }
 

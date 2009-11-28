@@ -116,7 +116,7 @@
                 </div>
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
-            <c:if test="${not empty param.mensaje}">
+            <c:if test="${param.mensaje == 'exito.apuesta'}">
                 <div id="alert"><spring:message code="exito.apuesta"/></div>
             </c:if>
         </div>

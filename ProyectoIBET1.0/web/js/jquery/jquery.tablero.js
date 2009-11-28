@@ -6,7 +6,7 @@ $(document).ready(function() {
         {
             var alerttimer = window.setTimeout(function () {
                 $alert.trigger('click');
-            }, 3000);
+            }, 9000);
             $alert.animate({
                 height: $alert.css('line-height') || '50px'
                 }, 200)
