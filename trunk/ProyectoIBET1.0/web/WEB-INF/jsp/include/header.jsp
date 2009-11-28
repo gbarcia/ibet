@@ -27,7 +27,12 @@
                 <div id="username">
                     <security:authentication property="principal.username"/>
                 </div>
-                <div id="userOptions"><a href="">Opcion</a> | <a href="">Opcion</a> | <a href="asdasd">Opcion</a></div>
+                <div id="userOptions">
+                    <a href="/ProyectoIBET/privado/front/usuario/perfilUsuario.htm"><spring:message code="header.perfil"/></a> |
+                    <a href="/ProyectoIBET/privado/front/usuario/historialApuestas.htm"><spring:message code="header.historial"/></a> |
+                    <a href="/ProyectoIBET/privado/front/usuario/metodosPagoUsuario.htm"><spring:message code="header.metodos"/></a> |
+                    <a href="/ProyectoIBET/logout.htm"><spring:message code="header.logout"/></a>
+                </div>
             </div>
         </security:authorize>
     </div>

@@ -1,5 +1,24 @@
 $(document).ready(function() {
 
+    $(function () {
+        var $alert = $('#alert');
+        if($alert.length)
+        {
+            var alerttimer = window.setTimeout(function () {
+                $alert.trigger('click');
+            }, 3000);
+            $alert.animate({
+                height: $alert.css('line-height') || '50px'
+                }, 200)
+            .click(function () {
+                window.clearTimeout(alerttimer);
+                $alert.animate({
+                    height: '0'
+                }, 200);
+            });
+        }
+    });
+
     $("#slipForm").hide();
 
     var active = null;
@@ -62,11 +81,10 @@ $(document).ready(function() {
 
     $("#botonApostar").click(function(){
         window.location = "/ProyectoIBET/privado/front/apuesta/tableroApuesta.htm?ide=" + $("#idEvento").val() +
-            "&idp=" + $("#idParticipante").val() +
-            "&m=" + $("#importe").val();
+        "&idp=" + $("#idParticipante").val() +
+        "&m=" + $("#importe").val();
     }
-)
-
+    )
 
 
 });
