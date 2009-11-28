@@ -37,29 +37,30 @@
 	border-top: #fff solid 1px;
 }
 
-#pick{
+#slip #pick{
     position:relative
 }
 
-#proporcion{
+#slip #proporcion{
     position:absolute;
     right:0;
     bottom:0
 }
 
-#nombreParticipante{
+#slip #nombreParticipante{
     font-size:1.5em;
-    font-weight:700
+    font-weight:700;
+    text-align:left
 }
 
-#ganancias{
+#slip #ganancias{
     font-weight:700;
     width:68px;
     overflow:hidden
 }
 
-#nombreEvento{
-    text-align:center
+#slip #nombreEvento{
+    text-align:right
 }
 
 /* @end */
@@ -104,9 +105,10 @@
 	-moz-border-radius-topright: 4px;
 	background: #00AAE2 url(../images/form/buttonSlipBg.png);
 	border: 1px solid #fff;
-	color: #fff;
+	color: #141414;
 	cursor: pointer;
 	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+        font-weight:700;
         padding:2px 8px;
         width:65px
 }
@@ -124,4 +126,5 @@
 
 #slip td{
     vertical-align:middle;
+    text-align:left
 }

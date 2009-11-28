@@ -66,6 +66,10 @@ public class ServicioEventoImpl implements IServicioEvento {
         return politica;
     }
 
+    static Integer PROXIMOS_EVENTOS_MINIMO = 0;
+    static Integer PROXIMOS_EVENTOS_MAXIMO = 25;
+
+    @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventos() {
         List<Evento> eventos = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
@@ -74,7 +78,7 @@ public class ServicioEventoImpl implements IServicioEvento {
                 "and a.finalizado = 0 " +
                 "order by a.fechaEvento, a.hora";
         Object[] parametros = {};
-        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, 0, 25));
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, PROXIMOS_EVENTOS_MINIMO, PROXIMOS_EVENTOS_MINIMO));
         return eventos;
     }
 
@@ -91,6 +95,7 @@ public class ServicioEventoImpl implements IServicioEvento {
         return eventos;
     }
 
+    @SuppressWarnings("unchecked")
     public Evento obtenerEvento(Integer idEvento) {
         Evento evento = null;
         evento = (Evento)genericDao.findByPropertyUnique(Evento.class, "id", idEvento);
