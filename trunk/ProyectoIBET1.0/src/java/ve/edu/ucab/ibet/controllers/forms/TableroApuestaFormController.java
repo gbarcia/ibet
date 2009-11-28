@@ -114,7 +114,7 @@ public class TableroApuestaFormController extends SimpleFormController {
         try {
             servicioApuesta.realizarApuesta(apuesta);
             resultado = Boolean.TRUE;
-            mensaje = "exito.registro.usuario";
+            mensaje = "exito.apuesta";
         } catch (DataAccessException e) {
             mensaje = "error.database.notfound";
             e.printStackTrace();

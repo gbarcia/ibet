@@ -27,10 +27,10 @@
                             <div class="pane">
                                 <form:form commandName="perfil" action="perfilUsuario.htm">
                                     <fieldset>
-                                        <legend>Introduce tu Datos</legend>
+                                        <legend><spring:message code="usuario.encabezado.datos"/></legend>
                                         <form:errors path="*"/>
                                         <c:if test="${param.resultado == 'SUCCESS'}">
-                                            <h2>Formulario Procesado</h2>
+                                            <h2><spring:message code="exito.cambio.perfil"/></h2>
                                         </c:if>
                                         <br>
                                         <table>
@@ -107,7 +107,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>&nbsp;</th>
-                                                    <td><input type="submit" value="Registrar"/></td>
+                                                    <td><input type="submit" value="Actualizar"/></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                             </tbody>
