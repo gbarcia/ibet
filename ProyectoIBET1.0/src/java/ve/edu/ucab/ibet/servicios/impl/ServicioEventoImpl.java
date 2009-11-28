@@ -82,6 +82,7 @@ public class ServicioEventoImpl implements IServicioEvento {
         return eventos;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventosDeUnaCategoria(Integer idSubcategoria) {
         List<Evento> eventos = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
