@@ -78,7 +78,7 @@ public class ServicioEventoImpl implements IServicioEvento {
                 "and a.finalizado = 0 " +
                 "order by a.fechaEvento, a.hora";
         Object[] parametros = {};
-        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, PROXIMOS_EVENTOS_MINIMO, PROXIMOS_EVENTOS_MINIMO));
+        eventos.addAll(genericDao.ejecutarQueryList(query, parametros, PROXIMOS_EVENTOS_MINIMO, PROXIMOS_EVENTOS_MAXIMO));
         return eventos;
     }
 
