@@ -24,6 +24,9 @@
                 <div id="contentWrapper">
                     <div id="contentColumn">
                         <div id="centerPane">
+
+
+
                             <%--<div class="paneTitle">
                                 <spring:message code="home.destacado"/>
                             </div>
@@ -113,6 +116,9 @@
                 </div>
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
+            <c:if test="${not empty param.mensaje}">
+                <div id="alert"><spring:message code="exito.apuesta"/></div>
+            </c:if>
         </div>
     </body>
 </html>

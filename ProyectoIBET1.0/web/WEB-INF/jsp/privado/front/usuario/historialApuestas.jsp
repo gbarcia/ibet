@@ -28,16 +28,16 @@
                             <div class="pane">
                                 <form:form>
                                 </form:form>
-                            </div>
-                            <div>
-                                <display:table id="listadoApuestas" name="listaHistorial" pagesize="1" decorator="org.displaytag.decorator.TotalTableDecorator"
-                                               export="true" class="dataTable" requestURI="historialApuestas.htm">
-                                    <display:column property="fecha" title="Fecha" sortable="true"/>
-                                    <display:column property="eventoNombre" title="Evento"/>
-                                    <display:column property="monto" title="Monto($)"  sortable="true"/>
-                                    <display:column property="participanteNombre" title="Aposte por" />
-                                    <display:column property="eventoResultado" title="Resultado" />
-                                </display:table>
+                                <div>
+                                    <display:table id="listadoApuestas" name="listaHistorial" pagesize="5" decorator="org.displaytag.decorator.TotalTableDecorator"
+                                                   export="true" class="dataTable" requestURI="historialApuestas.htm">
+                                        <display:column property="fecha" title="Fecha" sortable="true"/>
+                                        <display:column property="eventoNombre" title="Evento" sortable="true"/>
+                                        <display:column property="monto" title="Monto ($)"  sortable="true"/>
+                                        <display:column property="participanteNombre" title="Aposte por" sortable="true"/>
+                                        <display:column property="eventoResultado" title="Resultado" sortable="true"/>
+                                    </display:table>
+                                </div>
                             </div>
                         </div>
                     </div>
