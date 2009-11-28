@@ -30,7 +30,7 @@
                                         <legend><spring:message code="usuario.encabezado.datos"/></legend>
                                         <form:errors path="*"/>
                                         <c:if test="${param.resultado == 'SUCCESS'}">
-                                            <h2><spring:message code="exito.cambio.perfil"/></h2>
+                                            <div class="succes"><spring:message code="exito.cambio.perfil"/></div>
                                         </c:if>
                                         <br>
                                         <table>
