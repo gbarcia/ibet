@@ -133,7 +133,7 @@ public class ServicioEventoImplTest {
         System.out.println(evento.getHoraMaxima());
     }
 
-//    @Test
+    @Test
     public void testObtenerProximosEventos(){
         System.out.println("Proximos eventos");
         List<Evento> proximosEventos = null;
@@ -146,7 +146,7 @@ public class ServicioEventoImplTest {
         }
     }
 
-    @Test
+//    @Test
     public void testObtenerProximosEventosConImagen(){
         System.out.println("Proximos eventos");
         List<Evento> proximosEventos = null;
