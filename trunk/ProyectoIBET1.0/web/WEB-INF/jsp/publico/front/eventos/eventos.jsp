@@ -3,6 +3,7 @@
     Created on : Nov 24, 2009, 9:43:36 AM
     Author     : jonathan
 --%>
+<%@page session="true" %>
 <%@include file="/WEB-INF/jsp/include/include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
