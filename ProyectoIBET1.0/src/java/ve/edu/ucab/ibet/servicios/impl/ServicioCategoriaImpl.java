@@ -61,4 +61,20 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         lista = genericDao.listar(Categoria.class);
         return lista;
     }
+
+    public void agregarCategoria(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void editarCategotia(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Categoria obtenerCategoria(Integer idCategoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void inhabilitarCategoria(Integer idCategoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
