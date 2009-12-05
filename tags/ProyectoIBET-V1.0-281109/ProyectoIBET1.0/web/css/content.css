@@ -1,0 +1,54 @@
+/* 
+    Document   : content.css
+    Created on : Oct 26, 2009, 1:34:03 PM
+    Author     : jonathan
+    Description:
+        Estilos de Contenido.
+*/
+
+/* @group Contenido */
+
+#centerPane {
+	background-color: #303030;
+	border: #000 solid 1px;
+	border-bottom: none
+}
+
+.pane {
+	border-bottom: #000 solid 1px;
+	color: #fff;
+	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	padding: 10px;
+	text-align: justify
+}
+
+.paneTitle {
+	background-color: #429CFF;
+	border-bottom: #000 solid 1px;
+	color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	font-size: 20px;
+        font-weight:700;
+	letter-spacing: 2px;
+	padding: 5px 10px
+}
+
+/* @end */
+
+/* @group Links */
+
+.pane a {
+	color: #429CFF;
+	font-weight: 700;
+	text-decoration: none
+}
+
+.pane a:hover,.pane a:active {
+	text-decoration: underline
+}
+
+.pane a:visited {
+	color: #94c7ff
+}
+
+/* @end */

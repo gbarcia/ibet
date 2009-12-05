@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+ <!-- Archivo de aplicacion de contexto Servlet para el manejo de las peticiones -->
+
+ <!-- -
+ ************************ CONFIGURACION DE MENSAJES **********************
+ -->
+
+ <!-- CONFIGURACION DE LOS MENSAJES DE PRESENTACION Y ERRORES  -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="alwaysUseMessageFormat" value="true" />
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+                <value>errors</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- CONFIGURACION DE LOS ARCHIVOS DE VALIDACION DE LOS FORMULARIOS  -->
+    <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+        <property name="validationConfigLocations">
+            <list>
+                <value>WEB-INF/validaciones/validator-rules.xml</value>
+                <value>WEB-INF/validaciones/validatorUsuario.xml</value>
+                <value>WEB-INF/validaciones/validatorCategoria.xml</value>
+                <value>WEB-INF/validaciones/validatorEvento.xml</value>
+                <value>WEB-INF/validaciones/validatorApuesta.xml</value>
+                <value>WEB-INF/validaciones/validatorMedioPago.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- CONFIGURACION DEL BEAN QUE VALIDARA LOS FORMULARIOS  -->
+    <bean id="beanValidator" class="org.springmodules.validation.commons.DefaultBeanValidator">
+        <property name="validatorFactory" ref="validatorFactory" />
+    </bean>
+
+ <!-- -
+ ************************ CONFIGURACION DE VISTAS **********************
+ -->
+
+    <!-- BEAN DE VISTAS PARA LOS ARCHIVOS JSP -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!-- BEAN PARA RESOLVER FORMULARIOS CON ARCHIVOS -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000" />
+        <property name="maxInMemorySize" value="5000000" />
+    </bean>
+
+    <!-- BEAN DE VISTAS PARA LOS REPORTES -->
+    <bean id="ResourceBunldeViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="basename">
+            <value>views</value>
+        </property>
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
+
+    <!-- BEAN DE VISTAS PARA LAS EXCEPCIONES -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">friendlyError</prop>
+                <prop key="ve.edu.ucab.ibet.generic.excepciones.GeneralException">friendlyErrorNegocio</prop>
+                <prop key="org.apache.jasper.JasperException">Error</prop>
+            </props>
+        </property>
+    </bean>
+
+<!-- -
+ *********************** CONFIGURACION DE LOS CONTROLADORES ********************
+ -->
+
+    <!-- BEAN PARA URLNAMEMAPPING -->
+    <bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
+
+    <!-- BEAN PARA LOS CONTROLADORES DE LOS REPORTES -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/repHistorial*">controllerHistApuestas</prop>
+                <prop key="/repCategoriasGanancias*">controllerCategoriasGanancias</prop>
+                <prop key="/repCategoriasPerdidas*">controllerCategoriasPerdidas</prop>
+                <prop key="/repCantidad*">controllerCantidadUsuariosCat</prop>
+                <prop key="/repUsuarios*">controllerUsuariosMayorAciertos</prop>
+                <prop key="/repEventos*">controllerEventosRiesgos</prop>
+            </props>
+        </property>
+        <property name="order">
+            <value>0</value>
+        </property>
+    </bean>
+    
+     <!-- CONTROLADORES MAPEADOS EN EL URLMAPPING DE REPORTES
+        Se deben indicar controllers para los reportes que tengan resolvers
+        donde se indicaran los metodos que soportaran cada reporte
+     -->
+
+     <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO HISTORIAL APUESTAS -->
+    <bean id="controllerHistApuestas" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteHistorialUsuarioController">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+        <!--<property name="servicioCliente" ref="servicioCliente" /> -->
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR GANANCIAS -->
+    <bean id="controllerCategoriasGanancias" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasGanancias">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CATEGORIAS POR PERDIDAS -->
+    <bean id="controllerCategoriasPerdidas" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCategoriasPerdidas">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO CANTIDAD USUARIOS POR CATEGORIA -->
+    <bean id="controllerCantidadUsuariosCat" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteCantidadUsuariosCat">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+    </bean>
+
+    <!--BEAN PARA MANEJAR LOS REPORTES DE TIPO USUARIOS CON MAYOR ACIERTOS -->
+    <bean id="controllerUsuariosMayorAciertos" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteUsuariosMayorAciertos">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+    </bean>
+    
+    <!--BEAN PARA MANEJAR LOS REPORTES DE ALTO RIESGO -->
+    <bean id="controllerEventosRiesgos" class="ve.edu.ucab.ibet.controllers.reportes.impl.ReporteEventosRiesgo">
+        <property name="methodNameResolver">
+            <ref local="resolver"/>
+        </property>
+        <property name="servicioReportes" ref="servicioReporte"/>
+    </bean>
+
+    <!--BEAN PARA INDICAR EL METODO QUE MANEJARA LA CREACION DEL REPORTE SEGUN EXTENCION -->
+    <bean id="resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+        <property name="mappings">
+            <props>
+                <prop key="/*.pdf">generarReportePDF</prop>
+                <prop key="/*.xls">generarReporteXLS</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--BEAN PARA INDICAR EL USO DE INTERNACIONALIZACION I18N -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+
+<!-- -
+ *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
+ -->
+    
+    <bean name="/home.htm" class="ve.edu.ucab.ibet.controllers.views.HomeController">
+        <property name="servicioEvento" ref="servicioEvento" />
+    </bean>
+    <!-- -
+ *********************** MAPEO PAGINA PRINCIPAL APLICACION ********************
+ -->
+
+    <bean name="/publico/front/eventos/eventos.htm" class="ve.edu.ucab.ibet.controllers.views.EventosController">
+        <property name="servicioEvento" ref="servicioEvento" />
+    </bean>
+    <!-- -
+ *********************** MAPEO PAGINA LOGIN APLICACION ********************
+ -->
+    <bean name="/login.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+<!-- -
+ *********************** IMPORTACIONES DE DISTPATCHERS ********************
+ -->
+
+    <import resource="config/dispatchers/servlet-backend.xml"/>
+    <import resource="config/dispatchers/servlet-frontend.xml"/>
+    
+</beans>

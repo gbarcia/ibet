@@ -1,0 +1,103 @@
+/*
+    Document   : header
+    Created on : Oct 22, 2009, 12:49:22 PM
+    Author     : jonathan
+    Description:
+        Estilos de header.
+*/
+
+/* @group Header */
+
+#header {
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	width: 100%
+}
+
+#headerTop {
+	background-color: #6EB3FA;
+	background-image: url('../images/bg/headerTopBg.png');
+	height: 55px;
+	position: relative
+}
+
+#headerBottom {
+	background-color: #171717;
+	border-bottom: solid #FFF 1px;
+	border-top: solid #FFF 1px;
+	height: 25px;
+	position: relative
+}
+
+/* @end */
+
+/* @group Logo */
+
+#logo {
+	float: left;
+	padding: 2.5px 0;
+	text-align: center;
+	width: 225px
+}
+
+#logo img {
+	border: 0
+}
+
+/* @end */
+
+/* @group Panel de Sesion */
+
+#sesion {
+	border-left: solid #FFF 1px;
+	color: #fff;
+	height: 45px;
+	padding: 5px 10px;
+	position: absolute;
+	right: 0;
+	top: 0
+}
+
+#username {
+	font-size: 1em;
+	line-height: 22.5px
+}
+
+#userOptions {
+	font-size: .7em;
+	line-height: 22.5px
+}
+
+/* @end */
+
+/* @group Panel de Twitter */
+
+#twitter {
+	padding: 0 10px
+}
+
+#twitter img {
+	border: none;
+	float: right;
+	padding: 4px
+}
+
+#twitterText {
+	float: right;
+	font-size: .75em;
+	line-height: 25px
+}
+
+/* @end */
+
+/* @group Enlaces */
+
+#sesion a,#twitter a {
+	color: #fff;
+	text-decoration: none
+}
+
+#sesion a:active,#sesion a:hover,#twitter a:active,#twitter a:hover {
+	text-decoration: underline
+}
+
+/* @end */
