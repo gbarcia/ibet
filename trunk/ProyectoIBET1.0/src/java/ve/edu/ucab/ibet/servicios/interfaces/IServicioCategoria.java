@@ -28,4 +28,29 @@ public interface IServicioCategoria {
      * @return Lista de categorias registradas
      */
     public List<Categoria> listarCategorias();
+
+    /**
+     * firma para registrar una nueva categoria
+     * @param categoria objeto con la informacion de la categoria a registrar
+     */
+    public void agregarCategoria (Categoria categoria);
+
+    /**
+     * firma para editar una categoria
+     * @param categoria objeto con los datos de la categoria
+     */
+    public void editarCategotia (Categoria categoria);
+
+    /**
+     * firma para obtener una categoria en particular
+     * @param idCategoria id de la categoria a obtener
+     * @return objeto Categoria con sus datos
+     */
+    public Categoria obtenerCategoria (Integer idCategoria);
+
+    /**
+     * firma para inhabilitar del sistema una categoria
+     * @param idCategoria id de la categoria a deshabilitar
+     */
+    public void inhabilitarCategoria (Integer idCategoria);
 }
