@@ -11,7 +11,7 @@
     <global>
         <constant>
             <constant-name>soloLetrasMask</constant-name>
-            <constant-value>^[A-Za-z]*$</constant-value>
+            <constant-value>^[A-Za-z.\s]*$</constant-value>
         </constant>
     </global>
     <formset>
