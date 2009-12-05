@@ -1,0 +1,49 @@
+/* 
+    Document   : messages
+    Created on : Oct 27, 2009, 12:31:01 AM
+    Author     : jonathan
+    Description:
+        Estilos de Mensajes.*/
+
+.information,.succes,.error,.warning {
+    background-color: #202020;
+    border-style: dotted;
+    border-width: 1px;
+    color: #fff;
+    padding: 5px
+}
+
+.information ul,.succes ul,.error ul,.warning ul {
+    list-style-position: inside;
+    list-style-type: circle;
+}
+
+.information {
+    border-color: #429CFF
+}
+
+.succes {
+    border-color: #0f0
+}
+
+.error {
+    border-color: red
+}
+
+.warning {
+    border-color: #faff00
+}
+
+#alert{
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    height: 0;
+    color: #000;
+    font: 1em/2.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    opacity: .75;
+}
