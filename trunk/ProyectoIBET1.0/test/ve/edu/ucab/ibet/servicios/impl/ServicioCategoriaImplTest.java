@@ -106,7 +106,7 @@ public class ServicioCategoriaImplTest {
     /**
      * Test of obtenerCategorias method, of class ServicioCategoriaImpl.
      */
-    @Test
+    //@Test
     public void testObtenerCategorias() {
         System.out.println("obtenerCategorias");
         List<Categoria> result = servicioCategoria.obtenerCategoriasPadres();
@@ -118,11 +118,21 @@ public class ServicioCategoriaImplTest {
 //       fail("The test case is a prototype.");
     }
 
-    @Test
+    //@Test
     public void testObtenerSubcategoriasDeUnaCategoria() {
         System.out.println("obetenerSubcategoriasDeUnaCategoria");
         Categoria categoria = new Categoria(1);
         List<Categoria> result = servicioCategoria.obtenerSubcategoriasDeUnaCategoria(categoria);
+        for (Categoria categoria1 : result) {
+            System.out.println(categoria1.getNombre());
+        }
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testListarCategorias() {
+        System.out.println("Listar Categorias");
+        List<Categoria> result = servicioCategoria.listarCategorias();
         for (Categoria categoria1 : result) {
             System.out.println(categoria1.getNombre());
         }

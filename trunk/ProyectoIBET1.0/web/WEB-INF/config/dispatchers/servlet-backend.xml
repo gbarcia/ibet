@@ -60,5 +60,11 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <bean name="/privado/back/admin.htm"
     class="ve.edu.ucab.ibet.controllers.views.IndexAdminController">
 </bean>
+ <!-- Bean para mostrar la pagina de inicio de la gestion de categorias -->
+<bean name="/privado/back/categoria/homeCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.HomeCategoriaController">
+        <property name="servicioCategoria" ref="servicioCategoria" />
+        <property name="herlperProp" ref="helperProperties" />
+</bean>
     
 </beans>
