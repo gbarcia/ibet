@@ -22,4 +22,10 @@ public interface IServicioCategoria {
      * @return lista con las subcategorias de la categoria dada
      */
     public List<Categoria> obtenerSubcategoriasDeUnaCategoria(Categoria categoriaPadre);
+
+    /**
+     * firma para obtener todas las categorias registradas
+     * @return Lista de categorias registradas
+     */
+    public List<Categoria> listarCategorias();
 }

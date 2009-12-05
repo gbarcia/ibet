@@ -54,4 +54,11 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         subcategorias.addAll(this.genericDao.ejecutarQueryList(query, parametros));
         return subcategorias;
     }
+
+    @SuppressWarnings("unchecked")
+    public List<Categoria> listarCategorias() {
+        List<Categoria> lista = new ArrayList<Categoria>();
+        lista = genericDao.listar(Categoria.class);
+        return lista;
+    }
 }
