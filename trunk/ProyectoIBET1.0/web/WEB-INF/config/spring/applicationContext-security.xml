@@ -98,6 +98,7 @@
     -->
     <http entry-point-ref="myAuthenticationEntryPoint" auto-config="false">
         <intercept-url pattern="/redirect.jsp" filters="none" />
+        <intercept-url pattern="/IbetWebServices**" filters="none" />
         <intercept-url pattern="/publico/**" access="ROLE_USER,ROLE_GUEST" />
         <intercept-url pattern="/css/**" filters="none" />
         <intercept-url pattern="/images/**" filters="none" />

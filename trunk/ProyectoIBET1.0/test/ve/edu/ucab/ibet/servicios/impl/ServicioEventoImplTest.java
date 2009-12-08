@@ -5,6 +5,7 @@
 
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,6 +20,7 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 
@@ -157,6 +159,19 @@ public class ServicioEventoImplTest {
                                evento.getFechaEvento() + ":" +
                                evento.getHora());
         }
+    }
+
+    @Test
+    public void testObtenertableroGananciaPorEquiposYEvento(){
+        System.out.println("Tablero de ganancia");
+        String fechaEvento = "2009-11-28";
+        Date fecha = UtilMethods.stringToFecha(fechaEvento);
+        String nombreEquipo = "VillarrealA";
+        TableroGanancia tablero = null;
+        tablero = servicioEvento.obtenerTableroPorEquipoyEvento(fecha, nombreEquipo);
+        assertNotNull(tablero);
+        System.out.println(tablero.getParticipante().getNombre());
+        System.out.println(tablero.getPropocionGano());
     }
 
 }

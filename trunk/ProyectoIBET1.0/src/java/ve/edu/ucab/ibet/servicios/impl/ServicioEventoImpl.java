@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
@@ -62,10 +63,11 @@ public class ServicioEventoImpl implements IServicioEvento {
         Object[] parametros = {evento.getId()};
         query = "Select e.idPolitica from Evento e where e.id = ?";
         politica = (Politica) genericDao.ejecutarQueryUnique(query, parametros);
-        if (politica == null) throw new ExcepcionNegocio("errors.evento.politica.noexiste");
+        if (politica == null) {
+            throw new ExcepcionNegocio("errors.evento.politica.noexiste");
+        }
         return politica;
     }
-
     static Integer PROXIMOS_EVENTOS_MINIMO = 0;
     static Integer PROXIMOS_EVENTOS_MAXIMO = 25;
 
@@ -113,8 +115,8 @@ public class ServicioEventoImpl implements IServicioEvento {
     @SuppressWarnings("unchecked")
     public Evento obtenerEvento(Integer idEvento) {
         Evento evento = null;
-        evento = (Evento)genericDao.findByPropertyUnique(Evento.class, "id", idEvento);
-        if (evento == null){
+        evento = (Evento) genericDao.findByPropertyUnique(Evento.class, "id", idEvento);
+        if (evento == null) {
             throw new ExcepcionNegocio("errors.evento.noExiste");
         }
         return evento;
@@ -122,11 +124,23 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     public Participante obtenerParticipante(Integer idParticipante) {
         Participante participante = null;
-        participante = (Participante)genericDao.findByPropertyUnique(Participante.class, "id", idParticipante);
-        if (participante == null){
+        participante = (Participante) genericDao.findByPropertyUnique(Participante.class, "id", idParticipante);
+        if (participante == null) {
             throw new ExcepcionNegocio("errors.evento.noExiste");
         }
         return participante;
     }
 
+    public TableroGanancia obtenerTableroPorEquipoyEvento(Date fechaEvento, String nombreEquipo) {
+        TableroGanancia tablero = null;
+        String query = new String();
+        Object[] parametros = {nombreEquipo, fechaEvento};
+        query = "Select p from Evento e inner join e.tableroGananciaCollection " +
+                "as p where p.participante.nombre = ? and p.evento.fechaEvento = ?";
+        tablero = (TableroGanancia) genericDao.ejecutarQueryUnique(query, parametros);
+        if (tablero == null) {
+            throw new ExcepcionNegocio("evento.noregistrado");
+        }
+        return tablero;
+    }
 }
