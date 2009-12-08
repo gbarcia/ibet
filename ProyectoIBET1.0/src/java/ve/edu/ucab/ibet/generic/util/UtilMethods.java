@@ -44,6 +44,7 @@ public abstract class UtilMethods {
         cFecha.setTimeInMillis(fecha.getTime());
         return cFecha.get(Calendar.YEAR);
     }
+
     /**
      * Metodo que convierte una fecha de cadena en un objeto Date
      * en el formato yyyy-MM-dd
@@ -59,6 +60,19 @@ public abstract class UtilMethods {
             return null;
         }
     }
+
+    /**
+     * firma para convertir un Date en el formato de Ibet
+     * @param fechaString string de la fecha en formato dd/mm/aaaa
+     * @return Date en formato para ibet aaaa-mm-dd
+     */
+    public static Date convertirFechaEnFormatoIbet(String fechaString) {
+        String[] fechaPicada = fechaString.split("/");
+        String fechaFormatoIbet = fechaPicada[2] + "-" + fechaPicada[1] + "-" +
+                fechaPicada[0];
+        return stringToFecha(fechaFormatoIbet);
+    }
+
     /**
      * Metodo que convierte un string en un objeto tipo Date en formato
      * yyyy-MMM-dd
@@ -77,7 +91,7 @@ public abstract class UtilMethods {
      * @param fecha Fecha a dar formato
      * @return Date en formato yyyy-MM-dd
      */
-    public static Date convertirFechaFormato (Date fecha) {
+    public static Date convertirFechaFormato(Date fecha) {
         String fechaCadena = fechaToString(fecha);
         Date fechaDate = stringToFecha(fechaCadena);
         return fechaDate;

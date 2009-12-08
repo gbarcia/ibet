@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws.impl.servicios.ibet.ucab.edu.ve/" xmlns:tns="http://ws.impl.servicios.ibet.ucab.edu.ve/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="consultarProporcionEvento" type="tns:consultarProporcionEvento"/>
+
+  <xs:element name="consultarProporcionEventoResponse" type="tns:consultarProporcionEventoResponse"/>
+
+  <xs:complexType name="consultarProporcionEvento">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoDos" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="consultarProporcionEventoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:respuestaProporcionWS" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="respuestaProporcionWS">
+    <xs:sequence>
+      <xs:element name="equipoDos" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
+      <xs:element name="proporcionEquipoDos" type="xs:double" minOccurs="0"/>
+      <xs:element name="proporcionEquipoUno" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

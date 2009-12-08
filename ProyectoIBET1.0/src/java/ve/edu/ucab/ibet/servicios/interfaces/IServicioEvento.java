@@ -1,5 +1,6 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
+import java.util.Date;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
@@ -66,5 +67,12 @@ public interface IServicioEvento {
      */
     public Participante obtenerParticipante(Integer idParticipante);
 
-
+    /**
+     * firma para obtener el tablero de proporciones de ganancias para un determinado
+     * evento y un equipo en particular
+     * @param fechaEvento fecha de ejecucion del evento
+     * @param nombreEquipo nombre oficial del equipo a conocer su tablero de ganancia
+     * @return objeto TableroGanancia con la informacion
+     */
+    public TableroGanancia obtenerTableroPorEquipoyEvento(Date fechaEvento, String nombreEquipo);
 }
