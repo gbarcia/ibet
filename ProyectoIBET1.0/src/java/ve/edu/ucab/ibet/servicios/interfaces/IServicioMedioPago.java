@@ -31,4 +31,28 @@ public interface IServicioMedioPago {
      */
     public MedioPago obtenerMedioPago(String nombre);
 
+    /**
+     * firma para crear un medio de pago
+     * @param medioPago el medio de pago a crear 
+     */
+    public void crearMedioPago(MedioPago medioPago);
+
+    /**
+     * firma para editar un medio de pago
+     * @param medioPago el medio de pago a editar 
+     */
+    public void editarMedioPago(MedioPago medioPago);
+
+    /**
+     * firma para inhabilitar un medio de pago
+     * @param medioPago el medio de pago a inhabilitar
+     */
+    public void inhabilitarMedioPago(MedioPago medioPago);
+
+    /**
+     * firma para habilitar medio de pago
+     * @param medioPago el medio de pago a habilitar
+     */
+    public void habilitarMedioPago(MedioPago medioPago);
+
 }

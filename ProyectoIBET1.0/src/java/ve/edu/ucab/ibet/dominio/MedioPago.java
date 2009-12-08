@@ -48,17 +48,17 @@ public class MedioPago implements Serializable {
         this.id = id;
     }
 
-    public MedioPago(Integer id, String nombre, boolean activo) {
+    public MedioPago(int id, String nombre, boolean activo) {
         this.id = id;
         this.nombre = nombre;
         this.activo = activo;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

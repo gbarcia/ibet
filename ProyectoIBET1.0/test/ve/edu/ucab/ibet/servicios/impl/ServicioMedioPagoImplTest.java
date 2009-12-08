@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.List;
@@ -16,9 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import static org.junit.Assert.*;
-import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
-import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioMedioPago;
 
 /**
@@ -51,7 +49,6 @@ public class ServicioMedioPagoImplTest {
     public void tearDown() {
     }
 
-   
 //    @Test
     public void testObtenerMediosPagoVigentes() {
         System.out.println("obtenerMediosPagoVigentes");
@@ -64,7 +61,7 @@ public class ServicioMedioPagoImplTest {
         //fail("The test case is a prototype.");
     }
 
-    @Test
+//    @Test
     public void testObtenerMedioPago() {
         System.out.println("obtenerMedioPago");
         MedioPago result = servicioMedioPago.obtenerMedioPago("paypal");
@@ -72,5 +69,48 @@ public class ServicioMedioPagoImplTest {
         System.out.println("Medio pago: " + result.getId() + ", " + result.getNombre() + ", " + result.getActivo());
     }
 
+//    @Test
+    public void testCrearMedioPago() {
+        System.out.println("crearMedioPago");
+        MedioPago medioPago = new MedioPago();
+        medioPago.setNombre("pago");
+        servicioMedioPago.crearMedioPago(medioPago);
+        assertTrue(Boolean.TRUE);
+    }
 
+//    @Test
+    public void testEditarMedioPago() {
+        System.out.println("editarMedioPago");
+        MedioPago medioPago = new MedioPago(4, "pagoNuevo", Boolean.FALSE);
+        servicioMedioPago.editarMedioPago(medioPago);
+        assertTrue(Boolean.TRUE);
+    }
+
+//    @Test
+    public void testInhabilitarMedioPago() {
+        System.out.println("inhabilitarMedioPago");
+        MedioPago medioPago = new MedioPago(4, "pagoNuevo", Boolean.FALSE);
+
+        try {
+            servicioMedioPago.inhabilitarMedioPago(medioPago);
+        } catch (GeneralException e) {
+            System.out.println(e.getKeyError());
+        }
+        
+        assertTrue(Boolean.TRUE);
+    }
+
+    @Test
+    public void testHabilitarMedioPago() {
+        System.out.println("habilitarMedioPago");
+        MedioPago medioPago = new MedioPago(4, "pagoNuevo", Boolean.TRUE);
+
+        try {
+            servicioMedioPago.habilitarMedioPago(medioPago);
+        } catch (GeneralException e) {
+            System.out.println(e.getKeyError());
+        }
+
+        assertTrue(Boolean.TRUE);
+    }
 }
