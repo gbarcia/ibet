@@ -52,10 +52,10 @@ public class ServicioUsuarioMedioPagoImplTest {
     /**
      * Test of ActivarMedioPago method, of class ServicioUsuarioMedioPagoImpl.
      */
-//    @Test
+    @Test
     public void testActivarMedioPago() {
         System.out.println("ActivarMedioPago");
-        Users user = new Users("maya");
+        Users user = new Users("carlosdbm");
         MedioPago medioPago = new MedioPago(2, "mastercard", Boolean.TRUE);
         Double montoMaximo = 1000.0;
         Boolean expResult = true;
@@ -81,7 +81,7 @@ public class ServicioUsuarioMedioPagoImplTest {
     /**
      * Test of mostrarHistorialMedioPago method, of class ServicioUsuarioMedioPagoImpl.
      */
-    @Test
+//    @Test
     public void testMostrarHistorialMedioPago() {
         System.out.println("mostrarHistorialMedioPago");
         Users user = new Users("maya");
