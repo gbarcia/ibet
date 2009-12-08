@@ -37,7 +37,7 @@ public class ServicioReportesTest {
     /**
      * Test of reporteHistorialApuestas method, of class ServicioReporteHistorialApuestas.
      */
-    @Test
+//    @Test
     public void testReporteHistorialApuestas() throws Exception {
         System.out.println("reporteHistorialApuestas");
         String username = "maya";
@@ -49,7 +49,7 @@ public class ServicioReportesTest {
         List<HistorialApuestasTO> result = servicioReporte.reporteHistorialApuestas(username, fechaInicio, fechaFin);
         String fecha;
         for (HistorialApuestasTO r : result) {
-            if(r.getFecha() == null){
+            if (r.getFecha() == null) {
                 fecha = "null";
             } else {
                 fecha = UtilMethods.fechaToString(r.getFecha());
@@ -59,27 +59,29 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-//    @Test
+    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
-        Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
-        Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+        Date fechaInicio = UtilMethods.stringToFecha("2009-10-01");
+        Date fechaFin = UtilMethods.stringToFecha("2009-12-25");
         List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasGanancias(fechaInicio, fechaFin);
         for (CategoriasGananciaPerdidaTO r : result) {
             System.out.println(r.getNombreCategoria() + ", " + r.getMontoTotal() + "\n ");
         }
+        System.out.println("");
         assertNotNull(result);
     }
 
-//    @Test
+    @Test
     public void testReporteCategoriasPerdidas() throws Exception {
         System.out.println("reporteCategoriasPerdidas");
         Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
         Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
         List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasPerdidas(fechaInicio, fechaFin);
         for (CategoriasGananciaPerdidaTO r : result) {
-            System.out.println(r.getMontoTotal() + ", " + r.getNombreCategoria());
+            System.out.println(r.getNombreCategoria() + ", " + r.getMontoTotal());
         }
+        System.out.println("");
         assertNotNull(result);
     }
 
@@ -91,6 +93,7 @@ public class ServicioReportesTest {
         for (Categoria r : result) {
             System.out.println(r.getId() + ", " + r.getNombre());
         }
+        System.out.println("");
         assertNotNull(result);
     }
 

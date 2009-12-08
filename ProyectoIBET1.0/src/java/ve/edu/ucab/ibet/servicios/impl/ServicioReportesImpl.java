@@ -74,9 +74,10 @@ public class ServicioReportesImpl implements IServicioReportes {
         o[0] = fechaInicio;
         o[1] = fechaFin;
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO (sum(a.monto), c.nombre) " +
-                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
-                "where c.id = e.idCategoria " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasGananciaPerdidaTO (sum(a.monto), cp.nombre) " +
+                "from Categoria cp, Categoria ch, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where cp.id = ch.idCategoria.id " +
+                "and ch.id = e.idCategoria " +
                 "and e.id = tg.tableroGananciaPK.idEvento " +
                 "and p.id = tg.tableroGananciaPK.idParticipante " +
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
@@ -84,12 +85,13 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and u.username = a.users.username " +
                 "and a.ganador = false " +
                 "and e.fechaEvento between ? and ? " +
-                "group by c.nombre ";
+                "group by cp.nombre ";
 
         ganancias.addAll(genericDao.ejecutarQueryList(query, o));
 
         return ganancias;
     }
+
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
@@ -103,17 +105,19 @@ public class ServicioReportesImpl implements IServicioReportes {
         o[0] = fechaInicio;
         o[1] = fechaFin;
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO (c.id, a.monto, " +
-                "c.nombre, a.gano, a.empato, tg.gano, tg.empato, tg.proporcionGano, tg.proporcionEmpate) " +
-                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
-                "where c.id = e.idCategoria " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.CategoriasPerdidasTO (cp.id, a.monto, " +
+                "cp.nombre, a.gano, a.empato, tg.gano, tg.empato, tg.proporcionGano, tg.proporcionEmpate) " +
+                "from Categoria cp, Categoria ch, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where cp.id = ch.idCategoria.id " +
+                "and ch.id = e.idCategoria " +
                 "and e.id = tg.tableroGananciaPK.idEvento " +
                 "and p.id = tg.tableroGananciaPK.idParticipante " +
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
                 "and e.fechaEvento between ? and ? " +
-                "and a.ganador = true ";
+                "and a.ganador = true " + 
+                "group by cp.nombre ";
 
         perdidas.addAll(genericDao.ejecutarQueryList(query, o));
         listaPerdidas = this.listarPerdidasCategorias(perdidas);
