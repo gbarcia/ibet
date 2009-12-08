@@ -114,11 +114,11 @@
         <intercept-url pattern="/repCategoriasPerdidasPDF.pdf" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCategoriasPerdidasXLS.xls" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCantidadUsuariosPorCatPDF.pdf" access="ROLE_ADMIN" />
-        <intercept-url pattern="/repCantidadUsuariosPorCatPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repCantidadUsuariosPorCatXLS.xls" access="ROLE_ADMIN" />
         <intercept-url pattern="/repEventosRiesgoPDF.pdf" access="ROLE_ADMIN" />
-        <intercept-url pattern="/repEventosRiesgoPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repEventosRiesgoXLS.xls" access="ROLE_ADMIN" />
         <intercept-url pattern="/repUsuariosMayorAciertosPDF.pdf" access="ROLE_ADMIN" />
-        <intercept-url pattern="/repUsuariosMayorAciertosPDF.xls" access="ROLE_ADMIN" />
+        <intercept-url pattern="/repUsuariosMayorAciertosXLS.xls" access="ROLE_ADMIN" />
         <intercept-url pattern="/repHistorialApuestasPDF.pdf" access="ROLE_USER" />
         <intercept-url pattern="/repHistorialApuestasPDF.xls" access="ROLE_USER" />
         <intercept-url pattern="/**" access="ROLE_USER" />
