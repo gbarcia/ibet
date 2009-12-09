@@ -12,15 +12,34 @@
   <message name="consultarProporcionEventoResponse">
     <part name="parameters" element="tns:consultarProporcionEventoResponse"/>
   </message>
+  <message name="consultarResultadoEvento">
+    <part name="parameters" element="tns:consultarResultadoEvento"/>
+  </message>
+  <message name="consultarResultadoEventoResponse">
+    <part name="parameters" element="tns:consultarResultadoEventoResponse"/>
+  </message>
   <portType name="IbetWebServices">
     <operation name="consultarProporcionEvento">
       <input message="tns:consultarProporcionEvento"/>
       <output message="tns:consultarProporcionEventoResponse"/>
     </operation>
+    <operation name="consultarResultadoEvento">
+      <input message="tns:consultarResultadoEvento"/>
+      <output message="tns:consultarResultadoEventoResponse"/>
+    </operation>
   </portType>
   <binding name="IbetWebServicesPortBinding" type="tns:IbetWebServices">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
     <operation name="consultarProporcionEvento">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="consultarResultadoEvento">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

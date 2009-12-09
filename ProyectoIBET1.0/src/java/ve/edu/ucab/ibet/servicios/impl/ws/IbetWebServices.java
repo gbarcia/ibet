@@ -34,10 +34,11 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
      * @param equipoUno nombre del equipo Uno a participar en el evento
      * @param equipoDos nombre del equipo Dos a participar en el evento
      * @return Objeto de tipo RespuestaProporcionWS con la informacion de las
-     * proporciones de pago por equipo
+     * proporciones de pago por equipo o null en caso de no existir el evento
      */
     @WebMethod(operationName = "consultarProporcionEvento")
-    public RespuestaProporcionWS consultarProporcionEvento(@WebParam(name = "fecha") String fecha, @WebParam(name = "equipoUno") String equipoUno, @WebParam(name = "equipoDos") String equipoDos) {
+    public RespuestaProporcionWS consultarProporcionEvento(@WebParam(name = "fecha") String fecha, @WebParam(name = "equipoUno") String equipoUno,
+            @WebParam(name = "equipoDos") String equipoDos) {
         RespuestaProporcionWS respuesta = new RespuestaProporcionWS();
         try {
             log.info("Iniciando operacion de web service para consultar proporcion de Evento");
@@ -61,5 +62,56 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
         } finally {
             return respuesta;
         }
+    }
+
+    /**
+     * operacion de servicio web para consultas de resultados de eventos
+     * @param fecha fecha del evento en formato dd/mm/yyyy
+     * @param participanteUno nombre del participante uno segun convencion
+     * @param participanteDos nombre del participante dos segun convencion
+     * @return Cadena con el resultado del evento, null en caso de no existir
+     */
+    @WebMethod(operationName = "consultarResultadoEvento")
+    public String consultarResultadoEvento(@WebParam(name = "fecha") String fecha,
+            @WebParam(name = "participanteUno") String participanteUno,
+            @WebParam(name = "participanteDos") String participanteDos) {
+        String respuesta = new String();
+        try {
+            log.info("Iniciando operacion de web service para consultarResultadoEvento ");
+            log.info("Datos recibidos: " + "-- fecha: " + fecha + " -- equipoUno: " + participanteUno +
+                    "-- equipoDos: " + participanteDos);
+            Date fechaEvento = UtilMethods.convertirFechaEnFormatoIbet(fecha);
+            TableroGanancia tableroUno = servicioEvento.obtenerTableroPorEquipoyEvento(fechaEvento, participanteUno);
+            TableroGanancia tableroDos = servicioEvento.obtenerTableroPorEquipoyEvento(fechaEvento, participanteDos);
+            if (tableroUno.getEvento().getResultado().equals(tableroDos.getEvento().getResultado())) {
+                respuesta = tableroUno.getEvento().getResultado();
+            }
+            log.info("Resultado enviado: ==> " + respuesta);
+        } catch (ExcepcionNegocio en) {
+            en.printStackTrace();
+            log.error("Ocurrio un error en la operacion consultarResultadoEvento. Detalles:" +
+                    en.getErrorCode() + " ==> errores: " + en.getMessage());
+            respuesta = null;
+        } finally {
+            return respuesta;
+        }
+    }
+
+    /**
+     * operacion de servicio web para realizar una apuesta
+     * @param idEvento identificador del evento a apostar
+     * @param nombreEquipoApostado nombre del equipo por quien se apuesta
+     * @param monto monto de la apuesta
+     * @param nombreUsuario nombre del usuario que realiza la apuesta
+     * @param passUsuario clave del usuario que realiza la apuesta
+     * @param nombreMetodoPago nombre del metodo de pago asociado a la apuesta
+     * @return valor booleano con la condicion de exito o fracaso de la operacion
+     */
+    @WebMethod(operationName = "realizarApuesta")
+    public Boolean realizarApuesta(@WebParam(name = "idEvento") Integer idEvento,
+            @WebParam(name = "nombreEquipoApostado") String nombreEquipoApostado,
+            @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario, @WebParam(name = "nombreMetodoPago") String nombreMetodoPago) {
+        //TODO write your implementation code here:
+        return null;
     }
 }
