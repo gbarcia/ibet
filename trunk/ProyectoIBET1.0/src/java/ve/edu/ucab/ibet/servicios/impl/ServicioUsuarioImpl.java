@@ -361,4 +361,12 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         List<UsuarioMedioPago> listaMediosPago = genericDao.ejecutarQueryList(query, parametros);
         return listaMediosPago;
     }
+
+    public Users comprobarValidezUsuario (String username, String pass) {
+        Users usuario = null;
+        usuario = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
+        if (usuario == null) throw new ExcepcionNegocio("username.no.existe");
+        if (!usuario.getPassword().equals(pass)) throw new ExcepcionNegocio("username.clave.incorrecta");
+        return usuario;
+    }
 }

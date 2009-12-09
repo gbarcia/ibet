@@ -125,4 +125,14 @@ public interface IServicioUsuario {
      * @return Lista de UsuarioMediosPago vigentes
      */
     public List<UsuarioMedioPago> obtenerMediosPagoVigenteUsuario(Users usuario);
+
+    /**
+     * Firma para comprobar si un usuario es valido en el sistema
+     * @param username nombre del usuario
+     * @param pass clave del usuario
+     * @return objeto usuario a comprobar, null si es invalido
+     * @throws ExcepcionNegocio si el usuario es invalido
+     */
+    public Users comprobarValidezUsuario (String username, String pass);
+
 }
