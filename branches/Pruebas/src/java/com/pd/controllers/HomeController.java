@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
-
 /**
  *
  * @author nath
@@ -68,6 +67,40 @@ public class HomeController implements Controller {
 
     public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1)
             throws ServletException,IOException, GeneralException {
+
+
+
+
+        try { // Call Web Service Operation
+            ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices_Service service = new ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices_Service();
+            ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices port = service.getIbetWebServicesPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String fecha = "28/11/2009";
+            java.lang.String equipoUno = "Villarreal";
+            java.lang.String equipoDos = "Sporting Gijon";
+            // TODO process result here
+            ve.edu.ucab.ibet.servicios.impl.ws.RespuestaProporcionWS result = port.consultarProporcionEvento(fecha, equipoUno, equipoDos);
+            System.out.println("Result = "+result.getEquipoUno());
+            System.out.println(result.getProporcionEquipoUno());
+        } catch (Exception ex) {
+           ex.printStackTrace();
+        }
+
+
+        try { // Call Web Service Operation
+            ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices_Service service = new ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices_Service();
+            ve.edu.ucab.ibet.servicios.impl.ws.IbetWebServices port = service.getIbetWebServicesPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String fecha = "28/11/2009";
+            java.lang.String participanteUno = "Villarreal";
+            java.lang.String participanteDos = "Sporting Gijon";
+            // TODO process result here
+            java.lang.String result = port.consultarResultadoEvento(fecha, participanteUno, participanteDos);
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+
 
         Principal p = arg0.getUserPrincipal();
         System.out.println(p.getName());

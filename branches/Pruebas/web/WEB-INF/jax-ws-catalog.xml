@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="file:/home/nath/NetBeansProjects/PruebaParaDesarrollo/IbetService.wsdl" uri="src/conf/xml-resources/web-service-references/IbetService/wsdl/IbetService.wsdl"/>
+    <system systemId="file:/home/nath/NetBeansProjects/PruebaParaDesarrollo/IbetService_schema1.xsd" uri="src/conf/xml-resources/web-service-references/IbetService/wsdl/IbetService_schema1.xsd"/>
+    <system systemId="http://localhost:8084/ProyectoIBET/IbetWebServices?wsdl" uri="wsdl/localhost_8084/ProyectoIBET/IbetWebServices.wsdl"/>
+    <system systemId="http://localhost:8084/ProyectoIBET/IbetWebServices?xsd=1" uri="wsdl/localhost_8084/ProyectoIBET/IbetWebServices.xsd_1.xsd"/>
+    <system systemId="file:/home/nath/NetBeansProjects/ProyectoIBET/web/WEB-INF/config/wsdl/IbetWebServices.wsdl" uri="wsdl/IbetWebServices.wsdl"/>
+    <system systemId="file:/home/nath/NetBeansProjects/ProyectoIBET/web/WEB-INF/config/wsdl/IbetWebServices_schema1.xsd" uri="wsdl/IbetWebServices_schema1.xsd"/>
+</catalog>
+
+
+
+
+
+
+
