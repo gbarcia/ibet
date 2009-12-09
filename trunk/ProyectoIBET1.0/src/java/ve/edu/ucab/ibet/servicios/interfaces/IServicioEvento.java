@@ -75,4 +75,11 @@ public interface IServicioEvento {
      * @return objeto TableroGanancia con la informacion
      */
     public TableroGanancia obtenerTableroPorEquipoyEvento(Date fechaEvento, String nombreEquipo);
+
+    /**
+     * firma para obtener los datos de un participante por su nombre
+     * @param nombre nombre del participante a buscar
+     * @return objeto participante con la informacion
+     */
+    public Participante obtenerParticipantePorNombre (String nombre);
 }
