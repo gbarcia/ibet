@@ -11,7 +11,14 @@ import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import ve.edu.ucab.ibet.dominio.Apuesta;
+import ve.edu.ucab.ibet.dominio.MedioPago;
+import ve.edu.ucab.ibet.dominio.Participante;
+import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioMedioPago;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
  * Clase para ofrecer operaciones de logica de negocio a traves de un servicio web
@@ -25,6 +32,12 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
 
     @Autowired
     private IServicioEvento servicioEvento;
+    @Autowired
+    private IServicioUsuario servicioUsuario;
+    @Autowired
+    private IServicioApuesta servicioApuesta;
+    @Autowired
+    private IServicioMedioPago servicioMedioPago;
     private Logger log = Logger.getLogger(getClass());
 
     /**
@@ -110,8 +123,21 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
     @WebMethod(operationName = "realizarApuesta")
     public Boolean realizarApuesta(@WebParam(name = "idEvento") Integer idEvento,
             @WebParam(name = "nombreEquipoApostado") String nombreEquipoApostado,
-            @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario, @WebParam(name = "nombreMetodoPago") String nombreMetodoPago) {
-        //TODO write your implementation code here:
-        return null;
+            @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") 
+            String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario,
+            @WebParam(name = "nombreMetodoPago") String nombreMetodoPago) {
+        try {
+            Users usuario = servicioUsuario.comprobarValidezUsuario(nombreUsuario, passUsuario);
+            Participante participanteApostado = servicioEvento.obtenerParticipantePorNombre(nombreEquipoApostado);
+            MedioPago medioPago = servicioMedioPago.obtenerMedioPago(nombreMetodoPago);
+            Apuesta apuesta = servicioApuesta.armarApuestaParaRealizar(idEvento.toString(),
+                    participanteApostado.getId().toString(), monto.toString(), usuario);
+            apuesta.setMedioPago(medioPago);
+            servicioApuesta.realizarApuesta(apuesta);
+        } catch (ExcepcionNegocio en) {
+
+        } finally{
+            return null;
+        }
     }
 }

@@ -143,4 +143,13 @@ public class ServicioEventoImpl implements IServicioEvento {
         }
         return tablero;
     }
+
+    public Participante obtenerParticipantePorNombre(String nombre) {
+        Participante participante = null;
+        participante = (Participante) genericDao.findByPropertyUnique(Participante.class, "nombre", nombre);
+        if (participante == null) {
+            throw new ExcepcionNegocio("errors.participante.noExiste");
+        }
+        return participante;
+    }
 }
