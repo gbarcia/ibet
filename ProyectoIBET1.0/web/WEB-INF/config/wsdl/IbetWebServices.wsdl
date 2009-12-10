@@ -18,6 +18,12 @@
   <message name="consultarResultadoEventoResponse">
     <part name="parameters" element="tns:consultarResultadoEventoResponse"/>
   </message>
+  <message name="realizarApuesta">
+    <part name="parameters" element="tns:realizarApuesta"/>
+  </message>
+  <message name="realizarApuestaResponse">
+    <part name="parameters" element="tns:realizarApuestaResponse"/>
+  </message>
   <portType name="IbetWebServices">
     <operation name="consultarProporcionEvento">
       <input message="tns:consultarProporcionEvento"/>
@@ -26,6 +32,10 @@
     <operation name="consultarResultadoEvento">
       <input message="tns:consultarResultadoEvento"/>
       <output message="tns:consultarResultadoEventoResponse"/>
+    </operation>
+    <operation name="realizarApuesta">
+      <input message="tns:realizarApuesta"/>
+      <output message="tns:realizarApuestaResponse"/>
     </operation>
   </portType>
   <binding name="IbetWebServicesPortBinding" type="tns:IbetWebServices">
@@ -48,10 +58,19 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="realizarApuesta">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
   </binding>
   <service name="IbetWebServices">
     <port name="IbetWebServicesPort" binding="tns:IbetWebServicesPortBinding">
-      <soap:address location="http://localhost:8084/ProyectoIBET/IbetWebServices"/>
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
     </port>
   </service>
 </definitions>

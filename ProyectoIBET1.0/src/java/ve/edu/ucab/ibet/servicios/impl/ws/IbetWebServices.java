@@ -6,6 +6,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
@@ -69,8 +70,13 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
                     " -- proporcionE2: " + respuesta.getProporcionEquipoDos());
         } catch (ExcepcionNegocio en) {
             en.printStackTrace();
-            log.error("Ocurrio un error en la operacion consultarProporcionEvento. Detalles:" +
+            log.error("Ocurrio un error de negocio en la operacion consultarProporcionEvento. Detalles:" +
                     en.getErrorCode() + " ==> errores: " + en.getMessage());
+            respuesta = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Ocurrio un error en la operacion consultarProporcionEvento." +
+                    "==> errores: " + e.getMessage() + e.getStackTrace());
             respuesta = null;
         } finally {
             return respuesta;
@@ -105,6 +111,11 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             log.error("Ocurrio un error en la operacion consultarResultadoEvento. Detalles:" +
                     en.getErrorCode() + " ==> errores: " + en.getMessage());
             respuesta = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Ocurrio un error en la operacion consultarProporcionEvento." +
+                    "==> errores: " + e.getMessage());
+            respuesta = null;
         } finally {
             return respuesta;
         }
@@ -123,10 +134,14 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
     @WebMethod(operationName = "realizarApuesta")
     public Boolean realizarApuesta(@WebParam(name = "idEvento") Integer idEvento,
             @WebParam(name = "nombreEquipoApostado") String nombreEquipoApostado,
-            @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") 
-            String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario,
+            @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario,
             @WebParam(name = "nombreMetodoPago") String nombreMetodoPago) {
+        Boolean resultado = Boolean.TRUE;
         try {
+            log.info("Iniciando operacion de web service para realizarApuesta ");
+            log.info("Datos recibidos: " + "-- idEvento: " + idEvento + " -- NombreEquipoApostado: " + nombreEquipoApostado +
+                    "-- montoApostado: " + monto + " -- nombreUsuario: " + nombreUsuario +
+                    "-- metodoPago: " + nombreMetodoPago);
             Users usuario = servicioUsuario.comprobarValidezUsuario(nombreUsuario, passUsuario);
             Participante participanteApostado = servicioEvento.obtenerParticipantePorNombre(nombreEquipoApostado);
             MedioPago medioPago = servicioMedioPago.obtenerMedioPago(nombreMetodoPago);
@@ -135,9 +150,19 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             apuesta.setMedioPago(medioPago);
             servicioApuesta.realizarApuesta(apuesta);
         } catch (ExcepcionNegocio en) {
-
-        } finally{
-            return null;
+            en.printStackTrace();
+            resultado = Boolean.FALSE;
+            log.error("Ocurrio una excepcion de negocio durante la operacion ws para relizar apuesta: ==> " + en.getMessage());
+        } catch (DataAccessException dae) {
+            dae.printStackTrace();
+            resultado = Boolean.FALSE;
+            log.error("Ocurrio una excepcion de base de datos durante la operacion ws para relizar apuesta: ==> " + dae.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultado = Boolean.FALSE;
+            log.error("Ocurrio una excepcion durante la operacion ws para relizar apuesta: ==> " + e.getMessage());
+        } finally {
+            return resultado;
         }
     }
 }

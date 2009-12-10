@@ -9,6 +9,10 @@
 
   <xs:element name="consultarResultadoEventoResponse" type="tns:consultarResultadoEventoResponse"/>
 
+  <xs:element name="realizarApuesta" type="tns:realizarApuesta"/>
+
+  <xs:element name="realizarApuestaResponse" type="tns:realizarApuestaResponse"/>
+
   <xs:complexType name="consultarProporcionEvento">
     <xs:sequence>
       <xs:element name="fecha" type="xs:string" minOccurs="0"/>
@@ -29,6 +33,23 @@
       <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
       <xs:element name="proporcionEquipoDos" type="xs:double" minOccurs="0"/>
       <xs:element name="proporcionEquipoUno" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="realizarApuesta">
+    <xs:sequence>
+      <xs:element name="idEvento" type="xs:int" minOccurs="0"/>
+      <xs:element name="nombreEquipoApostado" type="xs:string" minOccurs="0"/>
+      <xs:element name="monto" type="xs:double" minOccurs="0"/>
+      <xs:element name="nombreUsuario" type="xs:string" minOccurs="0"/>
+      <xs:element name="passUsuario" type="xs:string" minOccurs="0"/>
+      <xs:element name="nombreMetodoPago" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="realizarApuestaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
