@@ -376,6 +376,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return usuario;
     }
 
+    @SuppressWarnings("unchecked")
     public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(String username) {
         List<GananciasPorUsuarioTO> ganancias = new ArrayList<GananciasPorUsuarioTO>();
 
