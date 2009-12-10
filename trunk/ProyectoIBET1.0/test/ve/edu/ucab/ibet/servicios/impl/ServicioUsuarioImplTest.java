@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
+import ve.edu.ucab.ibet.dominio.to.reportes.DetallesGananciasUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
@@ -123,23 +124,28 @@ public class ServicioUsuarioImplTest {
 
 //    @Test
     public void testObtenerMediosPagoVigenteUsuario() throws Exception {
-            System.out.println("obtenerMediosPagoUsuario");
-            Users u = new Users("gerardo");
-            List<UsuarioMedioPago> resultado = servicioUsuario.obtenerMediosPagoVigenteUsuario(u);
-            assertNotNull(resultado);
-            for (UsuarioMedioPago usuarioMedioPago : resultado) {
-                System.out.println(usuarioMedioPago.getMontoMaximo());
+        System.out.println("obtenerMediosPagoUsuario");
+        Users u = new Users("gerardo");
+        List<UsuarioMedioPago> resultado = servicioUsuario.obtenerMediosPagoVigenteUsuario(u);
+        assertNotNull(resultado);
+        for (UsuarioMedioPago usuarioMedioPago : resultado) {
+            System.out.println(usuarioMedioPago.getMontoMaximo());
         }
     }
 
     @Test
     public void testObtenerGananciasPorUsuario() throws Exception {
-            System.out.println("obtenerGananciasPorUsuario");
-            Users u = new Users("maya");
-            List<GananciasPorUsuarioTO> resultado = servicioUsuario.obtenerGananciasPorUsuario(u);
-            assertNotNull(resultado);
-            for (GananciasPorUsuarioTO ganancias : resultado) {
-                System.out.println(ganancias.getNombreEvento() + ", " + ganancias.getFechaEvento() + ", " + ganancias.getMontoGanado());
+        System.out.println("obtenerGananciasPorUsuario");
+        DetallesGananciasUsuarioTO resultado = servicioUsuario.obtenerGananciasPorUsuario("maya");
+        assertNotNull(resultado);
+        List<GananciasPorUsuarioTO> ganancias = resultado.getGananciasPorUsuario();
+        for (GananciasPorUsuarioTO gananciasPorUsuarioTO : ganancias) {
+            System.out.println(gananciasPorUsuarioTO.getNombreEvento() + ", " +
+                    gananciasPorUsuarioTO.getFechaEvento() + ", " +
+                    gananciasPorUsuarioTO.getMontoGanado());
         }
+
+        System.out.println("Monto total: " + resultado.getMontoTotal());
+
     }
 }
