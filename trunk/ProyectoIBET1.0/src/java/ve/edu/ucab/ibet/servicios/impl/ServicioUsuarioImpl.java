@@ -376,11 +376,11 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return usuario;
     }
 
-    public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(Users user) {
+    public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(String username) {
         List<GananciasPorUsuarioTO> ganancias = new ArrayList<GananciasPorUsuarioTO>();
 
         Object[] o = new Object[1];
-        o[0] = user.getUsername();
+        o[0] = username;
 
         String query = "select New ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO (a.monto, e.nombre, e.fechaEvento) " +
                        "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
