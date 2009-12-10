@@ -1,13 +1,11 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
-import java.util.Date;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.reportes.DetallesGananciasUsuarioTO;
-import ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO;
 
 /**
  * Contrato para ofrecer servicios de operaciones con Usuarios
@@ -142,6 +140,6 @@ public interface IServicioUsuario {
      * Firma para obtener las ganancias obtenidas en cada evento por usuario
      * @return Transfer object con las ganancias obtenidas
      */
-    public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(Users user);
+    public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(String username);
 
 }

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
+import ve.edu.ucab.ibet.dominio.to.reportes.DetallesGananciasUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -163,6 +164,33 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             log.error("Ocurrio una excepcion durante la operacion ws para relizar apuesta: ==> " + e.getMessage());
         } finally {
             return resultado;
+        }
+    }
+
+    /**
+     * operacion de servicio para consultar las ganancias de un usuario determinado 
+     * @param username el usuario al que se le desea consultar las ganancias
+     * @return DetallesGananciasUsuarioTO transfer object con los detalles de la consulta 
+     */
+    @WebMethod(operationName = "gananciasPorUsuario")
+    public DetallesGananciasUsuarioTO gananciasPorUsuario(@WebParam(name = "username")
+    String username) {
+        DetallesGananciasUsuarioTO detalles = new DetallesGananciasUsuarioTO();
+        
+        try{
+            log.info("Iniciando operacion de servicio web ganancias por usuario ");
+            log.info("El parametro recibido fue " + username);
+            detalles = servicioUsuario.obtenerGananciasPorUsuario(username);
+        }catch(DataAccessException dae){
+            dae.printStackTrace();
+            detalles = null;
+            log.error("Ocurrio una excepcion de base de datos: ==> " + dae.getMessage());
+        }catch(Exception e){
+            e.printStackTrace();
+            detalles = null;
+            log.error("Ocurrio una excepcion al consultar las ganancias ==> " + e.getMessage());
+        }finally{
+            return detalles;
         }
     }
 }

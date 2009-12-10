@@ -9,6 +9,10 @@
 
   <xs:element name="consultarResultadoEventoResponse" type="tns:consultarResultadoEventoResponse"/>
 
+  <xs:element name="gananciasPorUsuario" type="tns:gananciasPorUsuario"/>
+
+  <xs:element name="gananciasPorUsuarioResponse" type="tns:gananciasPorUsuarioResponse"/>
+
   <xs:element name="realizarApuesta" type="tns:realizarApuesta"/>
 
   <xs:element name="realizarApuestaResponse" type="tns:realizarApuestaResponse"/>
@@ -33,6 +37,33 @@
       <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
       <xs:element name="proporcionEquipoDos" type="xs:double" minOccurs="0"/>
       <xs:element name="proporcionEquipoUno" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuario">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuarioResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:detallesGananciasUsuarioTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="detallesGananciasUsuarioTO">
+    <xs:sequence>
+      <xs:element name="gananciasPorUsuario" type="tns:gananciasPorUsuarioTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="montoTotal" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuarioTO">
+    <xs:sequence>
+      <xs:element name="fechaEvento" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="montoGanado" type="xs:double" minOccurs="0"/>
+      <xs:element name="nombreEvento" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
