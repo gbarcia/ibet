@@ -14,6 +14,8 @@ import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.enums.Role;
 import ve.edu.ucab.ibet.dominio.to.forms.PerfilUsuarioTO;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroUsuarioTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.DetallesGananciasUsuarioTO;
+import ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.PassGenerator;
@@ -362,11 +364,40 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return listaMediosPago;
     }
 
-    public Users comprobarValidezUsuario (String username, String pass) {
+    public Users comprobarValidezUsuario(String username, String pass) {
         Users usuario = null;
         usuario = (Users) genericDao.findByPropertyUnique(Users.class, "username", username);
-        if (usuario == null) throw new ExcepcionNegocio("username.no.existe");
-        if (!usuario.getPassword().equals(pass)) throw new ExcepcionNegocio("username.clave.incorrecta");
+        if (usuario == null) {
+            throw new ExcepcionNegocio("username.no.existe");
+        }
+        if (!usuario.getPassword().equals(pass)) {
+            throw new ExcepcionNegocio("username.clave.incorrecta");
+        }
         return usuario;
+    }
+
+    public DetallesGananciasUsuarioTO obtenerGananciasPorUsuario(Users user) {
+        List<GananciasPorUsuarioTO> ganancias = new ArrayList<GananciasPorUsuarioTO>();
+
+        Object[] o = new Object[1];
+        o[0] = user.getUsername();
+
+        String query = "select New ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO (a.monto, e.nombre, e.fechaEvento) " +
+                       "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                       "where c.id = e.idCategoria " +
+                       "and e.id = tg.tableroGananciaPK.idEvento " +
+                       "and p.id = tg.tableroGananciaPK.idParticipante " +
+                       "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                       "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                       "and u.username = a.users.username " +
+                       "and u.username = ? " +
+                       "and a.ganador = true ";
+
+        ganancias.addAll(genericDao.ejecutarQueryList(query, o));
+
+        DetallesGananciasUsuarioTO detalles = new DetallesGananciasUsuarioTO();
+        detalles.setGananciasPorUsuario(ganancias);
+
+        return detalles;
     }
 }

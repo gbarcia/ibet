@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
+import ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
@@ -120,7 +121,7 @@ public class ServicioUsuarioImplTest {
 //        fail("The test case is a prototype.");
     }
 
-    @Test
+//    @Test
     public void testObtenerMediosPagoVigenteUsuario() throws Exception {
             System.out.println("obtenerMediosPagoUsuario");
             Users u = new Users("gerardo");
@@ -128,6 +129,17 @@ public class ServicioUsuarioImplTest {
             assertNotNull(resultado);
             for (UsuarioMedioPago usuarioMedioPago : resultado) {
                 System.out.println(usuarioMedioPago.getMontoMaximo());
+        }
+    }
+
+    @Test
+    public void testObtenerGananciasPorUsuario() throws Exception {
+            System.out.println("obtenerGananciasPorUsuario");
+            Users u = new Users("maya");
+            List<GananciasPorUsuarioTO> resultado = servicioUsuario.obtenerGananciasPorUsuario(u);
+            assertNotNull(resultado);
+            for (GananciasPorUsuarioTO ganancias : resultado) {
+                System.out.println(ganancias.getNombreEvento() + ", " + ganancias.getFechaEvento() + ", " + ganancias.getMontoGanado());
         }
     }
 }
