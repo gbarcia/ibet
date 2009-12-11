@@ -12,18 +12,18 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author maya
+ * @author nath
  */
 @Embeddable
 public class ApuestaPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
     @Basic(optional = false)
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, length = 250)
     private String username;
     @Basic(optional = false)
-    @Column(name = "idMedioPago")
+    @Column(name = "idMedioPago", nullable = false)
     private int idMedioPago;
 
     public ApuestaPK() {

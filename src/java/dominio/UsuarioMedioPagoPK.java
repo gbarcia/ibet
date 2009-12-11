@@ -12,23 +12,35 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author maya
+ * @author nath
  */
 @Embeddable
 public class UsuarioMedioPagoPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "username")
+    @Column(name = "id", nullable = false)
+    private int id;
+    @Basic(optional = false)
+    @Column(name = "username", nullable = false, length = 250)
     private String username;
     @Basic(optional = false)
-    @Column(name = "idMedioPago")
+    @Column(name = "idMedioPago", nullable = false)
     private int idMedioPago;
 
     public UsuarioMedioPagoPK() {
     }
 
-    public UsuarioMedioPagoPK(String username, int idMedioPago) {
+    public UsuarioMedioPagoPK(int id, String username, int idMedioPago) {
+        this.id = id;
         this.username = username;
         this.idMedioPago = idMedioPago;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -50,6 +62,7 @@ public class UsuarioMedioPagoPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
+        hash += (int) id;
         hash += (username != null ? username.hashCode() : 0);
         hash += (int) idMedioPago;
         return hash;
@@ -62,6 +75,9 @@ public class UsuarioMedioPagoPK implements Serializable {
             return false;
         }
         UsuarioMedioPagoPK other = (UsuarioMedioPagoPK) object;
+        if (this.id != other.id) {
+            return false;
+        }
         if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
@@ -73,7 +89,7 @@ public class UsuarioMedioPagoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "dominio.UsuarioMedioPagoPK[username=" + username + ", idMedioPago=" + idMedioPago + "]";
+        return "dominio.UsuarioMedioPagoPK[id=" + id + ", username=" + username + ", idMedioPago=" + idMedioPago + "]";
     }
 
 }
