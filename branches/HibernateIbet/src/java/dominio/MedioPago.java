@@ -11,30 +11,34 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author maya
+ * @author nath
  */
 @Entity
-@Table(name = "MEDIO_PAGO")
-@NamedQueries({@NamedQuery(name = "MedioPago.findAll", query = "SELECT m FROM MedioPago m"), @NamedQuery(name = "MedioPago.findById", query = "SELECT m FROM MedioPago m WHERE m.id = :id"), @NamedQuery(name = "MedioPago.findByNombre", query = "SELECT m FROM MedioPago m WHERE m.nombre = :nombre"), @NamedQuery(name = "MedioPago.findByActivo", query = "SELECT m FROM MedioPago m WHERE m.activo = :activo")})
+@Table(name = "MEDIO_PAGO", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
+@NamedQueries({@NamedQuery(name = "MedioPago.findAll", query = "SELECT m FROM MedioPago m")})
 public class MedioPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "activo")
+    @Column(name = "activo", nullable = false)
     private boolean activo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medioPago")
     private Collection<UsuarioMedioPago> usuarioMedioPagoCollection;

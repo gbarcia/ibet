@@ -22,21 +22,21 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author maya
+ * @author nath
  */
 @Entity
 @Table(name = "APUESTA")
-@NamedQueries({@NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a"), @NamedQuery(name = "Apuesta.findById", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.id = :id"), @NamedQuery(name = "Apuesta.findByUsername", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.username = :username"), @NamedQuery(name = "Apuesta.findByIdMedioPago", query = "SELECT a FROM Apuesta a WHERE a.apuestaPK.idMedioPago = :idMedioPago"), @NamedQuery(name = "Apuesta.findByFecha", query = "SELECT a FROM Apuesta a WHERE a.fecha = :fecha"), @NamedQuery(name = "Apuesta.findByMonto", query = "SELECT a FROM Apuesta a WHERE a.monto = :monto"), @NamedQuery(name = "Apuesta.findByGanador", query = "SELECT a FROM Apuesta a WHERE a.ganador = :ganador"), @NamedQuery(name = "Apuesta.findByGano", query = "SELECT a FROM Apuesta a WHERE a.gano = :gano"), @NamedQuery(name = "Apuesta.findByEmpato", query = "SELECT a FROM Apuesta a WHERE a.empato = :empato")})
+@NamedQueries({@NamedQuery(name = "Apuesta.findAll", query = "SELECT a FROM Apuesta a")})
 public class Apuesta implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ApuestaPK apuestaPK;
     @Basic(optional = false)
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "monto")
+    @Column(name = "monto", nullable = false)
     private double monto;
     @Column(name = "ganador")
     private Boolean ganador;
@@ -44,13 +44,13 @@ public class Apuesta implements Serializable {
     private Boolean gano;
     @Column(name = "empato")
     private Boolean empato;
-    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Users users;
-    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "idMedioPago", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private MedioPago medioPago;
-    @JoinColumns({@JoinColumn(name = "idEvento", referencedColumnName = "idEvento"), @JoinColumn(name = "idParticipante", referencedColumnName = "idParticipante")})
+    @JoinColumns({@JoinColumn(name = "idEvento", referencedColumnName = "idEvento", nullable = false), @JoinColumn(name = "idParticipante", referencedColumnName = "idParticipante", nullable = false)})
     @ManyToOne(optional = false)
     private TableroGanancia tableroGanancia;
 
