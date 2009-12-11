@@ -9,7 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.annotation.Secured;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.ApuestaPK;
 import ve.edu.ucab.ibet.dominio.Evento;
@@ -53,8 +56,9 @@ public class ServicioApuestaImpl implements IServicioApuesta {
             throw new ExcepcionNegocio("errors.apuesta.usuario.nometodospago");
         }
     }
-    
+
     @Secured({"ROLE_USER"})
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realizarApuesta(Apuesta apuesta) {
         if (apuesta != null) {
             esValidaApuestaUsuario(apuesta.getUsers(), apuesta.getTableroGanancia());
@@ -68,6 +72,20 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         } else {
             throw new ExcepcionNegocio("errors.apuesta.invalida");
         }
+    }
+
+    @Secured({"ROLE_USER"})
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void deshacerApuesta(Apuesta apuesta) {
+        String username = apuesta.getUsers().getUsername();
+        Integer idEvento = apuesta.getTableroGanancia().getEvento().getId();
+        StringBuffer query = new StringBuffer("");
+        query.append("DELETE FROM APUESTA WHERE username=");
+        query.append("'" + username + "'" + "AND idEvento=");
+        query.append("'" + idEvento + "'" + "");
+        genericDao.ejecturarSQLQueryManipulacion(query.toString());
+        File archivo = new File(helperProp.getString("reportes.directorio.correo") + nombreFactura + ".pdf");
+        archivo.delete();
     }
 
     private void esvalidaApuestaCasa(TableroGanancia tablero, Double montoApostado, MedioPago medioPago, Users usuario) {
@@ -164,7 +182,10 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         query = "Select New java.lang.Double (Sum(a.monto)) from Apuesta a where a.tableroGanancia.evento.id =? " +
                 "group by a.tableroGanancia.evento.nombre";
         monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
-        if (monto == null) monto = 0.0;
+        if (monto == null) {
+            monto = 0.0;
+            
+        }
         return monto;
     }
 
@@ -182,7 +203,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         parameters.put("titulo", titulo);
         parameters.put("nombreCompleto", nombreCompleto);
         parameters.put("evento", evento.getNombre());
-        apostePor = (esEmpate) ? "Empate": apuesta.getTableroGanancia().getParticipante().getNombre();
+        apostePor = (esEmpate) ? "Empate" : apuesta.getTableroGanancia().getParticipante().getNombre();
         parameters.put("apostePor", apostePor);
         parameters.put("monto", apuesta.getMonto().toString());
         parameters.put("fechaEvento", UtilMethods.convertirFechaFormato(evento.getFecha()).toString());
@@ -219,7 +240,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         if (UtilMethods.esNumerico(monto)) {
             montoApuesta = Integer.parseInt(monto);
         }
-          if (participanteId == 0) {
+        if (participanteId == 0) {
             esEmpate = Boolean.TRUE;
             apuesta.setEmpato(Boolean.TRUE);
             apuesta.setGano(Boolean.FALSE);
@@ -228,10 +249,10 @@ public class ServicioApuestaImpl implements IServicioApuesta {
             apuesta.setEmpato(Boolean.FALSE);
         }
         Evento eventoApuesta = servicioEvento.obtenerEvento(eventoId);
-                if (participanteId == 0) {
-           Collection<TableroGanancia> tableros = eventoApuesta.getTableroGananciaCollection();
+        if (participanteId == 0) {
+            Collection<TableroGanancia> tableros = eventoApuesta.getTableroGananciaCollection();
             for (TableroGanancia tableroGanancia : tableros) {
-               participanteId = tableroGanancia.getParticipante().getId();
+                participanteId = tableroGanancia.getParticipante().getId();
             }
         }
         TableroGanancia tablero = new TableroGanancia(eventoId, participanteId);
@@ -242,7 +263,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         apuesta.setTableroGanancia(tablero);
         apuesta.setMonto(new Double(montoApuesta));
         apuesta.setFecha(UtilMethods.convertirFechaFormato(new java.util.Date()));
-      
+
         return apuesta;
     }
 

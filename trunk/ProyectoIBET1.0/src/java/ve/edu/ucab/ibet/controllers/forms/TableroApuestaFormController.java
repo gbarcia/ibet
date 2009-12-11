@@ -1,6 +1,5 @@
 package ve.edu.ucab.ibet.controllers.forms;
 
-
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,7 +40,6 @@ public class TableroApuestaFormController extends SimpleFormController {
     private Principal security;
     private Users usuario;
 
-
     public IServicioApuesta getServicioApuesta() {
         return servicioApuesta;
     }
@@ -65,6 +63,7 @@ public class TableroApuestaFormController extends SimpleFormController {
     public void setServicioUsuario(IServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
+
     public TableroApuestaFormController() {
         setCommandClass(RegistroApuestaTO.class);
         setCommandName("apuesta");
@@ -88,17 +87,17 @@ public class TableroApuestaFormController extends SimpleFormController {
         return comando;
     }
 
-     @Override
+    @Override
     @SuppressWarnings("unchecked")
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map referenceData = new HashMap();
         List<UsuarioMedioPago> listaMetodosPagoVigentes = servicioUsuario.obtenerMediosPagoVigenteUsuario(usuario);
         List<String> listaNombresMediosPago = servicioMedioPago.obtenerNombresMediosPagoVigentes(listaMetodosPagoVigentes);
-        referenceData.put("opcionMetodosPago",listaNombresMediosPago);
+        referenceData.put("opcionMetodosPago", listaNombresMediosPago);
         return referenceData;
     }
 
-     @Override
+    @Override
     protected ModelAndView onSubmit(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) throws Exception {
         String atributoError = null;
         Boolean resultado = Boolean.FALSE;
@@ -123,6 +122,11 @@ public class TableroApuestaFormController extends SimpleFormController {
             atributoError = servicioUsuario.obtenerAtributoError(e.getKeyError());
             errors.rejectValue(atributoError, e.getKeyError());
             mv = showForm(req, resp, errors);
+        } catch (Exception e) {
+            servicioApuesta.deshacerApuesta(apuesta);
+            e.printStackTrace();
+            errors.rejectValue(atributoError, "error.apuesta.general");
+            mv = showForm(req, resp, errors);
         } finally {
             if (!mensaje.equals("")) {
                 mv.addObject("resultado", resultado);
@@ -137,5 +141,4 @@ public class TableroApuestaFormController extends SimpleFormController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
-
 }

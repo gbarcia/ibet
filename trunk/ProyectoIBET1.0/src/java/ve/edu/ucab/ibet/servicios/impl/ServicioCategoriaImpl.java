@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 
@@ -46,6 +47,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         }
         return categoriasPadre;
     }
+
     @SuppressWarnings("unchecked")
     public List<Categoria> obtenerSubcategoriasDeUnaCategoria(Categoria categoriaPadre) {
         List<Categoria> subcategorias = new ArrayList<Categoria>();
@@ -63,15 +65,26 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     }
 
     public void agregarCategoria(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (categoria == null) {
+            throw new ExcepcionNegocio("categoria.invalida");
+        }
+        genericDao.insertar(categoria);
     }
 
     public void editarCategotia(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (categoria == null) {
+            throw new ExcepcionNegocio("categoria.invalida");
+        }
+        genericDao.merge(categoria);
     }
 
     public Categoria obtenerCategoria(Integer idCategoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Categoria categoria = null;
+        categoria = (Categoria) genericDao.findByPropertyUnique(Categoria.class, "id", idCategoria);
+        if (categoria == null) {
+            throw new ExcepcionNegocio("catrgoria.noexiste");
+        }
+        return categoria;
     }
 
     public void inhabilitarCategoria(Integer idCategoria) {

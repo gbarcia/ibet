@@ -138,6 +138,7 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             @WebParam(name = "monto") Double monto, @WebParam(name = "nombreUsuario") String nombreUsuario, @WebParam(name = "passUsuario") String passUsuario,
             @WebParam(name = "nombreMetodoPago") String nombreMetodoPago) {
         Boolean resultado = Boolean.TRUE;
+        Apuesta apuesta = null;
         try {
             log.info("Iniciando operacion de web service para realizarApuesta ");
             log.info("Datos recibidos: " + "-- idEvento: " + idEvento + " -- NombreEquipoApostado: " + nombreEquipoApostado +
@@ -146,7 +147,7 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             Users usuario = servicioUsuario.comprobarValidezUsuario(nombreUsuario, passUsuario);
             Participante participanteApostado = servicioEvento.obtenerParticipantePorNombre(nombreEquipoApostado);
             MedioPago medioPago = servicioMedioPago.obtenerMedioPago(nombreMetodoPago);
-            Apuesta apuesta = servicioApuesta.armarApuestaParaRealizar(idEvento.toString(),
+            apuesta = servicioApuesta.armarApuestaParaRealizar(idEvento.toString(),
                     participanteApostado.getId().toString(), monto.toString(), usuario);
             apuesta.setMedioPago(medioPago);
             servicioApuesta.realizarApuesta(apuesta);
@@ -159,6 +160,7 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
             resultado = Boolean.FALSE;
             log.error("Ocurrio una excepcion de base de datos durante la operacion ws para relizar apuesta: ==> " + dae.getMessage());
         } catch (Exception e) {
+            servicioApuesta.deshacerApuesta(apuesta);
             e.printStackTrace();
             resultado = Boolean.FALSE;
             log.error("Ocurrio una excepcion durante la operacion ws para relizar apuesta: ==> " + e.getMessage());
@@ -173,23 +175,22 @@ public class IbetWebServices extends SpringBeanAutowiringSupport {
      * @return DetallesGananciasUsuarioTO transfer object con los detalles de la consulta 
      */
     @WebMethod(operationName = "gananciasPorUsuario")
-    public DetallesGananciasUsuarioTO gananciasPorUsuario(@WebParam(name = "username")
-    String username) {
+    public DetallesGananciasUsuarioTO gananciasPorUsuario(@WebParam(name = "username") String username) {
         DetallesGananciasUsuarioTO detalles = new DetallesGananciasUsuarioTO();
-        
-        try{
+
+        try {
             log.info("Iniciando operacion de servicio web ganancias por usuario ");
             log.info("El parametro recibido fue " + username);
             detalles = servicioUsuario.obtenerGananciasPorUsuario(username);
-        }catch(DataAccessException dae){
+        } catch (DataAccessException dae) {
             dae.printStackTrace();
             detalles = null;
             log.error("Ocurrio una excepcion de base de datos: ==> " + dae.getMessage());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             detalles = null;
             log.error("Ocurrio una excepcion al consultar las ganancias ==> " + e.getMessage());
-        }finally{
+        } finally {
             return detalles;
         }
     }

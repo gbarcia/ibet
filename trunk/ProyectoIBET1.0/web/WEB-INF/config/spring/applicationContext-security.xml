@@ -109,7 +109,7 @@
         <intercept-url pattern="/publico/front/eventos/eventos.htm" access="ROLE_USER,ROLE_GUEST" />
         <intercept-url pattern="/include/header.jsp" access="ROLE_USER,ROLE_GUEST" />
         <intercept-url pattern="/privado/back/admin.htm" access="ROLE_ADMIN" />
-        <intercept-url pattern="/privado/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/privado/back/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/privado/back/reportes/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCategoriasGananciasPDF.pdf" access="ROLE_ADMIN" />
         <intercept-url pattern="/repCategoriasGananciasXLS.xls" access="ROLE_ADMIN" />

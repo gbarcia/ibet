@@ -43,4 +43,10 @@ public interface IServicioApuesta {
      */
     public Apuesta armarApuestaParaRealizar(String idEvento, String idParticipante,
             String monto, Users usuario);
+
+    /**
+     * firma para deshacer una apuesta y elminarla del sistema
+     * @param apuesta objeto apuesta a eliminar
+     */
+    public void deshacerApuesta(Apuesta apuesta);
 }

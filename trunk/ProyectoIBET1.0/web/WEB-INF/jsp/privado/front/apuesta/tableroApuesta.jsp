@@ -47,7 +47,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th><label for="montoApuesta"><spring:message code="apuesta.datos.montoApuesta"/></label></th>
-                                                    <td><form:input id="montoApuesta" path="montoApuesta" autocomplete="true" readonly="true"/></td>
+                                                    <td><form:input id="montoApuesta" path="montoApuesta" autocomplete="true"/></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label for="nombreMetodoPago"><spring:message code="apuesta.datos.nombreMetodoPago"/></label></th>
