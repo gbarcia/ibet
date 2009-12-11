@@ -41,6 +41,9 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "logicaAutomatica")
     private boolean logicaAutomatica;
+    @Basic(optional = false)
+    @Column(name = "habilitada")
+    private boolean habilitada;
     @Column(name = "nombreLogica")
     private String nombreLogica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
