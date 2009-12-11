@@ -129,7 +129,7 @@ public class ServicioCategoriaImplTest {
         assertNotNull(result);
     }
 
-    @Test
+    //@Test
     public void testListarCategorias() {
         System.out.println("Listar Categorias");
         List<Categoria> result = servicioCategoria.listarCategorias();
@@ -137,5 +137,39 @@ public class ServicioCategoriaImplTest {
             System.out.println(categoria1.getNombre());
         }
         assertNotNull(result);
+    }
+
+    //@Test
+    public void testagregarCategoria() {
+        System.out.println("Agregar Categoria");
+        Categoria categoria = new Categoria();
+        categoria.setEmpate(true);
+        categoria.setHabilitada(true);
+        categoria.setIdCategoria(null);
+        categoria.setLogicaAutomatica(false);
+        categoria.setNombre("Politica");
+        categoria.setNombreLogica(null);
+        servicioCategoria.agregarCategoria(categoria);
+    }
+
+    //@Test
+    public void testObtenerCategoria() {
+        System.out.println("obtener Categoria");
+        Categoria categoria = servicioCategoria.obtenerCategoria(1);
+        System.out.println(categoria.getNombre());
+    }
+
+    //@Test
+    public void testEditarCategoria() {
+        System.out.println("editar Categoria");
+        Categoria categoria = servicioCategoria.obtenerCategoria(1);
+        categoria.setNombre("FURBOE");
+        servicioCategoria.editarCategotia(categoria);
+    }
+
+    @Test
+    public void testInhabilitarCategoria (){
+        System.out.println("Inhabilitar categoria");
+        servicioCategoria.inhabilitarCategoria(1);
     }
 }

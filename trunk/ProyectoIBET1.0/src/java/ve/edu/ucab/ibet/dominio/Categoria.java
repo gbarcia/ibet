@@ -143,6 +143,14 @@ public class Categoria implements Serializable {
         this.idCategoria = idCategoria;
     }
 
+    public boolean isHabilitada() {
+        return habilitada;
+    }
+
+    public void setHabilitada(boolean habilitada) {
+        this.habilitada = habilitada;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
