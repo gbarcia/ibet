@@ -41,7 +41,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
 
         List<Categoria> categoriasPadre = new ArrayList<Categoria>();
         for (Categoria categoria : todasLasCategorias) {
-            if (categoria.getIdCategoria() == null) {
+            if (categoria.getIdCategoria() == null && categoria.isHabilitada()) {
                 categoriasPadre.add(categoria);
             }
         }
@@ -51,7 +51,8 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     @SuppressWarnings("unchecked")
     public List<Categoria> obtenerSubcategoriasDeUnaCategoria(Categoria categoriaPadre) {
         List<Categoria> subcategorias = new ArrayList<Categoria>();
-        String query = "select c.categoriaCollection from Categoria c where c.id = ?";
+        String query = "select a from Categoria c inner join c.categoriaCollection " +
+                "as a where a.habilitada = true and a.idCategoria.id = ?";
         Object[] parametros = {categoriaPadre.getId()};
         subcategorias.addAll(this.genericDao.ejecutarQueryList(query, parametros));
         return subcategorias;
@@ -68,6 +69,9 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         if (categoria == null) {
             throw new ExcepcionNegocio("categoria.invalida");
         }
+        Integer id = genericDao.getNextId(categoria);
+        categoria.setId(id);
+        categoria.setHabilitada(Boolean.TRUE);
         genericDao.insertar(categoria);
     }
 
@@ -88,6 +92,9 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     }
 
     public void inhabilitarCategoria(Integer idCategoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Categoria categoria = null;
+        categoria = obtenerCategoria(idCategoria);
+        categoria.setHabilitada(Boolean.FALSE);
+        genericDao.merge(categoria);
     }
 }
