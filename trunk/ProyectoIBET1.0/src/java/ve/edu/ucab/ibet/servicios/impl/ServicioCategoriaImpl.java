@@ -2,6 +2,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import ve.edu.ucab.ibet.controllers.forms.RegistroCategoriaTO;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
@@ -96,5 +97,36 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         categoria = obtenerCategoria(idCategoria);
         categoria.setHabilitada(Boolean.FALSE);
         genericDao.merge(categoria);
+    }
+
+    public Categoria transferObjectToCategoria(RegistroCategoriaTO registro) {
+        Categoria categoriaPadre = null;
+        if (!registro.getJerarquia().equals("Primer Nivel")) {
+            categoriaPadre = obtenerCategoriaPorNombre(registro.getJerarquia());
+        }
+        Boolean hayEmpate = (registro.getEmpate().equals("SI")) ? Boolean.TRUE : Boolean.FALSE;
+        Boolean hayLogica = (registro.getLogicaAutomatica().equals("SI")) ? Boolean.TRUE : Boolean.FALSE;
+        Categoria categoria = new Categoria();
+        categoria.setEmpate(hayEmpate);
+        categoria.setLogicaAutomatica(hayLogica);
+        categoria.setNombre(registro.getNombreCategoria());
+        categoria.setNombreLogica(registro.getNombreLogica());
+        if (categoriaPadre != null) {
+            categoria.setIdCategoria(categoriaPadre);
+        }
+        return categoria;
+    }
+
+    public RegistroCategoriaTO categoriaToTransferObject(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Categoria obtenerCategoriaPorNombre(String nombreCategoria) {
+        Categoria categoria = null;
+        categoria = (Categoria) genericDao.findByPropertyUnique(Categoria.class, "nombre", nombreCategoria);
+        if (categoria == null) {
+            throw new ExcepcionNegocio("catrgoria.noexiste");
+        }
+        return categoria;
     }
 }

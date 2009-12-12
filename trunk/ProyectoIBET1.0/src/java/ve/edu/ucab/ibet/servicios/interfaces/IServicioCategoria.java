@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
 import java.util.List;
+import ve.edu.ucab.ibet.controllers.forms.RegistroCategoriaTO;
 import ve.edu.ucab.ibet.dominio.Categoria;
 
 /**
@@ -49,8 +50,29 @@ public interface IServicioCategoria {
     public Categoria obtenerCategoria (Integer idCategoria);
 
     /**
+     * firma para obtener una categoria por nombre
+     * @param nombreCategoria el nombre de la categoria a buscar
+     * @return objeto categoria con la informacion
+     */
+    public Categoria obtenerCategoriaPorNombre (String nombreCategoria);
+
+    /**
      * firma para inhabilitar del sistema una categoria
      * @param idCategoria id de la categoria a deshabilitar
      */
     public void inhabilitarCategoria (Integer idCategoria);
+
+    /**
+     * Firma para convertir un transferObject en un objeto de dominio categoria
+     * @param registro objeto transfer object a convertir
+     * @return Objeto Categoria
+     */
+    public Categoria transferObjectToCategoria (RegistroCategoriaTO registro);
+
+    /**
+     * firma para convertir un objeto categoria en un transfer object
+     * @param categoria objeto categoria a convertir
+     * @return objet de transferencia
+     */
+    public RegistroCategoriaTO categoriaToTransferObject (Categoria categoria);
 }
