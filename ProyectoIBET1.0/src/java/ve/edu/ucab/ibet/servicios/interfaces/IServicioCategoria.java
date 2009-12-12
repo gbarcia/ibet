@@ -63,6 +63,12 @@ public interface IServicioCategoria {
     public void inhabilitarCategoria (Integer idCategoria);
 
     /**
+     * firma para habilitar una categoria
+     * @param idCategoria id de la categoria a habilitar
+     */
+    public void habilitarCategoria(Integer idCategoria);
+
+    /**
      * Firma para convertir un transferObject en un objeto de dominio categoria
      * @param registro objeto transfer object a convertir
      * @return Objeto Categoria

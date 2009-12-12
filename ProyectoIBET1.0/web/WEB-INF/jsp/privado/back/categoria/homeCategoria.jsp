@@ -34,7 +34,7 @@
                         </c:when>
                     </c:choose>
                 </display:column>
-                <display:column property="logicaAutomatica" title="Logica Automatica">
+                <display:column  title="Logica Automatica">
                     <c:choose>
                         <c:when test="${listadoCategorias.logicaAutomatica=='true'}">
                             Si
@@ -44,7 +44,7 @@
                         </c:when>
                     </c:choose>
                 </display:column>                
-                <display:column property="habilitada" title="Habilitada">
+                <display:column  title="Habilitada">
                     <c:choose>
                         <c:when test="${listadoCategorias.habilitada=='true'}">
                             Si
@@ -56,7 +56,14 @@
                 </display:column>
                 <display:column title="Acciones">
                     <a href="updateCategoria.htm?id=${listadoCategorias.id}">actualizar</a>
-                    <a href="inhabilitarCategoria.htm?id=${listadoCategorias.id}">inhabilitar</a>
+                    <c:choose>
+                        <c:when test="${listadoCategorias.habilitada=='true'}">
+                            <a href="inhabilitarCategoria.htm?id=${listadoCategorias.id}">inhabilitar</a>
+                        </c:when>
+                        <c:when test="${listadoCategorias.habilitada=='false'}">
+                            <a href="habilitarCategoria.htm?id=${listadoCategorias.id}">habilitar</a>
+                        </c:when>
+                    </c:choose>
                 </display:column>
             </display:table>
         </div>

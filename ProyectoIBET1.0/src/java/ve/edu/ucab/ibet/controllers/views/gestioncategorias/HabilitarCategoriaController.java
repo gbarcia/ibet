@@ -10,12 +10,12 @@ import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 
 /**
- * Clase para soportar el request para inhabilitar una categoria y redirigir
+ * Clase para soportar el request para habilitar una categoria y redirigir
  * al home de categoria mostrando un mensaje de exito o fallo de la operacion
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class InhabilitarCategoriaController implements Controller {
+public class HabilitarCategoriaController implements Controller {
 
     private IServicioCategoria servicioCategoria;
 
@@ -30,10 +30,10 @@ public class InhabilitarCategoriaController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) {
         String idCategoriaStr = req.getParameter("id");
         Integer idCategoria = Integer.parseInt(idCategoriaStr);
-        servicioCategoria.inhabilitarCategoria(idCategoria);
+        servicioCategoria.habilitarCategoria(idCategoria);
         List<Categoria> listaCategoria = servicioCategoria.listarCategorias();
         ModelAndView mv = new ModelAndView(new RedirectView("/ProyectoIBET/privado/back/categoria/homeCategoria.htm"));
-        mv.addObject("mensaje","Categoria inhabilitada con exito");
+        mv.addObject("mensaje","Categoria habilitada con exito");
         mv.addObject("categoriaList", listaCategoria);
         return mv;
     }

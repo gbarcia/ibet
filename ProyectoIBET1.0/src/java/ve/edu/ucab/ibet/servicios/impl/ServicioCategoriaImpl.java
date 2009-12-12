@@ -143,4 +143,11 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         }
         return categoria;
     }
+
+    public void habilitarCategoria(Integer idCategoria) {
+        Categoria categoria = null;
+        categoria = obtenerCategoria(idCategoria);
+        categoria.setHabilitada(Boolean.TRUE);
+        genericDao.merge(categoria);
+    }
 }
