@@ -18,13 +18,14 @@ import ve.edu.ucab.ibet.generic.util.DatosUtil;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 
 /**
- * Clase para mostrar y procesar el formulario para registro de categoria
+ *Clase para mostrar y procesar el formulario para editar categoria
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class AgregarCategoriaController extends SimpleFormController {
+public class EditarCategoriaController extends SimpleFormController {
 
     private IServicioCategoria servicioCategoria;
+    private Integer idCategoria;
 
     public IServicioCategoria getServicioCategoria() {
         return servicioCategoria;
@@ -34,19 +35,17 @@ public class AgregarCategoriaController extends SimpleFormController {
         this.servicioCategoria = servicioCategoria;
     }
 
-    public AgregarCategoriaController() {
+    public EditarCategoriaController() {
         setCommandClass(RegistroCategoriaTO.class);
-        setCommandName("registroCategoria");
+        setCommandName("updateCategoria");
     }
 
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
-        RegistroCategoriaTO registro = new RegistroCategoriaTO();
-        registro.setNombreCategoria(new String());
-        registro.setEmpate("SI");
-        registro.setLogicaAutomatica("NO");
-        registro.setJerarquia(METHOD_GET);
-        registro.setNombreLogica(null);
+        String idCategoriaStr = request.getParameter("id");
+        idCategoria = Integer.parseInt(idCategoriaStr);
+        Categoria categoria = servicioCategoria.obtenerCategoria(idCategoria);
+        RegistroCategoriaTO registro = servicioCategoria.categoriaToTransferObject(categoria);
         return registro;
     }
 
@@ -72,8 +71,9 @@ public class AgregarCategoriaController extends SimpleFormController {
         Categoria categoria = servicioCategoria.transferObjectToCategoria(registro);
         ModelAndView mv = new ModelAndView(new RedirectView(getSuccessView()));
         try {
-            servicioCategoria.agregarCategoria(categoria);
-            mv.addObject("mensaje", "Categoria "+ categoria.getNombre() + " registrada con exito");
+            categoria.setId(idCategoria);
+            servicioCategoria.editarCategotia(categoria);
+            mv.addObject("mensaje", "Categoria " + categoria.getNombre() +  " actualizada con exito");
         } catch (DataAccessException dae) {
             dae.printStackTrace();
             mv = new ModelAndView("errorDA");

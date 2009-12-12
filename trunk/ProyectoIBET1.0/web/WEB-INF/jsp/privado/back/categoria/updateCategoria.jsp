@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : agregarCategoria
     Created on : 11/12/2009, 04:04:36 PM
     Author     : Gerardo Barcia
@@ -13,13 +13,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ibet | Admin - Agregar Categoria</title>
+        <title>Ibet | Admin - Actualizar Categoria</title>
     </head>
     <body>
-        <h1>Agregar Categoria</h1>
+        <h1>Actualizar Categoria</h1>
         <form:errors path="*" cssClass="error"/>
         <table>
-            <form:form commandName="registroCategoria">
+            <form:form commandName="updateCategoria">
             <tr>
                 <th><label for="nombreCategoria">Nombre:</label></th>
                 <td><form:input id="nombreCategoria" path="nombreCategoria"/></td>
@@ -43,8 +43,9 @@
                 <td><form:errors path="nombreLogica" /></td>
             </tr>
         </table>
-            <input type="submit" value="registrar">
+            <input type="submit" value="actualizar">
             </form:form>
             <a href="homeCategoria.htm">Volver</a>
     </body>
 </html>
+
