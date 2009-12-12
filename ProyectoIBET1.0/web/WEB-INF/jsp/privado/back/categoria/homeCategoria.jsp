@@ -56,7 +56,7 @@
                 </display:column>
                 <display:column title="Acciones">
                     <a href="updateCategoria.htm?id=${listadoCategorias.id}">actualizar</a>
-                    <a href="deleteCategoria.htm?id=${listadoCategorias.id}">inhabilitar</a>
+                    <a href="inhabilitarCategoria.htm?id=${listadoCategorias.id}">inhabilitar</a>
                 </display:column>
             </display:table>
         </div>
