@@ -383,7 +383,7 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         Object[] o = new Object[1];
         o[0] = username;
 
-        String query = "select New ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO (a.monto, e.nombre, e.fechaEvento) " +
+        String query = "select New ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO (a.monto, e.nombre, e.fechaEvento, tg.gano, tg.proporcionGano, tg.proporcionEmpate) " +
                        "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
                        "where c.id = e.idCategoria " +
                        "and e.id = tg.tableroGananciaPK.idEvento " +
@@ -396,9 +396,26 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
         ganancias.addAll(genericDao.ejecutarQueryList(query, o));
 
+        ganancias = this.gananciasPorUsuario(ganancias);
+
         DetallesGananciasUsuarioTO detalles = new DetallesGananciasUsuarioTO();
         detalles.setGananciasPorUsuario(ganancias);
 
         return detalles;
+    }
+
+    private List<GananciasPorUsuarioTO> gananciasPorUsuario(List<GananciasPorUsuarioTO> ganancias){
+        
+        Double montoNuevo = 0.0;
+        for (GananciasPorUsuarioTO ganancia : ganancias) {
+            if(ganancia.getGano()){
+                montoNuevo = ganancia.getMontoGanado()*ganancia.getProporcionGano();
+                ganancia.setMontoGanado(montoNuevo);
+            } else {
+                montoNuevo = ganancia.getMontoGanado()*ganancia.getProporcionEmpate();
+                ganancia.setMontoGanado(montoNuevo);
+            }
+        }
+        return ganancias;
     }
 }
