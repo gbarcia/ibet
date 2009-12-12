@@ -16,4 +16,5 @@ public abstract class DatosUtil {
         "MIRANDA", "MONAGAS", "NUEVA ESPARTA", "PORTUGUESA",
         "SUCRE", "TACHIRA", "TRUJILLO", "VARGAS", "YARACUY",
         "ZULIA"};
+    public static final String[] BOOLEANOS = {"SI", "NO"};
 }

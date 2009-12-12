@@ -6,18 +6,18 @@
      <!-- Archivo para la validacion de los formularios de categorias -->
 
 <form-validation>
-   <!-- <formset>
-        <form name="clienteForm">
-            <field property="rif" depends="required,mask">
-                <arg0 key="forms.cliente.rif" />
+    <formset>
+        <form name="registroCategoriaTO">
+            <field property="nombreCategoria" depends="required">
+                 <msg name="required" key="el nombre de la categoria es requerido" resource="false"/>
+            </field>
+            <field property="nombreLogica" depends="validwhen">
+                <msg name="validwhen" key="el nombre de logica es requerido" resource="false"/>
                 <var>
-                    <var-name>mask</var-name>
-                    <var-value>^[0-9A-Za-z]{2,6}$</var-value>
+                    <var-name>test</var-name>
+                    <var-value>(logicaAutomatica == 'NO')</var-value>
                 </var>
             </field>
-            <field property="nombre" depends="required">
-                <arg0 key="forms.cliente.nombre" />
-            </field>
-            </form>
-        </formset> -->
+        </form>
+    </formset>
 </form-validation>

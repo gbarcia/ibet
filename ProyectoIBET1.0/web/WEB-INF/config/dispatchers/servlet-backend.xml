@@ -52,6 +52,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="formView" value="privado/back/reportes/reporteEventosAltoRiesgo" />
 </bean>
 
+<!-- Bean para mostrar el formulario para agregar categoria-->
+<bean name="/privado/back/categoria/agregarCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.AgregarCategoriaController">
+  <property name="servicioCategoria" ref="servicioCategoria" />
+  <property name="formView" value="privado/back/categoria/agregarCategoria" />
+  <property name="successView" value="homeCategoria.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->
