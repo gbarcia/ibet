@@ -1,24 +1,23 @@
 package ve.edu.ucab.ibet.controllers.views.gestioncategorias;
 
-
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.Categoria;
-import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 
 /**
- * Clase controladora para el home de la gestion de categorias
+ * Clase para soporta el request para inhabilitar una categoria y redirigir
+ * al home de categoria mostrando un mensaje de exito o fallo de la operacion
  * @author Gerardo Barcia
  * @version 1.0
  */
-public class HomeCategoriaController implements Controller {
+public class InhabilitarCategoriaController implements Controller {
 
     private IServicioCategoria servicioCategoria;
-    private IHelperProperties herlperProp;
 
     public IServicioCategoria getServicioCategoria() {
         return servicioCategoria;
@@ -28,19 +27,15 @@ public class HomeCategoriaController implements Controller {
         this.servicioCategoria = servicioCategoria;
     }
 
-    public IHelperProperties getHerlperProp() {
-        return herlperProp;
-    }
-
-    public void setHerlperProp(IHelperProperties herlperProp) {
-        this.herlperProp = herlperProp;
-    }
-    
-    @SuppressWarnings("unchecked")
-    public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) {
+        String idCategoriaStr = req.getParameter("id");
+        Integer idCategoria = Integer.parseInt(idCategoriaStr);
+        servicioCategoria.inhabilitarCategoria(idCategoria);
         List<Categoria> listaCategoria = servicioCategoria.listarCategorias();
-        ModelAndView mv = new ModelAndView("privado/back/categoria/homeCategoria");
+        ModelAndView mv = new ModelAndView(new RedirectView("/ProyectoIBET/privado/back/categoria/homeCategoria.htm"));
+        mv.addObject("mensaje","Categoria inhabilitada con exito");
         mv.addObject("categoriaList", listaCategoria);
         return mv;
     }
+
 }

@@ -14,11 +14,7 @@
         <title>Modulo de administracion - Ibet</title>
     </head>
     <body>
-        <h2>Reportes</h2>
-        <h1><a href="reportes/reporteGanancias.htm">Reporte de Ganancias</a></h1>
-        <h1><a href="reportes/reportePerdidas.htm">Reporte de Perdidas</a></h1>
-        <h1><a href="reportes/reporteCantidadUsuariosPorCategoria.htm">Reporte Cantidad de Usuarios Por Categoria</a></h1>
-        <h1><a href="reportes/reporteEventosAltoRiesgo.htm">Eventos de Alto Riesgo</a></h1>
-        <h1><a href="reportes/reporteUsuariosMayorAciertos.htm">Usuarios Mayor Aciertos</a></h1>
+        <h1><a href="reportes/homeReportes.htm">Reportes</a></h1>
+        <h1><a href="categoria/homeCategoria.htm">Gestion Categorias</a></h1>
     </body>
 </html>
