@@ -80,6 +80,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         if (categoria == null) {
             throw new ExcepcionNegocio("categoria.invalida");
         }
+        categoria.setHabilitada(Boolean.TRUE);
         genericDao.merge(categoria);
     }
 
@@ -118,7 +119,20 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     }
 
     public RegistroCategoriaTO categoriaToTransferObject(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Categoria catJerarquia = null;
+        RegistroCategoriaTO registro = new RegistroCategoriaTO();
+        String hayEmpate = (categoria.getEmpate()) ? "SI" : "NO";
+        String logicaAutomatica = (categoria.getLogicaAutomatica()) ? "SI" : "NO";
+        if (categoria.getIdCategoria() != null){
+        catJerarquia = obtenerCategoria(categoria.getIdCategoria().getId());
+        }
+        String jerarquia = (catJerarquia == null) ? "Primer Nivel" : catJerarquia.getNombre();
+        registro.setEmpate(hayEmpate);
+        registro.setLogicaAutomatica(logicaAutomatica);
+        registro.setNombreCategoria(categoria.getNombre());
+        registro.setNombreLogica(categoria.getNombreLogica());
+        registro.setJerarquia(jerarquia);
+        return registro;
     }
 
     public Categoria obtenerCategoriaPorNombre(String nombreCategoria) {

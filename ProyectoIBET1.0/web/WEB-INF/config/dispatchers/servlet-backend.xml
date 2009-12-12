@@ -61,6 +61,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="validator" ref="beanValidator"/>
 </bean>
 
+<!-- Bean para mostrar el formulario para actualizar categoria-->
+<bean name="/privado/back/categoria/updateCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.EditarCategoriaController">
+  <property name="servicioCategoria" ref="servicioCategoria" />
+  <property name="formView" value="privado/back/categoria/updateCategoria" />
+  <property name="successView" value="homeCategoria.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->
