@@ -85,5 +85,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.InhabilitarCategoriaController">
         <property name="servicioCategoria" ref="servicioCategoria" />
 </bean>
+ <!-- Bean para habilitar una categoria y realizar retorno a homeCategoria -->
+<bean name="/privado/back/categoria/habilitarCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.HabilitarCategoriaController">
+        <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
     
 </beans>
