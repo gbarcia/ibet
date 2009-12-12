@@ -24,17 +24,6 @@
                 <div id="contentWrapper">
                     <div id="contentColumn">
                         <div id="centerPane">
-
-
-
-                            <%--<div class="paneTitle">
-                                <spring:message code="home.destacado"/>
-                            </div>
-                            <div class="pane">
-                                <div class="galeria">
-                                    Galeria
-                                </div>
-                            </div>--%>
                             <div class="paneTitle">
                                 <spring:message code="home.proximas"/>
                             </div>
