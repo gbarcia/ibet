@@ -29,11 +29,13 @@
                             </div>
                             <div class="pane">
                                 <c:if test="${not empty param.mensaje}">
+                                    <c:if test="${param.r!= '1'}">
                                     <div id="alert"><c:out value="${param.mensaje}"/>
                                     </div>
+                                    </c:if>
                                 </c:if>
                                 <display:table id="listadoCategorias" name="categoriaList" pagesize="5" decorator="org.displaytag.decorator.TotalTableDecorator"
-                                               export="true" class="dataTable" requestURI="homeCategoria.htm">
+                                               export="true" class="dataTable" requestURI="homeCategoria.htm?r=1">
                                     <display:column property="nombre" title="Nombre" sortable="true"/>
                                     <display:column title="Empate" >
                                         <c:choose>
