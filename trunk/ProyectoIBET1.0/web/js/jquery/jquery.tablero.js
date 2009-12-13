@@ -9,7 +9,7 @@ $(document).ready(function() {
             }, 9000);
             $alert.animate({
                 height: $alert.css('line-height') || '50px'
-                }, 200)
+            }, 200)
             .click(function () {
                 window.clearTimeout(alerttimer);
                 $alert.animate({
@@ -86,5 +86,81 @@ $(document).ready(function() {
     }
     )
 
+    $('.botonActualizar').qtip(
+    {
+        content: 'Actualizar',
+        position: {
+            corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+            }
+        },
+        style: {
+            border: {
+                width: 1
+            },
+            padding: 5,
+            textAlign: 'center',
+            tip: true, // Give it a speech bubble tip with automatic corner detection
+            name: 'dark' // Style it according to the preset 'cream' style
+        }
+    });
+    $('.botonHabilitar').qtip(
+    {
+        content: 'Habilitar',
+        position: {
+            corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+            }
+        },
+        style: {
+            border: {
+                width: 1
+            },
+            padding: 5,
+            textAlign: 'center',
+            tip: true, // Give it a speech bubble tip with automatic corner detection
+            name: 'dark' // Style it according to the preset 'cream' style
+        }
+    });
+    $('.botonInhabilitar').qtip(
+    {
+        content: 'Inhabilitar',
+        position: {
+            corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+            }
+        },
+        style: {
+            border: {
+                width: 1
+            },
+            padding: 5,
+            textAlign: 'center',
+            tip: true, // Give it a speech bubble tip with automatic corner detection
+            name: 'dark' // Style it according to the preset 'cream' style
+        }
+    });
+    $('.botonAgregar').qtip(
+    {
+        content: 'Registrar',
+        position: {
+            corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+            }
+        },
+        style: {
+            border: {
+                width: 1
+            },
+            padding: 5,
+            textAlign: 'center',
+            tip: true, // Give it a speech bubble tip with automatic corner detection
+            name: 'dark' // Style it according to the preset 'cream' style
+        }
+    });
 
 });

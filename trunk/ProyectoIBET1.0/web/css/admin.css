@@ -40,3 +40,9 @@ body{
 	padding: 10px;
 	text-align: justify
 }
+
+#contentColumn {
+	margin: 0;
+	max-width: none;
+	min-width: 550px
+}

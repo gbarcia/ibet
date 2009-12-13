@@ -12,7 +12,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="home.titulo"/></title>
-        <script type="text/javascript">var _siteRoot='/home.htm',_root='/home.htm';</script>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.tablero.js"%>"></script>
         <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.slider.js"%>"></script>
@@ -87,15 +86,15 @@
                                     <table width="100%" cellspacing="5">
                                         <tr>
                                             <td><spring:message code="eventos.stake"/></td>
-                                            <td><input id="importe" type="text" name="" value=""/></td>
+                                            <td><input class="importe" type="text" name="" value=""/></td>
                                         </tr>
                                         <tr>
                                             <td><spring:message code="eventos.winnings"/></td>
-                                            <td><div id="ganancias"></div></td>
+                                            <td><div class="ganancias"></div></td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
-                                            <td><input id="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
+                                            <td><input class="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
                                         </tr>
                                     </table>
                                 </div>
