@@ -38,6 +38,7 @@ public class HomeCategoriaController implements Controller {
     
     @SuppressWarnings("unchecked")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        
         List<Categoria> listaCategoria = servicioCategoria.listarCategorias();
         ModelAndView mv = new ModelAndView("privado/back/categoria/homeCategoria");
         mv.addObject("categoriaList", listaCategoria);
