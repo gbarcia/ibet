@@ -86,15 +86,15 @@
                                     <table width="100%" cellspacing="5">
                                         <tr>
                                             <td><spring:message code="eventos.stake"/></td>
-                                            <td><input class="importe" type="text" name="" value=""/></td>
+                                            <td><input id="importe" type="text" name="" value=""/></td>
                                         </tr>
                                         <tr>
                                             <td><spring:message code="eventos.winnings"/></td>
-                                            <td><div class="ganancias"></div></td>
+                                            <td><div id="ganancias"></div></td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
-                                            <td><input class="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
+                                            <td><input id="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
                                         </tr>
                                     </table>
                                 </div>
