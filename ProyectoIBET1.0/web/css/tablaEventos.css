@@ -3,14 +3,14 @@
     Created on : Nov 23, 2009, 7:52:42 PM
     Author     : jonathan
     Description:
-        Estilo de tablero.
+        Estilo de tabla de eventos.
 */
 
-.tablero{
+.tablaEventos{
     width:100%;
 }
 
-.tablero .fecha{
+.tablaEventos .fecha{
     background-color:#171717;
     border:#000 solid 1px;
     color:orange;
@@ -20,14 +20,14 @@
     vertical-align:top
 }
 
-.tablero .hora{
+.tablaEventos .hora{
     color:#bcbcbc;
     padding:1px 4px;
     text-align:center;
     vertical-align:top
 }
 
-.tablero .item{
+.tablaEventos .item{
     background-color:#202020;
     border:#000 solid 1px;
     cursor:pointer;
@@ -35,7 +35,7 @@
     vertical-align:top;
 }
 
-.tablero .itemHover{
+.tablaEventos .itemHover{
     background-color:#202020;
     border:orange solid 1px;
     cursor:pointer;
@@ -43,7 +43,7 @@
     vertical-align:top;
 }
 
-.tablero .itemClick{
+.tablaEventos .itemClick{
     background-color:orange;
     border:1px solid #000;
     color:#000;
@@ -52,11 +52,11 @@
     vertical-align:top;
 }
 
-.tablero .participante{
+.tablaEventos .participante{
     float:left;
     max-width:80%
 }
 
-.tablero .proporcion{
+.tablaEventos .proporcion{
     float:right;
 }
