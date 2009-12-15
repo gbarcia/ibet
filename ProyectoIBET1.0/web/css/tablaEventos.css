@@ -6,57 +6,57 @@
         Estilo de tablero.
 */
 
-.tablaEventos {
-	width: 100%
+.tablero{
+    width:100%;
 }
 
-.tablaEventos .fecha {
-	background-color: #171717;
-	border: #000 solid 1px;
-	color: orange;
-	font-weight: 700;
-	letter-spacing: 2px;
-	padding: 1px 4px;
-	vertical-align: top
+.tablero .fecha{
+    background-color:#171717;
+    border:#000 solid 1px;
+    color:orange;
+    padding:1px 4px;
+    font-weight:700;
+    letter-spacing:2px;
+    vertical-align:top
 }
 
-.tablaEventos .hora {
-	color: #bcbcbc;
-	padding: 1px 4px;
-	text-align: center;
-	vertical-align: top
+.tablero .hora{
+    color:#bcbcbc;
+    padding:1px 4px;
+    text-align:center;
+    vertical-align:top
 }
 
-.tablaEventos .item {
-	background-color: #202020;
-	border: #000 solid 1px;
-	cursor: pointer;
-	padding: 1px 4px;
-	vertical-align: top
+.tablero .item{
+    background-color:#202020;
+    border:#000 solid 1px;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
 }
 
-.tablaEventos .itemHover {
-	background-color: #202020;
-	border: orange solid 1px;
-	cursor: pointer;
-	padding: 1px 4px;
-	vertical-align: top
+.tablero .itemHover{
+    background-color:#202020;
+    border:orange solid 1px;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
 }
 
-.tablaEventos .itemClick {
-	background-color: orange;
-	border: 1px solid #000;
-	color: #000;
-	cursor: pointer;
-	padding: 1px 4px;
-	vertical-align: top
+.tablero .itemClick{
+    background-color:orange;
+    border:1px solid #000;
+    color:#000;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
 }
 
-.tablaEventos .participante {
-	float: left;
-	max-width: 80%
+.tablero .participante{
+    float:left;
+    max-width:80%
 }
 
-.tablaEventos .proporcion {
-	float: right
+.tablero .proporcion{
+    float:right;
 }
