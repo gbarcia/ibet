@@ -27,7 +27,7 @@
                                 iBet: <c:out value="${eventos[0].idCategoria.nombre}"/>
                             </div>
                             <div class="pane">
-                                <table class="tablaEventos" cellspacing="5">
+                                <table class="tablero" cellspacing="5">
                                     <tbody>
                                         <c:forEach items="${eventos}" var="evento">
                                             <c:if test="${evento.fecha != ultimaFecha}">
