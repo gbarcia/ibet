@@ -24,7 +24,7 @@ $(document).ready(function() {
     var active = null;
     var init = false;
 
-    $(".tablero .item").click(function() {
+    $(".tablaEventos .item").click(function() {
         if (!init){
             $("#slipNoBet").hide();
             $("#slipForm").fadeIn(1000);
@@ -54,7 +54,7 @@ $(document).ready(function() {
         $("#ganancias").text(ganancias);
     });
 
-    $(".tablero .item").hover(
+    $(".tablaEventos .item").hover(
         function() {
             if ($(this).attr("id") != active){
                 $(this).removeClass().addClass("itemHover");
