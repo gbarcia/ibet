@@ -152,4 +152,27 @@ public class ServicioEventoImpl implements IServicioEvento {
         }
         return participante;
     }
+
+    private void updateEventoFinalizado(Integer idEvento, String resultado) {
+        Evento evento = this.obtenerEvento(idEvento);
+        evento.setFinalizado(true);
+        evento.setResultado(resultado);
+        genericDao.limpiar();
+        genericDao.merge(evento);
+
+    }
+
+    private Boolean finalizarAntes(Integer idEvento) {
+        Evento evento = this.obtenerEvento(idEvento);
+        Boolean resultado = evento.getIdPolitica().getFinalizarAntes();
+        return resultado;
+    }
+
+    public void finalizarEvento(Integer idEvento, String resultado) {
+        if (finalizarAntes(idEvento)) {
+            this.updateEventoFinalizado(idEvento, resultado);
+        } else {
+            throw new ExcepcionNegocio("errors.evento.finalizarAntes"); 
+        }
+    }
 }

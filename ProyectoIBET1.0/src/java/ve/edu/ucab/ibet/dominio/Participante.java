@@ -35,6 +35,8 @@ public class Participante implements Serializable {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "idCategoria")
+    private Integer idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "participante")
     private Collection<TableroGanancia> tableroGananciaCollection;
 
@@ -80,6 +82,14 @@ public class Participante implements Serializable {
 
     public void setTableroGananciaCollection(Collection<TableroGanancia> tableroGananciaCollection) {
         this.tableroGananciaCollection = tableroGananciaCollection;
+    }
+
+    public Integer getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     @Override
