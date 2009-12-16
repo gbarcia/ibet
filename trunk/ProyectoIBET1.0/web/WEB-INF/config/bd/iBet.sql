@@ -170,7 +170,14 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`PARTICIPANTE` (
   `id` INT NOT NULL ,
   `nombre` VARCHAR(45) UNIQUE NOT NULL ,
   `descripcion` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) )
+  `idCategoria` INT NOT NULL ,
+  PRIMARY KEY (`id`)  ,
+  INDEX `fk_EVENTO_PARTICIPANTE1` (`idCategoria` ASC) ,
+   CONSTRAINT `fk_EVENTO_PARTICIPANTE1`
+    FOREIGN KEY (`idCategoria` )
+    REFERENCES `iBet`.`CATEGORIA` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -355,39 +362,39 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (1, 'Sporting Gijon', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (2, 'Villarreal', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (3, 'CF Valencia', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (4, 'RCD Mallorca', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (5, 'FC Sevilla', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (6, 'Malaga', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (7, 'Anzoategui', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (8, 'Llaneros', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (9, 'Carabobo FC', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (10, 'CD Lara', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (11, 'Dep. Tachira', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (12, 'Trujillanos', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (13, 'Aguilas del Zulia', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (14, 'Tiburones de La Guaira', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (15, 'Bravos de Margarita', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (16, 'Caribes de Anzoategui', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (17, 'Leones del Caracas', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (18, 'Navegantes del Magallanes', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (19, 'Rafael Nadal', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (20, 'Novak Djokovic', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (21, 'Lleyton Hewitt', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (22, 'Victor Hanescu', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (23, 'Samantha Stosur', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (24, 'Sorana Cirstea', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (25, 'Cardenales de Lara', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (26, 'Tigres de Aragua', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (27, 'Athletic Club', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (28, 'FC Barcelona', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (29, 'RC Deportivo', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (30, 'At. de Madrid', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (31, 'Real Madrid CF', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (32, 'Real Racing Club', '');
-INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`) VALUES (33, 'UD Almeria', '');
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (1, 'Sporting Gijon', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (2, 'Villarreal', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (3, 'CF Valencia', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (4, 'RCD Mallorca', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (5, 'FC Sevilla', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (6, 'Malaga', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (7, 'Anzoategui', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (8, 'Llaneros', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (9, 'Carabobo FC', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (10, 'CD Lara', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (11, 'Dep. Tachira', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (12, 'Trujillanos', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (13, 'Aguilas del Zulia', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (14, 'Tiburones de La Guaira', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (15, 'Bravos de Margarita', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (16, 'Caribes de Anzoategui', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (17, 'Leones del Caracas', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (18, 'Navegantes del Magallanes', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (19, 'Rafael Nadal', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (20, 'Novak Djokovic', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (21, 'Lleyton Hewitt', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (22, 'Victor Hanescu', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (23, 'Samantha Stosur', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (24, 'Sorana Cirstea', '', 6);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (25, 'Cardenales de Lara', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (26, 'Tigres de Aragua', '', 4);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (27, 'Athletic Club', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (28, 'FC Barcelona', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (29, 'RC Deportivo', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (30, 'At. de Madrid', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (31, 'Real Madrid CF', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (32, 'Real Racing Club', '', 1);
+INSERT INTO `PARTICIPANTE` (`id`, `nombre`, `descripcion`, `idCategoria`) VALUES (33, 'UD Almeria', '', 1);
 
 COMMIT;
 

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.Date;
@@ -28,14 +27,12 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
  *
  * @author jonathan
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:web/WEB-INF/config/hibernate/applicationContextTest.xml"})
 public class ServicioEventoImplTest {
 
     public ServicioEventoImplTest() {
     }
-
     @Autowired
     private IServicioEvento servicioEvento;
 
@@ -121,14 +118,13 @@ public class ServicioEventoImplTest {
 //            System.out.println(evento.getNombre());
 //        }
 //        assertNotNull(result);
-        // TODO review the generated test code and remove the default call to fail.
+    // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
 //    @Test
     public void testObtenerEventoporTableroGananciaTest() {
         System.out.println("Obtener Evento Tablero Ganancia");
-        TableroGanancia tablero = new TableroGanancia(1,1);
+        TableroGanancia tablero = new TableroGanancia(1, 1);
         Evento evento = null;
         evento = servicioEvento.obtenerEventoporTableroGanancia(tablero);
         assertNotNull(evento);
@@ -136,33 +132,33 @@ public class ServicioEventoImplTest {
     }
 
 //    @Test
-    public void testObtenerProximosEventos(){
+    public void testObtenerProximosEventos() {
         System.out.println("Proximos eventos");
         List<Evento> proximosEventos = null;
         proximosEventos = servicioEvento.obtenerProximosEventos();
         assertNotNull(proximosEventos);
         for (Evento evento : proximosEventos) {
             System.out.println(evento.getNombre() + ":" +
-                               evento.getFechaEvento() + ":" +
-                               evento.getHora());
+                    evento.getFechaEvento() + ":" +
+                    evento.getHora());
         }
     }
 
 //    @Test
-    public void testObtenerProximosEventosConImagen(){
+    public void testObtenerProximosEventosConImagen() {
         System.out.println("Proximos eventos");
         List<Evento> proximosEventos = null;
         proximosEventos = servicioEvento.obtenerProximosEventosConImagen();
         assertNotNull(proximosEventos);
         for (Evento evento : proximosEventos) {
             System.out.println(evento.getNombre() + ":" +
-                               evento.getFechaEvento() + ":" +
-                               evento.getHora());
+                    evento.getFechaEvento() + ":" +
+                    evento.getHora());
         }
     }
 
-    @Test
-    public void testObtenertableroGananciaPorEquiposYEvento(){
+//    @Test
+    public void testObtenertableroGananciaPorEquiposYEvento() {
         System.out.println("Tablero de ganancia");
         String fechaEvento = "2009-11-28";
         Date fecha = UtilMethods.stringToFecha(fechaEvento);
@@ -174,4 +170,12 @@ public class ServicioEventoImplTest {
         System.out.println(tablero.getPropocionGano());
     }
 
+    @Test
+    public void testFinalizarEvento() {
+        System.out.println("finalizarEvento");
+        String resultado = "ganador!";
+        Integer idEvento = 4;
+        servicioEvento.finalizarEvento(idEvento, resultado);
+        assertTrue(true);
+    }
 }

@@ -82,4 +82,11 @@ public interface IServicioEvento {
      * @return objeto participante con la informacion
      */
     public Participante obtenerParticipantePorNombre (String nombre);
+
+    /**
+     * firma para finalizar un evento seleccionado 
+     * @param idEvento identificador del evento a finalizar
+     * @param resultado resultado del evento a finalizar 
+     */
+    public void finalizarEvento(Integer idEvento, String resultado);
 }
