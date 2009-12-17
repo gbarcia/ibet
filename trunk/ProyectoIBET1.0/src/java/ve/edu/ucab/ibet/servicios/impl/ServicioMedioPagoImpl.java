@@ -55,6 +55,15 @@ public class ServicioMedioPagoImpl implements IServicioMedioPago {
         return listarResultado;
     }
 
+    public MedioPago obtenerMedioPagoId(Integer id){
+        MedioPago medioPago = null;
+        medioPago = (MedioPago) genericDao.findByPropertyUnique(MedioPago.class, "id", id);
+        if(medioPago == null){
+            throw new ExcepcionNegocio("mediopago.noexiste");
+        }
+        return medioPago;
+    }
+
     public MedioPago obtenerMedioPago(String nombre) {
         MedioPago medioPago = new MedioPago();
         String query = new String();
@@ -107,6 +116,8 @@ public class ServicioMedioPagoImpl implements IServicioMedioPago {
 
     public void crearMedioPago(MedioPago medioPago) {
         if (!existeMedioPago(medioPago)) {
+            Integer id = genericDao.getNextId(medioPago);
+            medioPago.setId(id);
             medioPago.setActivo(Boolean.TRUE);
             genericDao.insertar(medioPago);
         } else {
@@ -150,5 +161,12 @@ public class ServicioMedioPagoImpl implements IServicioMedioPago {
         } else {
             throw new ExcepcionNegocio("errors.mediopago.noexiste");
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<MedioPago> listarMedioPagos() {
+        List<MedioPago> medioPagos = new ArrayList<MedioPago>();
+        medioPagos = genericDao.listar(MedioPago.class);
+        return medioPagos;
     }
 }

@@ -55,4 +55,17 @@ public interface IServicioMedioPago {
      */
     public void habilitarMedioPago(MedioPago medioPago);
 
+    /**
+     * firma para listar todos los medios de pago
+     * @return lista con todos los medios de pagos existentes
+     */
+    public List<MedioPago> listarMedioPagos();
+
+    /**
+     * firma para obtener un medio de pago por id 
+     * @param id identificador a buscar
+     * @return Medio de pago con la informacion 
+     */
+    public MedioPago obtenerMedioPagoId(Integer id);
+
 }
