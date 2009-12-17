@@ -62,6 +62,22 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="validator" ref="beanValidator"/>
 </bean>
 
+<!-- Bean para mostrar el formulario para agregar medio de pago-->
+<bean name="/privado/back/pagos/agregarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.AgregarMedioPagoController">
+  <property name="servicioMedioPago" ref="servicioMedioPago" />
+  <property name="formView" value="privado/back/pagos/agregarPago" />
+  <property name="successView" value="homeMedioPago.htm" />
+</bean>
+
+<!-- Bean para mostrar el formulario para actualizar medio de pago-->
+<bean name="/privado/back/pagos/updatePago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.EditarMedioPagoController">
+  <property name="servicioMedioPago" ref="servicioMedioPago" />
+  <property name="formView" value="privado/back/pagos/updatePago" />
+  <property name="successView" value="homeMedioPago.htm" />
+</bean>
+
  <!--
  *********************** PAGINAS ********************
  -->
@@ -89,6 +105,21 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <bean name="/privado/back/categoria/habilitarCategoria.htm"
     class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.HabilitarCategoriaController">
         <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
+ <!-- Bean para mostrar la pagina de inicio de la gestion de categorias -->
+<bean name="/privado/back/pagos/homeMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.HomeMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
+</bean>
+ <!-- Bean para inhabilitar un medio de pago y realizar retorno a homeMedioPago -->
+<bean name="/privado/back/pagos/inhabilitarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.InhabilitarMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
+</bean>
+ <!-- Bean para habilitar un medio de pago y realizar retorno a homeMedioPago -->
+<bean name="/privado/back/pagos/habilitarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.HabilitarMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
 </bean>
     
 </beans>

@@ -20,7 +20,7 @@
                     <li><a href="/ProyectoIBET/privado/back/categoria/homeCategoria.htm">Categorias</a></li>
                     <li><a href="#">Usuarios</a></li>
                     <li><a href="/ProyectoIBET/privado/back/reportes/homeReportes">Reportes</a></li>
-                    <li><a href="#">Medios de Pago</a></li>
+                    <li><a href="/ProyectoIBET/privado/back/pagos/homeMedioPago.htm">Medios de Pago</a></li>
                 </ul>
             </div>
         <security:authorize ifAllGranted="ROLE_ADMIN">
