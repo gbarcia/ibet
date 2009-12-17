@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <c:out value="${eventos[0].idCategoria.nombre}"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-        <script type="text/javascript" src="<%= request.getContextPath()+ "/js/jquery/jquery.tablero.js"%>"></script>
+        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.front.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">
@@ -27,7 +27,7 @@
                                 iBet: <c:out value="${eventos[0].idCategoria.nombre}"/>
                             </div>
                             <div class="pane">
-                                <table class="tablero" cellspacing="5">
+                                <table class="eventTable" cellspacing="5">
                                     <tbody>
                                         <c:forEach items="${eventos}" var="evento">
                                             <c:if test="${evento.fecha != ultimaFecha}">
@@ -65,39 +65,7 @@
                     <c:import url="/include/sideMenu.htm" />
                 </div>
                 <div id="rightColumn">
-                    <div id="slip">
-                        <form action="">
-                            <div class="slipTitle"><spring:message code="eventos.betslip"/></div>
-                            <div id="slipContent" class="slipContent">
-                                <div id="slipNoBet"><spring:message code="eventos.nobet"/></div>
-                                <div id="slipForm">
-                                    <input id="idEvento" type="hidden" name="" value="" />
-                                    <input id="idParticipante" type="hidden" name="" value="" />
-                                    <spring:message code="eventos.pick"/>:
-                                    <div id="pick">
-                                        <div id="nombreParticipante"></div>
-                                        <div id="proporcion"></div>
-                                    </div>
-                                    <div id="nombreEvento"></div>
-                                    <hr>
-                                    <table width="100%" cellspacing="5">
-                                        <tr>
-                                            <td><spring:message code="eventos.stake"/></td>
-                                            <td><input id="importe" type="text" name="" value=""/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><spring:message code="eventos.winnings"/></td>
-                                            <td><div id="ganancias"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td><input id="botonApostar" type="button" value="<spring:message code="eventos.button"/>" /></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <jsp:include page="../../../include/slip.jsp"></jsp:include>
                 </div>
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>

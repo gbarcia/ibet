@@ -14,23 +14,23 @@
 	border-bottom: none
 }
 
+.paneTitle {
+	background-color: #429CFF;
+	border-bottom: #000 solid 1px;
+	color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	font-size: 1.5em;
+        font-weight:700;
+	letter-spacing: 2px;
+	padding: 5px 10px
+}
+
 .pane {
 	border-bottom: #000 solid 1px;
 	color: #fff;
 	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
 	padding: 10px;
 	text-align: justify
-}
-
-.paneTitle {
-	background-color: #429CFF;
-	border-bottom: #000 solid 1px;
-	color: #fff;
-	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	font-size: 20px;
-        font-weight:700;
-	letter-spacing: 2px;
-	padding: 5px 10px
 }
 
 /* @end */
