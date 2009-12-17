@@ -14,30 +14,25 @@
 	width: 200px
 }
 
-.slipContent {
+#slip #slipTitle {
+	background-color: #171717;
+	border-bottom: #fff solid 1px;
+	color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	font-size: 1em;
+        font-weight:700;
+	letter-spacing: 2px;
+	padding: 5px 10px
+}
+
+#slip #slipContent {
 	color: #fff;
 	padding: 10px;
 	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
 	text-align: justify;
 }
 
-.slipTitle {
-	background-color: #171717;
-	border-bottom: #fff solid 1px;
-	color: #fff;
-	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	font-size: 15px;
-        font-weight:700;
-	letter-spacing: 2px;
-	padding: 5px 10px
-}
-
-#slipBottom {
-	background-color: #171717;
-	border-top: #fff solid 1px;
-}
-
-#slip #pick{
+#slip #prediccion{
     position:relative
 }
 
@@ -50,7 +45,8 @@
 #slip #nombreParticipante{
     font-size:1.5em;
     font-weight:700;
-    text-align:left
+    text-align:left;
+    width:75%;
 }
 
 #slip #ganancias{
@@ -60,24 +56,24 @@
 }
 
 #slip #nombreEvento{
-    text-align:right
+    text-align:center
 }
 
 /* @end */
 
 /* @group Links */
 
-.slipContent a {
+#slip a {
 	color: #141414;
 	font-weight: 700;
 	text-decoration: none
 }
 
-.slipContent a:hover,.slipContent a:active {
+#slip a:hover,.slipContent a:active {
 	text-decoration: underline
 }
 
-.slipContent a:visited {
+#slip a:visited {
 	color: #424242;
 }
 /* @end */

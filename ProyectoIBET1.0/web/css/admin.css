@@ -7,42 +7,56 @@
 */
 
 body{
-	background-image: none;
-	background-color: #e3e3e3;
+    background-image: none;
+    background-color: #e3e3e3;
 }
 
 #headerTop {
-	background-image: none;
-	background-color: #262626;
+    background-image: none;
+    background-color: #262626;
 }
 
 #centerPane {
-	background-color: #fff;
-	border: #cccccc solid 1px;
-	border-bottom: none
+    background-color: #fff;
+    border: #cccccc solid 1px;
+    border-bottom: none
 }
 
 .paneTitle {
-	background-color: #262626;
-	border-bottom: #cccccc solid 1px;
-	color: #fff;
-	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	font-size: 20px;
-	font-weight: 700;
-	letter-spacing: 2px;
-	padding: 5px 10px
+    background-color: #262626;
+    border-bottom: #cccccc solid 1px;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 10px
 }
 
 .pane {
-	border-bottom: #cccccc solid 1px;
-	color: #000;
-	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	padding: 10px;
-	text-align: justify
+    border-bottom: #cccccc solid 1px;
+    color: #000;
+    font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    padding: 10px;
+    text-align: justify
 }
 
 #contentColumn {
-	margin: 0;
-	max-width: none;
-	min-width: 550px
+    margin: 0;
+    max-width: none;
+    min-width: 550px
+}
+
+.pane a {
+    color: #145fc4;
+    font-weight: 700;
+    text-decoration: none
+}
+
+.pane a:hover,.pane a:active {
+    text-decoration: underline
+}
+
+.pane a:visited {
+    color: #02114a;
 }

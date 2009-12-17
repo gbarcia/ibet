@@ -6,11 +6,11 @@
         Estilo de tabla de eventos.
 */
 
-.tablaEventos{
+.eventTable{
     width:100%;
 }
 
-.tablaEventos .fecha{
+.eventTable .fecha{
     background-color:#171717;
     border:#000 solid 1px;
     color:orange;
@@ -20,14 +20,14 @@
     vertical-align:top
 }
 
-.tablaEventos .hora{
+.eventTable .hora{
     color:#bcbcbc;
     padding:1px 4px;
     text-align:center;
     vertical-align:top
 }
 
-.tablaEventos .item{
+.eventTable .item{
     background-color:#202020;
     border:#000 solid 1px;
     cursor:pointer;
@@ -35,7 +35,7 @@
     vertical-align:top;
 }
 
-.tablaEventos .itemHover{
+.eventTable .itemHover{
     background-color:#202020;
     border:orange solid 1px;
     cursor:pointer;
@@ -43,7 +43,7 @@
     vertical-align:top;
 }
 
-.tablaEventos .itemClick{
+.eventTable .itemClick{
     background-color:orange;
     border:1px solid #000;
     color:#000;
@@ -52,11 +52,11 @@
     vertical-align:top;
 }
 
-.tablaEventos .participante{
+.eventTable .participante{
     float:left;
     max-width:80%
 }
 
-.tablaEventos .proporcion{
+.eventTable .proporcion{
     float:right;
 }

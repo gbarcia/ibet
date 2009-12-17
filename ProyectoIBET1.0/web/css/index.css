@@ -19,7 +19,9 @@
 
 @import url("content.css");
 
-@import url("tablaEventos.css");
+@import url("eventTable.css");
+
+@import url("dataTable.css");
 
 @import url("slip.css");
 
