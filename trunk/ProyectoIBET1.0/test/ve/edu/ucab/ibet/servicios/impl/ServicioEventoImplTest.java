@@ -19,6 +19,7 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
+import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
@@ -174,8 +175,15 @@ public class ServicioEventoImplTest {
     public void testFinalizarEvento() {
         System.out.println("finalizarEvento");
         String resultado = "ganador!";
-        Integer idEvento = 4;
-        servicioEvento.finalizarEvento(idEvento, resultado);
+        Integer idEvento = 9;
+        Integer idParticipante = 18;
+        Boolean gano = Boolean.TRUE;
+        Boolean empato = Boolean.FALSE;
+        try {
+            servicioEvento.finalizarEvento(idEvento, resultado, idParticipante, gano, empato);
+        } catch (ExcepcionNegocio en) {
+            en.printStackTrace();
+        }
         assertTrue(true);
     }
 }

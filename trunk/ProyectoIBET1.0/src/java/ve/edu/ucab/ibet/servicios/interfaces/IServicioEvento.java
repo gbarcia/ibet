@@ -88,5 +88,5 @@ public interface IServicioEvento {
      * @param idEvento identificador del evento a finalizar
      * @param resultado resultado del evento a finalizar 
      */
-    public void finalizarEvento(Integer idEvento, String resultado);
+    public void finalizarEvento(Integer idEvento, String resultado, Integer idParticipante, Boolean gano, Boolean empato);
 }

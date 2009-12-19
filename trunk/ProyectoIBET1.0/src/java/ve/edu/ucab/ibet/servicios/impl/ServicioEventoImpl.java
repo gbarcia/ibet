@@ -3,6 +3,7 @@ package ve.edu.ucab.ibet.servicios.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import ve.edu.ucab.ibet.dominio.Apuesta;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
@@ -122,6 +123,24 @@ public class ServicioEventoImpl implements IServicioEvento {
         return evento;
     }
 
+    @SuppressWarnings("unchecked")
+    private List<TableroGanancia> obtenerTableroGanancia(Integer idEvento) {
+        List<TableroGanancia> tableroGanancia = new ArrayList<TableroGanancia>();
+        Object[] o = new Object[1];
+        o[0] = idEvento;
+
+        String query = "select tg from " +
+                "TableroGanancia tg " +
+                "where tg.tableroGananciaPK.idEvento = ? ";
+        tableroGanancia.addAll(genericDao.ejecutarQueryList(query, o));
+
+        if (tableroGanancia == null) {
+            throw new ExcepcionNegocio("errors.tableroganancia.noExiste");
+        }
+        return tableroGanancia;
+    }
+
+    @SuppressWarnings("unchecked")
     public Participante obtenerParticipante(Integer idParticipante) {
         Participante participante = null;
         participante = (Participante) genericDao.findByPropertyUnique(Participante.class, "id", idParticipante);
@@ -153,12 +172,56 @@ public class ServicioEventoImpl implements IServicioEvento {
         return participante;
     }
 
+    @SuppressWarnings("unchecked")
+    private List<Apuesta> obtenerApuestasPorEvento(Integer idEvento) {
+        List<Apuesta> apuestas = new ArrayList<Apuesta>();
+        Object[] o = {idEvento};
+        String query = "select a from Apuesta a where a.tableroGanancia.tableroGananciaPK.idEvento = ?";
+        apuestas.addAll(genericDao.ejecutarQueryList(query, o));
+
+        return apuestas;
+    }
+
     private void updateEventoFinalizado(Integer idEvento, String resultado) {
         Evento evento = this.obtenerEvento(idEvento);
-        evento.setFinalizado(true);
+        evento.setFinalizado(Boolean.TRUE);
         evento.setResultado(resultado);
         genericDao.limpiar();
         genericDao.merge(evento);
+    }
+
+    private void updateTableroGanancia(Integer idEvento, Integer idParticipante, Boolean gano, Boolean empato) {
+        List<TableroGanancia> tableroGanancia = this.obtenerTableroGanancia(idEvento);
+        for (TableroGanancia tg : tableroGanancia) {
+            TableroGanancia tablero = tg;
+            if (tg.getParticipante().getId().equals(idParticipante)) {
+                tablero.setGano(gano);
+                tablero.setEmpato(empato);
+            } else {
+                tablero.setEmpato(empato);
+                if (empato) {
+                    tablero.setGano(Boolean.FALSE);
+                } else {
+                    tablero.setGano(!gano);
+                }
+            }
+            genericDao.merge(tablero);
+        }
+    }
+
+    private void updateApuestaGanadora(Integer idEvento, Integer idParticipante, Boolean gano, Boolean empato) {
+        List<Apuesta> apuestas = this.obtenerApuestasPorEvento(idEvento);
+        for (Apuesta a : apuestas) {
+            Apuesta apuesta = a;
+            if (a.getTableroGanancia().getParticipante().getId().equals(idParticipante) && a.getGano().equals(gano) && a.getEmpato().equals(empato)) {
+                apuesta.setGanador(Boolean.TRUE);
+            } else if (a.getEmpato() && empato) {
+                apuesta.setGanador(Boolean.TRUE);
+            } else {
+                apuesta.setGanador(Boolean.FALSE);
+            }
+            genericDao.merge(apuesta);
+        }
 
     }
 
@@ -168,11 +231,18 @@ public class ServicioEventoImpl implements IServicioEvento {
         return resultado;
     }
 
-    public void finalizarEvento(Integer idEvento, String resultado) {
+    public void finalizarEvento(Integer idEvento, String resultado, Integer idParticipante, Boolean gano, Boolean empato) {
         if (finalizarAntes(idEvento)) {
-            this.updateEventoFinalizado(idEvento, resultado);
+            Evento evento = this.obtenerEvento(idEvento);
+            if (!(!evento.getIdCategoria().getEmpate() && empato)) {
+                this.updateEventoFinalizado(idEvento, resultado);
+                this.updateTableroGanancia(idEvento, idParticipante, gano, empato);
+                this.updateApuestaGanadora(idEvento, idParticipante, gano, empato);
+            } else {
+                throw new ExcepcionNegocio("errors.evento.noPermitidoEmpate");
+            }
         } else {
-            throw new ExcepcionNegocio("errors.evento.finalizarAntes"); 
+            throw new ExcepcionNegocio("errors.evento.finalizarAntes");
         }
     }
 }
