@@ -27,7 +27,7 @@ public interface IServicioEvento {
      * @param tablero el objeto tablero de ganancia
      * @return Objeto evento asociado al tablero ganancia
      */
-    public Evento obtenerEventoporTableroGanancia (TableroGanancia tablero);
+    public Evento obtenerEventoporTableroGanancia(TableroGanancia tablero);
 
     /**
      * firma para obtener la politica de un evento
@@ -82,7 +82,7 @@ public interface IServicioEvento {
      * @param nombre nombre del participante a buscar
      * @return objeto participante con la informacion
      */
-    public Participante obtenerParticipantePorNombre (String nombre);
+    public Participante obtenerParticipantePorNombre(String nombre);
 
     /**
      * firma para finalizar un evento seleccionado 
@@ -99,5 +99,35 @@ public interface IServicioEvento {
      * @param EquipoDos nombre del equipo dos del evento en la convencion
      * @return Objeto RespuestaProporcionWS con la informacion
      */
-    public RespuestaProporcionWS obtenerProporcionEventoExt (String fechaEvento, String equipoUno, String EquipoDos);
+    public RespuestaProporcionWS obtenerProporcionEventoExt(String fechaEvento, String equipoUno, String EquipoDos);
+
+    /**
+     * Firma para crear un nuevo evento y registrarlo en el sistema
+     * @param evento objeto evento a registrar
+     */
+    public void agregarEvento(Evento evento);
+
+    /**
+     * Firma para actualizar un evento en el sistema
+     * @param eveto objeto evento con la informacion a actualizar
+     */
+    public void editarEvento(Evento eveto);
+
+    /**
+     * Firma para activar un evento
+     * @param idEvento id del evento a activar
+     */
+    public void activarEvento(Integer idEvento);
+
+    /**
+     * Firma para desactivar un evento
+     * @param idEvento id del evento a desactivar
+     */
+    public void desactivarEvento(Integer idEvento);
+
+    /**
+     * firma para listar todos los eventos registrados en el sistema
+     * @return Lista de objetos eventos con la informacion
+     */
+    public List<Evento> todosLosEventos();
 }
