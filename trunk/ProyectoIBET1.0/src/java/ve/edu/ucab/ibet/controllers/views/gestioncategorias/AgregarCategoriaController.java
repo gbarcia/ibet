@@ -45,7 +45,6 @@ public class AgregarCategoriaController extends SimpleFormController {
         registro.setNombreCategoria(new String());
         registro.setEmpate("SI");
         registro.setLogicaAutomatica("NO");
-        registro.setJerarquia(METHOD_GET);
         registro.setNombreLogica(null);
         return registro;
     }

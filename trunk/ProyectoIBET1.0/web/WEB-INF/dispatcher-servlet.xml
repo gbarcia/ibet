@@ -36,6 +36,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                 <value>WEB-INF/validaciones/validatorEvento.xml</value>
                 <value>WEB-INF/validaciones/validatorApuesta.xml</value>
                 <value>WEB-INF/validaciones/validatorMedioPago.xml</value>
+                <value>WEB-INF/validaciones/validatorReportes.xml</value>
             </list>
         </property>
     </bean>

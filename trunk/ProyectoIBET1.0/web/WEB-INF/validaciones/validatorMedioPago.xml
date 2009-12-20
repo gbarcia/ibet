@@ -6,18 +6,11 @@
      <!-- Archivo para la validacion de los formularios de medios de pago -->
 
 <form-validation>
-   <!-- <formset>
-        <form name="clienteForm">
-            <field property="rif" depends="required,mask">
-                <arg0 key="forms.cliente.rif" />
-                <var>
-                    <var-name>mask</var-name>
-                    <var-value>^[0-9A-Za-z]{2,6}$</var-value>
-                </var>
-            </field>
+    <formset>
+        <form name="medioPago">
             <field property="nombre" depends="required">
-                <arg0 key="forms.cliente.nombre" />
+                <msg name="required" key="el nombre es requerido" resource="false"/>
             </field>
-            </form>
-        </formset> -->
+        </form>
+    </formset>
 </form-validation>
