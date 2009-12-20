@@ -6,6 +6,7 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
+import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 
 /**
  * Servicio para la gestion de eventos
@@ -89,4 +90,14 @@ public interface IServicioEvento {
      * @param resultado resultado del evento a finalizar 
      */
     public void finalizarEvento(Integer idEvento, String resultado, Integer idParticipante, Boolean gano, Boolean empato);
+
+    /**
+     * firma para obtener por medio de operaciones de servicios web
+     * la proporcion pagada por otra casa de apuesta para un evento determinado
+     * @param fechaEvento la fecha del evento en formato dd/MM/yyyy
+     * @param equipoUno nombre del equipo uno del evento en la convencion
+     * @param EquipoDos nombre del equipo dos del evento en la convencion
+     * @return Objeto RespuestaProporcionWS con la informacion
+     */
+    public RespuestaProporcionWS obtenerProporcionEventoExt (String fechaEvento, String equipoUno, String EquipoDos);
 }
