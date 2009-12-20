@@ -269,4 +269,24 @@ public class ServicioEventoImpl implements IServicioEvento {
             return respuesta;
         }
     }
+
+    public void agregarEvento(Evento evento) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void editarEvento(Evento eveto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void activarEvento(Integer idEvento) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void desactivarEvento(Integer idEvento) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List<Evento> todosLosEventos() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
