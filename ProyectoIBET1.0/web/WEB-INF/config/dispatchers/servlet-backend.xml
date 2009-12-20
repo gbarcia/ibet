@@ -18,30 +18,35 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <bean name="/privado/back/reportes/reporteGanancias.htm"
     class="ve.edu.ucab.ibet.controllers.forms.CategoriasGananciasFormController">
   <property name="formView" value="privado/back/reportes/reporteGanancias" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el reporte de perdidas por categoria -->
 <bean name="/privado/back/reportes/reportePerdidas.htm"
     class="ve.edu.ucab.ibet.controllers.forms.CategoriasPerdidasFormController">
   <property name="formView" value="privado/back/reportes/reportePerdidas" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el reporte de cantidad de usuarios por categoria -->
 <bean name="/privado/back/reportes/reporteCantidadUsuariosPorCategoria.htm"
     class="ve.edu.ucab.ibet.controllers.forms.CantidadUsuariosPorCategoriaFormController">
   <property name="formView" value="privado/back/reportes/reporteCantidadUsuariosPorCategoria" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el reporte de cantidad de usuarios con mayor aciertos -->
 <bean name="/privado/back/reportes/reporteUsuariosMayorAciertos.htm"
     class="ve.edu.ucab.ibet.controllers.forms.UsuariosMayorAciertosFormController">
   <property name="formView" value="privado/back/reportes/reporteUsuariosMayorAciertos" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el reporte de cantidad de eventos de alto riesgo -->
 <bean name="/privado/back/reportes/reporteEventosAltoRiesgo.htm"
     class="ve.edu.ucab.ibet.controllers.forms.EventosAltoRiesgoFormController">
   <property name="formView" value="privado/back/reportes/reporteEventosAltoRiesgo" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el formulario para agregar categoria-->
@@ -68,6 +73,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioMedioPago" ref="servicioMedioPago" />
   <property name="formView" value="privado/back/pagos/agregarPago" />
   <property name="successView" value="homeMedioPago.htm" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
 <!-- Bean para mostrar el formulario para actualizar medio de pago-->
@@ -76,6 +82,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioMedioPago" ref="servicioMedioPago" />
   <property name="formView" value="privado/back/pagos/updatePago" />
   <property name="successView" value="homeMedioPago.htm" />
+  <property name="validator" ref="beanValidator"/>
 </bean>
 
  <!--

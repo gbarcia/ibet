@@ -89,7 +89,7 @@
   </binding>
   <service name="IbetWebServices">
     <port name="IbetWebServicesPort" binding="tns:IbetWebServicesPortBinding">
-      <soap:address location="http://192.168.23.9:8084/ProyectoIBET/IbetWebServices"/>
+      <soap:address location="http://192.168.22.220:8084/ProyectoIBET/IbetWebServices"/>
     </port>
   </service>
 </definitions>
