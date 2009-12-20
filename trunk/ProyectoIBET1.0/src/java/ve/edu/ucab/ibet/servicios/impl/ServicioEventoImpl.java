@@ -8,6 +8,7 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
+import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
@@ -243,6 +244,29 @@ public class ServicioEventoImpl implements IServicioEvento {
             }
         } else {
             throw new ExcepcionNegocio("errors.evento.finalizarAntes");
+        }
+    }
+
+    public RespuestaProporcionWS obtenerProporcionEventoExt(String fechaEvento, String equipoUno, String EquipoDos) {
+        RespuestaProporcionWS respuesta = null;
+        try {
+            _211._22._168._192._1234.Ubet service = new _211._22._168._192._1234.Ubet();
+            _211._22._168._192._1234.UbetSoap port = service.getUbetSoap12();
+
+            java.lang.String fecha = fechaEvento;
+            java.lang.String equipo1 = equipoUno;
+            java.lang.String equipo2 = EquipoDos;
+            _211._22._168._192._1234.Respuesta result = port.consultarProporcionEvento(fecha, equipo1, equipo2);
+
+            respuesta = new RespuestaProporcionWS();
+            respuesta.setEquipoUno(result.getParticipante1());
+            respuesta.setEquipoDos(result.getParticipante2());
+            respuesta.setProporcionEquipoUno(result.getProporcion1());
+            respuesta.setProporcionEquipoDos(result.getProporcion2());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            return respuesta;
         }
     }
 }
