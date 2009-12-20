@@ -7,7 +7,12 @@
     <system systemId="http://localhost:8084/ProyectoIBET/IbetWebServices?xsd=1" uri="wsdl/localhost_8084/ProyectoIBET/IbetWebServices.xsd_1.xsd"/>
     <system systemId="file:/home/nath/NetBeansProjects/ProyectoIBET/web/WEB-INF/config/wsdl/IbetWebServices.wsdl" uri="wsdl/IbetWebServices.wsdl"/>
     <system systemId="file:/home/nath/NetBeansProjects/ProyectoIBET/web/WEB-INF/config/wsdl/IbetWebServices_schema1.xsd" uri="wsdl/IbetWebServices_schema1.xsd"/>
+    <system systemId="file:/home/nath/Escritorio/Ubet.xml" uri="wsdl/Ubet.xml.wsdl"/>
 </catalog>
+
+
+
+
 
 
 
