@@ -22,15 +22,12 @@
                     <div id="contentColumn">
                         <div id="centerPane">
                             <div class="paneTitle">
-                                Gesti&oacute;n de Categorias
-                                <a class="botonAgregar" href="agregarCategoria.htm">
-                                    <img src="<%= request.getContextPath() + "/images/icons/agregar.png"%>" width="16" height="16" alt="Inhabilitar"/>
-                                </a>
+                                Nueva Categoria
                             </div>
                             <div class="pane">
                                 <form:errors path="*" cssClass="error"/>
                                 <fieldset>
-                                    <legend>Registrar Categoria</legend>
+                                    <legend>Datos</legend>
                                     <table>
                                         <form:form commandName="registroCategoria">
                                             <tr>

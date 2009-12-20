@@ -10,7 +10,7 @@
 <div id="header">
     <div id="headerTop">
         <div id="logo">
-            <a href="/ProyectoIBET/home.htm">
+            <a href="/ProyectoIBET/privado/back/admin.htm">
                 <img src="<%= request.getContextPath() + "/images/logo/logoShadow.png"%>" width="164" height="50" alt="logoShadow"/>
             </a>
         </div>
@@ -20,7 +20,7 @@
                     <li><a href="/ProyectoIBET/privado/back/categoria/homeCategoria.htm">Categorias</a></li>
                     <li><a href="#">Usuarios</a></li>
                     <li><a href="/ProyectoIBET/privado/back/reportes/homeReportes.htm">Reportes</a></li>
-                    <li><a href="/ProyectoIBET/privado/back/pagos/homeMedioPago.htm">Medios de Pago</a></li>
+                    <li><a href="/ProyectoIBET/privado/back/pagos/homeMedioPago.htm">Pagos</a></li>
                 </ul>
             </div>
         <security:authorize ifAllGranted="ROLE_ADMIN">
