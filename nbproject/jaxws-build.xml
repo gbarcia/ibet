@@ -30,5 +30,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/ve/edu/ucab/ibet/servicios/impl/ws"/>
         <delete dir="${build.generated.dir}/jax-wsCache/IbetWebServices"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-IbetWebServices"/>
+    <target name="wsimport-client-Ubet" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Ubet"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Ubet" destdir="${build.generated.dir}/jax-wsCache/Ubet" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Ubet/wsdl/Ubet.xml.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/home/nath/Escritorio/Ubet.xml" xnocompile="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Ubet/wsdl/Ubet.xml.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Ubet"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Ubet">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-Ubet" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/_211/_22/_168/_192/_1234"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/Ubet"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-IbetWebServices, wsimport-client-Ubet"/>
 </project>
