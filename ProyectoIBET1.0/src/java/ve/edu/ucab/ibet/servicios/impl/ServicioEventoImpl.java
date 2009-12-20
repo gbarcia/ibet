@@ -271,22 +271,40 @@ public class ServicioEventoImpl implements IServicioEvento {
     }
 
     public void agregarEvento(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (evento == null) {
+            throw new ExcepcionNegocio("evento.invalido");
+        }
+        Integer id = genericDao.getNextId(evento);
+        evento.setId(id);
+        evento.setEstatus(Boolean.TRUE);
+        genericDao.insertar(evento);
     }
 
-    public void editarEvento(Evento eveto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void editarEvento(Evento evento) {
+        if (evento == null) {
+            throw new ExcepcionNegocio("evento.invalido");
+        }
+        evento.setEstatus(Boolean.TRUE);
+        genericDao.merge(evento);
     }
 
     public void activarEvento(Integer idEvento) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Evento evento = null;
+        evento = obtenerEvento(idEvento);
+        evento.setEstatus(Boolean.TRUE);
+        genericDao.merge(evento);
     }
 
     public void desactivarEvento(Integer idEvento) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Evento evento = null;
+        evento = obtenerEvento(idEvento);
+        evento.setEstatus(Boolean.FALSE);
+        genericDao.merge(evento);
     }
 
     public List<Evento> todosLosEventos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Evento> listaEventos = null;
+        listaEventos = genericDao.listar(Evento.class);
+        return listaEventos;
     }
 }
