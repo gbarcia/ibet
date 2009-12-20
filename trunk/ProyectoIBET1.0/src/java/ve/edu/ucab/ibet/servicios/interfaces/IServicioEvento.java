@@ -109,9 +109,9 @@ public interface IServicioEvento {
 
     /**
      * Firma para actualizar un evento en el sistema
-     * @param eveto objeto evento con la informacion a actualizar
+     * @param evento objeto evento con la informacion a actualizar
      */
-    public void editarEvento(Evento eveto);
+    public void editarEvento(Evento evento);
 
     /**
      * Firma para activar un evento
