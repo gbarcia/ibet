@@ -62,6 +62,22 @@ public abstract class UtilMethods {
     }
 
     /**
+     * Metodo que convierte una hora en cadena a un objet Date
+     * en el formato HH:mm:ss
+     * @param hora la hora en cadena de texto
+     * @return Objeto tipo de Date en formato HH:mm:ss
+     */
+    public static Date stringToHora (String hora) {
+        try {
+            java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("HH:mm:ss");
+            java.util.Date date = formatoFecha.parse(hora);
+            return date;
+        } catch (ParseException ex) {
+            return null;
+        }
+    }
+
+    /**
      * firma para convertir un Date en el formato de Ibet
      * @param fechaString string de la fecha en formato dd/mm/aaaa
      * @return Date en formato para ibet aaaa-mm-dd

@@ -104,14 +104,18 @@ public interface IServicioEvento {
     /**
      * Firma para crear un nuevo evento y registrarlo en el sistema
      * @param evento objeto evento a registrar
+     * @param tg1 tablero de ganancia del particpante uno
+     * @param tg2 tablero de ganancia del participante dos
      */
-    public void agregarEvento(Evento evento);
+    public void agregarEvento(Evento evento, TableroGanancia tg1, TableroGanancia tg2);
 
     /**
      * Firma para actualizar un evento en el sistema
      * @param evento objeto evento con la informacion a actualizar
+     * @param tg1 tablero de ganancia del particpante uno
+     * @param tg2 tablero de ganancia del participante dos
      */
-    public void editarEvento(Evento evento);
+    public void editarEvento(Evento evento,TableroGanancia tg1, TableroGanancia tg2);
 
     /**
      * Firma para activar un evento

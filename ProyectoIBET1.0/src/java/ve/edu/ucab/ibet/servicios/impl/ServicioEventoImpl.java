@@ -8,11 +8,13 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
+import ve.edu.ucab.ibet.dominio.TableroGananciaPK;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 
 /**
  * Clase para ofrecer servicios de Evento
@@ -23,6 +25,7 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
+    private IServicioTableroGanancia servicioTableroGanancia;
 
     public IGenericDao getGenericDao() {
         return genericDao;
@@ -38,6 +41,14 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     public void setHelperProp(IHelperProperties helperProp) {
         this.helperProp = helperProp;
+    }
+
+    public IServicioTableroGanancia getServicioTableroGanancia() {
+        return servicioTableroGanancia;
+    }
+
+    public void setServicioTableroGanancia(IServicioTableroGanancia servicioTableroGanancia) {
+        this.servicioTableroGanancia = servicioTableroGanancia;
     }
 
     @SuppressWarnings("unchecked")
@@ -270,22 +281,41 @@ public class ServicioEventoImpl implements IServicioEvento {
         }
     }
 
-    public void agregarEvento(Evento evento) {
+    public void agregarEvento(Evento evento, TableroGanancia tg1, TableroGanancia tg2) {
         if (evento == null) {
             throw new ExcepcionNegocio("evento.invalido");
         }
+        Politica politica = sincronizarPolitica(evento.getIdPolitica());
+        evento.setIdPolitica(politica);
         Integer id = genericDao.getNextId(evento);
         evento.setId(id);
         evento.setEstatus(Boolean.TRUE);
         genericDao.insertar(evento);
+        Evento eventoInsertado = obtenerEvento(id);
+        if (eventoInsertado != null) {
+            TableroGananciaPK pk1 = new TableroGananciaPK(id, tg1.getParticipante().getId());
+            TableroGananciaPK pk2 = new TableroGananciaPK(id, tg2.getParticipante().getId());
+            tg1.setTableroGananciaPK(pk1);
+            tg2.setTableroGananciaPK(pk2);
+            servicioTableroGanancia.agregarTableroGanancia(tg1);
+            servicioTableroGanancia.agregarTableroGanancia(tg2);
+        }
     }
 
-    public void editarEvento(Evento evento) {
+    public void editarEvento(Evento evento, TableroGanancia tg1, TableroGanancia tg2) {
         if (evento == null) {
             throw new ExcepcionNegocio("evento.invalido");
         }
+        Politica politica = sincronizarPolitica(evento.getIdPolitica());
+        evento.setIdPolitica(politica);
         evento.setEstatus(Boolean.TRUE);
         genericDao.merge(evento);
+        TableroGananciaPK pk1 = new TableroGananciaPK(evento.getId(), tg1.getParticipante().getId());
+        TableroGananciaPK pk2 = new TableroGananciaPK(evento.getId(), tg2.getParticipante().getId());
+        tg1.setTableroGananciaPK(pk1);
+        tg2.setTableroGananciaPK(pk2);
+        servicioTableroGanancia.actualizarTableroGanancia(tg1);
+        servicioTableroGanancia.actualizarTableroGanancia(tg2);
     }
 
     public void activarEvento(Integer idEvento) {
@@ -302,9 +332,25 @@ public class ServicioEventoImpl implements IServicioEvento {
         genericDao.merge(evento);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Evento> todosLosEventos() {
         List<Evento> listaEventos = null;
         listaEventos = genericDao.listar(Evento.class);
         return listaEventos;
+    }
+
+    private Politica sincronizarPolitica(Politica politica) {
+        Politica politicaAct = null;
+        Object o[] = {politica.getMontoMaximo(), politica.getFinalizarAntes()};
+        String query = "Select p From Politica p where p.montoMaximo = ? and p.finalizarAntes = ?";
+        politicaAct = (Politica) genericDao.ejecutarQueryUnique(query, o);
+        if (politicaAct == null) {
+            Integer id = genericDao.getNextId(politica);
+            politica.setId(id);
+            genericDao.insertar(politica);
+            return politica;
+        } else {
+            return politicaAct;
+        }
     }
 }
