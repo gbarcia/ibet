@@ -335,7 +335,8 @@ public class ServicioEventoImpl implements IServicioEvento {
     @SuppressWarnings("unchecked")
     public List<Evento> todosLosEventos() {
         List<Evento> listaEventos = null;
-        listaEventos = genericDao.listar(Evento.class);
+        String query = "Select e from Evento e order by e.fechaEvento DESC, e.idCategoria, e.estatus";
+        listaEventos = genericDao.ejecutarQueryList(query);
         return listaEventos;
     }
 
