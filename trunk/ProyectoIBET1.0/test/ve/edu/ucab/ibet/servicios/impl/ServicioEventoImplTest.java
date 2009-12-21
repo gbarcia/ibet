@@ -4,6 +4,8 @@
  */
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.junit.After;
@@ -15,7 +17,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.Evento;
+import ve.edu.ucab.ibet.dominio.Participante;
+import ve.edu.ucab.ibet.dominio.Politica;
 import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
@@ -171,7 +176,7 @@ public class ServicioEventoImplTest {
         System.out.println(tablero.getPropocionGano());
     }
 
-    @Test
+    //@Test
     public void testFinalizarEvento() {
         System.out.println("finalizarEvento");
         String resultado = "ganador!";
@@ -185,5 +190,89 @@ public class ServicioEventoImplTest {
             en.printStackTrace();
         }
         assertTrue(true);
+    }
+    //@Test
+    public void testagregarEvento() {
+        System.out.println("agregarEvento");
+        String horaEvento = "02:45:00";
+        String horaMax = "03:00:00";
+
+        Participante part1 = new Participante(1);
+        Participante part2 = new Participante(2);
+        TableroGanancia t1 = new TableroGanancia();
+        t1.setParticipante(part1);
+        t1.setPropocionGano(4.0);
+        t1.setProporcionEmpate(1.0);
+        TableroGanancia t2 = new TableroGanancia();
+        t2.setParticipante(part2);
+        t2.setPropocionGano(2.0);
+        t2.setProporcionEmpate(1.0);
+        Categoria categoria = new Categoria(2);
+        Politica politica = new Politica();
+        politica.setMontoMaximo(4000.0);
+        politica.setFinalizarAntes(Boolean.TRUE);
+        Evento evento = new Evento();
+        evento.setFechaEvento(new Date());
+        evento.setFechaMaxima(new Date());
+        evento.setHora(UtilMethods.stringToHora(horaEvento));
+        evento.setHoraMaxima(UtilMethods.stringToHora(horaMax));
+        evento.setIdCategoria(categoria);
+        evento.setIdPolitica(politica);
+        evento.setNombre("Nombre");
+        evento.setResultado("");
+        servicioEvento.agregarEvento(evento, t1, t2);
+    }
+    //@Test
+    public void testEditarEvento() {
+        System.out.println("editarEvento");
+        String horaEvento = "02:45:00";
+        String horaMax = "03:30:00";
+
+        Participante part1 = new Participante(1);
+        Participante part2 = new Participante(2);
+        TableroGanancia t1 = new TableroGanancia();
+        t1.setParticipante(part1);
+        t1.setPropocionGano(5.0);
+        t1.setProporcionEmpate(1.0);
+        TableroGanancia t2 = new TableroGanancia();
+        t2.setParticipante(part2);
+        t2.setPropocionGano(2.0);
+        t2.setProporcionEmpate(1.0);
+        Categoria categoria = new Categoria(2);
+        Politica politica = new Politica();
+        politica.setMontoMaximo(4000.0);
+        politica.setFinalizarAntes(Boolean.TRUE);
+        Evento evento = new Evento(21);
+        evento.setFechaEvento(new Date());
+        evento.setFechaMaxima(new Date());
+        evento.setHora(UtilMethods.stringToHora(horaEvento));
+        evento.setHoraMaxima(UtilMethods.stringToHora(horaMax));
+        evento.setIdCategoria(categoria);
+        evento.setIdPolitica(politica);
+        evento.setNombre("Evento");
+        evento.setResultado("");
+        servicioEvento.editarEvento(evento, t1, t2);
+    }
+
+    //@Test
+    public void testActivarEvento() {
+        System.out.println("Activar Evento");
+        servicioEvento.activarEvento(21);
+    }
+
+    //@Test
+    public void testDesactivarEvento() {
+        System.out.println("Desactivar Evento");
+        servicioEvento.desactivarEvento(21);
+    }
+
+    @Test
+    public void testListarEventos() {
+        System.out.println("Listar Eventos");
+        List<Evento> lista = servicioEvento.todosLosEventos();
+        assertNotNull(lista);
+        for (Evento evento : lista) {
+            System.out.println(evento.getNombre());
+        }
     }
 }

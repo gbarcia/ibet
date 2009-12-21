@@ -57,6 +57,7 @@
     <bean id="servicioEvento" class="ve.edu.ucab.ibet.servicios.impl.ServicioEventoImpl" scope="singleton">
         <property name="genericDao" ref="genericDao"/>
         <property name="helperProp" ref="helperProperties"/>
+        <property name="servicioTableroGanancia" ref="servicioTableroGanancia"/>
     </bean>
     
     <!-- BEAN PARA EL SERVICIO MEDIOS DE PAGO-->
@@ -72,5 +73,15 @@
         <property name="servicioMail" ref="mailService"/>
         <property name="servicioUsuario" ref="servicioUsuario"/>
     </bean>
+
+    <!-- BEAN PARA EL SERVICIO TABLERO GANANCIA-->
+    <bean id="servicioTableroGanancia" class="ve.edu.ucab.ibet.servicios.impl.ServicioTableroGananciaImpl" scope="singleton">
+        <property name="genericDao" ref="genericDao"/>
+    </bean>
+
+     <!-- ******************** ESTRATEGIAS DE NEGOCIO **********************-->
+     <!-- ESTRATEGIA DE PROPORCION GLOBAL-->
+     <bean id="estrategiaProporcionGlobal" class="ve.edu.ucab.ibet.servicios.impl.estrategias.EstrategiaProporcionGlobal" scope="singleton">
+     </bean>
    
 </beans>
