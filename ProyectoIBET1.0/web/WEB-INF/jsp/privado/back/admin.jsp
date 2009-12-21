@@ -12,11 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | Administraci&oacute;n</title>
-        <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery-1.3.2.min.js"%>"></script>
-        <link rel="stylesheet" href="<%= request.getContextPath() + "/css/admin.css"%>" type="text/css" />
-        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.tablero.js"%>"></script>
-        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.slider.js"%>"></script>
+        <jsp:include page="/WEB-INF/jsp/include/headAdmin.jsp"></jsp:include>
     </head>
     <body>
         <div id="pageWrap">
@@ -26,11 +22,49 @@
                     <div id="contentColumn">
                         <div id="centerPane">
                             <div class="paneTitle">
-                                Administraci&oacute;n
+                                Gestion de Eventos
+                                <a class="botonAgregar" href="agregarCategoria.htm">
+                                    <img src="<%= request.getContextPath() + "/images/icons/agregar.png"%>" width="16" height="16" alt="Inhabilitar"/>
+                                </a>
                             </div>
                             <div class="pane">
-                                <h1><a href="reportes/homeReportes.htm">Reportes</a></h1>
-                                <h1><a href="categoria/homeCategoria.htm">Gestion Categorias</a></h1>
+                                <display:table id="lista" name="listaEventos" pagesize="15" decorator="org.displaytag.decorator.TotalTableDecorator"
+                                               export="true" class="dataTable" requestURI="admin.htm?r=1">
+                                    <display:column property="fechaEvento" title="Fecha" sortable="true"/>
+                                    <display:column property="hora" title="Hora"/>
+                                    <display:column property="idCategoria.nombre" title="Categoria"/>
+                                    <display:column property="nombre" title="Nombre"/>
+                                    <display:column property="idPolitica.montoMaximo" title="Monto Maximo" sortable="true"/>
+                                    <display:column title="Estado">
+                                        <c:choose>
+                                            <c:when test="${lista.estatus=='true'}">
+                                                Activo
+                                            </c:when>
+                                            <c:when test="${lista.estatus=='false'}">
+                                                Desactivo
+                                            </c:when>
+                                        </c:choose>
+                                    </display:column>
+                                    <display:column property="fechaMaxima" title="Fecha Max" sortable="true"/>
+                                    <display:column property="horaMaxima" title="Hora Max"/>
+                                    <display:column title="Acciones">
+                                        <a class="botonActualizar" href="updateCategoria.htm?id=${listadoCategorias.id}">
+                                            <img src="<%= request.getContextPath() + "/images/icons/update.png"%>" width="16" height="16" alt="Actualizar"/>
+                                        </a>
+                                        <c:choose>
+                                            <c:when test="${lista.estatus=='true'}">
+                                                <a class="botonInhabilitar" href="inhabilitarCategoria.htm?id=${listadoCategorias.id}">
+                                                    <img src="<%= request.getContextPath() + "/images/icons/inhabilitar.png"%>" width="16" height="16" alt="Inhabilitar"/>
+                                                </a>
+                                            </c:when>
+                                            <c:when test="${lista.estatus=='false'}">
+                                                <a class="botonHabilitar" href="habilitarCategoria.htm?id=${listadoCategorias.id}">
+                                                    <img src="<%= request.getContextPath() + "/images/icons/habilitar.png"%>" width="16" height="16" alt="Habilitar"/>
+                                                </a>
+                                            </c:when>
+                                        </c:choose>
+                                    </display:column>
+                                </display:table>
                             </div>
                         </div>
                     </div>
