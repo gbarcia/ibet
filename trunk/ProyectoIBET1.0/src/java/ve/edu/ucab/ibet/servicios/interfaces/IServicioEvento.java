@@ -6,6 +6,7 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
+import ve.edu.ucab.ibet.dominio.to.forms.RegistroEventoTO;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 
 /**
@@ -134,4 +135,19 @@ public interface IServicioEvento {
      * @return Lista de objetos eventos con la informacion
      */
     public List<Evento> todosLosEventos();
+
+    /**
+     * firma para convertir un objeto de transferencia del formulario de registro
+     * de eventos en un objeto evento
+     * @param registro objeto de transferencia a convertir
+     * @return objeto Evento con los datos del TO
+     */
+    public Evento transferObjectToEvento(RegistroEventoTO registro);
+
+    /**
+     * firma para convertir un evento en objeto de transferencia
+     * @param evento objeto evento a convertir
+     * @return objeto de transferencia con la informacion del evento
+     */
+    public RegistroEventoTO eventotoTransferObject(Evento evento);
 }

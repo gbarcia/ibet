@@ -9,9 +9,11 @@ import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.TableroGananciaPK;
+import ve.edu.ucab.ibet.dominio.to.forms.RegistroEventoTO;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
@@ -353,5 +355,23 @@ public class ServicioEventoImpl implements IServicioEvento {
         } else {
             return politicaAct;
         }
+    }
+
+    public Evento transferObjectToEvento(RegistroEventoTO registro) {
+        Evento evento = new Evento();
+        evento.setFecha(registro.getFechaEvento());
+        evento.setFechaMaxima(registro.getFechaMax());
+        evento.setHora(UtilMethods.stringToHora(registro.getHoraEvento()));
+        evento.setHoraMaxima(UtilMethods.stringToHora(registro.getHoraMax()));
+        evento.setIdCategoria(registro.getCategoria());
+        evento.setIdPolitica(registro.getPolitica());
+        evento.setImagenEvento(registro.getImagenEvento().getName());
+        evento.setNombre(registro.getNombreEvento());
+        evento.setResultado("");
+        return evento;
+    }
+
+    public RegistroEventoTO eventotoTransferObject(Evento evento) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

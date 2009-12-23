@@ -81,4 +81,10 @@ public interface IServicioCategoria {
      * @return objet de transferencia
      */
     public RegistroCategoriaTO categoriaToTransferObject (Categoria categoria);
+
+    /**
+     * firma para obtener todas las categorias de segundo nivel en la jerarquia
+     * @return Lista de objetos categorias
+     */
+    public List<Categoria> obtenerCategoriasHijos();
 }
