@@ -24,7 +24,7 @@
             });
         </script>
     </head>
-    <body>
+    <body onload='document.registroUsuario.nombreUsuario.focus();'>
         <div id="pageWrap">
             <jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
             <div id="content">
