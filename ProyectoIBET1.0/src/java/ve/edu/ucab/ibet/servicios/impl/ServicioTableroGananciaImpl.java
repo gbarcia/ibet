@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.util.List;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
@@ -36,6 +38,15 @@ public class ServicioTableroGananciaImpl implements IServicioTableroGanancia {
             throw new ExcepcionNegocio("tableroganancia.invalido");
         }
         genericDao.merge(tablero);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Participante> obtenerParticipantesPorCategoria(String nombreCategoria) {
+        List<Participante> listaParticipantes = null;
+        Object [] o = {nombreCategoria};
+        String query = "Select p from Participante p where p.idCategoria.nombre = ? ";
+        listaParticipantes = genericDao.ejecutarQueryList(query,o);
+        return listaParticipantes;
     }
 
 }

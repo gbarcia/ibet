@@ -150,4 +150,12 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         categoria.setHabilitada(Boolean.TRUE);
         genericDao.merge(categoria);
     }
+
+    @SuppressWarnings("unchecked")
+    public List<Categoria> obtenerCategoriasHijos() {
+        List<Categoria> resultado = new ArrayList<Categoria>();
+        String query ="Select c from Categoria c where c.idCategoria is not null";
+        resultado = genericDao.ejecutarQueryList(query);
+        return resultado;
+    }
 }

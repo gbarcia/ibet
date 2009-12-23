@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,8 +37,9 @@ public class Participante implements Serializable {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "idCategoria")
-    private Integer idCategoria;
+    @JoinColumn(name = "idCategoria", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "participante")
     private Collection<TableroGanancia> tableroGananciaCollection;
 
@@ -84,11 +87,11 @@ public class Participante implements Serializable {
         this.tableroGananciaCollection = tableroGananciaCollection;
     }
 
-    public Integer getIdCategoria() {
+    public Categoria getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
+    public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
     }
 

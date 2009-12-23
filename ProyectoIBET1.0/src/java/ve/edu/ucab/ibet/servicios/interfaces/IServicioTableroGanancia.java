@@ -1,5 +1,7 @@
 package ve.edu.ucab.ibet.servicios.interfaces;
 
+import java.util.List;
+import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 
 /**
@@ -23,4 +25,11 @@ public interface IServicioTableroGanancia {
      * @param tablero Objeto tablero con la informacion de proporciones y evento
      */
     public void actualizarTableroGanancia(TableroGanancia tablero);
+
+    /**
+     * firma para obtener una lista de participantes por categoria
+     * @param nombreCategoria el nombre de la categoria a obtener los participantes
+     * @return Lista de objertos Participante con la informacion
+     */
+    public List<Participante> obtenerParticipantesPorCategoria (String nombreCategoria);
 }

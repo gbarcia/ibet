@@ -28,6 +28,7 @@ import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 
 /**
  *
@@ -41,6 +42,9 @@ public class ServicioEventoImplTest {
     }
     @Autowired
     private IServicioEvento servicioEvento;
+
+    @Autowired
+    private IServicioTableroGanancia servicioTableroGanancia;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -266,13 +270,23 @@ public class ServicioEventoImplTest {
         servicioEvento.desactivarEvento(21);
     }
 
-    @Test
+    //@Test
     public void testListarEventos() {
         System.out.println("Listar Eventos");
         List<Evento> lista = servicioEvento.todosLosEventos();
         assertNotNull(lista);
         for (Evento evento : lista) {
             System.out.println(evento.getNombre());
+        }
+    }
+
+    @Test
+    public void testListarParticipantes() {
+        System.out.println("Listar Participantes");
+        List<Participante> lista = servicioTableroGanancia.obtenerParticipantesPorCategoria("Liga BBVA");
+        assertNotNull(lista);
+        for (Participante p : lista) {
+            System.out.println(p.getNombre());
         }
     }
 }
