@@ -14,6 +14,11 @@ body{
 #headerTop {
     background-image: none;
     background-color: #262626;
+    border-bottom: #fff solid 1px;
+}
+
+#menuTop li a{
+    padding: 10px 5px;
 }
 
 #centerPane {

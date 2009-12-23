@@ -28,70 +28,72 @@
                                 <form id="loginForm" name="loginForm" action="j_spring_security_check" method="post">
                                     <fieldset>
                                         <legend><spring:message code="login.form.titulo"/></legend>
-                                        <c:if test="${not empty param.savepass}">
-                                            <spring:message code="login.cambioclave.exito"/>
-                                        </c:if>
-                                        <c:if test="${not empty param.resultado}">
-                                            <spring:message code="${param.mensaje}" />
-                                        </c:if>
-                                        <c:if test="${not empty param.authfailed}">
-                                            <div class="error">
-                                                <c:choose>
-                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
-                                                        <spring:message code="login.error.badcredentials"/>
-                                                    </c:when>
-                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'User not found'}">
-                                                        <spring:message code="login.error.notfound"/>
-                                                    </c:when>
-                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Maximum sessions of 1 for this principal exceeded'}">
-                                                        <spring:message code="login.error.maximum"/>
-                                                    </c:when>
-                                                    <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message != 'Bad credentials' && SPRING_SECURITY_LAST_EXCEPTION.message != 'User not found'
-                                                                    && SPRING_SECURITY_LAST_EXCEPTION.message != 'Maximum sessions of 1 for this principal exceeded' }">
-                                                        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
-                                                    </c:when>
-                                                </c:choose>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${not empty param.newpassword}">
-                                            <div class="error">
-                                                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${not empty param.acclocked}">
-                                            <div class="error">
-                                                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${not empty param.accdisabled}">
-                                            <div class="error">
-                                                <spring:message code="login.error.disabled"/>
-                                            </div>
-                                        </c:if>
-                                        <table align="center">
-                                            <tr>
-                                                <th><label for="usernameField"><spring:message code="login.form.username"/></label></th>
-                                                <td>
-                                                    <input id="usernameField" type="text" name="j_username" value="<c:out value="${SPRING_SECURITY_LAST_USERNAME}"/>"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th><label for="passwordField"><spring:message code="login.form.password"/></label></th>
-                                                <td>
-                                                    <input id="passwordField" type="password" name="j_password" />
-                                                    <a href="publico/front/usuario/recuperarClave.htm"><spring:message code="login.form.forgot"/></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    &nbsp;
-                                                </th>
-                                                <td colspan="2">
-                                                    <input type="submit" value="<spring:message code="login.form.button"/>" />
-                                                    <a href="publico/front/usuario/registroUsuario.htm"><spring:message code="login.form.newaccount"/></a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <div align="center">
+                                            <c:if test="${not empty param.savepass}">
+                                                <spring:message code="login.cambioclave.exito"/>
+                                            </c:if>
+                                            <c:if test="${not empty param.resultado}">
+                                                <spring:message code="${param.mensaje}" />
+                                            </c:if>
+                                            <c:if test="${not empty param.authfailed}">
+                                                <div class="error">
+                                                    <c:choose>
+                                                        <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+                                                            <spring:message code="login.error.badcredentials"/>
+                                                        </c:when>
+                                                        <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'User not found'}">
+                                                            <spring:message code="login.error.notfound"/>
+                                                        </c:when>
+                                                        <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Maximum sessions of 1 for this principal exceeded'}">
+                                                            <spring:message code="login.error.maximum"/>
+                                                        </c:when>
+                                                        <c:when test="${SPRING_SECURITY_LAST_EXCEPTION.message != 'Bad credentials' && SPRING_SECURITY_LAST_EXCEPTION.message != 'User not found'
+                                                                        && SPRING_SECURITY_LAST_EXCEPTION.message != 'Maximum sessions of 1 for this principal exceeded' }">
+                                                            <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty param.newpassword}">
+                                                <div class="error">
+                                                    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty param.acclocked}">
+                                                <div class="error">
+                                                    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message} "/>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty param.accdisabled}">
+                                                <div class="error">
+                                                    <spring:message code="login.error.disabled"/>
+                                                </div>
+                                            </c:if>
+                                            <table align="center">
+                                                <tr>
+                                                    <th><label for="usernameField"><spring:message code="login.form.username"/></label></th>
+                                                    <td>
+                                                        <input id="usernameField" type="text" name="j_username" value="<c:out value="${SPRING_SECURITY_LAST_USERNAME}"/>"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="passwordField"><spring:message code="login.form.password"/></label></th>
+                                                    <td>
+                                                        <input id="passwordField" type="password" name="j_password" />
+                                                        <a href="publico/front/usuario/recuperarClave.htm"><spring:message code="login.form.forgot"/></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        &nbsp;
+                                                    </th>
+                                                    <td colspan="2">
+                                                        <input type="submit" value="<spring:message code="login.form.button"/>" />
+                                                        <a href="publico/front/usuario/registroUsuario.htm"><spring:message code="login.form.newaccount"/></a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </fieldset>
                                 </form>
                             </div>
