@@ -9,18 +9,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.dao.DataAccessException;
 import ve.edu.ucab.ibet.dominio.Evento;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractWizardFormController;
+import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.ProporcionPago;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroEventoTO;
+import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
@@ -106,17 +109,47 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     @Override
     protected ModelAndView processCancel(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         List<Evento> listaEventos = servicioEvento.todosLosEventos();
+        ModelAndView mv = new ModelAndView(new RedirectView(request.getContextPath() + "/privado/back/admin.htm"));
         return new ModelAndView("privado/back/admin", "listaEventos", listaEventos);
     }
 
     @Override
     protected ModelAndView processFinish(HttpServletRequest req, HttpServletResponse resp, Object command, BindException errors) throws Exception {
+        Boolean resultado = Boolean.FALSE;
+        String mensaje = "";
         RegistroEventoTO registroEvento = new RegistroEventoTO();
         registroEvento = (RegistroEventoTO) command;
+        Categoria categoria = servicioCategoria.obtenerCategoriaPorNombre(nombreCategoria);
+        registroEvento.setCategoria(categoria);
+        registroEvento.getTableroGananciaUno().setParticipante(registroEvento.getParticipanteUno());
+        registroEvento.getTableroGananciaDos().setParticipante(registroEvento.getParticipanteDos());
         registroEvento.getTableroGananciaDos().setProporcionEmpate(registroEvento.getTableroGananciaUno().getProporcionEmpate());
         Evento evento = servicioEvento.transferObjectToEvento(registroEvento);
-        servicioEvento.agregarEvento(evento, registroEvento.getTableroGananciaUno(), registroEvento.getTableroGananciaDos());
-        return null;
+        ModelAndView mv = new ModelAndView(new RedirectView(req.getContextPath() + "/privado/back/admin.htm"));
+        List<Evento> listaEventos = servicioEvento.todosLosEventos();
+        mv.addObject("listaEventos", listaEventos);
+        try {
+            servicioEvento.agregarEvento(evento, registroEvento.getTableroGananciaUno(), registroEvento.getTableroGananciaDos());
+            resultado = Boolean.TRUE;
+            mensaje = "El evento " + registroEvento.getNombreEvento() + " se ha registrado con exito";
+        } catch (DataAccessException e) {
+            mensaje = "El sistema no se encuentra disponible. Intente de nuevo mas tarde";
+            e.printStackTrace();
+        } catch (GeneralException e) {
+            e.printStackTrace();
+            errors.rejectValue(null, e.getKeyError());
+            mv = showForm(req, resp, errors);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errors.rejectValue(null, "error.apuesta.general");
+            mv = showForm(req, resp, errors);
+        } finally {
+            if (!mensaje.equals("")) {
+                mv.addObject("resultado", resultado);
+                mv.addObject("mensaje", mensaje);
+            }
+            return mv;
+        }
     }
 
     @Override

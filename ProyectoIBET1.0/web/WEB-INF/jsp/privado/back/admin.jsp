@@ -23,11 +23,17 @@
                         <div id="centerPane">
                             <div class="paneTitle">
                                 Gestion de Eventos
-                                <a class="botonAgregar" href="agregarCategoria.htm">
+                                <a class="botonAgregar" href="evento/registroEvento.htm">
                                     <img src="<%= request.getContextPath() + "/images/icons/agregar.png"%>" width="16" height="16" alt="Inhabilitar"/>
                                 </a>
                             </div>
                             <div class="pane">
+                                <c:if test="${not empty param.mensaje}">
+                                    <c:if test="${param.r!= '1'}">
+                                    <div id="alert"><c:out value="${param.mensaje}"/>
+                                    </div>
+                                    </c:if>
+                                </c:if>
                                 <display:table id="lista" name="listaEventos" pagesize="15" decorator="org.displaytag.decorator.TotalTableDecorator"
                                                export="true" class="dataTable" requestURI="admin.htm?r=1">
                                     <display:column property="fechaEvento" title="Fecha" sortable="true"/>
