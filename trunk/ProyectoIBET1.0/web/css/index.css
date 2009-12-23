@@ -9,13 +9,13 @@
 
 @import url("main.css");
 
-@import url("header.css");
-
 @import url("layout.css");
 
-@import url("footer.css");
+@import url("header.css");
 
 @import url("menu.css");
+
+@import url("footer.css");
 
 @import url("content.css");
 
@@ -27,6 +27,6 @@
 
 @import url("forms.css");
 
-@import url("messages.css");
+@import url("jquery-ui-front/jquery-ui-1.7.2.custom.css");
 
-@import url("jquery-ui-1.7.2.custom.css");
+@import url("messages.css");

@@ -3,17 +3,17 @@
     Created on : 24/10/2009, 08:55:39 PM
     Author     : Gerardo Barcia
 --%>
+<%@page session="true" %>
 <%@include file="/WEB-INF/jsp/include/include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="home.titulo"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.front.js"%>"></script>
+        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.ibet.front.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">

@@ -8,13 +8,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <c:out value="${eventos[0].idCategoria.nombre}"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.front.js"%>"></script>
+        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.ibet.front.js"%>"></script>
     </head>
     <body>
         <div id="pageWrap">
