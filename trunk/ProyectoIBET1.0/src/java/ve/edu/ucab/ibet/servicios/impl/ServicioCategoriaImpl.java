@@ -154,7 +154,7 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     @SuppressWarnings("unchecked")
     public List<Categoria> obtenerCategoriasHijos() {
         List<Categoria> resultado = new ArrayList<Categoria>();
-        String query ="Select c from Categoria c where c.idCategoria is not null";
+        String query ="Select c from Categoria c where c.idCategoria is not null and c.habilitada = 1";
         resultado = genericDao.ejecutarQueryList(query);
         return resultado;
     }

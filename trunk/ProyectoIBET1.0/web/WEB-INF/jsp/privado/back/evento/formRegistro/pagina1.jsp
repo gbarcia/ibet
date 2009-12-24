@@ -31,7 +31,7 @@
                     changeMonth: true,
                     changeYear: true,
                     dateFormat: 'yy-mm-dd',
-                    yearRange: '1950:2020'
+                    yearRange: '2010:2020'
                 });
             });
         </script>

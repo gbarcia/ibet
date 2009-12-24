@@ -1,5 +1,6 @@
 package ve.edu.ucab.ibet.controllers.views.gestioneventos;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,7 @@ import ve.edu.ucab.ibet.dominio.ProporcionPago;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroEventoTO;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
+import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
@@ -39,6 +41,7 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     private IServicioEvento servicioEvento;
     private IServicioTableroGanancia servicioTableroGanancia;
     private IServicioCategoria servicioCategoria;
+    private IHelperProperties helperProperties;
     private String nombreCategoria;
     private EstrategiaProporcion estrategia;
 
@@ -110,7 +113,8 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     protected ModelAndView processCancel(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         List<Evento> listaEventos = servicioEvento.todosLosEventos();
         ModelAndView mv = new ModelAndView(new RedirectView(request.getContextPath() + "/privado/back/admin.htm"));
-        return new ModelAndView("privado/back/admin", "listaEventos", listaEventos);
+        mv.addObject("listaEventos",listaEventos);
+        return mv;
     }
 
     @Override
@@ -130,6 +134,10 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
         mv.addObject("listaEventos", listaEventos);
         try {
             servicioEvento.agregarEvento(evento, registroEvento.getTableroGananciaUno(), registroEvento.getTableroGananciaDos());
+            if (!registroEvento.getImagenEvento().isEmpty()) {                
+            File f = new File(helperProperties.getString("directorio.imagenes.eventos") + registroEvento.getImagenEvento().getOriginalFilename());
+            registroEvento.getImagenEvento().transferTo(f);
+            }
             resultado = Boolean.TRUE;
             mensaje = "El evento " + registroEvento.getNombreEvento() + " se ha registrado con exito";
         } catch (DataAccessException e) {
@@ -180,5 +188,13 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
 
     public void setServicioCategoria(IServicioCategoria servicioCategoria) {
         this.servicioCategoria = servicioCategoria;
+    }
+
+    public IHelperProperties getHelperProperties() {
+        return helperProperties;
+    }
+
+    public void setHelperProperties(IHelperProperties helperProperties) {
+        this.helperProperties = helperProperties;
     }
 }
