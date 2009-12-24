@@ -91,6 +91,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="servicioEvento" ref="servicioEvento"/>
   <property name="servicioTableroGanancia" ref="servicioTableroGanancia"/>
   <property name="servicioCategoria" ref="servicioCategoria"/>
+  <property name="helperProperties" ref="helperProperties"/>
   <property name="pages">
       <list>
           <value>/privado/back/evento/formRegistro/pagina1</value>
@@ -98,7 +99,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
           <value>/privado/back/evento/formRegistro/pagina3</value>
       </list>
   </property>
-  <!--<property name="validator" ref="beanValidator"/> -->
+ <!-- <property name="validator" ref="beanValidator"/> -->
 </bean>
 
  <!--

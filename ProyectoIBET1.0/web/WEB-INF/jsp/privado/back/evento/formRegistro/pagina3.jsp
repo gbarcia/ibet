@@ -14,6 +14,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | Administraci&oacute;n de Eventos</title>
         <jsp:include page="/WEB-INF/jsp/include/headAdmin.jsp"></jsp:include>
+        <script type="text/javascript">
+            var nav4 = window.Event ? true : false;
+            function acceptNum(evt){
+                var key = nav4 ? evt.which : evt.keyCode;
+                return (key <= 13 || (key >= 48 && key <= 57));
+            }
+            function validar(e) { 
+                tecla = (document.all) ? e.keyCode : e.which; 
+                if (tecla==8) return true; 
+                patron = /[0-9.]/;
+                te = String.fromCharCode(tecla);
+                return patron.test(te);
+            }
+
+        </script>
     <body>
         <div id="pageWrap">
             <jsp:include page="/WEB-INF/jsp/include/headerAdmin.jsp"></jsp:include>
@@ -32,27 +47,27 @@
                                         <form:form commandName="registroEvento">                                                                                       
                                             <tr>
                                                 <th><label for="montoMax">Monto maximo Apuesta:</label></th>
-                                                <td><form:input id="montoMax" path="politica.montoMaximo"/></td>
+                                                <td><form:input id="montoMax" path="politica.montoMaximo" onkeypress="return validar(event)"/></td>
                                                 <td><form:errors path="politica.montoMaximo" /></td>
                                             </tr>
                                             <tr>
                                                 <th><label for="pe1">Proporcion equipo uno:</label></th>
-                                                <td><input type="text" id="pe1" name="tableroGananciaUno.propocionGano" value="${propEquipoUno}"
-                                                 <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
+                                                <td><input type="text" id="pe1" name="tableroGananciaUno.propocionGano" value="${propEquipoUno}" onkeypress="return validar(event)"
+                                                           <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
                                                 <td><form:errors path="tableroGananciaUno.propocionGano" cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <th><label for="pe2">Proporcion equipo dos:</label></th>
-                                                <td><input type="text" id="pe2" name="tableroGananciaDos.propocionGano" value="${propEquipoDos}"
-                                                <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
+                                                <td><input type="text" id="pe2" name="tableroGananciaDos.propocionGano" value="${propEquipoDos}" onkeypress="return validar(event)"
+                                                           <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
                                                 <td><form:errors path="tableroGananciaDos.propocionGano" cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <c:if test="${empate == 'true'}">
-                                                <th><label for="pe">Proporcion de empate:</label></th>
-                                                <td><input type="text" id="pe" name="tableroGananciaUno.proporcionEmpate" value="${propEmpate}"
-                                                 <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
-                                                <td><form:errors path="tableroGananciaUno.proporcionEmpate" cssClass="error" /></td>
+                                                    <th><label for="pe">Proporcion de empate:</label></th>
+                                                    <td><input type="text" id="pe" name="tableroGananciaUno.proporcionEmpate" value="${propEmpate}" onkeypress="return validar(event)"
+                                                               <c:if test="${logica == 'true'}"> readonly="true"</c:if>/></td>
+                                                    <td><form:errors path="tableroGananciaUno.proporcionEmpate" cssClass="error" /></td>
                                                 </c:if>
                                             </tr>
                                             <tr>

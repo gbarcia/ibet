@@ -50,7 +50,7 @@
                                 <fieldset>
                                     <legend>Datos sobre el Evento</legend>
                                     <table>
-                                        <form:form commandName="registroEvento" enctype="multipart/form-data">
+                                        <form:form commandName="registroEvento" action="registroEvento.htm" enctype="multipart/form-data">
                                             <tr>
                                                 <th><label for="datepicker">Fecha:</label></th>
                                                 <td><form:input id="datepicker" path="fechaEvento"  /></td>

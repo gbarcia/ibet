@@ -363,10 +363,9 @@ public class ServicioEventoImpl implements IServicioEvento {
         evento.setFechaMaxima(registro.getFechaMax());
         evento.setHora(UtilMethods.stringToHora(registro.getHoraEvento() + ":00"));
         evento.setHoraMaxima(UtilMethods.stringToHora(registro.getHoraMax() + ":00"));
-        System.out.println(registro.getCategoria().getId());
         evento.setIdCategoria(registro.getCategoria());
         evento.setIdPolitica(registro.getPolitica());
-        evento.setImagenEvento(registro.getImagenEvento().getName());
+        evento.setImagenEvento(registro.getImagenEvento().getOriginalFilename());
         evento.setNombre(registro.getNombreEvento());
         evento.setResultado("");
         return evento;
