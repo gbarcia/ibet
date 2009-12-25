@@ -99,7 +99,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
           <value>/privado/back/evento/formRegistro/pagina3</value>
       </list>
   </property>
- <!-- <property name="validator" ref="beanValidator"/> -->
+ <property name="validator">
+     <bean class="ve.edu.ucab.ibet.controllers.forms.validator.RegistroEventoValidator"/>
+ </property>
 </bean>
 
  <!--

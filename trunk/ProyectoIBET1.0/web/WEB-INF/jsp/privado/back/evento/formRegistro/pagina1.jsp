@@ -54,12 +54,12 @@
                                             <tr>
                                                 <th><label for="categoria">Categoria:</label></th>
                                                 <td><form:select id="categoria" path="categoria.nombre" items="${listaCategorias}" /></td>
-                                                <td><form:errors path="categoria.nombre" /></td>
+                                                <td><form:errors path="categoria.nombre" cssClass="error"/></td>
                                             </tr>                                            
                                             <tr>
                                                 <th><label for="finAntes">Finaliza Antes:</label></th>
                                                 <td><form:radiobuttons id="finAntes" path="politica.finalizarAntes" items="${finAntes}"/></td>
-                                                <td><form:errors path="politica.finalizarAntes" /></td>
+                                                <td><form:errors path="politica.finalizarAntes" cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <th><label for="datepicker">Fecha Maxima Apuesta:</label></th>
@@ -69,7 +69,7 @@
                                             <tr>
                                                 <th><label for="horaMax">HoraMaxima Apuesta:</label></th>
                                                 <td><form:input id="horaMax" path="horaMax"/></td>
-                                                <td><form:errors path="horaMax" /></td>
+                                                <td><form:errors path="horaMax"cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <th></th>

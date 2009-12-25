@@ -313,7 +313,7 @@ COMMIT;
 SET AUTOCOMMIT=0;
 USE `iBet`;
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (1, 'Futbol',       1, 0,  1, null, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (2, 'Liga BBVA',    1, 0,  1, null, 1);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (2, 'Liga BBVA',    1, 1,  1, 'estrategiaProporcionGlobal', 1);
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (3, 'LVF Apertura', 1, 0,  1, null, 1);
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (4, 'Beisbol',      0, 0,  1, null, null);
 INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (5, 'LVBP',         0, 0,  1, null, 4);
