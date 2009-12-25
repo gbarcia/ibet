@@ -18,6 +18,7 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractWizardFormController;
 import org.springframework.web.servlet.view.RedirectView;
+import ve.edu.ucab.ibet.controllers.forms.validator.RegistroEventoValidator;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
@@ -54,7 +55,9 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         RegistroEventoTO registro = new RegistroEventoTO();
         registro.setCategoria(new Categoria());
-        registro.setPolitica(new Politica());
+        Politica politica = new Politica();
+        politica.setMontoMaximo(100000.0);
+        registro.setPolitica(politica);
         registro.setParticipanteUno(new Participante());
         registro.setParticipanteDos(new Participante());
         registro.setTableroGananciaUno(new TableroGanancia());
@@ -113,7 +116,7 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     protected ModelAndView processCancel(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         List<Evento> listaEventos = servicioEvento.todosLosEventos();
         ModelAndView mv = new ModelAndView(new RedirectView(request.getContextPath() + "/privado/back/admin.htm"));
-        mv.addObject("listaEventos",listaEventos);
+        mv.addObject("listaEventos", listaEventos);
         return mv;
     }
 
@@ -134,9 +137,9 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
         mv.addObject("listaEventos", listaEventos);
         try {
             servicioEvento.agregarEvento(evento, registroEvento.getTableroGananciaUno(), registroEvento.getTableroGananciaDos());
-            if (!registroEvento.getImagenEvento().isEmpty()) {                
-            File f = new File(helperProperties.getString("directorio.imagenes.eventos") + registroEvento.getImagenEvento().getOriginalFilename());
-            registroEvento.getImagenEvento().transferTo(f);
+            if (!registroEvento.getImagenEvento().isEmpty()) {
+                File f = new File(helperProperties.getString("directorio.imagenes.eventos") + registroEvento.getImagenEvento().getOriginalFilename());
+                registroEvento.getImagenEvento().transferTo(f);
             }
             resultado = Boolean.TRUE;
             mensaje = "El evento " + registroEvento.getNombreEvento() + " se ha registrado con exito";
@@ -157,6 +160,27 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
                 mv.addObject("mensaje", mensaje);
             }
             return mv;
+        }
+    }
+
+    @Override
+    protected void validatePage(Object command, Errors errors, int page) {
+        RegistroEventoValidator validator = (RegistroEventoValidator) getValidator();
+        switch (page) {
+            case 0:
+                validator.validarPaginaUno(command, errors);
+                break;
+            case 1:
+                validator.validarPaginaDos(command, errors);
+                break;
+            case 2:
+                RegistroEventoTO registro = (RegistroEventoTO) command;
+                registro.setCategoria(servicioCategoria.obtenerCategoriaPorNombre(nombreCategoria));
+                command = registro;
+                validator.validarPaginaTres(command, errors);
+                break;
+            default:
+                break;
         }
     }
 

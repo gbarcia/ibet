@@ -59,12 +59,12 @@
                                             <tr>
                                                 <th><label for="hora">Hora:</label></th>
                                                 <td><form:input id="hora" path="horaEvento"/></td>
-                                                <td><form:errors path="horaEvento" /></td>
+                                                <td><form:errors path="horaEvento" cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <th><label for="nombre">Nombre:</label></th>
                                                 <td><form:input id="nombre" path="nombreEvento"/></td>
-                                                <td><form:errors path="nombreEvento" /></td>
+                                                <td><form:errors path="nombreEvento" cssClass="error" /></td>
                                             </tr>
                                             <tr>
                                                 <th><label for="p1">Participante uno:</label></th>
