@@ -44,6 +44,8 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "habilitada")
     private boolean habilitada;
+    @Column(name = "participantesComun")
+    private boolean participantesComun;
     @Column(name = "nombreLogica")
     private String nombreLogica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
@@ -149,6 +151,14 @@ public class Categoria implements Serializable {
 
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
+    }
+
+    public boolean isParticipantesComun() {
+        return participantesComun;
+    }
+
+    public void setParticipantesComun(boolean participantesComun) {
+        this.participantesComun = participantesComun;
     }
 
     @Override
