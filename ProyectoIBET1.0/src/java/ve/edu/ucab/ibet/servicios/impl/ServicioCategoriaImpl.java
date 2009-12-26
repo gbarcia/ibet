@@ -155,13 +155,15 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     public List<Categoria> obtenerCategoriasHijos() {
         List<Categoria> resultado = new ArrayList<Categoria>();
         List<Categoria> listaCatComun = new ArrayList<Categoria>();
-        String query = "Select c from Categoria c where c.idCategoria is not null and c.habilitada = 1 and c.idCategoria.participantesComun = 0";
-        resultado = genericDao.ejecutarQueryList(query);
-        String queryComun = "Select c from Categoria c where c.idCategoria is null and c.habilitada = 1 and c.participantesComun = 1";
-        listaCatComun = genericDao.ejecutarQueryList(queryComun);
-        for (Categoria categoria : listaCatComun) {
-            resultado.add(categoria);
-        }
+        String query = "Select c from Categoria c where c.idCategoria is not null and c.habilitada = 1";
+        resultado = genericDao.ejecutarQueryList(query);      
         return resultado;
+    }
+
+    public Categoria obtenerCategoriaPadrePorCategoria(String nombreCategoria) {
+        Categoria categoriaPadre = null;
+        Categoria categoria = obtenerCategoriaPorNombre(nombreCategoria);
+        categoriaPadre = obtenerCategoria(categoria.getIdCategoria().getId());
+        return categoriaPadre;
     }
 }

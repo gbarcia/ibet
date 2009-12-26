@@ -34,33 +34,33 @@ public interface IServicioCategoria {
      * firma para registrar una nueva categoria
      * @param categoria objeto con la informacion de la categoria a registrar
      */
-    public void agregarCategoria (Categoria categoria);
+    public void agregarCategoria(Categoria categoria);
 
     /**
      * firma para editar una categoria
      * @param categoria objeto con los datos de la categoria
      */
-    public void editarCategotia (Categoria categoria);
+    public void editarCategotia(Categoria categoria);
 
     /**
      * firma para obtener una categoria en particular
      * @param idCategoria id de la categoria a obtener
      * @return objeto Categoria con sus datos
      */
-    public Categoria obtenerCategoria (Integer idCategoria);
+    public Categoria obtenerCategoria(Integer idCategoria);
 
     /**
      * firma para obtener una categoria por nombre
      * @param nombreCategoria el nombre de la categoria a buscar
      * @return objeto categoria con la informacion
      */
-    public Categoria obtenerCategoriaPorNombre (String nombreCategoria);
+    public Categoria obtenerCategoriaPorNombre(String nombreCategoria);
 
     /**
      * firma para inhabilitar del sistema una categoria
      * @param idCategoria id de la categoria a deshabilitar
      */
-    public void inhabilitarCategoria (Integer idCategoria);
+    public void inhabilitarCategoria(Integer idCategoria);
 
     /**
      * firma para habilitar una categoria
@@ -73,18 +73,25 @@ public interface IServicioCategoria {
      * @param registro objeto transfer object a convertir
      * @return Objeto Categoria
      */
-    public Categoria transferObjectToCategoria (RegistroCategoriaTO registro);
+    public Categoria transferObjectToCategoria(RegistroCategoriaTO registro);
 
     /**
      * firma para convertir un objeto categoria en un transfer object
      * @param categoria objeto categoria a convertir
      * @return objet de transferencia
      */
-    public RegistroCategoriaTO categoriaToTransferObject (Categoria categoria);
+    public RegistroCategoriaTO categoriaToTransferObject(Categoria categoria);
 
     /**
      * firma para obtener todas las categorias de segundo nivel en la jerarquia
      * @return Lista de objetos categorias
      */
     public List<Categoria> obtenerCategoriasHijos();
+
+    /**
+     * firma para obtener la categoria del nivel superior a una categoria
+     * @param nombreCategoria el nombre de la categoria
+     * @return Objeto Categoria de nivel superior
+     */
+    public Categoria obtenerCategoriaPadrePorCategoria(String nombreCategoria);
 }

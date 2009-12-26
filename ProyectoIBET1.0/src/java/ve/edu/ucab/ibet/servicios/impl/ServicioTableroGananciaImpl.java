@@ -1,10 +1,12 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.util.List;
+import ve.edu.ucab.ibet.dominio.Categoria;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
+import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 
 /**
@@ -15,6 +17,7 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 public class ServicioTableroGananciaImpl implements IServicioTableroGanancia {
 
     private IGenericDao genericDao;
+    private IServicioCategoria servicioCategoria;
 
     public IGenericDao getGenericDao() {
         return genericDao;
@@ -22,6 +25,14 @@ public class ServicioTableroGananciaImpl implements IServicioTableroGanancia {
 
     public void setGenericDao(IGenericDao genericDao) {
         this.genericDao = genericDao;
+    }
+
+    public IServicioCategoria getServicioCategoria() {
+        return servicioCategoria;
+    }
+
+    public void setServicioCategoria(IServicioCategoria servicioCategoria) {
+        this.servicioCategoria = servicioCategoria;
     }
 
     public void agregarTableroGanancia(TableroGanancia tablero) {
@@ -43,7 +54,13 @@ public class ServicioTableroGananciaImpl implements IServicioTableroGanancia {
     @SuppressWarnings("unchecked")
     public List<Participante> obtenerParticipantesPorCategoria(String nombreCategoria) {
         List<Participante> listaParticipantes = null;
-        Object[] o = {nombreCategoria};
+        String nombreCategoriaQuery = nombreCategoria;
+        Categoria categoria = servicioCategoria.obtenerCategoriaPorNombre(nombreCategoria);
+        if (categoria.isParticipantesComun()) {
+            Categoria categoriaPadre = servicioCategoria.obtenerCategoriaPadrePorCategoria(nombreCategoria);
+            nombreCategoriaQuery = categoriaPadre.getNombre();
+        }
+        Object[] o = {nombreCategoriaQuery};
         String query = "Select p from Participante p where p.idCategoria.nombre = ? ";
         listaParticipantes = genericDao.ejecutarQueryList(query, o);
         return listaParticipantes;
