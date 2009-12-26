@@ -32,4 +32,11 @@ public interface IServicioTableroGanancia {
      * @return Lista de objertos Participante con la informacion
      */
     public List<Participante> obtenerParticipantesPorCategoria (String nombreCategoria);
+
+    /**
+     * firma para obtener la cantidad de eventos ganados por un determinado participante
+     * @param idParticipante el id del participante a consultar
+     * @return numero de eventos ganados en valor entero
+     */
+    public Integer cantidadDeEventosGanadosPorParticipante(Integer idParticipante);
 }

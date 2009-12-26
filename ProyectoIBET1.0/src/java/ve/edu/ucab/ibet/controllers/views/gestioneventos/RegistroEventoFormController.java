@@ -44,6 +44,8 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
     private IServicioCategoria servicioCategoria;
     private IHelperProperties helperProperties;
     private String nombreCategoria;
+    private Participante participanteUno;
+    private Participante participanteDos;
     private EstrategiaProporcion estrategia;
 
     public RegistroEventoFormController() {
@@ -90,7 +92,7 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
             Categoria categoria = servicioCategoria.obtenerCategoriaPorNombre(nombreCategoria);
             if (categoria.getLogicaAutomatica()) {
                 estrategia = (EstrategiaProporcion) getApplicationContext().getBean(categoria.getNombreLogica());
-                proporcion = estrategia.fijarProporcion(null, null);
+                proporcion = estrategia.fijarProporcion(participanteUno, participanteDos);
             }
             referencia.put("empate", categoria.getEmpate());
             referencia.put("logica", categoria.getLogicaAutomatica());
@@ -108,7 +110,9 @@ public class RegistroEventoFormController extends AbstractWizardFormController {
             nombreCategoria = registro.getCategoria().getNombre();
         }
         if (page == 1) {
-            super.postProcessPage(request, command, errors, page);
+            RegistroEventoTO registro = (RegistroEventoTO) command;
+            participanteUno = registro.getParticipanteUno();
+            participanteDos = registro.getParticipanteDos();
         }
     }
 

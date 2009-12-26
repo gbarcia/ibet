@@ -83,5 +83,9 @@
      <!-- ESTRATEGIA DE PROPORCION GLOBAL-->
      <bean id="estrategiaProporcionGlobal" class="ve.edu.ucab.ibet.servicios.impl.estrategias.EstrategiaProporcionGlobal" scope="singleton">
      </bean>
+     <!-- ESTRATEGIA DE PROPORCION ESTADISTICA-->
+     <bean id="estrategiaProporcionEst" class="ve.edu.ucab.ibet.servicios.impl.estrategias.EstrategiaProporcionEstadisitica" scope="singleton">
+         <property name="servicioTableroGanancia" ref="servicioTableroGanancia"/>
+     </bean>
    
 </beans>

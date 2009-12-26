@@ -123,8 +123,8 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
         RegistroCategoriaTO registro = new RegistroCategoriaTO();
         String hayEmpate = (categoria.getEmpate()) ? "SI" : "NO";
         String logicaAutomatica = (categoria.getLogicaAutomatica()) ? "SI" : "NO";
-        if (categoria.getIdCategoria() != null){
-        catJerarquia = obtenerCategoria(categoria.getIdCategoria().getId());
+        if (categoria.getIdCategoria() != null) {
+            catJerarquia = obtenerCategoria(categoria.getIdCategoria().getId());
         }
         String jerarquia = (catJerarquia == null) ? "Primer Nivel" : catJerarquia.getNombre();
         registro.setEmpate(hayEmpate);
@@ -154,8 +154,14 @@ public class ServicioCategoriaImpl implements IServicioCategoria {
     @SuppressWarnings("unchecked")
     public List<Categoria> obtenerCategoriasHijos() {
         List<Categoria> resultado = new ArrayList<Categoria>();
-        String query ="Select c from Categoria c where c.idCategoria is not null and c.habilitada = 1";
+        List<Categoria> listaCatComun = new ArrayList<Categoria>();
+        String query = "Select c from Categoria c where c.idCategoria is not null and c.habilitada = 1 and c.idCategoria.participantesComun = 0";
         resultado = genericDao.ejecutarQueryList(query);
+        String queryComun = "Select c from Categoria c where c.idCategoria is null and c.habilitada = 1 and c.participantesComun = 1";
+        listaCatComun = genericDao.ejecutarQueryList(queryComun);
+        for (Categoria categoria : listaCatComun) {
+            resultado.add(categoria);
+        }
         return resultado;
     }
 }

@@ -43,10 +43,19 @@ public class ServicioTableroGananciaImpl implements IServicioTableroGanancia {
     @SuppressWarnings("unchecked")
     public List<Participante> obtenerParticipantesPorCategoria(String nombreCategoria) {
         List<Participante> listaParticipantes = null;
-        Object [] o = {nombreCategoria};
+        Object[] o = {nombreCategoria};
         String query = "Select p from Participante p where p.idCategoria.nombre = ? ";
-        listaParticipantes = genericDao.ejecutarQueryList(query,o);
+        listaParticipantes = genericDao.ejecutarQueryList(query, o);
         return listaParticipantes;
     }
 
+    @SuppressWarnings("unchecked")
+    public Integer cantidadDeEventosGanadosPorParticipante(Integer idParticipante) {
+        Integer resultado = 0;
+        Object[] o = {Boolean.TRUE, idParticipante};
+        String query = "select t from TableroGanancia t where t.gano = ? and t.participante.id = ?";
+        List<TableroGanancia> lista = genericDao.ejecutarQueryList(query, o);
+        resultado = lista.size();
+        return resultado;
+    }
 }

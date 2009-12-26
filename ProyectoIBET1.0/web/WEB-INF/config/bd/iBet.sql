@@ -115,6 +115,7 @@ CREATE  TABLE IF NOT EXISTS `iBet`.`CATEGORIA` (
   `empate` TINYINT(1) NOT NULL ,
   `logicaAutomatica` TINYINT(1) NOT NULL ,
   `habilitada` TINYINT(1) NOT NULL ,
+  `participantesComun` TINYINT(1) NOT NULL ,
   `nombreLogica` VARCHAR(100) NULL DEFAULT NULL ,
   `idCategoria` INT NULL ,
   PRIMARY KEY (`id`) ,
@@ -312,14 +313,14 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `iBet`;
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (1, 'Futbol',       1, 0,  1, null, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (2, 'Liga BBVA',    1, 1,  1, 'estrategiaProporcionGlobal', 1);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (3, 'LVF Apertura', 1, 0,  1, null, 1);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (4, 'Beisbol',      0, 0,  1, null, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (5, 'LVBP',         0, 0,  1, null, 4);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (6, 'Tenis',        0, 0,  1, null, null);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (7, 'ATP Finals',   0, 0,  1, null, 6);
-INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `nombreLogica`, `idCategoria`) VALUES (8, 'Hyundai Cup',  0, 0,  1, null, 6);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`, `nombreLogica`, `idCategoria`) VALUES (1, 'Futbol',       1, 0,  1, 0, null, null);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (2, 'Liga BBVA',    1, 1,  1, 0,'estrategiaProporcionGlobal', 1);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (3, 'LVF Apertura', 1, 0,  1, 0, null, 1);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (4, 'Beisbol',      0, 0,  1, 0, null, null);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (5, 'LVBP',         0, 0,  1, 0, null, 4);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (6, 'Tenis',        0, 0,  1, 1, null, null);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (7, 'ATP Finals',   0, 0,  1, 0, null, 6);
+INSERT INTO `CATEGORIA` (`id`, `nombre`, `empate`, `logicaAutomatica`,`habilitada`, `participantesComun`,`nombreLogica`, `idCategoria`) VALUES (8, 'Hyundai Cup',  0, 1,  1, 0, 'estrategiaProporcionEst', 6);
 
 COMMIT;
 
