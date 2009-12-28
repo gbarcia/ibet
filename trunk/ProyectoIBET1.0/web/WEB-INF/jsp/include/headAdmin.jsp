@@ -4,6 +4,7 @@
     Author     : jonathan
 --%>
 
+<link rel="shortcut icon" href="<%= request.getContextPath() + "/images/favicon/favicon.ico"%>">
 <link rel="stylesheet" href="<%= request.getContextPath() + "/css/index.css"%>" type="text/css" />
 <link rel="stylesheet" href="<%= request.getContextPath() + "/css/admin.css"%>" type="text/css" />
 <link rel="stylesheet" href="<%= request.getContextPath() + "/css/dataTableAdmin.css"%>" type="text/css" />

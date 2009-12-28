@@ -7,14 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="registroUsuario.titulo.form"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <link rel="stylesheet" href="<%= request.getContextPath() + "/css/wholeLayout.css"%>" type="text/css" />
-
         <script type="text/javascript">
             $(function() {
                 $('#datepicker').datepicker({
@@ -48,7 +46,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="nombre" path="nombre" />
-                                                        <br><form:errors path="nombre" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="nombre" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -57,7 +57,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="apellido" path="apellido" />
-                                                        <br><form:errors path="apellido" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="apellido" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -66,7 +68,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="datepicker" path="fechaNacimiento"  />
-                                                        <br><form:errors path="fechaNacimiento" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="fechaNacimiento" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -75,7 +79,9 @@
                                                     </td>
                                                     <td>
                                                         <form:radiobuttons id="sexo" path="sexo" items="${opcionSexo}" />
-                                                        <br><form:errors path="sexo" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="sexo" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -84,7 +90,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="correo" path="correo" />
-                                                        <br><form:errors path="correo" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="correo" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -93,7 +101,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="repCorreo" path="repCorreo" />
-                                                        <br><form:errors path="repCorreo" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="repCorreo" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -102,7 +112,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="telefono" path="telefono"/>
-                                                        <br><form:errors path="telefono" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="telefono" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -111,7 +123,9 @@
                                                     </td>
                                                     <td>
                                                         <form:select id="pais" path="pais" items="${opcionPais}"/>
-                                                        <br><form:errors path="pais" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="pais" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -120,7 +134,9 @@
                                                     </td>
                                                     <td>
                                                         <form:select id="estado" path="estado" items="${opcionEstado}"/>
-                                                        <br><form:errors path="estado" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="estado" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -129,7 +145,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="ciudad" path="ciudad"  />
-                                                        <br><form:errors path="ciudad" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="ciudad" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -138,7 +156,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="calle" path="calle"/>
-                                                        <br><form:errors path="calle" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="calle" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -147,7 +167,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="codigoPostal" path="codigoPostal" />
-                                                        <br><form:errors path="codigoPostal" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="codigoPostal" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -163,7 +185,9 @@
                                                     </td>
                                                     <td>
                                                         <form:input id="nombreUsuario" path="nombreUsuario" autocomplete="true"/>
-                                                        <br><form:errors path="nombreUsuario" cssClass="error"/>
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="nombreUsuario" cssClass="formError"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -172,7 +196,9 @@
                                                     </td>
                                                     <td>
                                                         <form:password id="clave" path="clave"/>
-                                                        <br><form:errors path="clave" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="clave" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -181,7 +207,9 @@
                                                     </td>
                                                     <td>
                                                         <form:password id="repClave" path="repClave"  />
-                                                        <br><form:errors path="repClave" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="repClave" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -200,7 +228,9 @@
                                                         <label for="aceptarContrato">
                                                             <spring:message code="usuario.forms.politica"/>
                                                         </label>
-                                                        <br><form:errors path="aceptaContrato" cssClass="error" />
+                                                    </td>
+                                                    <td>
+                                                        <form:errors path="aceptaContrato" cssClass="formError" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -218,28 +248,5 @@
             </div>
             <jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <h2></h2>
-
     </body>
 </html>
