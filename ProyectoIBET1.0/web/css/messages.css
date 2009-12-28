@@ -30,6 +30,13 @@
     border-color: #faff00
 }
 
+.formError{
+    color: #b90101;
+    background: url(../images/icons/error.png);
+    background-repeat: no-repeat;
+    padding-left:20px;
+}
+
 #alert{
     overflow: hidden;
     width: 100%;
