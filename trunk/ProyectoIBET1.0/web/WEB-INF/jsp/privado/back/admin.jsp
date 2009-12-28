@@ -54,17 +54,17 @@
                                     <display:column property="fechaMaxima" title="Fecha Max" sortable="true"/>
                                     <display:column property="horaMaxima" title="Hora Max"/>
                                     <display:column title="Acciones">
-                                        <a class="botonActualizar" href="updateCategoria.htm?id=${listadoCategorias.id}">
+                                        <a class="botonActualizar" href="updateCategoria.htm?id=${lista.id}">
                                             <img src="<%= request.getContextPath() + "/images/icons/update.png"%>" width="16" height="16" alt="Actualizar"/>
                                         </a>
                                         <c:choose>
                                             <c:when test="${lista.estatus=='true'}">
-                                                <a class="botonInhabilitar" href="inhabilitarCategoria.htm?id=${listadoCategorias.id}">
+                                                <a class="botonInhabilitar" href="inhabilitarEvento.htm?id=${lista.id}">
                                                     <img src="<%= request.getContextPath() + "/images/icons/inhabilitar.png"%>" width="16" height="16" alt="Inhabilitar"/>
                                                 </a>
                                             </c:when>
                                             <c:when test="${lista.estatus=='false'}">
-                                                <a class="botonHabilitar" href="habilitarCategoria.htm?id=${listadoCategorias.id}">
+                                                <a class="botonHabilitar" href="habilitarEvento.htm?id=${lista.id}">
                                                     <img src="<%= request.getContextPath() + "/images/icons/habilitar.png"%>" width="16" height="16" alt="Habilitar"/>
                                                 </a>
                                             </c:when>

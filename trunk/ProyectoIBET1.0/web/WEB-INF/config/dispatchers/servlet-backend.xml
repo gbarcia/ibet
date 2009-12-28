@@ -148,5 +148,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     class="ve.edu.ucab.ibet.controllers.views.gestionpagos.HabilitarMedioPagoController">
         <property name="servicioMedioPago" ref="servicioMedioPago" />
 </bean>
+ <!-- Bean para habilitar un evento -->
+<bean name="/privado/back/habilitarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.HabilitarEventoController">
+        <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
+ <!-- Bean para inhabilitar un evento -->
+<bean name="/privado/back/inhabilitarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.InhabilitarEventoController">
+        <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
     
 </beans>
