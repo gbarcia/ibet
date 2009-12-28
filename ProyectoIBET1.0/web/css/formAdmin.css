@@ -51,7 +51,7 @@ fieldset input[type=text],fieldset input[type=password],fieldset textarea,fields
 	border: 1px solid #202020;
 	color: #202020;
 	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
-	width: 250px;
+	width: 200px;
 }
 
 fieldset input[type=text]:focus,fieldset input[type=password]:focus,fieldset textarea:focus,fieldset select:focus {
