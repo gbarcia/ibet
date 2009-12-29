@@ -232,11 +232,13 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
     public void habilitarUsuario(String username) {
         Users usuario = this.obtenerDatosUsuarioM(username);
         usuario.setEnabled(Boolean.TRUE);
+        genericDao.merge(usuario);
     }
 
     public void deshabilitarUsuario(String username) {
         Users usuario = this.obtenerDatosUsuarioM(username);
         usuario.setEnabled(Boolean.FALSE);
+        genericDao.merge(usuario);
     }
 
     @SuppressWarnings("unchecked")
