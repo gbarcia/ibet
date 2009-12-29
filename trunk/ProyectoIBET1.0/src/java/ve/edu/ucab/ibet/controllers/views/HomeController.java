@@ -24,9 +24,12 @@ public class HomeController implements Controller {
         this.servicioEvento = servicioEvento;
     }
 
+    static Integer PROXIMOS_EVENTOS_MINIMO = 0;
+    static Integer PROXIMOS_EVENTOS_MAXIMO = 25;
+
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         ModelAndView mv = new ModelAndView("home");
-        List<Evento> eventos = servicioEvento.obtenerProximosEventos();
+        List<Evento> eventos = servicioEvento.obtenerProximosEventos(PROXIMOS_EVENTOS_MINIMO, PROXIMOS_EVENTOS_MAXIMO);
         List<Evento> eventosImagenes = servicioEvento.obtenerProximosEventosConImagen();
         mv.addObject("eventos", eventos);
         mv.addObject("eventosImagenes", eventosImagenes);

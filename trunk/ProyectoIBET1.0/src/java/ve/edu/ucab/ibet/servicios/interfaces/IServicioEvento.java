@@ -38,10 +38,12 @@ public interface IServicioEvento {
     public Politica obtenerPoliticaParaEvento(Evento evento);
 
     /**
-     * firma para obtener los proximos eventos en ocurrir
-     * @return lista de eventos
+     * firma para obtener los proximos eventos
+     * @param inicio posicion de primer evento
+     * @param fin posicion ultimo evento
+     * @return lista de los proximos eventos
      */
-    public List<Evento> obtenerProximosEventos();
+    public List<Evento> obtenerProximosEventos(Integer inicio, Integer fin);
 
     /**
      * firma para obtener los proximos eventos en ocurrir para una categoria
