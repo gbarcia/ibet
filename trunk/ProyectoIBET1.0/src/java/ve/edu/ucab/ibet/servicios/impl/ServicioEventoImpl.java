@@ -200,6 +200,7 @@ public class ServicioEventoImpl implements IServicioEvento {
     private void updateEventoFinalizado(Integer idEvento, String resultado) {
         Evento evento = this.obtenerEvento(idEvento);
         evento.setFinalizado(Boolean.TRUE);
+        evento.setEstatus(Boolean.FALSE);
         evento.setResultado(resultado);
         genericDao.limpiar();
         genericDao.merge(evento);
@@ -350,7 +351,7 @@ public class ServicioEventoImpl implements IServicioEvento {
     @SuppressWarnings("unchecked")
     public List<Evento> todosLosEventos() {
         List<Evento> listaEventos = null;
-        String query = "Select e from Evento e order by e.fechaEvento DESC, e.idCategoria, e.estatus";
+        String query = "Select e from Evento e where e.finalizado = 0 order by e.fechaEvento DESC, e.idCategoria, e.estatus";
         listaEventos = genericDao.ejecutarQueryList(query);
         return listaEventos;
     }

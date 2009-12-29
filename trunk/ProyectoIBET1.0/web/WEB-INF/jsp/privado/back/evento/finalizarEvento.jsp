@@ -1,7 +1,7 @@
-<%-- 
-    Document   : agregarPago
-    Created on : Dec 16, 2009, 7:15:17 PM
-    Author     : maya
+<%--
+    Document   : agregarCategoria
+    Created on : 11/12/2009, 04:04:36 PM
+    Author     : Gerardo Barcia
 --%>
 
 <%@page session="true" %>
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ibet | Admin - Agregar Medio Pago</title>
+        <title>iBet | Administraci&oacute;n de Eventos</title>
         <jsp:include page="/WEB-INF/jsp/include/headAdmin.jsp"></jsp:include>
     <body>
         <div id="pageWrap">
@@ -22,24 +22,32 @@
                     <div id="contentColumn">
                         <div id="centerPane">
                             <div class="paneTitle">
-                                Nuevo Medio de Pago
+                                Finalizar Evento
                             </div>
                             <div class="pane">
                                 <form:errors path="*" cssClass="error"/>
                                 <fieldset>
                                     <legend>Datos</legend>
                                     <table>
-                                          <form:form commandName="agregarMedioPago">
+                                        <form:form commandName="finalizarEvento">
                                             <tr>
-                                                <th><label for="nombre">Nombre:</label></th>
-                                                <td><form:input id="nombre" path="nombre"/></td>
-                                                <td><form:errors path="nombre" /></td>
+                                                <th><label for="resultado">Resultado:</label></th>
+                                                <td><form:input id="resultado" path="resultado"/></td>
+                                                <td><form:errors path="resultado" /></td>
+                                            </tr>                       
+                                            <tr>
+                                                <th><label for="partidaEmpatada">Empate:</label></th>
+                                                <td><form:radiobuttons id="partidaEmpatada" path="partidaEmpatada" items="${opcionBooleana}"/></td>
                                             </tr>
+                                            <tr>
+                                                <th><label for="idParticipanteGanador">Participante ganador:</label></th>
+                                                <td><form:select id="idParticipanteGanador" path="idParticipanteGanador" items="${participantes}" /></td>
+                                            </tr>                                           
                                             <tr>
                                                 <th>&nbsp;</th>
                                                 <td>
                                                     <input type="submit" value="Registrar">
-                                                    <a href="homeMedioPago.htm">Volver</a>
+                                                    <a href="/ProyectoIBET/privado/back/admin.htm">Volver</a>
                                                 </td>
                                                 <td>&nbsp;</td>
                                             </tr>

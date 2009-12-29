@@ -39,7 +39,7 @@
                                                 <th>&nbsp;</th>
                                                 <td>
                                                     <input type="submit" value="Actualizar">
-                                                    <a href="homeCategoria.htm">Volver</a>
+                                                    <a href="homeMedioPago.htm">Volver</a>
                                                 </td>
                                                 <td>&nbsp;</td>
                                             </tr>
