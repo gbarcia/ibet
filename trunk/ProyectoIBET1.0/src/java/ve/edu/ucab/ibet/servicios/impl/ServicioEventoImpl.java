@@ -1,5 +1,6 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -88,6 +89,7 @@ public class ServicioEventoImpl implements IServicioEvento {
     @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventos(Integer inicio, Integer fin) {
         List<Evento> eventos = new ArrayList<Evento>();
+        List<Evento> resultado = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
                 "where c.habilitada = 1" +
                 "and c.idCategoria.habilitada = 1" +
@@ -97,7 +99,14 @@ public class ServicioEventoImpl implements IServicioEvento {
                 "order by a.fechaEvento, a.hora";
         Object[] parametros = {};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros, inicio, fin));
-        return eventos;
+        for (Evento e : eventos) {
+            TableroGanancia[] t = (TableroGanancia[]) e.getTableroGananciaCollection().toArray();
+            String participanteUno = t[0].getParticipante().getNombre();
+            String participanteDos = t[1].getParticipante().getNombre();
+            e.setProporcion(this.obtenerProporcionEventoExt(UtilMethods.convertirFechaFormatoUbet(e.getFecha()), participanteUno, participanteDos));
+            resultado.add(e);
+        }
+        return resultado;
     }
 
     @SuppressWarnings("unchecked")
@@ -251,7 +260,7 @@ public class ServicioEventoImpl implements IServicioEvento {
             Evento evento = this.obtenerEvento(idEvento);
             Integer pId = idParticipante;
             ArrayList<TableroGanancia> tableros = new ArrayList<TableroGanancia>(evento.getTableroGananciaCollection());
-            if(idParticipante == null){
+            if (idParticipante == null) {
                 pId = tableros.get(0).getParticipante().getId();
             }
             if (!(!evento.getIdCategoria().getEmpate() && empato)) {
@@ -275,7 +284,7 @@ public class ServicioEventoImpl implements IServicioEvento {
     }
 
     public RespuestaProporcionWS obtenerProporcionEventoExt(String fechaEvento, String equipoUno, String EquipoDos) {
-            RespuestaProporcionWS respuesta = null;
+        RespuestaProporcionWS respuesta = null;
 //        try {
 //            _211._22._168._192._1234.Ubet service = new _211._22._168._192._1234.Ubet();
 //            _211._22._168._192._1234.UbetSoap port = service.getUbetSoap12();
@@ -297,13 +306,15 @@ public class ServicioEventoImpl implements IServicioEvento {
 //        } finally {
 //            return respuesta;
 //        }
-            int numero = (int) (Math.random() * 2 + 1);
-            if (numero == 1) respuesta = null;
-            else {
+        int numero = (int) (Math.random() * 2 + 1);
+        if (numero == 1) {
+            respuesta = null;
+        } else {
             respuesta = new RespuestaProporcionWS();
             respuesta.setProporcionEquipoUno(3.5);
-            respuesta.setProporcionEquipoDos(2.0);}
-            return respuesta;
+            respuesta.setProporcionEquipoDos(2.0);
+        }
+        return respuesta;
     }
 
     public void agregarEvento(Evento evento, TableroGanancia tg1, TableroGanancia tg2) {

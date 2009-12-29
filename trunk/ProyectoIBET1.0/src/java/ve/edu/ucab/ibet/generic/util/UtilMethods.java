@@ -90,6 +90,17 @@ public abstract class UtilMethods {
     }
 
     /**
+     * firma para convertir una fecha en formato del equipo de Ubet
+     * @param fecha fecha a convertir
+     * @return objet String en formato Ubet
+     */
+    public static String convertirFechaFormatoUbet (Date fecha) {
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = simpleFormat.format(fecha);
+        return date;
+    }
+
+    /**
      * Metodo que convierte un string en un objeto tipo Date en formato
      * yyyy-MMM-dd
      * @param fecha objeto Date a convertir en cadena
