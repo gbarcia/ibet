@@ -58,7 +58,7 @@
                                                     <img src="<%= request.getContextPath() + "/images/icons/inhabilitar.png"%>" width="16" height="16" alt="Inhabilitar"/>
                                                 </a>
                                             </c:when>
-                                            <c:when test="${listadoPagos.activo=='false'}">
+                                            <c:when test="${listadoUsuarios.enabled=='false'}">
                                                 <a class="botonHabilitar" href="habilitarUsuario.htm?username=${listadoUsuarios.username}">
                                                     <img src="<%= request.getContextPath() + "/images/icons/habilitar.png"%>" width="16" height="16" alt="Habilitar"/>
                                                 </a>
