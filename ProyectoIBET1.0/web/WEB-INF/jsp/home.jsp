@@ -14,6 +14,14 @@
         <title>iBet | <spring:message code="home.titulo"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
         <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.ibet.front.js"%>"></script>
+        <script type="text/javascript">
+            $(function(){
+                $("input.numeric").numeric(".", numberInvalid);
+            });
+            function numberInvalid(){
+                alert("'" + $(this).val() + "' is not a valid number");
+            }
+        </script>
     </head>
     <body>
         <div id="pageWrap">

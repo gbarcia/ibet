@@ -16,11 +16,11 @@
             <table width="100%" cellspacing="5">
                 <tr>
                     <td><spring:message code="eventos.stake"/></td>
-                <td><input id="importe" type="text" name="" value=""/></td>
+                    <td><input class="numeric" id="importe" type="text" name="" value=""/></td>
                 </tr>
                 <tr>
                     <td><spring:message code="eventos.winnings"/></td>
-                <td><div id="ganancias"></div></td>
+                    <td><div id="ganancias"></div></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
