@@ -180,12 +180,12 @@ public class ServicioEventoImplTest {
         System.out.println(tablero.getPropocionGano());
     }
 
-    //@Test
+    @Test
     public void testFinalizarEvento() {
         System.out.println("finalizarEvento");
-        String resultado = "ganador!";
-        Integer idEvento = 9;
-        Integer idParticipante = 18;
+        String resultado = "Ganador Rafael Nadal";
+        Integer idEvento = 10;
+        Integer idParticipante = 19;
         Boolean gano = Boolean.TRUE;
         Boolean empato = Boolean.FALSE;
         try {
@@ -280,7 +280,7 @@ public class ServicioEventoImplTest {
         }
     }
 
-    @Test
+//    @Test
     public void testListarParticipantes() {
         System.out.println("Listar Participantes");
         List<Participante> lista = servicioTableroGanancia.obtenerParticipantesPorCategoria("Liga BBVA");

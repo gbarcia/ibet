@@ -161,7 +161,11 @@ public class ServicioApuestaImplTest {
         MedioPago medioPagoApuesta = new MedioPago(3);
         TableroGanancia tablero = new TableroGanancia(2, 3);
         Participante p = new Participante(3,"Real Madrid");
+<<<<<<< .mine
+        tablero.setPropocionGano(12.0);
+=======
         tablero.setPropocionGano(new Double(12));
+>>>>>>> .r232
         tablero.setParticipante(p);
         Evento evento = new Evento(2);
         tablero.setEvento(evento);

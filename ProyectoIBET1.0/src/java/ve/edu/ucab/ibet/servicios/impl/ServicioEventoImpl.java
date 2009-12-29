@@ -17,6 +17,7 @@ import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
+import winterwell.jtwitter.Twitter;
 
 /**
  * Clase para ofrecer servicios de Evento
@@ -236,7 +237,6 @@ public class ServicioEventoImpl implements IServicioEvento {
             }
             genericDao.merge(apuesta);
         }
-
     }
 
     private Boolean finalizarAntes(Integer idEvento) {
@@ -248,10 +248,23 @@ public class ServicioEventoImpl implements IServicioEvento {
     public void finalizarEvento(Integer idEvento, String resultado, Integer idParticipante, Boolean gano, Boolean empato) {
         if (finalizarAntes(idEvento)) {
             Evento evento = this.obtenerEvento(idEvento);
+            Integer pId = idParticipante;
+            ArrayList<TableroGanancia> tableros = new ArrayList<TableroGanancia>(evento.getTableroGananciaCollection());
+            if(idParticipante == null){
+                pId = tableros.get(0).getParticipante().getId();
+            }
             if (!(!evento.getIdCategoria().getEmpate() && empato)) {
                 this.updateEventoFinalizado(idEvento, resultado);
-                this.updateTableroGanancia(idEvento, idParticipante, gano, empato);
-                this.updateApuestaGanadora(idEvento, idParticipante, gano, empato);
+                this.updateTableroGanancia(idEvento, pId, gano, empato);
+                this.updateApuestaGanadora(idEvento, pId, gano, empato);
+                Twitter twitter = new Twitter("iBetResultados", "tumejorapuesta");
+                Double proporcion = 0.0;
+                for (TableroGanancia tg : evento.getTableroGananciaCollection()) {
+                    if (tg.getParticipante().getId().equals(pId)) {
+                        proporcion = empato ? tg.getProporcionEmpate() : tg.getPropocionGano();
+                    }
+                }
+                twitter.updateStatus("Evento: " + evento.getNombre() + ". " + resultado + ". Paga: " + proporcion + " \n Felicitaciones a los ganadores!");
             } else {
                 throw new ExcepcionNegocio("errors.evento.noPermitidoEmpate");
             }
@@ -372,6 +385,10 @@ public class ServicioEventoImpl implements IServicioEvento {
     }
 
     public RegistroEventoTO eventotoTransferObject(Evento evento) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List<Evento> obtenerProximosEventos(Integer inicio, Integer fin) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
