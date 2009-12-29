@@ -64,33 +64,37 @@
                                                     <c:otherwise><td>&nbsp;</td></c:otherwise>
                                                 </c:choose>
                                                 <td>
-                                                    <img id="mas-${evento.id}" class="mas" src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
-                                                    <img id="menos-${evento.id}" class="menos" src="<%= request.getContextPath() + "/images/icons/menos.png"%>" width="16" height="16" alt="-"/>
+                                                    <c:if test="${evento.proporcion != null}">
+                                                        <img id="mas-${evento.id}" class="mas" src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
+                                                        <img id="menos-${evento.id}" class="menos" src="<%= request.getContextPath() + "/images/icons/menos.png"%>" width="16" height="16" alt="-"/>
+                                                    </c:if>
                                                 <td>
                                             </tr>
-                                            <tr id="expanded-${evento.id}" class="hidden">
-                                                <td class="logo" width="10%">
-                                                    <img src="<%= request.getContextPath() + "/images/icons/ubet.png"%>" width="52" height="16" alt="uBet"/>
-                                                </td>
-                                                <c:forEach var="tablero" items="${evento.tableroGananciaCollection}">
+                                            <c:if test="${evento.proporcion != null}">
+                                                <tr id="expanded-${evento.id}" class="hidden">
+                                                    <td class="logo" width="10%">
+                                                        <img src="<%= request.getContextPath() + "/images/icons/ubet.png"%>" width="52" height="16" alt="uBet"/>
+                                                    </td>
                                                     <td id="${tablero.tableroGananciaPK.idEvento}-${tablero.tableroGananciaPK.idParticipante}" class="ubet" width="40%">
                                                         <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
-                                                        <div class="proporcion"><c:out value="${tablero.propocionGano}"/></div>
+                                                        <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoUno}"/></div>
                                                     </td>
-                                                    <c:set var="proporcionEmpate" value="${tablero.proporcionEmpate}"/>
-                                                    <c:set var="ultimaFecha" value="${evento.fecha}"/>
-                                                </c:forEach>
-                                                <c:choose>
-                                                    <c:when test="${evento.idCategoria.empate == true}">
-                                                        <td id="${evento.id}-0" class="ubet" width="10%">
-                                                            <div class="participante">x</div>
-                                                            <div class="proporcion"><c:out value="${proporcionEmpate}"/></div>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:otherwise><td>&nbsp;</td></c:otherwise>
-                                                </c:choose>
-                                                <td>&nbsp;<td>
-                                            </tr>
+                                                    <td id="${tablero.tableroGananciaPK.idEvento}-${tablero.tableroGananciaPK.idParticipante}" class="ubet" width="40%">
+                                                        <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
+                                                        <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoDos}"/></div>
+                                                    </td>
+                                                    <c:choose>
+                                                        <c:when test="${evento.idCategoria.empate == true}">
+                                                            <td id="${evento.id}-0" class="ubet" width="10%">
+                                                                <div class="participante">x</div>
+                                                                <div class="proporcion"><c:out value="${proporcionEmpate}"/></div>
+                                                            </td>
+                                                        </c:when>
+                                                        <c:otherwise><td>&nbsp;</td></c:otherwise>
+                                                    </c:choose>
+                                                    <td>&nbsp;<td>
+                                                </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                                 </table>

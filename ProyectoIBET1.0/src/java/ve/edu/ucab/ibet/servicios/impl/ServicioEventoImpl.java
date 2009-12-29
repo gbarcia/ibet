@@ -100,9 +100,9 @@ public class ServicioEventoImpl implements IServicioEvento {
         Object[] parametros = {};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros, inicio, fin));
         for (Evento e : eventos) {
-            TableroGanancia[] t = (TableroGanancia[]) e.getTableroGananciaCollection().toArray();
-            String participanteUno = t[0].getParticipante().getNombre();
-            String participanteDos = t[1].getParticipante().getNombre();
+            ArrayList<TableroGanancia> t = new ArrayList<TableroGanancia>(e.getTableroGananciaCollection());
+            String participanteUno = t.get(0).getParticipante().getNombre();
+            String participanteDos = t.get(1).getParticipante().getNombre();
             e.setProporcion(this.obtenerProporcionEventoExt(UtilMethods.convertirFechaFormatoUbet(e.getFecha()), participanteUno, participanteDos));
             resultado.add(e);
         }

@@ -143,15 +143,15 @@ public class ServicioEventoImplTest {
 
 //    @Test
     public void testObtenerProximosEventos() {
-        System.out.println("Proximos eventos");
-        List<Evento> proximosEventos = null;
-        proximosEventos = servicioEvento.obtenerProximosEventos();
-        assertNotNull(proximosEventos);
-        for (Evento evento : proximosEventos) {
-            System.out.println(evento.getNombre() + ":" +
-                    evento.getFechaEvento() + ":" +
-                    evento.getHora());
-        }
+//        System.out.println("Proximos eventos");
+//        List<Evento> proximosEventos = null;
+//        proximosEventos = servicioEvento.obtenerProximosEventos();
+//        assertNotNull(proximosEventos);
+//        for (Evento evento : proximosEventos) {
+//            System.out.println(evento.getNombre() + ":" +
+//                    evento.getFechaEvento() + ":" +
+//                    evento.getHora());
+//        }
     }
 
 //    @Test
