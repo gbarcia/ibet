@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    //    Talon de apuestas y seleccion de eventos
+
     $("#slipForm").hide();
 
     var active = null;
@@ -85,4 +87,26 @@ $(document).ready(function() {
         }
     });
 
+    //Vista de eventos en otras casas de apuestas
+
+    $("#tablaEventos .hidden").hide();
+
+    $(".expandir").click(function(){
+        selected = $(this).attr("id");
+        var arregloIds = selected.split('-');
+        rowToShow = "expanded-" + arregloIds[1];
+        $("#" + rowToShow).show();
+        $(this).removeClass();
+        $(this).addClass("ocultar")
+    });
+
+    $(".ocultar").click(function(){
+        selected = $(this).attr("id");
+        var arregloIds = selected.split('-');
+        rowToShow = "expanded-" + arregloIds[1];
+        $(".logo").hide();
+        $(this).removeClass();
+        $(this).addClass("expandir")
+    });
+    
 });

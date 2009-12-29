@@ -10,6 +10,13 @@
     width:100%;
 }
 
+.eventTable .logo{
+    color:#bcbcbc;
+    padding:1px 4px;
+    text-align:center;
+    vertical-align:middle
+}
+
 .eventTable .fecha{
     background-color:#171717;
     border:#000 solid 1px;

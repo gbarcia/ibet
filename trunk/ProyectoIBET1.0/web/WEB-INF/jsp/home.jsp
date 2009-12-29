@@ -34,15 +34,15 @@
                                 <spring:message code="home.proximas"/>
                             </div>
                             <div class="pane">
-                                <table class="eventTable" cellspacing="5">
+                                <table id="tablaEventos" class="eventTable" cellspacing="5">
                                     <tbody>
                                         <c:forEach items="${eventos}" var="evento">
                                             <c:if test="${evento.fecha != ultimaFecha}">
                                                 <tr>
-                                                    <td class="fecha" colspan="4"><c:out value="${evento.fecha}"/></td>
+                                                    <td class="fecha" colspan="5"><c:out value="${evento.fecha}"/></td>
                                                 </tr>
                                             </c:if>
-                                            <tr id="${evento.nombre}">
+                                            <tr id="${evento.nombre}" class="visible">
                                                 <td class="hora" width="10%">
                                                     <c:out value="${evento.hora}"/>
                                                 </td>
@@ -63,6 +63,32 @@
                                                     </c:when>
                                                     <c:otherwise><td>&nbsp;</td></c:otherwise>
                                                 </c:choose>
+                                                <td id="expand-${evento.id}" class="expandir">
+                                                    <img src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
+                                                <td>
+                                            </tr>
+                                            <tr id="expanded-${evento.id}" class="hidden">
+                                                <td class="logo" width="10%">
+                                                    <img src="<%= request.getContextPath() + "/images/icons/ubet.png"%>" width="52" height="16" alt="uBet"/>
+                                                </td>
+                                                <c:forEach var="tablero" items="${evento.tableroGananciaCollection}">
+                                                    <td id="${tablero.tableroGananciaPK.idEvento}-${tablero.tableroGananciaPK.idParticipante}" class="item" width="40%">
+                                                        <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
+                                                        <div class="proporcion"><c:out value="${tablero.propocionGano}"/></div>
+                                                    </td>
+                                                    <c:set var="proporcionEmpate" value="${tablero.proporcionEmpate}"/>
+                                                    <c:set var="ultimaFecha" value="${evento.fecha}"/>
+                                                </c:forEach>
+                                                <c:choose>
+                                                    <c:when test="${evento.idCategoria.empate == true}">
+                                                        <td id="${evento.id}-0" class="item" width="10%">
+                                                            <div class="participante">x</div>
+                                                            <div class="proporcion"><c:out value="${proporcionEmpate}"/></div>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise><td>&nbsp;</td></c:otherwise>
+                                                </c:choose>
+                                                <td>&nbsp;<td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
