@@ -162,5 +162,24 @@ $(document).ready(function() {
             name: 'dark' // Style it according to the preset 'cream' style
         }
     });
+    $('.botonFinalizar').qtip(
+    {
+        content: 'Finalizars',
+        position: {
+            corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+            }
+        },
+        style: {
+            border: {
+                width: 1
+            },
+            padding: 5,
+            textAlign: 'center',
+            tip: true, // Give it a speech bubble tip with automatic corner detection
+            name: 'dark' // Style it according to the preset 'cream' style
+        }
+    });
 
 });

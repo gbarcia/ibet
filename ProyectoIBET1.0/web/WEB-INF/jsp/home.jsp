@@ -64,7 +64,7 @@
                                                     <c:otherwise><td>&nbsp;</td></c:otherwise>
                                                 </c:choose>
                                                 <td id="expand-${evento.id}" class="expandir">
-                                                    <img src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
+                                                    <img src="<%= request.getContextPath() + "/images/icons/transparente.png"%>" width="16" height="16" alt="+"/>
                                                 <td>
                                             </tr>
                                             <tr id="expanded-${evento.id}" class="hidden">
