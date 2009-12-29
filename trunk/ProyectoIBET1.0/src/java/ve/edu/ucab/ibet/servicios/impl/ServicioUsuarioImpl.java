@@ -239,6 +239,12 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         usuario.setEnabled(Boolean.FALSE);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Users> listarUsuarios(){
+        List<Users> usuarios = genericDao.listar(Users.class);
+        return usuarios;
+    }
+    
     public void recuperarClave(String username) {
         String nuevaClave = PassGenerator.getNext();
         Users user = obtenerDatosUsuarioM(username);

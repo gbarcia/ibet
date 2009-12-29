@@ -18,7 +18,7 @@
                 <ul id="menuTopList">
                     <li><a href="/ProyectoIBET/privado/back/admin.htm">Eventos</a></li>
                     <li><a href="/ProyectoIBET/privado/back/categoria/homeCategoria.htm">Categorias</a></li>
-                    <li><a href="#">Usuarios</a></li>
+                    <li><a href="/ProyectoIBET/privado/back/usuario/homeUsuarios.htm">Usuarios</a></li>
                     <li><a href="/ProyectoIBET/privado/back/reportes/homeReportes.htm">Reportes</a></li>
                     <li><a href="/ProyectoIBET/privado/back/pagos/homeMedioPago.htm">Pagos</a></li>
                 </ul>

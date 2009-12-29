@@ -101,6 +101,12 @@ public interface IServicioUsuario {
     public void deshabilitarUsuario(String username);
 
     /**
+     * Firma para listar los usuarios 
+     * @return lista con todos los usuarios del sistema 
+     */
+    public List<Users> listarUsuarios();
+    
+    /**
      * firma para recuperacion de clave de un usuario
      * @param username username del usuario afectado
      */

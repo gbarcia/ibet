@@ -158,5 +158,21 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     class="ve.edu.ucab.ibet.controllers.views.gestioneventos.InhabilitarEventoController">
         <property name="servicioEvento" ref="servicioEvento"/>
 </bean>
-    
+
+ <!-- Bean para mostrar la pagina de inicio de la gestion de usuarios -->
+<bean name="/privado/back/usuario/homeUsuarios.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.HomeUsuariosController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+ <!-- Bean para inhabilitar un usuario y realizar retorno a homeUsuarios -->
+<bean name="/privado/back/usuario/inhabilitarUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.InhabilitarUsuarioController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+ <!-- Bean para habilitar un usuario y realizar retorno a homeUsuarios -->
+<bean name="/privado/back/usuario/habilitarUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.HabilitarUsuarioController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+
 </beans>
