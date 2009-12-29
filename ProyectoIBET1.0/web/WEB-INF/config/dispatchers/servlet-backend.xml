@@ -85,6 +85,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <property name="validator" ref="beanValidator"/>
 </bean>
 
+<!-- Bean para mostrar el formulario para finalizar evento-->
+<bean name="/privado/back/finalizarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.FinalizarEventoFormController">
+  <property name="servicioEvento" ref="servicioEvento" />
+  <property name="formView" value="privado/back/evento/finalizarEvento" />
+  <property name="successView" value="admin.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
 <!-- Bean para mostrar el formulario de registro de eventos-->
 <bean name="/privado/back/evento/registroEvento.htm"
     class="ve.edu.ucab.ibet.controllers.views.gestioneventos.RegistroEventoFormController">

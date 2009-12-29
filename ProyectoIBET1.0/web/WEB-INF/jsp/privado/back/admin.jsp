@@ -54,9 +54,11 @@
                                     <display:column property="fechaMaxima" title="Fecha Max" sortable="true"/>
                                     <display:column property="horaMaxima" title="Hora Max"/>
                                     <display:column title="Acciones">
-                                        <a class="botonActualizar" href="updateCategoria.htm?id=${lista.id}">
+                                        <c:if test="${lista.finalizado != 'true'}">
+                                        <a class="botonActualizar" href="finalizarEvento.htm?id=${lista.id}">
                                             <img src="<%= request.getContextPath() + "/images/icons/update.png"%>" width="16" height="16" alt="Actualizar"/>
                                         </a>
+                                        </c:if>
                                         <c:choose>
                                             <c:when test="${lista.estatus=='true'}">
                                                 <a class="botonInhabilitar" href="inhabilitarEvento.htm?id=${lista.id}">
