@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 
 /**
  *
@@ -72,6 +74,8 @@ public class Evento implements Serializable {
     private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private Collection<TableroGanancia> tableroGananciaCollection;
+    @Transient
+    private RespuestaProporcionWS proporcion;
 
     public Evento() {
     }
@@ -201,6 +205,14 @@ public class Evento implements Serializable {
 
     public void setTableroGananciaCollection(Collection<TableroGanancia> tableroGananciaCollection) {
         this.tableroGananciaCollection = tableroGananciaCollection;
+    }
+
+    public RespuestaProporcionWS getProporcion() {
+        return proporcion;
+    }
+
+    public void setProporcion(RespuestaProporcionWS proporcion) {
+        this.proporcion = proporcion;
     }
 
     @Override
