@@ -80,7 +80,7 @@ public class TableroApuestaFormController extends SimpleFormController {
         apuesta = servicioApuesta.armarApuestaParaRealizar(idEvento, idParticipante, montoApuesta, usuario);
         RegistroApuestaTO comando = new RegistroApuestaTO();
         comando.setFechaEvento(apuesta.getTableroGanancia().getEvento().getFecha());
-        comando.setMontoApuesta(new Double(apuesta.getMonto()));
+        comando.setMontoApuesta(new Double(montoApuesta));
         comando.setNombreEvento(apuesta.getTableroGanancia().getEvento().getNombre());
         String nombreApostePor = (idParticipante.equals("0")) ? "Empate" : apuesta.getTableroGanancia().getParticipante().getNombre();
         comando.setApostePor(nombreApostePor);
