@@ -243,7 +243,9 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
 
     @SuppressWarnings("unchecked")
     public List<Users> listarUsuarios(){
-        List<Users> usuarios = genericDao.listar(Users.class);
+        String query = "select u from Users u where u.username != 'admin' ";
+        List<Users> usuarios = genericDao.ejecutarQueryList(query);
+        
         return usuarios;
     }
     
