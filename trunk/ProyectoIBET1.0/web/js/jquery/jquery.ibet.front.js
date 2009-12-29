@@ -90,23 +90,26 @@ $(document).ready(function() {
     //Vista de eventos en otras casas de apuestas
 
     $("#tablaEventos .hidden").hide();
+    $("#tablaEventos .menos").hide();
 
-    $(".expandir").click(function(){
+    $(".mas").click(function(){
         selected = $(this).attr("id");
         var arregloIds = selected.split('-');
         rowToShow = "expanded-" + arregloIds[1];
-        $("#" + rowToShow).show();
-        $(this).removeClass();
-        $(this).addClass("ocultar")
+        optionToShow = "menos-" + arregloIds[1];
+        $(this).hide();
+        $("#" + rowToShow).fadeIn(1000)
+        $("#" + optionToShow).show();
     });
 
-    $(".ocultar").click(function(){
+    $(".menos").click(function(){
         selected = $(this).attr("id");
         var arregloIds = selected.split('-');
-        rowToShow = "expanded-" + arregloIds[1];
-        $(".logo").hide();
-        $(this).removeClass();
-        $(this).addClass("expandir")
+        rowToHide = "expanded-" + arregloIds[1];
+        optionToShow = "mas-" + arregloIds[1];
+        $(this).hide();
+        $("#" + rowToHide).fadeOut(250);
+        $("#" + optionToShow).show();
     });
     
 });

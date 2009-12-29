@@ -164,7 +164,7 @@ $(document).ready(function() {
     });
     $('.botonFinalizar').qtip(
     {
-        content: 'Finalizars',
+        content: 'Finalizar',
         position: {
             corner: {
                 target: 'topMiddle',
