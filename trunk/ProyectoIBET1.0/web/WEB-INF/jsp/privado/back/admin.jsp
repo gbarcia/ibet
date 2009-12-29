@@ -55,8 +55,8 @@
                                     <display:column property="horaMaxima" title="Hora Max"/>
                                     <display:column title="Acciones">
                                         <c:if test="${lista.finalizado != 'true'}">
-                                        <a class="botonActualizar" href="finalizarEvento.htm?id=${lista.id}">
-                                            <img src="<%= request.getContextPath() + "/images/icons/update.png"%>" width="16" height="16" alt="Actualizar"/>
+                                        <a class="botonFinalizar" href="finalizarEvento.htm?id=${lista.id}">
+                                            <img src="<%= request.getContextPath() + "/images/icons/puerta.png"%>" width="16" height="16" alt="Actualizar"/>
                                         </a>
                                         </c:if>
                                         <c:choose>
