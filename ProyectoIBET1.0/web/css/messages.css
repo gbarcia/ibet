@@ -31,7 +31,7 @@
 }
 
 .formError{
-    color: #b90101;
+    color: #eeeeee;
     background: url(../images/icons/error.png);
     background-repeat: no-repeat;
     padding-left:20px;
