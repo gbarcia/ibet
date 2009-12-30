@@ -79,7 +79,7 @@ public class FinalizarEventoFormController  extends SimpleFormController{
             mv = new ModelAndView("errorDA");
         } catch (GeneralException ge) {
             ge.printStackTrace();
-            errors.rejectValue(null, "No se pudo finalizar el evento");
+            errors.rejectValue("resultado", ge.getKeyError());
             mv = showForm(req, resp, errors);
         } catch (TwitterException te) {
             te.printStackTrace();

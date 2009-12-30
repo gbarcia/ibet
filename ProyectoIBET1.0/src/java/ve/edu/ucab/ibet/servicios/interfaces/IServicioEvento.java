@@ -145,11 +145,4 @@ public interface IServicioEvento {
      * @return objeto Evento con los datos del TO
      */
     public Evento transferObjectToEvento(RegistroEventoTO registro);
-
-    /**
-     * firma para convertir un evento en objeto de transferencia
-     * @param evento objeto evento a convertir
-     * @return objeto de transferencia con la informacion del evento
-     */
-    public RegistroEventoTO eventotoTransferObject(Evento evento);
 }

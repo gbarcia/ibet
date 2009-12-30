@@ -404,8 +404,4 @@ public class ServicioEventoImpl implements IServicioEvento {
         evento.setResultado("");
         return evento;
     }
-
-    public RegistroEventoTO eventotoTransferObject(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
