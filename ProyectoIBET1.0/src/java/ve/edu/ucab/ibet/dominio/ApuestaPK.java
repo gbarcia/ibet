@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -11,8 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- *
- * @author nath
+ * Clase para almacenar informacion de clave primaria compuesta para apuesta
+ * @author Gerardo Barcia
+ * @version 1.0
  */
 @Embeddable
 public class ApuestaPK implements Serializable {
