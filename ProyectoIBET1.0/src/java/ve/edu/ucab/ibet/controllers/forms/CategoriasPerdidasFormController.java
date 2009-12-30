@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.controllers.forms;
 
 import java.text.SimpleDateFormat;
@@ -23,8 +18,10 @@ import ve.edu.ucab.ibet.dominio.to.forms.FechasTO;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 
 /**
- *
+ * Clase para recoger los datos para parametros que serviran para generar
+ * el reporte de peridas por categoria
  * @author maya
+ * @version 1.0
  */
 public class CategoriasPerdidasFormController extends SimpleFormController {
 

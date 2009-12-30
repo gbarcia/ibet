@@ -15,8 +15,10 @@ import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
 /**
- *
+ * Clase controladora para generar los reportes de tipo Categorias ordenadas
+ * en cuanto a perdidas
  * @author maya
+ * @version 1.0
  */
 public class ReporteCategoriasPerdidas extends MultiActionController implements IReporteGenerator {
 

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.controllers.forms;
 
 import java.text.SimpleDateFormat;
@@ -22,8 +17,10 @@ import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 import ve.edu.ucab.ibet.dominio.to.forms.FechasTO;
 
 /**
- *
+ * Clase para recoger los parametros que serviran de base para crear
+ * los reporte de cantidad de usuarios por categoria
  * @author maya
+ * @version 1.0
  */
 public class CantidadUsuariosPorCategoriaFormController extends SimpleFormController {
 

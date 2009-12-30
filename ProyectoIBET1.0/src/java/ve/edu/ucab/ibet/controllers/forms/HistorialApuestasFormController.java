@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO;
-import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
 /**

@@ -18,8 +18,10 @@ import ve.edu.ucab.ibet.dominio.to.forms.FechasTO;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 
 /**
- *
+ * Clase para recoger los parametros que serviran para generar el reporte
+ * de ganancias por categoria
  * @author maya
+ * @version 1.0
  */
 public class CategoriasGananciasFormController extends SimpleFormController {
 

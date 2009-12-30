@@ -22,8 +22,9 @@ import ve.edu.ucab.ibet.generic.util.DatosUtil;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
- *
+ * Clase de controlador para el formulario de actualizacion del perfil de usuario
  * @author maya
+ * @version 1.0
  */
 public class PerfilUsuarioFormController extends SimpleFormController {
 

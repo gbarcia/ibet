@@ -13,7 +13,6 @@ import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.to.forms.FinalizarEventoTO;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
-import ve.edu.ucab.ibet.generic.util.DatosUtil;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import winterwell.jtwitter.TwitterException;
 

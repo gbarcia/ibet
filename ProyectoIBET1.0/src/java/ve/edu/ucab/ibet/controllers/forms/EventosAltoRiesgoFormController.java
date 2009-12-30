@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.controllers.forms;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -19,8 +14,10 @@ import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 
 
 /**
- *
+ * Clase que servira para recoger a traves de un formulario la informacion
+ * sobre los parametros que generaran el reporte de eventos de alto riesgo
  * @author maya
+ * @version 1.0
  */
 public class EventosAltoRiesgoFormController extends SimpleFormController {
 
