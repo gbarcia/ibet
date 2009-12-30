@@ -69,7 +69,8 @@
 }
 
 .eventTable .ubet{
-    background-color:#ff3200;
+    color:gray;
+    background-color:#101010;
     border:#000 solid 1px;
     padding:1px 4px;
     vertical-align:top;
