@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ve.edu.ucab.ibet.dominio;
 
 import java.io.Serializable;
@@ -20,8 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author nath
+ * Clase para almacenar informacion de los objetos de dominio apuesta
+ * @author Gerardo Barcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "APUESTA")
