@@ -98,8 +98,8 @@ $(document).ready(function() {
         rowToShow = "expanded-" + arregloIds[1];
         optionToShow = "menos-" + arregloIds[1];
         $(this).hide();
-        $("#" + rowToShow).fadeIn(1000)
         $("#" + optionToShow).show();
+        $("#" + rowToShow).fadeIn(1000)
     });
 
     $(".menos").click(function(){
@@ -108,8 +108,8 @@ $(document).ready(function() {
         rowToHide = "expanded-" + arregloIds[1];
         optionToShow = "mas-" + arregloIds[1];
         $(this).hide();
-        $("#" + rowToHide).fadeOut(250);
         $("#" + optionToShow).show();
+        $("#" + rowToHide).fadeOut(250);
     });
     
 });
