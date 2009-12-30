@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ve.edu.ucab.ibet.controllers.views.gestionpagos;
 
 import java.util.List;
@@ -14,8 +10,9 @@ import ve.edu.ucab.ibet.dominio.MedioPago;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioMedioPago;
 
 /**
- *
+ * Controlador para inhabilitar los metodos de pago del sistema
  * @author maya
+ * @version 1.0
  */
 public class InhabilitarMedioPagoController implements Controller {
 

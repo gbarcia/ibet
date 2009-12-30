@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ve.edu.ucab.ibet.controllers.views.gestionusers;
 
 import java.util.List;
@@ -15,8 +10,9 @@ import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuario;
 
 /**
- *
+ * Controlador para habilitar un usuario en el sistema
  * @author maya
+ * @version 1.0
  */
 public class HabilitarUsuarioController implements Controller {
 

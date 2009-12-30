@@ -1,6 +1,5 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -283,8 +282,20 @@ public class ServicioEventoImpl implements IServicioEvento {
         }
     }
 
+    /**
+     * Operacion de consulta para obtener la proporcion de pagos para una puesta
+     * de otras casas, por medio de una operacion web. El codigo se encuentra operativo
+     * en formato en tiempo real para trabajar con el web service o un pequeno simulador
+     * que retorna objetos para realizar las pruebas pertinentes sin necesidad de
+     * tener el servicio web operativo, para beneficios del equipo de desarrollo
+     * @param fechaEvento fecha del evento
+     * @param equipoUno nombre del equipo uno
+     * @param EquipoDos nombre del equipo dos
+     * @return objeto RespuestaProporcionWS con la informacion
+     */
     public RespuestaProporcionWS obtenerProporcionEventoExt(String fechaEvento, String equipoUno, String EquipoDos) {
         RespuestaProporcionWS respuesta = null;
+        // BLOQUE DE CODIGO WS
 //        try {
 //            _211._22._168._192._1234.Ubet service = new _211._22._168._192._1234.Ubet();
 //            _211._22._168._192._1234.UbetSoap port = service.getUbetSoap12();
@@ -306,6 +317,7 @@ public class ServicioEventoImpl implements IServicioEvento {
 //        } finally {
 //            return respuesta;
 //        }
+// BLOQUE DE CODIGO PRUEBA
         int numero = (int) (Math.random() * 2 + 1);
         if (numero == 1) {
             respuesta = null;

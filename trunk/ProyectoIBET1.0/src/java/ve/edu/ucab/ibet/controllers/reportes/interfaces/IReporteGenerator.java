@@ -12,9 +12,23 @@ import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
  */
 public interface IReporteGenerator {
 
+    /**
+     * metodo para generar reporte en formato pdf
+     * @param request objeto request
+     * @param response objeto response
+     * @return ModelAndView con el reporte en formato PDF
+     * @throws GeneralException excepciones de negocio o bd
+     */
     public ModelAndView generarReportePDF(HttpServletRequest request,
             HttpServletResponse response) throws GeneralException;
 
+    /**
+     * metodo para generar reporte en formato xls
+     * @param request objeto request
+     * @param response objeto response
+     * @return ModelAndView con rel porte en formato XLS
+     * @throws GeneralException excepciones de negocio o bd
+     */
     public ModelAndView generarReporteXLS(HttpServletRequest request,
             HttpServletResponse response) throws GeneralException;
 }
