@@ -33,9 +33,19 @@
                                                    export="true" class="dataTable" requestURI="historialApuestas.htm">
                                         <display:column property="fecha" title="Fecha" sortable="true"/>
                                         <display:column property="eventoNombre" title="Evento" sortable="true"/>
-                                        <display:column property="monto" title="Monto ($)"  sortable="true"/>
+                                        <display:column property="monto" title="Monto($)"  sortable="true"/>
                                         <display:column property="participanteNombre" title="Aposte por" sortable="true"/>
                                         <display:column property="eventoResultado" title="Resultado" sortable="true"/>
+                                        <display:column title="Gane?" sortable="true" >
+                                        <c:choose>
+                                            <c:when test="${listadoApuestas.ganador=='true'}">
+                                                Si
+                                            </c:when>
+                                            <c:when test="${listadoApuestas.ganador=='false'}">
+                                                No
+                                            </c:when>
+                                        </c:choose>
+                                    </display:column>
                                     </display:table>
                                 </div>
                             </div>

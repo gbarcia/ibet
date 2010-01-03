@@ -15,11 +15,12 @@ public class HistorialApuestasTO {
     private Date eventoFecha;
     private String eventoResultado;
     private String participanteNombre;
+    private Boolean ganador;
     
     public HistorialApuestasTO() {
     }
 
-    public HistorialApuestasTO(String username, Date fecha, double monto, String eventoNombre, Date eventoFecha, String eventoResultado, String participanteNombre) {
+    public HistorialApuestasTO(String username, Date fecha, double monto, String eventoNombre, Date eventoFecha, String eventoResultado, String participanteNombre, Boolean ganadorP) {
         this.username = username;
         this.fecha = fecha;
         this.monto = monto;
@@ -27,6 +28,7 @@ public class HistorialApuestasTO {
         this.eventoFecha = eventoFecha;
         this.eventoResultado = eventoResultado;
         this.participanteNombre = participanteNombre;
+        this.ganador = ganadorP;
     }
     
 
@@ -84,6 +86,14 @@ public class HistorialApuestasTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Boolean getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(Boolean ganador) {
+        this.ganador = ganador;
     }
     
 }
