@@ -46,7 +46,7 @@
         <servlet-name>IbetWebServices</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
-        </servlet>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -77,4 +77,12 @@
             <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
         </taglib>
     </jsp-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
 </web-app>
