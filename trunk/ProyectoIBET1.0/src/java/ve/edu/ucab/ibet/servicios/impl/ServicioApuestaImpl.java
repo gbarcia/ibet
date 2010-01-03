@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -9,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.springframework.security.annotation.Secured;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,8 +72,35 @@ public class ServicioApuestaImpl implements IServicioApuesta {
             apuesta.setApuestaPK(apuestaPK);
             genericDao.insertar(apuesta);
             generarFactura(apuesta.getUsers(), apuesta);
+            enviarSMSApuesta(apuesta.getUsers());
         } else {
             throw new ExcepcionNegocio("errors.apuesta.invalida");
+        }
+    }
+
+    private void enviarSMSApuesta(Users u) {
+        if (u.getUsername().equals("gerardo")) {
+            HttpClient cliente = new HttpClient();
+            PostMethod post = null;
+            post = new PostMethod(helperProp.getString("sms.provedor"));
+            post.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            NameValuePair[] parametersList = new NameValuePair[4];
+            parametersList[0] = new NameValuePair("user", helperProp.getString("sms.user"));
+            parametersList[1] = new NameValuePair("pass", helperProp.getString("sms.pass"));
+            parametersList[2] = new NameValuePair("rcpt", "+584127049825");
+            parametersList[3] = new NameValuePair("text", "Usted ha realizado una apuesta en Ibet. Se ha enviado a su correo la informacion");
+            post.setRequestBody(parametersList);
+            int httpstatus = 0;
+            String response = null;
+            try {
+                httpstatus = cliente.executeMethod(post);
+                response = post.getResponseBodyAsString();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                post.releaseConnection();
+                System.out.println(response);
+            }
         }
     }
 
@@ -183,7 +214,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
         monto = (Double) genericDao.ejecutarQueryUnique(query, parametros);
         if (monto == null) {
             monto = 0.0;
-            
+
         }
         return monto;
     }

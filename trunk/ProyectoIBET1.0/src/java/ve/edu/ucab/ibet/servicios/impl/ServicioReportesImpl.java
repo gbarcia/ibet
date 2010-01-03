@@ -47,7 +47,7 @@ public class ServicioReportesImpl implements IServicioReportes {
         o[1] = fechaInicio;
         o[2] = fechaFin;
 
-        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO (u.username, a.fecha, a.monto, e.nombre, e.fechaEvento, e.resultado, p.nombre) " +
+        query = "select New ve.edu.ucab.ibet.dominio.to.reportes.HistorialApuestasTO (u.username, a.fecha, a.monto, e.nombre, e.fechaEvento, e.resultado, p.nombre, a.ganador) " +
                 "from Users u, Apuesta a, Categoria c, Evento e, Participante p, TableroGanancia tg " +
                 "where u.username = a.apuestaPK.username " +
                 "and c.id = e.idCategoria " +
@@ -56,7 +56,7 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = ? " +
-                "and a.fecha between ? and ? ";
+                "and a.fecha between ? and ? order by a.fecha DESC";
 
         historial.addAll(genericDao.ejecutarQueryList(query, o));
 

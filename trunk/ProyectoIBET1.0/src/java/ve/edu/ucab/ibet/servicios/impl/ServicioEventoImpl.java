@@ -9,12 +9,14 @@ import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.Politica;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.TableroGananciaPK;
+import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.to.forms.RegistroEventoTO;
 import ve.edu.ucab.ibet.dominio.to.ws.RespuestaProporcionWS;
 import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
+import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 import winterwell.jtwitter.Twitter;
@@ -29,6 +31,7 @@ public class ServicioEventoImpl implements IServicioEvento {
     private IGenericDao genericDao;
     private IHelperProperties helperProp;
     private IServicioTableroGanancia servicioTableroGanancia;
+    private IMailService servicioMail;
 
     public IGenericDao getGenericDao() {
         return genericDao;
@@ -52,6 +55,14 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     public void setServicioTableroGanancia(IServicioTableroGanancia servicioTableroGanancia) {
         this.servicioTableroGanancia = servicioTableroGanancia;
+    }
+
+    public IMailService getServicioMail() {
+        return servicioMail;
+    }
+
+    public void setServicioMail(IMailService servicioMail) {
+        this.servicioMail = servicioMail;
     }
 
     @SuppressWarnings("unchecked")
@@ -205,6 +216,34 @@ public class ServicioEventoImpl implements IServicioEvento {
         return apuestas;
     }
 
+    private void enviarCorreoFinEvento(Users u, Apuesta a) {
+        List<String> datosCorreo = new ArrayList<String>();
+        String titulo = (u.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        String miResultado = a.isGanador() ? "GANE" : "PERDI";
+        Double balance = a.getMonto();
+        balance *= (a.isGanador()) ? a.getTableroGanancia().getPropocionGano() : (-1);
+        datosCorreo.add(a.getTableroGanancia().getEvento().getNombre());
+        datosCorreo.add(titulo);
+        datosCorreo.add(u.getNombre() + " " + u.getApellido());
+        datosCorreo.add(a.getTableroGanancia().getEvento().getResultado());
+        datosCorreo.add(a.getTableroGanancia().getParticipante().getNombre());
+        datosCorreo.add(a.getTableroGanancia().getEvento().getResultado());
+        datosCorreo.add(a.getMonto().toString());
+        datosCorreo.add(miResultado);
+        datosCorreo.add(balance.toString());
+        String asunto = helperProp.getString("correos.notificacion.finevento.asunto", datosCorreo);
+        String cuerpo = ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea1", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea2", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea3") + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea4", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea5", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea6", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea7", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea8", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.finevento.mensaje.linea9") + "<p>");
+        servicioMail.send(u.getCorreo(), asunto, cuerpo);
+    }
+
     private void updateEventoFinalizado(Integer idEvento, String resultado) {
         Evento evento = this.obtenerEvento(idEvento);
         evento.setFinalizado(Boolean.TRUE);
@@ -237,6 +276,7 @@ public class ServicioEventoImpl implements IServicioEvento {
         List<Apuesta> apuestas = this.obtenerApuestasPorEvento(idEvento);
         for (Apuesta a : apuestas) {
             Apuesta apuesta = a;
+            Users usuario = apuesta.getUsers();
             if (a.getTableroGanancia().getParticipante().getId().equals(idParticipante) && a.getGano().equals(gano) && a.getEmpato().equals(empato)) {
                 apuesta.setGanador(Boolean.TRUE);
             } else if (a.getEmpato() && empato) {
@@ -245,6 +285,7 @@ public class ServicioEventoImpl implements IServicioEvento {
                 apuesta.setGanador(Boolean.FALSE);
             }
             genericDao.merge(apuesta);
+            enviarCorreoFinEvento(usuario, a);
         }
     }
 
@@ -266,7 +307,7 @@ public class ServicioEventoImpl implements IServicioEvento {
                 this.updateEventoFinalizado(idEvento, resultado);
                 this.updateTableroGanancia(idEvento, pId, gano, empato);
                 this.updateApuestaGanadora(idEvento, pId, gano, empato);
-                Twitter twitter = new Twitter("iBetResultados", "tumejorapuesta");
+                Twitter twitter = new Twitter(helperProp.getString("tw.username"), helperProp.getString("tw.pass"));
                 Double proporcion = 0.0;
                 for (TableroGanancia tg : evento.getTableroGananciaCollection()) {
                     if (tg.getParticipante().getId().equals(pId)) {

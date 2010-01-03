@@ -201,6 +201,20 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         servicioMail.send(user.getCorreo(), asunto, cuerpo);
     }
 
+    private void enviarCorreoUsuarioDeshabilitado(Users user) {
+        List<String> datosCorreo = new ArrayList<String>();
+        String titulo = (user.getSexo().equalsIgnoreCase("M")) ? "Sr" : "Sra";
+        datosCorreo.add(titulo);
+        datosCorreo.add(user.getNombre() + " " + user.getApellido());
+        String asunto = helperProp.getString("correos.notificacion.desuario.asunto");
+        String cuerpo = ("<p>" + helperProp.getString("correos.notificacion.desuario.mensaje.linea1", datosCorreo) + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.desuario.mensaje.linea2") + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.desuario.mensaje.linea3") + "<p>");
+        cuerpo += ("<p>" + helperProp.getString("correos.notificacion.desuario.mensaje.linea4") + "<p>");
+        
+        servicioMail.send(user.getCorreo(), asunto, cuerpo);
+    }
+
     public Users transferObjectToModel(RegistroUsuarioTO to) {
         Users usuario = null;
         if (to != null) {
@@ -239,16 +253,17 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         Users usuario = this.obtenerDatosUsuarioM(username);
         usuario.setEnabled(Boolean.FALSE);
         genericDao.merge(usuario);
+        enviarCorreoUsuarioDeshabilitado(usuario);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Users> listarUsuarios(){
+    public List<Users> listarUsuarios() {
         String query = "select u from Users u where u.username != 'admin' ";
         List<Users> usuarios = genericDao.ejecutarQueryList(query);
-        
+
         return usuarios;
     }
-    
+
     public void recuperarClave(String username) {
         String nuevaClave = PassGenerator.getNext();
         Users user = obtenerDatosUsuarioM(username);
@@ -394,15 +409,15 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         o[0] = username;
 
         String query = "select New ve.edu.ucab.ibet.dominio.to.reportes.GananciasPorUsuarioTO (a.monto, e.nombre, e.fechaEvento, tg.gano, tg.proporcionGano, tg.proporcionEmpate) " +
-                       "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
-                       "where c.id = e.idCategoria " +
-                       "and e.id = tg.tableroGananciaPK.idEvento " +
-                       "and p.id = tg.tableroGananciaPK.idParticipante " +
-                       "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
-                       "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
-                       "and u.username = a.users.username " +
-                       "and u.username = ? " +
-                       "and a.ganador = true ";
+                "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
+                "where c.id = e.idCategoria " +
+                "and e.id = tg.tableroGananciaPK.idEvento " +
+                "and p.id = tg.tableroGananciaPK.idParticipante " +
+                "and tg.tableroGananciaPK.idEvento = a.tableroGanancia.evento.id " +
+                "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
+                "and u.username = a.users.username " +
+                "and u.username = ? " +
+                "and a.ganador = true ";
 
         ganancias.addAll(genericDao.ejecutarQueryList(query, o));
 
@@ -414,15 +429,15 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
         return detalles;
     }
 
-    private List<GananciasPorUsuarioTO> gananciasPorUsuario(List<GananciasPorUsuarioTO> ganancias){
-        
+    private List<GananciasPorUsuarioTO> gananciasPorUsuario(List<GananciasPorUsuarioTO> ganancias) {
+
         Double montoNuevo = 0.0;
         for (GananciasPorUsuarioTO ganancia : ganancias) {
-            if(ganancia.getGano()){
-                montoNuevo = ganancia.getMontoGanado()*ganancia.getProporcionGano();
+            if (ganancia.getGano()) {
+                montoNuevo = ganancia.getMontoGanado() * ganancia.getProporcionGano();
                 ganancia.setMontoGanado(montoNuevo);
             } else {
-                montoNuevo = ganancia.getMontoGanado()*ganancia.getProporcionEmpate();
+                montoNuevo = ganancia.getMontoGanado() * ganancia.getProporcionEmpate();
                 ganancia.setMontoGanado(montoNuevo);
             }
         }

@@ -58,6 +58,7 @@
         <property name="genericDao" ref="genericDao"/>
         <property name="helperProp" ref="helperProperties"/>
         <property name="servicioTableroGanancia" ref="servicioTableroGanancia"/>
+        <property name="servicioMail" ref="mailService"/>
     </bean>
     
     <!-- BEAN PARA EL SERVICIO MEDIOS DE PAGO-->
