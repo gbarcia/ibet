@@ -1,6 +1,5 @@
 package ve.edu.ucab.ibet.servicios.impl;
 
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
-import ve.edu.ucab.ibet.dominio.TableroGanancia;
-import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 
 /**
@@ -58,8 +55,6 @@ public class ServicioTableroGananciaImplTest {
         Integer result = servicio.cantidadDeEventosGanadosPorParticipante(idParticipante);
         assertEquals(expResult, result);
         System.out.println(result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
 }

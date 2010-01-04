@@ -17,11 +17,10 @@ import ve.edu.ucab.ibet.dominio.Users;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
 import ve.edu.ucab.ibet.dominio.UsuarioMedioPagoPK;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
-import ve.edu.ucab.ibet.generic.util.mail.interfaces.IMailService;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioUsuarioMedioPago;
 
 /**
- *
+ * Pruebas unitarias para servicio usuario medio pago
  * @author maya
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +34,8 @@ public class ServicioUsuarioMedioPagoImplTest {
     private IServicioUsuarioMedioPago servicioUsuarioMedioPago;
 
     /**
-     * Test of ActualizarMontoMaximo method, of class ServicioUsuarioMedioPagoImpl.
+     * Prueba para actualizar el monto maximo de un medio de pago
+     * de un usuario.
      */
 //    @Test
     public void testActualizarMontoMaximo() {
@@ -50,7 +50,7 @@ public class ServicioUsuarioMedioPagoImplTest {
     }
 
     /**
-     * Test of ActivarMedioPago method, of class ServicioUsuarioMedioPagoImpl.
+     * Prueba para activar un medio de pago a un usuario 
      */
     @Test
     public void testActivarMedioPago() {
@@ -65,7 +65,7 @@ public class ServicioUsuarioMedioPagoImplTest {
     }
 
     /**
-     * Test of DesactivarMedioPago method, of class ServicioUsuarioMedioPagoImpl.
+     * Prueba para desactivar un medio de pago a un usuario 
      */
 //    @Test
     public void testDesactivarMedioPago() {
@@ -79,7 +79,7 @@ public class ServicioUsuarioMedioPagoImplTest {
     }
 
     /**
-     * Test of mostrarHistorialMedioPago method, of class ServicioUsuarioMedioPagoImpl.
+     * Prueba para listar el historial de medios de pagos de un usuario 
      */
 //    @Test
     public void testMostrarHistorialMedioPago() {
@@ -93,7 +93,8 @@ public class ServicioUsuarioMedioPagoImplTest {
     }
 
     /**
-     * Test of enviarCorreoNotificacion method, of class ServicioUsuarioMedioPagoImpl.
+     * Prueba para enviar un correo electronico con la notificacion de algun cambio
+     * o activacion de un medio de pago a un usuario 
      */
 //    @Test
     public void testEnviarCorreoNotificacion() {

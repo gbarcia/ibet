@@ -53,10 +53,11 @@ public class ServicioUsuarioImplTest {
         user.setTelefono("2345");
         user.setUsername("kate");
         servicioUsuario.registroNuevoUsuarioM(user);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
-//    Prueba unitaria existe usuario
+    
+    /**
+     * Prueba unitaria existe usuario
+     */
     //@Test
 //
 //    public void testExisteUsuarioM() throws Exception {
@@ -80,8 +81,6 @@ public class ServicioUsuarioImplTest {
 //        boolean expResult = false;
 //        boolean result = servicioUsuario.existeUsuario(user);
 //        assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    // fail("The test case is a prototype.");
 //    }
 
     /**
@@ -98,6 +97,10 @@ public class ServicioUsuarioImplTest {
 //        fail("The test case is a prototype.");
     }
 
+    /**
+     * Prueba para actualizar los datos de un usuario 
+     * @throws Exception
+     */
     //@Test
     public void testActualizarDatosUsuarioM() throws Exception {
         System.out.println("actualizarDatosUsuarioM");
@@ -118,10 +121,12 @@ public class ServicioUsuarioImplTest {
         user.setFechaNacimiento(new Date());
         user.setTelefono("04169513436");
         servicioUsuario.actualizarDatosUsuarioM(user);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
+    /**
+     * Prueba para obtener los medios de pagos vigentes de un usuario, dado el mismo 
+     * @throws Exception
+     */
 //    @Test
     public void testObtenerMediosPagoVigenteUsuario() throws Exception {
         System.out.println("obtenerMediosPagoUsuario");
@@ -133,6 +138,10 @@ public class ServicioUsuarioImplTest {
         }
     }
 
+    /**
+     * Prueba para obtener las ganancias por usuario, dado el mismo 
+     * @throws Exception
+     */
     @Test
     public void testObtenerGananciasPorUsuario() throws Exception {
         System.out.println("obtenerGananciasPorUsuario");
