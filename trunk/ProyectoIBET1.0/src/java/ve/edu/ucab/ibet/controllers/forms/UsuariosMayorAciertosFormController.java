@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 import ve.edu.ucab.ibet.dominio.enums.TipoDocumentoReporte;
 import ve.edu.ucab.ibet.dominio.to.forms.FechasTO;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 
 /**
  * Clase para recoger a traves de un formulario los parametros necesarios para
@@ -36,12 +37,17 @@ public class UsuariosMayorAciertosFormController extends SimpleFormController  {
         ModelAndView mv = null;
         String agregado = (documento.getTipoReporte() == TipoDocumentoReporte.PDF) ? "PDF" : "XLS";
 
+        String fechaInicio = UtilMethods.fechaToString(documento.getFechaInicio());
+        String fechaFin = UtilMethods.fechaToString(documento.getFechaFin());
+
         try {
-            mv = new ModelAndView(new RedirectView("/ProyectoIBET/repUsuariosMayorAciertos" + agregado + extReporte ));
+            mv = new ModelAndView(new RedirectView("/ProyectoIBET/repUsuariosMayorAciertos" + agregado + extReporte +
+                    "?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin));
         } catch (DataAccessException e) {
             mv = new ModelAndView("errorDA");
             e.printStackTrace();
         } finally {
+            mv.addObject("fechaInicio", documento.getFechaInicio());
             return mv;
         }
     }

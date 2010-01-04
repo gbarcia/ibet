@@ -92,7 +92,6 @@ public class ServicioReportesImpl implements IServicioReportes {
         return ganancias;
     }
 
-
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
     public List<CategoriasGananciaPerdidaTO> reporteCategoriasPerdidas(Date fechaInicio, Date fechaFin) {
@@ -116,8 +115,7 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
                 "and e.fechaEvento between ? and ? " +
-                "and a.ganador = true " + 
-                "group by cp.nombre ";
+                "and a.ganador = true ";
 
         perdidas.addAll(genericDao.ejecutarQueryList(query, o));
         listaPerdidas = this.listarPerdidasCategorias(perdidas);
@@ -250,11 +248,15 @@ public class ServicioReportesImpl implements IServicioReportes {
 
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_ADMIN"})
-    public List<UsuariosMayorAciertosTO> reporteUsuariosMayorAciertos() {
+    public List<UsuariosMayorAciertosTO> reporteUsuariosMayorAciertos(Date fechaInicio, Date fechaFin) {
         List<UsuariosMayorAciertosTO> usuarios = new ArrayList<UsuariosMayorAciertosTO>();
 
         String query = new String();
+        Object[] o = new Object[2];
 
+        o[0] = fechaInicio;
+        o[1] = fechaFin;
+        
         query = "select New ve.edu.ucab.ibet.dominio.to.reportes.UsuariosMayorAciertosTO (count(a.users.username), u.username) " +
                 "from Categoria c, Evento e, TableroGanancia tg, Apuesta a, Users u, Participante p " +
                 "where c.id = e.idCategoria " +
@@ -264,10 +266,11 @@ public class ServicioReportesImpl implements IServicioReportes {
                 "and tg.tableroGananciaPK.idParticipante = a.tableroGanancia.participante.id " +
                 "and u.username = a.users.username " +
                 "and a.ganador = true " +
+                "and e.fechaEvento between ? and ? " +
                 "group by u.username " +
                 "order by count(a.users.username) desc ";
 
-        usuarios.addAll(genericDao.ejecutarQueryList(query));
+        usuarios.addAll(genericDao.ejecutarQueryList(query, o));
 
         return usuarios;
     }

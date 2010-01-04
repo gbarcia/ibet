@@ -24,6 +24,8 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="fechaInicio" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="fechaFin" isForPrompting="false" class="java.util.Date"/>
 
 	<field name="username" class="java.lang.String">
 		<fieldDescription><![CDATA[username]]></fieldDescription>
@@ -66,6 +68,68 @@
 					<graphicElement stretchType="NoStretch"/>
 					<imageExpression class="java.lang.String"><![CDATA["/opt/logo_fb.png"]]></imageExpression>
 				</image>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="582"
+						y="1"
+						width="92"
+						height="18"
+						forecolor="#217133"
+						backcolor="#97DBA8"
+						key="staticText-5"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha de Inicio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="582"
+						y="19"
+						width="92"
+						height="18"
+						forecolor="#217133"
+						backcolor="#97DBA8"
+						key="staticText-6"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha de Fin:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="674"
+						y="1"
+						width="100"
+						height="18"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$P{fechaInicio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="674"
+						y="19"
+						width="100"
+						height="18"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$P{fechaFin}]]></textFieldExpression>
+				</textField>
 			</band>
 		</pageHeader>
 		<columnHeader>

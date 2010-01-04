@@ -1,6 +1,7 @@
 package ve.edu.ucab.ibet.controllers.reportes.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import ve.edu.ucab.ibet.controllers.reportes.interfaces.IReporteGenerator;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
+import ve.edu.ucab.ibet.generic.util.UtilMethods;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 
 /**
@@ -24,24 +26,28 @@ public class ReporteUsuariosMayorAciertos extends MultiActionController implemen
     private IServicioReportes servicioReportes;
 
     public ModelAndView generarReportePDF(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
-        return new ModelAndView(NOMBRE_REP_PDF, getModel());
+        Date fechaInicio = UtilMethods.stringToFecha(request.getParameter("fechaInicio"));
+        Date fechaFin = UtilMethods.stringToFecha(request.getParameter("fechaFin"));
+        return new ModelAndView(NOMBRE_REP_PDF, getModel(fechaInicio, fechaFin));
     }
 
     public ModelAndView generarReporteXLS(HttpServletRequest request, HttpServletResponse response) throws GeneralException {
-        return new ModelAndView(NOMBRE_REP_XLS, getModel());
+        Date fechaInicio = UtilMethods.stringToFecha(request.getParameter("fechaInicio"));
+        Date fechaFin = UtilMethods.stringToFecha(request.getParameter("fechaFin"));
+        return new ModelAndView(NOMBRE_REP_XLS, getModel(fechaInicio, fechaFin));
     }
 
     @SuppressWarnings("unchecked")
-    public Map getModel() throws GeneralException {
+    public Map getModel(Date fechaInicio, Date fechaFin) throws GeneralException {
         Map model = new HashMap();
-        model.put("dataSource", getData());
+        model.put("dataSource", getData(fechaInicio, fechaFin));
         return model;
     }
 
     @SuppressWarnings("unchecked")
-    public List getData() throws GeneralException {
+    public List getData(Date fechaInicio, Date fechaFin) throws GeneralException {
         List lista = new ArrayList();
-        lista.addAll(servicioReportes.reporteUsuariosMayorAciertos());
+        lista.addAll(servicioReportes.reporteUsuariosMayorAciertos(fechaInicio, fechaFin));
         return lista;
     }
 
