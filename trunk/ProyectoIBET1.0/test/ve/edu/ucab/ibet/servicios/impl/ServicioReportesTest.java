@@ -22,7 +22,7 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioReportes;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Clase de pruebas unitarias de Reportes y sus validaciones
  * @author maya
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,6 +59,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para el reporte de ganancias por categoria 
+     * @throws Exception
+     */
 //    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
@@ -72,6 +76,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para el reporte de perdidas por categoria 
+     * @throws Exception
+     */
     @Test
     public void testReporteCategoriasPerdidas() throws Exception {
         System.out.println("reporteCategoriasPerdidas");
@@ -85,6 +93,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para listar todas las categorias 
+     * @throws Exception
+     */
 //    @Test
     public void testListarCategorias() throws Exception {
         System.out.println("listarCategorias");
@@ -97,6 +109,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para el reporte obtener cantidad de usuarios por categoria 
+     * @throws Exception
+     */
 //    @Test
     public void testCantidadUsuariosCategoria() throws Exception {
         System.out.println("cantidadUsuariosCategoria");
@@ -110,6 +126,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para el reporte obtener eventos de alto riesgo 
+     * @throws Exception
+     */
 //    @Test
     public void testEventosAltoRiesgo() throws Exception {
         System.out.println("eventosAltoRiesgo");
@@ -123,6 +143,10 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para el reporte obtener usuarios con mayor aciertos 
+     * @throws Exception
+     */
     @Test
     public void testUsuariosMayorAciertos() throws Exception {
         System.out.println("usuariosMayorAciertos");

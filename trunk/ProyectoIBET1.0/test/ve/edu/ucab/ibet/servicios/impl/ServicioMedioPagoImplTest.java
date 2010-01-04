@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioMedioPago;
 
 /**
- *
+ * Clase de pruebas unitarias de Medios de pagos y sus validaciones
  * @author nath
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,6 +49,9 @@ public class ServicioMedioPagoImplTest {
     public void tearDown() {
     }
 
+    /**
+     * Prueba para obtener los medios de pagos vigentes
+     */
 //    @Test
     public void testObtenerMediosPagoVigentes() {
         System.out.println("obtenerMediosPagoVigentes");
@@ -57,10 +60,11 @@ public class ServicioMedioPagoImplTest {
         for (MedioPago medioPago : result) {
             System.out.println(medioPago.getNombre());
         }
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
+    /**
+     * Prueba para obtener un medio de pago por su nombre 
+     */
 //    @Test
     public void testObtenerMedioPago() {
         System.out.println("obtenerMedioPago");
@@ -69,6 +73,9 @@ public class ServicioMedioPagoImplTest {
         System.out.println("Medio pago: " + result.getId() + ", " + result.getNombre() + ", " + result.getActivo());
     }
 
+    /**
+     * Prueba para crear un nuevo medio de pago
+     */
 //    @Test
     public void testCrearMedioPago() {
         System.out.println("crearMedioPago");
@@ -78,6 +85,9 @@ public class ServicioMedioPagoImplTest {
         assertTrue(Boolean.TRUE);
     }
 
+    /**
+     * Prueba para editar un medio de pago existente 
+     */
 //    @Test
     public void testEditarMedioPago() {
         System.out.println("editarMedioPago");
@@ -86,6 +96,9 @@ public class ServicioMedioPagoImplTest {
         assertTrue(Boolean.TRUE);
     }
 
+    /**
+     * Prueba para inhabilitar un medio de pago existente 
+     */
 //    @Test
     public void testInhabilitarMedioPago() {
         System.out.println("inhabilitarMedioPago");
@@ -100,6 +113,9 @@ public class ServicioMedioPagoImplTest {
         assertTrue(Boolean.TRUE);
     }
 
+    /**
+     * Prueba para habilitar un medio de pago existente 
+     */
     @Test
     public void testHabilitarMedioPago() {
         System.out.println("habilitarMedioPago");

@@ -81,7 +81,9 @@ public class ServicioApuestaImplTest {
 //    }
 
 
-
+    /**
+     * Prueba para verificar si un usuario posee metodos de pago
+     */
 //    //@Test
 //    public void testUsuarioPoseeMetodosPago() {
 //        System.out.println("usuarioPoseeMetodosPAGO");
@@ -91,7 +93,10 @@ public class ServicioApuestaImplTest {
 //        assertEquals(expResult, result);
 //    }
 
-//      @Test
+    /**
+     * Prueba para verificar el monto maximo de un usuario 
+     */
+//    @Test
 //    public void testComprobarMontoMaximo() {
 //        System.out.println("Comprobar monto maximo");
 //        Users usuario = new Users("gerardo");
@@ -102,6 +107,9 @@ public class ServicioApuestaImplTest {
 //        assertEquals(expResult, result);
 //    }
 
+    /**
+     * Prueba para verificar si el periodo de una apuesta es vigente 
+     */
 //          @Test
 //    public void testPeriodoApuestaVigente() {
 //        System.out.println("Es periodo apuesta vogente");
@@ -111,6 +119,9 @@ public class ServicioApuestaImplTest {
 //        assertEquals(expResult, result);
 //    }
 
+    /**
+     * Prueba para obtener la cantidad apostada en un evento 
+     */
 //              @Test
 //    public void testMontoActualApuesta() {
 //        System.out.println("Monto actual apuesta");
@@ -119,6 +130,9 @@ public class ServicioApuestaImplTest {
 //        System.out.println(resultado);
 //    }
 
+    /**
+     * Prueba para realizar una apuesta 
+     */
    @Test
     public void testHacerApuesta() {
         System.out.println("realizar Apuesta");

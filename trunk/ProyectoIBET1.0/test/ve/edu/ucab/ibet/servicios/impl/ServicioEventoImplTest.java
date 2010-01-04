@@ -4,8 +4,6 @@
  */
 package ve.edu.ucab.ibet.servicios.impl;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.junit.After;
@@ -31,7 +29,7 @@ import ve.edu.ucab.ibet.servicios.interfaces.IServicioEvento;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioTableroGanancia;
 
 /**
- *
+ * Clase de pruebas unitarias de Eventos y sus validaciones
  * @author jonathan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -63,74 +61,22 @@ public class ServicioEventoImplTest {
     }
 
     /**
-     * Test of getGenericDao method, of class ServicioEventoImpl.
+     * Prueba para obtener los de eventos de una categoria 
      */
 //    @Test
-    public void testGetGenericDao() {
-        System.out.println("getGenericDao");
-        ServicioEventoImpl instance = new ServicioEventoImpl();
-        IGenericDao expResult = null;
-        IGenericDao result = instance.getGenericDao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testObtenerEventosDeUnaCategoria() {
+        System.out.println("obtenerEventosDeUnaCategoria");
+        Integer categoria = 2;
+        List<Evento> result = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
+        for (Evento evento : result) {
+            System.out.println(evento.getNombre());
+        }
+        assertNotNull(result);
     }
 
     /**
-     * Test of setGenericDao method, of class ServicioEventoImpl.
+     * Prueba para obtener un evento por su tablero ganancia 
      */
-//    @Test
-    public void testSetGenericDao() {
-        System.out.println("setGenericDao");
-        IGenericDao genericDao = null;
-        ServicioEventoImpl instance = new ServicioEventoImpl();
-        instance.setGenericDao(genericDao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getHelperProp method, of class ServicioEventoImpl.
-     */
-//    @Test
-    public void testGetHelperProp() {
-        System.out.println("getHelperProp");
-        ServicioEventoImpl instance = new ServicioEventoImpl();
-        IHelperProperties expResult = null;
-        IHelperProperties result = instance.getHelperProp();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setHelperProp method, of class ServicioEventoImpl.
-     */
-//    @Test
-    public void testSetHelperProp() {
-        System.out.println("setHelperProp");
-        IHelperProperties helperProp = null;
-        ServicioEventoImpl instance = new ServicioEventoImpl();
-        instance.setHelperProp(helperProp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of obtenerEventosDeUnaCategoria method, of class ServicioEventoImpl.
-     */
-//    @Test
-//    public void testObtenerEventosDeUnaCategoria() {
-//        System.out.println("obtenerEventosDeUnaCategoria");
-//        Integer categoria = 2;
-//        List<Evento> result = servicioEvento.obtenerProximosEventosDeUnaCategoria(categoria);
-//        for (Evento evento : result) {
-//            System.out.println(evento.getNombre());
-//        }
-//        assertNotNull(result);
-    // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 //    @Test
     public void testObtenerEventoporTableroGananciaTest() {
         System.out.println("Obtener Evento Tablero Ganancia");
@@ -141,8 +87,11 @@ public class ServicioEventoImplTest {
         System.out.println(evento.getHoraMaxima());
     }
 
+    /**
+     * Prueba para obtener los proximos eventos 
+     */
 //    @Test
-    public void testObtenerProximosEventos() {
+//    public void testObtenerProximosEventos() {
 //        System.out.println("Proximos eventos");
 //        List<Evento> proximosEventos = null;
 //        proximosEventos = servicioEvento.obtenerProximosEventos();
@@ -152,8 +101,11 @@ public class ServicioEventoImplTest {
 //                    evento.getFechaEvento() + ":" +
 //                    evento.getHora());
 //        }
-    }
+//    }
 
+    /**
+     * Prueba para obtener los proximos eventos con su imagen respectiva 
+     */
 //    @Test
     public void testObtenerProximosEventosConImagen() {
         System.out.println("Proximos eventos");
@@ -167,6 +119,9 @@ public class ServicioEventoImplTest {
         }
     }
 
+    /**
+     * Prueba para obtener un tablero ganancia por equipos
+     */
 //    @Test
     public void testObtenertableroGananciaPorEquiposYEvento() {
         System.out.println("Tablero de ganancia");
@@ -180,6 +135,9 @@ public class ServicioEventoImplTest {
         System.out.println(tablero.getPropocionGano());
     }
 
+    /**
+     * Prueba para finalizar un evento
+     */
     @Test
     public void testFinalizarEvento() {
         System.out.println("finalizarEvento");
@@ -195,6 +153,10 @@ public class ServicioEventoImplTest {
         }
         assertTrue(true);
     }
+
+    /**
+     * Prueba para agregar un nuevo evento 
+     */
     //@Test
     public void testagregarEvento() {
         System.out.println("agregarEvento");
@@ -226,6 +188,10 @@ public class ServicioEventoImplTest {
         evento.setResultado("");
         servicioEvento.agregarEvento(evento, t1, t2);
     }
+
+    /**
+     * Prueba para editar un evento
+     */
     //@Test
     public void testEditarEvento() {
         System.out.println("editarEvento");
@@ -258,18 +224,27 @@ public class ServicioEventoImplTest {
         servicioEvento.editarEvento(evento, t1, t2);
     }
 
+    /**
+     * Prueba para activar un evento
+     */
     //@Test
     public void testActivarEvento() {
         System.out.println("Activar Evento");
         servicioEvento.activarEvento(21);
     }
 
+    /**
+     * Prueba para desactivar un evento
+     */
     //@Test
     public void testDesactivarEvento() {
         System.out.println("Desactivar Evento");
         servicioEvento.desactivarEvento(21);
     }
 
+    /**
+     * Prueba par listar todos los eventos
+     */
     //@Test
     public void testListarEventos() {
         System.out.println("Listar Eventos");
@@ -280,6 +255,9 @@ public class ServicioEventoImplTest {
         }
     }
 
+    /**
+     * Prueba para listar los participantes por categoria
+     */
 //    @Test
     public void testListarParticipantes() {
         System.out.println("Listar Participantes");

@@ -16,12 +16,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Categoria;
 import static org.junit.Assert.*;
-import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
-import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioCategoria;
 
 /**
- *
+ * Clase de pruebas unitarias de Categorias y sus validaciones 
  * @author jonathan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,60 +48,6 @@ public class ServicioCategoriaImplTest {
     }
 
     /**
-     * Test of getGenericDao method, of class ServicioCategoriaImpl.
-     */
-    //@Test
-    public void testGetGenericDao() {
-        System.out.println("getGenericDao");
-        ServicioCategoriaImpl instance = new ServicioCategoriaImpl();
-        IGenericDao expResult = null;
-        IGenericDao result = instance.getGenericDao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setGenericDao method, of class ServicioCategoriaImpl.
-     */
-    //@Test
-    public void testSetGenericDao() {
-        System.out.println("setGenericDao");
-        IGenericDao genericDao = null;
-        ServicioCategoriaImpl instance = new ServicioCategoriaImpl();
-        instance.setGenericDao(genericDao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getHelperProp method, of class ServicioCategoriaImpl.
-     */
-    //@Test
-    public void testGetHelperProp() {
-        System.out.println("getHelperProp");
-        ServicioCategoriaImpl instance = new ServicioCategoriaImpl();
-        IHelperProperties expResult = null;
-        IHelperProperties result = instance.getHelperProp();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setHelperProp method, of class ServicioCategoriaImpl.
-     */
-    //@Test
-    public void testSetHelperProp() {
-        System.out.println("setHelperProp");
-        IHelperProperties helperProp = null;
-        ServicioCategoriaImpl instance = new ServicioCategoriaImpl();
-        instance.setHelperProp(helperProp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of obtenerCategorias method, of class ServicioCategoriaImpl.
      */
     //@Test
@@ -114,10 +58,11 @@ public class ServicioCategoriaImplTest {
             System.out.println(categoria.getNombre());
         }
         assertNotNull(result);
-        // TODO review the generated test code and remove the default call to fail.
-//       fail("The test case is a prototype.");
     }
 
+    /**
+     * Prueba para obtener las subcategorias de una categoria 
+     */
     //@Test
     public void testObtenerSubcategoriasDeUnaCategoria() {
         System.out.println("obetenerSubcategoriasDeUnaCategoria");
@@ -129,6 +74,9 @@ public class ServicioCategoriaImplTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para listar categorias 
+     */
     //@Test
     public void testListarCategorias() {
         System.out.println("Listar Categorias");
@@ -139,6 +87,9 @@ public class ServicioCategoriaImplTest {
         assertNotNull(result);
     }
 
+    /**
+     * Prueba para agregar una nueva categoria 
+     */
     //@Test
     public void testagregarCategoria() {
         System.out.println("Agregar Categoria");
@@ -152,6 +103,9 @@ public class ServicioCategoriaImplTest {
         servicioCategoria.agregarCategoria(categoria);
     }
 
+    /**
+     * Prueba para obtener una categora por su id 
+     */
     //@Test
     public void testObtenerCategoria() {
         System.out.println("obtener Categoria");
@@ -159,6 +113,9 @@ public class ServicioCategoriaImplTest {
         System.out.println(categoria.getNombre());
     }
 
+    /**
+     * Prueba apra editar una categoria por su id 
+     */
     //@Test
     public void testEditarCategoria() {
         System.out.println("editar Categoria");
@@ -167,6 +124,9 @@ public class ServicioCategoriaImplTest {
         servicioCategoria.editarCategotia(categoria);
     }
 
+    /**
+     * Prueba para inhabilitar una categoria por su id 
+     */
     @Test
     public void testInhabilitarCategoria (){
         System.out.println("Inhabilitar categoria");
