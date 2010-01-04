@@ -59,7 +59,7 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-    @Test
+//    @Test
     public void testReporteCategoriasGanancias() throws Exception {
         System.out.println("reporteCategoriasGanancias");
         Date fechaInicio = UtilMethods.stringToFecha("2009-10-01");
@@ -75,13 +75,13 @@ public class ServicioReportesTest {
     @Test
     public void testReporteCategoriasPerdidas() throws Exception {
         System.out.println("reporteCategoriasPerdidas");
-        Date fechaInicio = UtilMethods.stringToFecha("2009-11-01");
-        Date fechaFin = UtilMethods.stringToFecha("2009-11-25");
+        Date fechaInicio = UtilMethods.stringToFecha("2009-11-28");
+        Date fechaFin = UtilMethods.stringToFecha("2009-11-28");
         List<CategoriasGananciaPerdidaTO> result = servicioReporte.reporteCategoriasPerdidas(fechaInicio, fechaFin);
         for (CategoriasGananciaPerdidaTO r : result) {
             System.out.println(r.getNombreCategoria() + ", " + r.getMontoTotal());
+            System.out.println("");
         }
-        System.out.println("");
         assertNotNull(result);
     }
 
@@ -123,11 +123,13 @@ public class ServicioReportesTest {
         assertNotNull(result);
     }
 
-//    @Test
+    @Test
     public void testUsuariosMayorAciertos() throws Exception {
         System.out.println("usuariosMayorAciertos");
-
-        List<UsuariosMayorAciertosTO> result = servicioReporte.reporteUsuariosMayorAciertos();
+        Date fechaInicio = UtilMethods.stringToFecha("2010-01-01");
+        Date fechaFin = UtilMethods.stringToFecha("2010-01-01");
+        
+        List<UsuariosMayorAciertosTO> result = servicioReporte.reporteUsuariosMayorAciertos(fechaInicio, fechaFin);
 
         for (UsuariosMayorAciertosTO r : result) {
             System.out.println(r.getUsername() + ", " + r.getCantidadAciertos());

@@ -80,6 +80,6 @@ public interface IServicioReportes {
      * Firma para la realizacion del reporte de Usuarios con mayor aciertos
      * @return Lista UsuariosMayorAciertosTO que contiene el resultado de la consulta
      */
-    public List<UsuariosMayorAciertosTO> reporteUsuariosMayorAciertos();
+    public List<UsuariosMayorAciertosTO> reporteUsuariosMayorAciertos(Date fechaInicio, Date fechaFin);
 
 }

@@ -10,18 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ve.edu.ucab.ibet.dominio.Apuesta;
-import static org.junit.Assert.*;
 import ve.edu.ucab.ibet.dominio.Evento;
 import ve.edu.ucab.ibet.dominio.MedioPago;
 import ve.edu.ucab.ibet.dominio.Participante;
 import ve.edu.ucab.ibet.dominio.TableroGanancia;
 import ve.edu.ucab.ibet.dominio.Users;
-import ve.edu.ucab.ibet.dominio.UsuarioMedioPago;
-import ve.edu.ucab.ibet.generic.dao.interfaces.IGenericDao;
 import ve.edu.ucab.ibet.generic.excepciones.GeneralException;
-import ve.edu.ucab.ibet.generic.excepciones.negocio.ExcepcionNegocio;
 import ve.edu.ucab.ibet.generic.util.UtilMethods;
-import ve.edu.ucab.ibet.generic.util.helpers.interfaces.IHelperProperties;
 import ve.edu.ucab.ibet.servicios.interfaces.IServicioApuesta;
 
 /**
@@ -55,38 +50,22 @@ public class ServicioApuestaImplTest {
     public void tearDown() {
     }
 
-
     /**
      * Test of esValidaApuestaUsuario method, of class ServicioApuestaImpl.
+     * Verifica si es valida una apuesta de un usuario. 
      */
-    //@Test
-//    public void testEsValidaApuestaUsuario() {
-//        System.out.println("esValidaApuestaUsuario");
-//        Users usuario = new Users("gerardo");
-//        TableroGanancia tablero= new TableroGanancia(1, 2);
-//        tablero.setEvento(new Evento(2));
-//        try {
-//        servicioApuesta.esValidaApuestaUsuario(usuario, tablero);
-//        }catch (GeneralException e) {
-//            System.out.println("des:" + e.getKeyError());
-//        }
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of realizarApuesta method, of class ServicioApuestaImpl.
-     */
-    //@Test
-//    public void testRealizarApuesta() {
-//        System.out.println("realizarApuesta");
-//        Users usuario = null;
-//        TableroGanancia tablero = null;
-//        ServicioApuestaImpl instance = new ServicioApuestaImpl();
-//        instance.realizarApuesta(usuario, tablero);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testEsValidaApuestaUsuario() {
+        System.out.println("esValidaApuestaUsuario");
+        Users usuario = new Users("gerardo");
+        TableroGanancia tablero= new TableroGanancia(1, 2);
+        tablero.setEvento(new Evento(2));
+        try {
+        servicioApuesta.esValidaApuestaUsuario(usuario, tablero);
+        }catch (GeneralException e) {
+            System.out.println("des:" + e.getKeyError());
+        }
+    }
 
     /**
      *Verifica si un usuario ya ha apostado en un determinado evento
@@ -99,11 +78,9 @@ public class ServicioApuestaImplTest {
 //        Evento evento = new Evento(2);
 //        Boolean result = servicioApuesta.usuarioHaApostadoEvento(usuario, evento);
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
 //    }
-//
-//}
+
+
 
 //    //@Test
 //    public void testUsuarioPoseeMetodosPago() {
@@ -112,8 +89,6 @@ public class ServicioApuestaImplTest {
 //        Boolean expResult = false;
 //        Boolean result = servicioApuesta.usuarioPoseeMetodosPago(usuario);
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
 //    }
 
 //      @Test
@@ -125,8 +100,6 @@ public class ServicioApuestaImplTest {
 //        Double montoApostado = new Double(400);
 //        Boolean result = servicioApuesta.montoMaximoPagoUsuarioAprobado(usuario, medio,montoApostado);
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
 //    }
 
 //          @Test
@@ -136,8 +109,6 @@ public class ServicioApuestaImplTest {
 //        TableroGanancia tablero = new TableroGanancia(1, 1);
 //        Boolean result = servicioApuesta.esPeriodoDeApuestaVigente(tablero);
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
 //    }
 
 //              @Test
@@ -146,8 +117,6 @@ public class ServicioApuestaImplTest {
 //        TableroGanancia tablero = new TableroGanancia(1, 1);
 //        Double resultado = servicioApuesta.obtenerCantidadApostadaParaEvento(tablero);
 //        System.out.println(resultado);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
 //    }
 
    @Test
@@ -178,8 +147,6 @@ public class ServicioApuestaImplTest {
         }catch (GeneralException e) {
             System.out.println(e.getKeyError());
         }
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
 }
