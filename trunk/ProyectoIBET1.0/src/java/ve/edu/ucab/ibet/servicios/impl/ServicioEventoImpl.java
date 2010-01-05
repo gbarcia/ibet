@@ -121,7 +121,7 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventosDeUnaCategoria(Integer idSubcategoria) {
-List<Evento> eventos = new ArrayList<Evento>();
+        List<Evento> eventos = new ArrayList<Evento>();
         List<Evento> resultado = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
                 "where c.id=? " +
@@ -316,13 +316,18 @@ List<Evento> eventos = new ArrayList<Evento>();
                 this.updateTableroGanancia(idEvento, pId, gano, empato);
                 this.updateApuestaGanadora(idEvento, pId, gano, empato);
                 Twitter twitter = new Twitter(helperProp.getString("tw.username"), helperProp.getString("tw.pass"));
+                twitter.setSource("ProyectoIBET");
                 Double proporcion = 0.0;
                 for (TableroGanancia tg : evento.getTableroGananciaCollection()) {
                     if (tg.getParticipante().getId().equals(pId)) {
                         proporcion = empato ? tg.getProporcionEmpate() : tg.getPropocionGano();
                     }
                 }
-                twitter.updateStatus("Evento: " + evento.getNombre() + ". " + resultado + ". Paga: " + proporcion + " \n Felicitaciones a los ganadores!");
+                String categoria = evento.getIdCategoria().getNombre().replace(" ", "");
+                List<String> status = twitter.splitMessage("#" + categoria + " Evento: " + evento.getNombre() + ". " + resultado + ". Paga: " + proporcion + ". Felicitaciones a los ganadores!");
+                for (String string : status) {
+                    twitter.updateStatus(string);
+                }
             } else {
                 throw new ExcepcionNegocio("errors.evento.noPermitidoEmpate");
             }
