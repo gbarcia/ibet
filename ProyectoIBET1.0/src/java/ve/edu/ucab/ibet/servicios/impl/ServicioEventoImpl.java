@@ -121,7 +121,8 @@ public class ServicioEventoImpl implements IServicioEvento {
 
     @SuppressWarnings("unchecked")
     public List<Evento> obtenerProximosEventosDeUnaCategoria(Integer idSubcategoria) {
-        List<Evento> eventos = new ArrayList<Evento>();
+List<Evento> eventos = new ArrayList<Evento>();
+        List<Evento> resultado = new ArrayList<Evento>();
         String query = "select a from Categoria c inner join c.eventoCollection as a " +
                 "where c.id=? " +
                 "and a.fechaEvento >= current_date " +
@@ -130,7 +131,14 @@ public class ServicioEventoImpl implements IServicioEvento {
                 "order by a.fechaEvento, a.hora";
         Object[] parametros = {idSubcategoria};
         eventos.addAll(genericDao.ejecutarQueryList(query, parametros));
-        return eventos;
+        for (Evento e : eventos) {
+            ArrayList<TableroGanancia> t = new ArrayList<TableroGanancia>(e.getTableroGananciaCollection());
+            String participanteUno = t.get(0).getParticipante().getNombre();
+            String participanteDos = t.get(1).getParticipante().getNombre();
+            e.setProporcion(this.obtenerProporcionEventoExt(UtilMethods.convertirFechaFormatoUbet(e.getFecha()), participanteUno, participanteDos));
+            resultado.add(e);
+        }
+        return resultado;
     }
 
     @SuppressWarnings("unchecked")

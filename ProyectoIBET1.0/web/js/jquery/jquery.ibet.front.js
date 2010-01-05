@@ -99,7 +99,7 @@ $(document).ready(function() {
         optionToShow = "menos-" + arregloIds[1];
         $(this).hide();
         $("#" + optionToShow).show();
-        $("#" + rowToShow).fadeIn(1000)
+        $("#" + rowToShow).fadeIn(500)
     });
 
     $(".menos").click(function(){

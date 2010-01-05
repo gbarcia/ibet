@@ -34,7 +34,7 @@
                                 iBet: <c:out value="${eventos[0].idCategoria.nombre}"/>
                             </div>
                             <div class="pane">
-                                <table class="eventTable" cellspacing="5">
+                                <table id="tablaEventos" class="eventTable" cellspacing="5">
                                     <tbody>
                                         <c:forEach items="${eventos}" var="evento">
                                             <c:if test="${evento.fecha != ultimaFecha}">
@@ -42,7 +42,7 @@
                                                     <td class="fecha" colspan="4"><c:out value="${evento.fecha}"/></td>
                                                 </tr>
                                             </c:if>
-                                            <tr id="${evento.nombre}">
+                                            <tr id="${evento.nombre}" class="visible">
                                                 <td class="hora" width="10%">
                                                     <c:out value="${evento.hora}"/>
                                                 </td>
@@ -60,7 +60,35 @@
                                                         <div class="proporcion"><c:out value="${proporcionEmpate}"/></div>
                                                     </td>
                                                 </c:if>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${evento.proporcion != null}">
+                                                            <img id="mas-${evento.id}" class="mas" src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
+                                                            <img id="menos-${evento.id}" class="menos" src="<%= request.getContextPath() + "/images/icons/menos.png"%>" width="16" height="16" alt="-"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            &nbsp;
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
                                             </tr>
+                                            <c:if test="${evento.proporcion != null}">
+                                                <tr id="expanded-${evento.id}" class="hidden">
+                                                    <td class="logo" width="10%">
+                                                        <img src="<%= request.getContextPath() + "/images/icons/ubet.png"%>" width="52" height="16" alt="uBet"/>
+                                                    </td>
+                                                    <td class="ubet" width="40%">
+                                                        <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
+                                                        <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoUno}"/></div>
+                                                    </td>
+                                                    <td class="ubet" width="40%">
+                                                        <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
+                                                        <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoDos}"/></div>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </tbody>
                                 </table>

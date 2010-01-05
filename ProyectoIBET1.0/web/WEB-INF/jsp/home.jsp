@@ -64,35 +64,32 @@
                                                     <c:otherwise><td>&nbsp;</td></c:otherwise>
                                                 </c:choose>
                                                 <td>
-                                                    <c:if test="${evento.proporcion != null}">
-                                                        <img id="mas-${evento.id}" class="mas" src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
-                                                        <img id="menos-${evento.id}" class="menos" src="<%= request.getContextPath() + "/images/icons/menos.png"%>" width="16" height="16" alt="-"/>
-                                                    </c:if>
-                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${evento.proporcion != null}">
+                                                            <img id="mas-${evento.id}" class="mas" src="<%= request.getContextPath() + "/images/icons/mas.png"%>" width="16" height="16" alt="+"/>
+                                                            <img id="menos-${evento.id}" class="menos" src="<%= request.getContextPath() + "/images/icons/menos.png"%>" width="16" height="16" alt="-"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            &nbsp;
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
                                             </tr>
                                             <c:if test="${evento.proporcion != null}">
                                                 <tr id="expanded-${evento.id}" class="hidden">
                                                     <td class="logo" width="10%">
                                                         <img src="<%= request.getContextPath() + "/images/icons/ubet.png"%>" width="52" height="16" alt="uBet"/>
                                                     </td>
-                                                    <td id="${tablero.tableroGananciaPK.idEvento}-${tablero.tableroGananciaPK.idParticipante}" class="ubet" width="40%">
+                                                    <td class="ubet" width="40%">
                                                         <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
                                                         <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoUno}"/></div>
                                                     </td>
-                                                    <td id="${tablero.tableroGananciaPK.idEvento}-${tablero.tableroGananciaPK.idParticipante}" class="ubet" width="40%">
+                                                    <td class="ubet" width="40%">
                                                         <div class="participante"><c:out value="${tablero.participante.nombre}"/></div>
                                                         <div class="proporcion"><c:out value="${evento.proporcion.proporcionEquipoDos}"/></div>
                                                     </td>
-                                                    <c:choose>
-                                                        <c:when test="${evento.idCategoria.empate == true}">
-                                                            <td id="${evento.id}-0" class="ubet" width="10%">
-                                                                <div class="participante">x</div>
-                                                                <div class="proporcion"><c:out value="${proporcionEmpate}"/></div>
-                                                            </td>
-                                                        </c:when>
-                                                        <c:otherwise><td>&nbsp;</td></c:otherwise>
-                                                    </c:choose>
-                                                    <td>&nbsp;<td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
                                                 </tr>
                                             </c:if>
                                         </c:forEach>
