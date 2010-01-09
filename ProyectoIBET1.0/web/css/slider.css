@@ -1,0 +1,119 @@
+/* 
+    Document   : slider
+    Created on : Jan 5, 2010, 1:14:41 PM
+    Author     : jonathan
+    Description:
+        Estilo de Slider
+*/
+
+#sliderContainer{
+    position:relative;
+    border-bottom:solid 1px #000;
+    overflow:hidden;
+}
+
+#sliderContainer .imagenEvento{
+    position:relative;
+}
+
+#sliderContainer .textoEvento{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:818px;
+    background-color:#141414;
+    -moz-opacity:0.75;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    font-size: 1em;
+    font-weight:700;
+    letter-spacing: 2px;
+    padding-left: 100px;
+    line-height: 52px;
+}
+
+/* image replacement */
+.graphic, #prevBtn, #nextBtn, #slider1prev, #slider1next{
+    margin:0;
+    padding:0;
+    display:block;
+    overflow:hidden;
+    text-indent:-8000px;
+}
+/* // image replacement */
+
+/* Easy Slider */
+
+#slider ul, #slider li,
+#slider2 ul, #slider2 li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+#slider2{margin-top:1em;}
+#slider li, #slider2 li{
+    /*
+			define width and height of list item (slide)
+			entire slider area will adjust according to the parameters provided here
+		*/
+    width:818px;
+    height:248px;
+    overflow:hidden;
+}
+#prevBtn, #nextBtn,
+#slider1next, #slider1prev{
+    display:block;
+    width:32px;
+    height:32px;
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    z-index:1000;
+}
+#nextBtn, #slider1next{
+    left:47px;
+}
+#prevBtn a, #nextBtn a,
+#slider1next a, #slider1prev a{
+    display:block;
+    position:relative;
+    width:32px;
+    height:32px;
+    background:url(../images/slider/prev.png) no-repeat 0 0;
+}
+#nextBtn a, #slider1next a{
+    background:url(../images/slider/next.png) no-repeat 0 0;
+}
+
+/* numeric controls */
+
+ol#controls{
+    margin:1em 0;
+    padding:0;
+    height:28px;
+}
+ol#controls li{
+    margin:0 10px 0 0;
+    padding:0;
+    float:left;
+    list-style:none;
+    height:28px;
+    line-height:28px;
+}
+ol#controls li a{
+    float:left;
+    height:28px;
+    line-height:28px;
+    border:1px solid #ccc;
+    background:#DAF3F8;
+    color:#555;
+    padding:0 10px;
+    text-decoration:none;
+}
+ol#controls li.current a{
+    background:#5DC9E1;
+    color:#fff;
+}
+ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
+
+/* // Easy Slider */
