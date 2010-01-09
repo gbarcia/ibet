@@ -113,7 +113,9 @@ public class ServicioEventoImpl implements IServicioEvento {
             ArrayList<TableroGanancia> t = new ArrayList<TableroGanancia>(e.getTableroGananciaCollection());
             String participanteUno = t.get(0).getParticipante().getNombre();
             String participanteDos = t.get(1).getParticipante().getNombre();
-            e.setProporcion(this.obtenerProporcionEventoExt(UtilMethods.convertirFechaFormatoUbet(e.getFecha()), participanteUno, participanteDos));
+            if (e.getIdCategoria().getNombre().equals("LVBP")) {
+                e.setProporcion(this.obtenerProporcionEventoExt(UtilMethods.convertirFechaFormatoUbet(e.getFecha()), participanteUno, participanteDos));
+            }
             resultado.add(e);
         }
         return resultado;
@@ -352,37 +354,38 @@ public class ServicioEventoImpl implements IServicioEvento {
      */
     public RespuestaProporcionWS obtenerProporcionEventoExt(String fechaEvento, String equipoUno, String EquipoDos) {
         RespuestaProporcionWS respuesta = null;
-        // BLOQUE DE CODIGO WS
-//        try {
-//            _211._22._168._192._1234.Ubet service = new _211._22._168._192._1234.Ubet();
-//            _211._22._168._192._1234.UbetSoap port = service.getUbetSoap12();
-//
-//            java.lang.String fecha = fechaEvento;
-//            java.lang.String equipo1 = equipoUno;
-//            java.lang.String equipo2 = EquipoDos;
-//            _211._22._168._192._1234.Respuesta result = port.consultarProporcionEvento(fecha, equipo1, equipo2);
-//
-//            if (result != null) {
-//            respuesta = new RespuestaProporcionWS();
-//            respuesta.setEquipoUno(result.getParticipante1());
-//            respuesta.setEquipoDos(result.getParticipante2());
-//            respuesta.setProporcionEquipoUno(result.getProporcion1());
-//            respuesta.setProporcionEquipoDos(result.getProporcion2());
-//            }
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            return respuesta;
-//        }
-// BLOQUE DE CODIGO PRUEBA
-        int numero = (int) (Math.random() * 2 + 1);
-        if (numero == 1) {
-            respuesta = null;
+        if (helperProp.getString("ws.estado").equals("on")) {
+            try {
+                subet._4321.Ubet service = new subet._4321.Ubet();
+                subet._4321.UbetSoap port = service.getUbetSoap12();
+
+                java.lang.String fecha = fechaEvento;
+                java.lang.String equipo1 = equipoUno;
+                java.lang.String equipo2 = EquipoDos;
+                subet._4321.Respuesta result = port.consultarProporcionEvento(fecha, equipo1, equipo2);
+
+                if (result != null) {
+                    respuesta = new RespuestaProporcionWS();
+                    respuesta.setEquipoUno(result.getParticipante1());
+                    respuesta.setEquipoDos(result.getParticipante2());
+                    respuesta.setProporcionEquipoUno(result.getProporcion1());
+                    respuesta.setProporcionEquipoDos(result.getProporcion2());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return respuesta;
+            }
         } else {
-            respuesta = new RespuestaProporcionWS();
-            respuesta.setProporcionEquipoUno(3.5);
-            respuesta.setProporcionEquipoDos(2.0);
+            int numero = (int) (Math.random() * 2 + 1);
+            if (numero == 1) {
+                respuesta = null;
+            } else {
+                respuesta = new RespuestaProporcionWS();
+                respuesta.setProporcionEquipoUno(3.5);
+                respuesta.setProporcionEquipoDos(2.0);
+            }
         }
+
         return respuesta;
     }
 
