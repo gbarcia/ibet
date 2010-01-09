@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+     <!-- Archivo para la validacion de los formularios de categorias -->
+
+<form-validation>
+    <formset>
+        <form name="registroCategoriaTO">
+            <field property="nombreCategoria" depends="required">
+                 <msg name="required" key="el nombre de la categoria es requerido" resource="false"/>
+            </field>
+            <field property="nombreLogica" depends="validwhen">
+                <msg name="validwhen" key="el nombre de logica es requerido" resource="false"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(logicaAutomatica == 'NO')</var-value>
+                </var>
+            </field>
+        </form>
+    </formset>
+</form-validation>
