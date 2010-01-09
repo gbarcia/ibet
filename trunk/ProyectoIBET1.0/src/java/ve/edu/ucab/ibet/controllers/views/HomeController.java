@@ -26,11 +26,12 @@ public class HomeController implements Controller {
 
     static Integer PROXIMOS_EVENTOS_MINIMO = 0;
     static Integer PROXIMOS_EVENTOS_MAXIMO = 25;
+    static Integer EVENTOS_DESTACADOS_MAXIMO = 5;
 
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         ModelAndView mv = new ModelAndView("home");
         List<Evento> eventos = servicioEvento.obtenerProximosEventos(PROXIMOS_EVENTOS_MINIMO, PROXIMOS_EVENTOS_MAXIMO);
-        List<Evento> eventosImagenes = servicioEvento.obtenerProximosEventosConImagen();
+        List<Evento> eventosImagenes = servicioEvento.obtenerProximosEventosConImagen(PROXIMOS_EVENTOS_MINIMO ,EVENTOS_DESTACADOS_MAXIMO);
         mv.addObject("eventos", eventos);
         mv.addObject("eventosImagenes", eventosImagenes);
         return mv;

@@ -111,5 +111,13 @@ $(document).ready(function() {
         $("#" + optionToShow).show();
         $("#" + rowToHide).fadeOut(250);
     });
+
+    // Slider de imagenes
+
+    $("#slider").easySlider({
+        auto: true,
+        continuous: true
+    });
+
     
 });

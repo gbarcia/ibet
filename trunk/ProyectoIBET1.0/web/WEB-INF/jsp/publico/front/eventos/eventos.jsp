@@ -39,7 +39,7 @@
                                         <c:forEach items="${eventos}" var="evento">
                                             <c:if test="${evento.fecha != ultimaFecha}">
                                                 <tr>
-                                                    <td class="fecha" colspan="4"><c:out value="${evento.fecha}"/></td>
+                                                    <td class="fecha" colspan="5"><c:out value="${evento.fecha}"/></td>
                                                 </tr>
                                             </c:if>
                                             <tr id="${evento.nombre}" class="visible">

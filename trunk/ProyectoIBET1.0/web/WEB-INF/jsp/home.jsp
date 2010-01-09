@@ -13,6 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iBet | <spring:message code="home.titulo"/></title>
         <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
+        <link rel="stylesheet" href="<%= request.getContextPath() + "/css/slider.css"%>" type="text/css" />
+        <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.easyslider1.7.js"%>"></script>
         <script type="text/javascript" src="<%= request.getContextPath() + "/js/jquery/jquery.ibet.front.js"%>"></script>
         <script type="text/javascript">
             $(function(){
@@ -30,6 +32,23 @@
                 <div id="contentWrapper">
                     <div id="contentColumn">
                         <div id="centerPane">
+                            <div class="paneTitle">
+                                <spring:message code="home.destacado"/>
+                            </div>
+                            <div id="sliderContainer">
+                                <div id="slider">
+                                    <ul>
+                                        <c:forEach items="${eventosImagenes}" var="eventoImagen">
+                                        <li>
+                                            <div class="imagenEvento">
+                                                <a href=""><img src="images/eventosUpload/${eventoImagen.imagenEvento}" alt="${eventoImagen.nombre}" width="820" height="250"/></a>
+                                                <div class="textoEvento">${eventoImagen.nombre}</div>
+                                            </div>
+                                        </li>
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="paneTitle">
                                 <spring:message code="home.proximas"/>
                             </div>
