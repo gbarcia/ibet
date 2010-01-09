@@ -1,0 +1,94 @@
+/* 
+    Document   : formAdmin
+    Created on : Dec 17, 2009, 1:48:57 PM
+    Author     : jonathan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* @group Fieldset */
+
+fieldset {
+	border: #000 solid 1px;
+	padding: 10px
+}
+
+fieldset legend {
+	background-color: #e0e0e0;
+	border: #000 solid 1px;
+	font-size: 12px;
+	letter-spacing: 2px;
+	padding: 5px 20px;
+        color:#202020;
+}
+
+/* @end */
+
+/* @group Tabla */
+
+fieldset table th {
+	color: #202020;
+	font-size: 13px;
+	font-weight: 400;
+	padding: 5px 5px 20px;
+	text-align: right;
+	vertical-align: top
+}
+
+fieldset table td {
+	color: #202020;
+	font-size: 13px;
+	padding: 5px 5px 20px;
+	vertical-align: top
+}
+
+/* @end */
+
+/* @group Input */
+
+fieldset input[type=text],fieldset input[type=password],fieldset textarea,fieldset select {
+	background-color: #e0e0e0;
+	border: 1px solid #202020;
+	color: #202020;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	width: 200px;
+}
+
+fieldset input[type=text]:focus,fieldset input[type=password]:focus,fieldset textarea:focus,fieldset select:focus {
+	background-color: #e0e0e0;
+	border: 1px solid #0089B4
+}
+
+/* @group Boton */
+
+fieldset input[type="submit"] {
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	background: #00AAE2 url(../images/form/buttonBg.png);
+	border: 1px solid #aaaaaa;
+	color: #fff;
+	cursor: pointer;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	padding: 3px 10px
+}
+
+fieldset input[type="submit"]:hover {
+	background: #0089B4 url(../images/form/buttonHoverBg.png);
+}
+
+/* @end */
+
+#loginForm input[type=text],#loginForm input[type=password] {
+        font-size:20px;
+        padding:3px 5px;
+        width: 250px;
+}
+
+#loginForm th {
+        font-size:20px;
+        padding-top: 10px
+}
+
+/* @end */

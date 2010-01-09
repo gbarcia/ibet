@@ -1,0 +1,43 @@
+/* 
+    Document   : layout
+    Created on : Oct 22, 2009, 12:49:38 PM
+    Author     : jonathan
+    Description:
+        Estilos de contenido.
+*/
+
+/* @group Columna Central */
+
+#content {
+	margin: 20px
+}
+
+#contentWrapper {
+	float: left;
+	margin-bottom: 20px;
+	width: 100%
+}
+
+#contentColumn {
+	margin: 0 220px 0 180px;
+	max-width: 820px;
+	min-width: 550px
+}
+
+/* @end */
+
+/* @group Columnas Laterales */
+
+#leftColumn {
+	float: left;
+	margin-left: -100%;
+	width: 180px
+}
+
+#rightColumn {
+	float: left;
+	margin-left: -200px;
+	width: 200px
+}
+
+/* @end */
