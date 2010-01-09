@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://192.168.22.211:1234/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://192.168.22.211:1234/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://subet:4321/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://subet:4321/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">El metodo que vamos a usar para integrarnos</wsdl:documentation>
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://192.168.22.211:1234/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://subet:4321/">
       <s:element name="consultarProporcionEvento">
         <s:complexType>
           <s:sequence>
@@ -44,7 +44,7 @@
   <wsdl:binding name="UbetSoap" type="tns:UbetSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="consultarProporcionEvento">
-      <soap:operation soapAction="http://192.168.22.211:1234/consultarProporcionEvento" style="document" />
+      <soap:operation soapAction="http://subet:4321/consultarProporcionEvento" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -56,7 +56,7 @@
   <wsdl:binding name="UbetSoap12" type="tns:UbetSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="consultarProporcionEvento">
-      <soap12:operation soapAction="http://192.168.22.211:1234/consultarProporcionEvento" style="document" />
+      <soap12:operation soapAction="http://subet:4321/consultarProporcionEvento" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -68,10 +68,10 @@
   <wsdl:service name="Ubet">
     <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">El metodo que vamos a usar para integrarnos</wsdl:documentation>
     <wsdl:port name="UbetSoap" binding="tns:UbetSoap">
-      <soap:address location="http://192.168.22.211:1234/Ubet.asmx" />
+      <soap:address location="http://subet:4321/Ubet.asmx" />
     </wsdl:port>
     <wsdl:port name="UbetSoap12" binding="tns:UbetSoap12">
-      <soap12:address location="http://192.168.22.211:1234/Ubet.asmx" />
+      <soap12:address location="http://subet:4321/Ubet.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

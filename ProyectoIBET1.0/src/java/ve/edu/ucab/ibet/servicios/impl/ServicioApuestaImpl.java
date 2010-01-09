@@ -79,7 +79,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
     }
 
     private void enviarSMSApuesta(Users u) {
-        if (u.getUsername().equals("gerardo")) {
+        if (u.getUsername().equals("gerardo") || u.getUsername().equals("carlos")) {
             HttpClient cliente = new HttpClient();
             PostMethod post = null;
             post = new PostMethod(helperProp.getString("sms.provedor"));
@@ -87,7 +87,7 @@ public class ServicioApuestaImpl implements IServicioApuesta {
             NameValuePair[] parametersList = new NameValuePair[4];
             parametersList[0] = new NameValuePair("user", helperProp.getString("sms.user"));
             parametersList[1] = new NameValuePair("pass", helperProp.getString("sms.pass"));
-            parametersList[2] = new NameValuePair("rcpt", "+584127049825");
+            parametersList[2] = new NameValuePair("rcpt", u.getTelefono());
             parametersList[3] = new NameValuePair("text", "Usted ha realizado una apuesta en Ibet. Se ha enviado a su correo la informacion");
             post.setRequestBody(parametersList);
             int httpstatus = 0;
