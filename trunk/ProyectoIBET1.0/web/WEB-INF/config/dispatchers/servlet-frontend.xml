@@ -73,7 +73,21 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  class="ve.edu.ucab.ibet.controllers.views.ConfirmacionRegistroController" >
      <property name="servicioUsuario" ref="servicioUsuario" />
  </bean>
- 
+
+<!-- Bean para trabajar con la presentacion de metodos de pago
+-->
+ <bean name="/privado/front/usuario/metodosPagoUsuario.htm"
+ class="ve.edu.ucab.ibet.controllers.forms.MetodosPagoUsuarioFormController" >
+     <property name="servicioUsuarioMedioPago" ref="servicioUsuarioMedioPago" />
+ </bean>
+
+<!-- Bean para ihabilitar medio pago de usuario
+-->
+<bean name="/privado/front/usuario/inhabilitarUsuarioMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.InhabilitarUsuarioMedioPagoController">
+        <property name="servicioUsuarioPago" ref="servicioUsuarioMedioPago"/>
+</bean>
+
 <!-- Bean para trabajar con la presentacion de la recuperacion de clave
 -->
  <bean name="/publico/recuperacionClave.htm"
