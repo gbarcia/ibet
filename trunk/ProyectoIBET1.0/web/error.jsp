@@ -24,8 +24,7 @@
                                 404
                             </div>
                             <div id="sliderContainer">
-                                <img src="<%= request.getContextPath() + "/images/error/errorMaldo.jpg"%>" width="850" height="400" alt="Error"/>
-                                <div class="textoEvento">Maldo no consigui&oacute; la p&aacute;gina que estas buscando.
+                                <div class="textoEvento">En este momento la aplicacion no se encuentra disponible
                                     <a href="javascript:history.go(-1)">Regresa aqu&iacute;.</a>
                                     <div>
                                     </div>
