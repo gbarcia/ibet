@@ -1,6 +1,6 @@
 <%-- 
-    Document   : inhabilitarUsuarioMedioPago
-    Created on : Jan 26, 2010, 7:41:28 PM
+    Document   : habilitarUsuarioMedioPago
+    Created on : Jan 27, 2010, 12:43:00 AM
     Author     : jonathan
 --%>
 

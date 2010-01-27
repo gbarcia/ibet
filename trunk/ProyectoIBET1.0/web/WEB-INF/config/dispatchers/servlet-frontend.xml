@@ -81,12 +81,20 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
      <property name="servicioUsuarioMedioPago" ref="servicioUsuarioMedioPago" />
  </bean>
 
-<!-- Bean para ihabilitar medio pago de usuario
+<!-- Beans para gestion de medio pago de usuario
 -->
 <bean name="/privado/front/usuario/inhabilitarUsuarioMedioPago.htm"
     class="ve.edu.ucab.ibet.controllers.forms.InhabilitarUsuarioMedioPagoController">
         <property name="servicioUsuarioPago" ref="servicioUsuarioMedioPago"/>
 </bean>
+
+
+<!--<bean name="/privado/front/usuario/habilitarUsuarioMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.HabilitarUsuarioMedioPagoController">
+  <property name="formView" value="privado/front/apuesta/tableroApuesta" />
+  <property name="servicioUsuarioMedioPago" ref="servicioUsuarioMedioPago"/>
+  <property name="servicioMedioPago" ref="servicioMedioPago"/>
+</bean>-->
 
 <!-- Bean para trabajar con la presentacion de la recuperacion de clave
 -->
