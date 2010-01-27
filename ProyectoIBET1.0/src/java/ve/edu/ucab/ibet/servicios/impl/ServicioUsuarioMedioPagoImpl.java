@@ -105,6 +105,8 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         this.mergeUsuarioMedioPago(userMedioPago);
 
         this.insertarUsuarioMedioPago(medioPago, nuevoMonto, user);
+
+        this.enviarCorreoNotificacion(userMedioPago, user);
     }
 
     public void ActivarMedioPago(MedioPago medioPago, Double montoMaximo, Users user) {
@@ -113,6 +115,7 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         if (this.esNulo(userMedioPago)) {
 
             this.insertarUsuarioMedioPago(medioPago, montoMaximo, user);
+            this.enviarCorreoNotificacion(userMedioPago, user);
 
         } else if (!this.esNulo(userMedioPago)) {
             if (userMedioPago.getActivo()) {
@@ -129,6 +132,7 @@ public class ServicioUsuarioMedioPagoImpl implements IServicioUsuarioMedioPago {
         if (!this.esNulo(userMedioPago)) {
 
             this.mergeUsuarioMedioPago(userMedioPago);
+            this.enviarCorreoNotificacion(userMedioPago, user);
 
         } else if (this.esNulo(userMedioPago)) {
 

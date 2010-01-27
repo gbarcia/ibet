@@ -28,9 +28,9 @@
                         <div id="centerPane">
                             <div class="paneTitle">
                                 <spring:message code="pagos.titulo"/>
-                                <a href="activarPagoUsuario.htm">
+                                <%--<a href="habilitarUsuarioMedioPago.htm">
                                     <img src="<%= request.getContextPath() + "/images/icons/agregar.png"%>" width="16" height="16" alt="Inhabilitar"/>
-                                </a>
+                                </a>--%>
                             </div>
                             <div class="pane">
                                 <display:table id="historial" name="historial" pagesize="5" decorator="org.displaytag.decorator.TotalTableDecorator"
@@ -41,9 +41,9 @@
                                     <display:column property="fechaFin" title="Fecha de fin" sortable="true"/>
                                     <display:column title="">
                                         <c:if test="${historial.activo == 'true'}">
-                                            <a id="i-${historial.usuarioMedioPagoPK.username}-${historial.usuarioMedioPagoPK.idMedioPago}" class="botonEditar" href="editarUsuarioMedioPago.htm?username=${historial.usuarioMedioPagoPK.username}&idMedioPago=${historial.usuarioMedioPagoPK.idMedioPago}">
+                                            <%--<a id="i-${historial.usuarioMedioPagoPK.username}-${historial.usuarioMedioPagoPK.idMedioPago}" class="botonEditar" href="editarUsuarioMedioPago.htm?username=${historial.usuarioMedioPagoPK.username}&idMedioPago=${historial.usuarioMedioPagoPK.idMedioPago}">
                                                 <img src="<%= request.getContextPath() + "/images/icons/editar.png"%>" width="16" height="16" alt="Inhabilitar"/>
-                                            </a>
+                                            </a>--%>
                                             <a id="i-${historial.usuarioMedioPagoPK.username}-${historial.usuarioMedioPagoPK.idMedioPago}" class="botonInhabilitar" href="inhabilitarUsuarioMedioPago.htm?username=${historial.usuarioMedioPagoPK.username}&idMedioPago=${historial.usuarioMedioPagoPK.idMedioPago}">
                                                 <img src="<%= request.getContextPath() + "/images/icons/inhabilitar.png"%>" width="16" height="16" alt="Inhabilitar"/>
                                             </a>
