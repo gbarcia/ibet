@@ -1,0 +1,32 @@
+/* 
+    Document   : index
+    Created on : Oct 22, 2009, 12:46:48 PM
+    Author     : jonathan
+    Description:
+        Indice de CSS.
+        No contiene codigo CSS, solo llamadas a las otras hojas de estilo.
+*/
+
+@import url("main.css");
+
+@import url("layout.css");
+
+@import url("header.css");
+
+@import url("menu.css");
+
+@import url("footer.css");
+
+@import url("content.css");
+
+@import url("eventTable.css");
+
+@import url("dataTable.css");
+
+@import url("slip.css");
+
+@import url("forms.css");
+
+@import url("jquery-ui-front/jquery-ui-1.7.2.custom.css");
+
+@import url("messages.css");

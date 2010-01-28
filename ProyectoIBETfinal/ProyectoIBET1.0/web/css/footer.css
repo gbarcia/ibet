@@ -1,0 +1,27 @@
+/* 
+    Document   : footer
+    Created on : Oct 22, 2009, 12:49:28 PM
+    Author     : jonathan
+    Description:
+        Estilos de footer.
+*/
+
+/* @group Footer */
+
+#footer {
+	background-color: #171717;
+	border-top: solid #FFF 1px;
+	clear: both;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	width: 100%
+}
+
+#footerText {
+	color: #fff;
+	font-size: .7em;
+	font-variant: small-caps;
+	line-height: 25px;
+	text-align: center
+}
+
+/* @end */

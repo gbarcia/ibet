@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws.impl.servicios.ibet.ucab.edu.ve/" xmlns:tns="http://ws.impl.servicios.ibet.ucab.edu.ve/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="consultarProporcionEvento" type="tns:consultarProporcionEvento"/>
+
+  <xs:element name="consultarProporcionEventoResponse" type="tns:consultarProporcionEventoResponse"/>
+
+  <xs:element name="consultarResultadoEvento" type="tns:consultarResultadoEvento"/>
+
+  <xs:element name="consultarResultadoEventoResponse" type="tns:consultarResultadoEventoResponse"/>
+
+  <xs:element name="gananciasPorUsuario" type="tns:gananciasPorUsuario"/>
+
+  <xs:element name="gananciasPorUsuarioResponse" type="tns:gananciasPorUsuarioResponse"/>
+
+  <xs:element name="realizarApuesta" type="tns:realizarApuesta"/>
+
+  <xs:element name="realizarApuestaResponse" type="tns:realizarApuestaResponse"/>
+
+  <xs:complexType name="consultarProporcionEvento">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoDos" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="consultarProporcionEventoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:respuestaProporcionWS" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="respuestaProporcionWS">
+    <xs:sequence>
+      <xs:element name="equipoDos" type="xs:string" minOccurs="0"/>
+      <xs:element name="equipoUno" type="xs:string" minOccurs="0"/>
+      <xs:element name="proporcionEquipoDos" type="xs:double" minOccurs="0"/>
+      <xs:element name="proporcionEquipoUno" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuario">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuarioResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:detallesGananciasUsuarioTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="detallesGananciasUsuarioTO">
+    <xs:sequence>
+      <xs:element name="gananciasPorUsuario" type="tns:gananciasPorUsuarioTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="montoTotal" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gananciasPorUsuarioTO">
+    <xs:sequence>
+      <xs:element name="fechaEvento" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="montoGanado" type="xs:double" minOccurs="0"/>
+      <xs:element name="nombreEvento" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="realizarApuesta">
+    <xs:sequence>
+      <xs:element name="idEvento" type="xs:int" minOccurs="0"/>
+      <xs:element name="nombreEquipoApostado" type="xs:string" minOccurs="0"/>
+      <xs:element name="monto" type="xs:double" minOccurs="0"/>
+      <xs:element name="nombreUsuario" type="xs:string" minOccurs="0"/>
+      <xs:element name="passUsuario" type="xs:string" minOccurs="0"/>
+      <xs:element name="nombreMetodoPago" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="realizarApuestaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="consultarResultadoEvento">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:string" minOccurs="0"/>
+      <xs:element name="participanteUno" type="xs:string" minOccurs="0"/>
+      <xs:element name="participanteDos" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="consultarResultadoEventoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

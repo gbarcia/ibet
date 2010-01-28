@@ -1,0 +1,126 @@
+/* 
+    Document   : slip
+    Created on : Oct 22, 2009, 4:14:25 PM
+    Author     : jonathan
+    Description:
+        Estilos de Slip.*/
+
+/* @group Slip */
+
+#slip {
+	background-color: #429CFF;
+	border: #fff solid 1px;
+        position:fixed;
+	width: 200px
+}
+
+#slip #slipTitle {
+	background-color: #171717;
+	border-bottom: #fff solid 1px;
+	color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	font-size: 1em;
+        font-weight:700;
+	letter-spacing: 2px;
+	padding: 5px 10px
+}
+
+#slip #slipContent {
+	color: #fff;
+	padding: 10px;
+	font: .8em/1.5 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	text-align: justify;
+}
+
+#slip #prediccion{
+    position:relative
+}
+
+#slip #proporcion{
+    position:absolute;
+    right:0;
+    bottom:0
+}
+
+#slip #nombreParticipante{
+    font-size:1.5em;
+    font-weight:700;
+    text-align:left;
+    width:75%;
+}
+
+#slip #ganancias{
+    font-weight:700;
+    width:68px;
+    overflow:hidden
+}
+
+#slip #nombreEvento{
+    text-align:center
+}
+
+/* @end */
+
+/* @group Links */
+
+#slip a {
+	color: #141414;
+	font-weight: 700;
+	text-decoration: none
+}
+
+#slip a:hover,.slipContent a:active {
+	text-decoration: underline
+}
+
+#slip a:visited {
+	color: #424242;
+}
+/* @end */
+
+/* @group SlipInput */
+
+#slip input[type=text] {
+	background-color: #000;
+	border: 1px solid #fff;
+	color: #fff;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	width: 65px;
+}
+
+#slip input[type=text]:focus {
+	border: 1px solid orange
+}
+
+/* @group SlipBoton */
+
+#slip input[type="button"] {
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	background: #00AAE2 url(../images/form/buttonSlipBg.png);
+	border: 1px solid #fff;
+	color: #141414;
+	cursor: pointer;
+	font: 13px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+        font-weight:700;
+        padding:2px 8px;
+        width:65px
+}
+
+#slip input[type="button"]:hover {
+	background: #0089B4 url(../images/form/buttonSlipHoverBg.png);
+}
+
+#slip hr{
+    border:none;
+    border-top:1px dashed #000;
+    border-color:#fff;
+    width:100%
+}
+
+#slip td{
+    vertical-align:middle;
+    text-align:left
+}

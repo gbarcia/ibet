@@ -1,0 +1,102 @@
+/*
+    Document   : menu
+    Created on : Oct 27, 2009, 6:03:09 PM
+    Author     : jonathan
+    Description:
+        Estilo de menu.
+*/
+
+/* @group General */
+
+#menuTop ul,#menuSide ul {
+	list-style: none;
+	margin: 0;
+	padding: 0
+}
+
+/* @end */
+
+/* @group Menu Top */
+
+#menuTop {
+	border-left: solid #FFF 1px;
+	float: left;
+	width: 500px
+}
+
+#menuTop li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: 100px
+}
+
+#menuTop li a {
+	background: url(../images/bg/headerTopShade.png) repeat 0 0;
+	border-right: solid #FFF 1px;
+	color: #fff;
+	display: block;
+	font-size: .8em;
+	font-weight: 700;
+	height: 35px;
+	letter-spacing: 2px;
+	padding: 10px;
+	text-decoration: none
+}
+
+#menuTop li a:hover,li a:focus,li a:active {
+	background-position: 0 -110px
+}
+
+/* @end */
+
+/* @group Menu Side */
+
+#menuSide {
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	margin-top: 20px;
+	width: 180px
+}
+
+#menuSide li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: 180px
+}
+
+#menuSide li h1 {
+	background: url(../images/bg/sideMenuShade.png) repeat 0 0;
+	background-color: #202020;
+	border: 1px solid #000;
+	border-right: 0;
+	color: #fff;
+	display: block;
+	font-size: 12px;
+	letter-spacing: 2px;
+	margin: 0 0 5px;
+	padding: 5px 10px;
+	text-decoration: none
+}
+
+#menuSide li a {
+	background: url(../images/bg/sideMenuShade.png) repeat 0 0;
+	background-color: #202020;
+	border: 1px solid #000;
+	border-right: 0;
+	color: #fff;
+	display: block;
+	font-size: 12px;
+	letter-spacing: 2px;
+	margin: 0 0 5px;
+	padding: 5px 20px;
+	text-decoration: none
+}
+
+#menuSide li a:hover,li a:focus,li a:active {
+	background-position: 180px 0
+}
+
+/* @end */
