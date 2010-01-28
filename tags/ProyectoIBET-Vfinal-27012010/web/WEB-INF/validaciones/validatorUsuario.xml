@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+     <!-- Archivo para la validacion de los formularios de usuarios -->
+
+<form-validation>
+    
+    <!-- Declaracion de constantes-->
+    <global>
+        <constant>
+            <constant-name>soloLetrasMask</constant-name>
+            <constant-value>^[A-Za-z.\s]*$</constant-value>
+        </constant>
+    </global>
+    <formset>
+        <!-- Validacion formulario registro Usuarios-->
+        <form name="registroUsuarioTO">
+            <field property="nombreUsuario" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.nombreUsuario"/>
+                <msg name="mask" key="errors.sololetras.nombreUsuario"/>
+                <msg name="minlength" key="errors.length.nombreUsuario" />
+                <msg name="maxlength" key="errors.length.nombreUsuario" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="nombre" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.nombre"/>
+                <msg name="mask" key="errors.sololetras.nombre"/>
+                <msg name="minlength" key="errors.length.nombre" />
+                <msg name="maxlength" key="errors.length.nombre" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>2</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+            </field>
+            <field property="apellido" depends="required,mask,maxlength,minlength">
+                <msg name="required" key="errors.required.apellido"/>
+                <msg name="mask" key="errors.sololetras.apellido"/>
+                <msg name="minlength" key="errors.length.apellido" />
+                <msg name="maxlength" key="errors.length.apellido" />
+                <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+                <arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+                <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>2</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+            </field>
+            <field property="sexo" depends="required">
+                <msg name="required" key="errors.required.sexo"/>
+            </field>
+            <field property="correo" depends="required,email">
+                <msg name="required" key="errors.required.correo"/>
+                <msg name="email" key="errors.email.correo"/>
+            </field>
+            <field property="repCorreo" depends="email,validwhen">
+                <msg name="email" key="errors.email.correo"/>
+                <msg name="validwhen" key="errors.email.correo.rep"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(correo == *this*)</var-value>
+                </var>
+            </field>
+            <field property="codigoPostal" depends="required">
+                <msg name="required" key="errors.required.codigoPostal"/>
+            </field>
+            <field property="telefono" depends="required,mask">
+                <msg name="required" key="errors.required.telefono"/>
+                <msg name="mask" key="errors.mask.telefono"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>((\(\d{4}\) ?)|(\d{3}-))?\d{3}-\d{4}</var-value>
+                </var>
+            </field>
+            <field property="pais" depends="required">
+                <msg name="required" key="errors.required.pais"/>
+            </field>
+            <field property="estado" depends="required">
+                <msg name="required" key="errors.required.estado"/>
+            </field>
+            <field property="ciudad" depends="required,mask">
+                <msg name="required" key="errors.required.ciudad"/>
+                <msg name="mask" key="errors.mask.ciudad"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+            </field>
+            <field property="calle" depends="required">
+                <msg name="required" key="errors.required.calle"/>
+            </field>
+            <field property="clave" depends="required,mask">
+                <msg name="required" key="errors.required.clave"/>
+                <msg name="mask" key="errors.mask.clave"/>
+                <arg name="mask" key="4" position="0" resource="false"/>
+                <arg name="mask" key="8" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^.{4,8}$</var-value>
+                </var>
+            </field>
+            <field property="repClave" depends="required,validwhen">
+                <msg name="required" key="errors.required.claveRep"/>
+                <msg name="validwhen" key="errors.mask.claveDistinta"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(clave == *this*)</var-value>
+                </var>
+            </field>
+            <field property="aceptaContrato" depends="validwhen">
+                <msg name="validwhen" key="errors.required.contrato"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(*this* == 'true')</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="recuperarClaveTO">
+            <field property="username" depends="required">
+                <msg name="required" key="errors.required.nombreUsuario"/>
+            </field>
+            <field property="correo" depends="required,email">
+                <msg name="required" key="errors.required.correo"/>
+                <msg name="email" key="errors.email.correo"/>
+            </field>
+        </form>
+        <form name="perfilUsuarioTO">
+            <field property="sexo" depends="required">
+                <msg name="required" key="errors.required.sexo"/>
+            </field>
+            <field property="codigoPostal" depends="required">
+                <msg name="required" key="errors.required.codigoPostal"/>
+            </field>
+            <field property="telefono" depends="required,mask">
+                <msg name="required" key="errors.required.telefono"/>
+                <msg name="mask" key="errors.mask.telefono"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>((\(\d{4}\) ?)|(\d{3}-))?\d{3}-\d{4}</var-value>
+                </var>
+            </field>
+            <field property="pais" depends="required">
+                <msg name="required" key="errors.required.pais"/>
+            </field>
+            <field property="estado" depends="required">
+                <msg name="required" key="errors.required.estado"/>
+            </field>
+            <field property="ciudad" depends="required,mask">
+                <msg name="required" key="errors.required.ciudad"/>
+                <msg name="mask" key="errors.mask.ciudad"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${soloLetrasMask}</var-value>
+                </var>
+            </field>
+            <field property="calle" depends="required">
+                <msg name="required" key="errors.required.calle"/>
+            </field>
+            <field property="clave" depends="mask">
+                <msg name="mask" key="errors.mask.clave"/>
+                <arg name="mask" key="4" position="0" resource="false"/>
+                <arg name="mask" key="8" position="1" resource="false"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^.{4,8}$</var-value>
+                </var>
+            </field>
+            <field property="repClave" depends="validwhen">
+                <msg name="validwhen" key="errors.mask.claveDistinta"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>(clave == *this*)</var-value>
+                </var>
+            </field>
+        </form>
+    </formset>
+</form-validation>

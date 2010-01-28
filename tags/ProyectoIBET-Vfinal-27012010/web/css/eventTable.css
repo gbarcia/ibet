@@ -1,0 +1,77 @@
+/* 
+    Document   : tablero
+    Created on : Nov 23, 2009, 7:52:42 PM
+    Author     : jonathan
+    Description:
+        Estilo de tabla de eventos.
+*/
+
+.eventTable{
+    width:100%;
+}
+
+.eventTable .logo{
+    color:#bcbcbc;
+    padding:1px 4px;
+    text-align:center;
+    vertical-align:middle
+}
+
+.eventTable .fecha{
+    background-color:#171717;
+    border:#000 solid 1px;
+    color:orange;
+    padding:1px 4px;
+    font-weight:700;
+    letter-spacing:2px;
+    vertical-align:top
+}
+
+.eventTable .hora{
+    color:#bcbcbc;
+    padding:1px 4px;
+    text-align:center;
+    vertical-align:top
+}
+
+.eventTable .item{
+    background-color:#202020;
+    border:#000 solid 1px;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
+}
+
+.eventTable .itemHover{
+    background-color:#202020;
+    border:orange solid 1px;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
+}
+
+.eventTable .itemClick{
+    background-color:orange;
+    border:1px solid #000;
+    color:#000;
+    cursor:pointer;
+    padding:1px 4px;
+    vertical-align:top;
+}
+
+.eventTable .participante{
+    float:left;
+    max-width:80%
+}
+
+.eventTable .proporcion{
+    float:right;
+}
+
+.eventTable .ubet{
+    color:#000;
+    background-color:#aaaaaa;
+    border:#000 solid 1px;
+    padding:1px 4px;
+    vertical-align:top;
+}

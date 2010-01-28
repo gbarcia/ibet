@@ -1,0 +1,39 @@
+/* 
+    Document   : main
+    Created on : Oct 21, 2009, 6:13:16 PM
+    Author     : jonathan
+    Description:
+        Estilos general.
+*/
+
+/* @group General */
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+body {
+    background-attachment: fixed;
+    background-color: #535253;
+    background-image: url('../images/bg/bg.png');
+    height: 100%
+}
+
+img {
+    border: 0px;
+}
+
+/* @end */
+
+/* @group Page Wrap */
+
+#pageWrap {
+    min-width: 1000px
+}
+
+/* @end */
