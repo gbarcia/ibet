@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+<!-- Archivo para configuracion de los despachos realacionados al backEnd - Capa de administracion-->
+
+<!--
+ *********************** FORMULARIOS ********************
+ -->
+
+<!-- Bean para mostrar el reporte de ganancias por categoria -->
+<bean name="/privado/back/reportes/reporteGanancias.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CategoriasGananciasFormController">
+  <property name="formView" value="privado/back/reportes/reporteGanancias" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el reporte de perdidas por categoria -->
+<bean name="/privado/back/reportes/reportePerdidas.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CategoriasPerdidasFormController">
+  <property name="formView" value="privado/back/reportes/reportePerdidas" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de usuarios por categoria -->
+<bean name="/privado/back/reportes/reporteCantidadUsuariosPorCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.CantidadUsuariosPorCategoriaFormController">
+  <property name="formView" value="privado/back/reportes/reporteCantidadUsuariosPorCategoria" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de usuarios con mayor aciertos -->
+<bean name="/privado/back/reportes/reporteUsuariosMayorAciertos.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.UsuariosMayorAciertosFormController">
+  <property name="formView" value="privado/back/reportes/reporteUsuariosMayorAciertos" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el reporte de cantidad de eventos de alto riesgo -->
+<bean name="/privado/back/reportes/reporteEventosAltoRiesgo.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.EventosAltoRiesgoFormController">
+  <property name="formView" value="privado/back/reportes/reporteEventosAltoRiesgo" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario para agregar categoria-->
+<bean name="/privado/back/categoria/agregarCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.AgregarCategoriaController">
+  <property name="servicioCategoria" ref="servicioCategoria" />
+  <property name="formView" value="privado/back/categoria/agregarCategoria" />
+  <property name="successView" value="homeCategoria.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario para actualizar categoria-->
+<bean name="/privado/back/categoria/updateCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.EditarCategoriaController">
+  <property name="servicioCategoria" ref="servicioCategoria" />
+  <property name="formView" value="privado/back/categoria/updateCategoria" />
+  <property name="successView" value="homeCategoria.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario para agregar medio de pago-->
+<bean name="/privado/back/pagos/agregarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.AgregarMedioPagoController">
+  <property name="servicioMedioPago" ref="servicioMedioPago" />
+  <property name="formView" value="privado/back/pagos/agregarPago" />
+  <property name="successView" value="homeMedioPago.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario para actualizar medio de pago-->
+<bean name="/privado/back/pagos/updatePago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.EditarMedioPagoController">
+  <property name="servicioMedioPago" ref="servicioMedioPago" />
+  <property name="formView" value="privado/back/pagos/updatePago" />
+  <property name="successView" value="homeMedioPago.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario para finalizar evento-->
+<bean name="/privado/back/finalizarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.FinalizarEventoFormController">
+  <property name="servicioEvento" ref="servicioEvento" />
+  <property name="formView" value="privado/back/evento/finalizarEvento" />
+  <property name="successView" value="admin.htm" />
+  <property name="validator" ref="beanValidator"/>
+</bean>
+
+<!-- Bean para mostrar el formulario de registro de eventos-->
+<bean name="/privado/back/evento/registroEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.RegistroEventoFormController">
+  <property name="servicioEvento" ref="servicioEvento"/>
+  <property name="servicioTableroGanancia" ref="servicioTableroGanancia"/>
+  <property name="servicioCategoria" ref="servicioCategoria"/>
+  <property name="helperProperties" ref="helperProperties"/>
+  <property name="pages">
+      <list>
+          <value>/privado/back/evento/formRegistro/pagina1</value>
+          <value>/privado/back/evento/formRegistro/pagina2</value>
+          <value>/privado/back/evento/formRegistro/pagina3</value>
+      </list>
+  </property>
+ <property name="validator">
+     <bean class="ve.edu.ucab.ibet.controllers.forms.validator.RegistroEventoValidator"/>
+ </property>
+</bean>
+
+ <!--
+ *********************** PAGINAS ********************
+ -->
+
+ <!-- Bean para mostrar la pagina de inicio del administrador -->
+<bean name="/privado/back/admin.htm"
+    class="ve.edu.ucab.ibet.controllers.views.IndexAdminController">
+        <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
+ <!-- Bean para mostrar la pagina de los reportes -->
+<bean name="/privado/back/reportes/homeReportes.htm"
+    class="ve.edu.ucab.ibet.controllers.reportes.impl.HomeReporteController">
+</bean>
+ <!-- Bean para mostrar la pagina de inicio de la gestion de categorias -->
+<bean name="/privado/back/categoria/homeCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.HomeCategoriaController">
+        <property name="servicioCategoria" ref="servicioCategoria" />
+        <property name="herlperProp" ref="helperProperties" />
+</bean>
+ <!-- Bean para inhabilitar una categoria y realizar retorno a homeCategoria -->
+<bean name="/privado/back/categoria/inhabilitarCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.InhabilitarCategoriaController">
+        <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
+ <!-- Bean para habilitar una categoria y realizar retorno a homeCategoria -->
+<bean name="/privado/back/categoria/habilitarCategoria.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioncategorias.HabilitarCategoriaController">
+        <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
+ <!-- Bean para mostrar la pagina de inicio de la gestion de categorias -->
+<bean name="/privado/back/pagos/homeMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.HomeMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
+</bean>
+ <!-- Bean para inhabilitar un medio de pago y realizar retorno a homeMedioPago -->
+<bean name="/privado/back/pagos/inhabilitarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.InhabilitarMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
+</bean>
+ <!-- Bean para habilitar un medio de pago y realizar retorno a homeMedioPago -->
+<bean name="/privado/back/pagos/habilitarPago.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionpagos.HabilitarMedioPagoController">
+        <property name="servicioMedioPago" ref="servicioMedioPago" />
+</bean>
+ <!-- Bean para habilitar un evento -->
+<bean name="/privado/back/habilitarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.HabilitarEventoController">
+        <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
+ <!-- Bean para inhabilitar un evento -->
+<bean name="/privado/back/inhabilitarEvento.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestioneventos.InhabilitarEventoController">
+        <property name="servicioEvento" ref="servicioEvento"/>
+</bean>
+
+ <!-- Bean para mostrar la pagina de inicio de la gestion de usuarios -->
+<bean name="/privado/back/usuario/homeUsuarios.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.HomeUsuariosController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+ <!-- Bean para inhabilitar un usuario y realizar retorno a homeUsuarios -->
+<bean name="/privado/back/usuario/inhabilitarUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.InhabilitarUsuarioController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+ <!-- Bean para habilitar un usuario y realizar retorno a homeUsuarios -->
+<bean name="/privado/back/usuario/habilitarUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.views.gestionusers.HabilitarUsuarioController">
+        <property name="servicioUsuario" ref="servicioUsuario" />
+</bean>
+
+</beans>

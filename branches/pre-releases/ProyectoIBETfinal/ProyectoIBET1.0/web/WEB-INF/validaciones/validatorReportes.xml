@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+     <!-- Archivo para la validacion de los formularios de reportes -->
+
+<form-validation>
+    <formset>
+        <form name="altoRiesgoTO">
+            <field property="monto" depends="required,double">
+                <msg name="required" key="el monto es requerido" resource="false"/>
+                <msg name="double" key="el monto debe ser numerico" resource="false"/>
+            </field>
+        </form>
+        <form name="fechasTO">
+            <field property="fechaInicio" depends="required">
+                <msg name="required" key="la fecha es requerida" resource="false"/>
+            </field>
+            <field property="fechaFin" depends="required">
+                <msg name="required" key="la fecha es requerida" resource="false"/>
+            </field>
+        </form>
+    </formset>
+</form-validation>

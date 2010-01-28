@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+<!-- Archivo para configuracion de los despachos realacionados al frontEnd - Capa de presentacion-->
+
+<!--
+ *********************** FORMULARIOS ********************
+ -->
+
+<!-- Bean para trabajar con el formulario de perfil de usuario
+-->
+ <bean name="/privado/front/usuario/perfilUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.PerfilUsuarioFormController">
+  <property name="formView" value="privado/front/usuario/perfilUsuario" />
+  <property name="successView" value="perfilUsuario.htm" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+</bean>
+
+<!-- Bean para trabajar con el formulario de historial de apuestas de usuario
+-->
+ <bean name="/privado/front/usuario/historialApuestas.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.HistorialApuestasFormController">
+  <property name="formView" value="privado/front/usuario/historialApuestas" />
+  <property name="successView" value="historialApuestas.htm" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioReporte" ref="servicioReporte"/>
+</bean>
+
+<!-- Bean para trabajar con el formulario de registro de Usuario
+-->
+ <bean name="/publico/front/usuario/registroUsuario.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.RegistroUsuarioFormController">
+  <property name="formView" value="publico/front/usuario/registroUsuario" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+</bean>
+
+<!-- Bean para trabajar con el formulario de recuperacion de clave
+-->
+ <bean name="/publico/front/usuario/recuperarClave.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.RecuperarClaveFormController">
+  <property name="formView" value="publico/front/usuario/recuperarClave" />
+  <property name="successView" value="/ProyectoIBET/login.htm?savepass=1" />
+  <property name="validator" ref="beanValidator"/>
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+</bean>
+
+<!-- Bean para trabajar con el formulario de confirmacion de apuesta
+-->
+ <bean name="/privado/front/apuesta/tableroApuesta.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.TableroApuestaFormController">
+  <property name="formView" value="privado/front/apuesta/tableroApuesta" />
+  <property name="servicioUsuario" ref="servicioUsuario"/>
+  <property name="servicioApuesta" ref="servicioApuesta"/>
+  <property name="servicioMedioPago" ref="servicioMedioPago"/>
+</bean>
+
+ <!--
+ *********************** PAGINAS ********************
+ -->
+
+<!-- Bean para trabajar con la presentacion de la confirmacion del registro
+-->
+ <bean name="/publico/confirmarRegistro.htm"
+ class="ve.edu.ucab.ibet.controllers.views.ConfirmacionRegistroController" >
+     <property name="servicioUsuario" ref="servicioUsuario" />
+ </bean>
+
+<!-- Bean para trabajar con la presentacion de metodos de pago
+-->
+ <bean name="/privado/front/usuario/metodosPagoUsuario.htm"
+ class="ve.edu.ucab.ibet.controllers.forms.MetodosPagoUsuarioFormController" >
+     <property name="servicioUsuarioMedioPago" ref="servicioUsuarioMedioPago" />
+ </bean>
+
+<!-- Beans para gestion de medio pago de usuario
+-->
+<bean name="/privado/front/usuario/inhabilitarUsuarioMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.InhabilitarUsuarioMedioPagoController">
+        <property name="servicioUsuarioPago" ref="servicioUsuarioMedioPago"/>
+</bean>
+
+
+<!--<bean name="/privado/front/usuario/habilitarUsuarioMedioPago.htm"
+    class="ve.edu.ucab.ibet.controllers.forms.HabilitarUsuarioMedioPagoController">
+  <property name="formView" value="privado/front/apuesta/tableroApuesta" />
+  <property name="servicioUsuarioMedioPago" ref="servicioUsuarioMedioPago"/>
+  <property name="servicioMedioPago" ref="servicioMedioPago"/>
+</bean>-->
+
+<!-- Bean para trabajar con la presentacion de la recuperacion de clave
+-->
+ <bean name="/publico/recuperacionClave.htm"
+ class="ve.edu.ucab.ibet.controllers.views.ConfirmacionRecuperacionClaveController" >
+     <property name="servicioUsuario" ref="servicioUsuario" />
+ </bean>
+
+<!-- Bean para generar el menu de categorias -->
+<bean name="/include/sideMenu.htm"
+class="ve.edu.ucab.ibet.controllers.views.MenuCategoriasController">
+    <property name="servicioCategoria" ref="servicioCategoria" />
+</bean>
+
+</beans>
